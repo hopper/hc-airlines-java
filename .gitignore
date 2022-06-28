@@ -1,0 +1,10 @@
+#IDE settings
+.idea/
+.classpath
+.DS_Store
+.project
+.settings
+#Build settings
+.gradle/
+#Build results
+build/

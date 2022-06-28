@@ -1,0 +1,5 @@
+{
+  "modelPackage": "hcap.model",
+  "apiPackage": "hcap.api",
+  "invokerPackage": "hcap"
+}
