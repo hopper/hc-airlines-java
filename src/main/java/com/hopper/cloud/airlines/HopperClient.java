@@ -2,12 +2,10 @@ package com.hopper.cloud.airlines;
 
 import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
-import com.hopper.cloud.airlines.model.AirlineSession;
-import com.hopper.cloud.airlines.model.CfarContract;
-import com.hopper.cloud.airlines.model.CreateAirlineSessionRequest;
-import com.hopper.cloud.airlines.model.UpdateCfarContractRequest;
+import com.hopper.cloud.airlines.model.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -15,30 +13,26 @@ public class HopperClient {
     private final CancelForAnyReasonCfarApi cfarApi;
     private final SessionsApi sessionsApi;
 
-    public HopperClient(String url, String clientId, String clientSecret) {
+    public HopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
 
         Map<String, String> params = new HashMap<>();
         params.put("audience", "https://airlines-api.development.hopper.com");
         params.put("grant_type", "client_credentials");
         ApiClient apiClient = new ApiClient(clientId, clientSecret, params);
         cfarApi = new CancelForAnyReasonCfarApi(apiClient);
-        cfarApi.getApiClient().setDebugging(true);
+        cfarApi.getApiClient().setDebugging(debugging);
         cfarApi.getApiClient().setBasePath(url);
         cfarApi.getApiClient().setConnectTimeout(60000);
         cfarApi.getApiClient().setReadTimeout(60000);
         cfarApi.getApiClient().setWriteTimeout(60000);
 
         sessionsApi = new SessionsApi(apiClient);
-        sessionsApi.getApiClient().setDebugging(true);
+        sessionsApi.getApiClient().setDebugging(debugging);
         sessionsApi.getApiClient().setBasePath(url);
         sessionsApi.getApiClient().setConnectTimeout(60000);
         sessionsApi.getApiClient().setReadTimeout(60000);
         sessionsApi.getApiClient().setWriteTimeout(60000);
 
-    }
-
-    public CfarContract getContract(String contractId, String sessionId) throws ApiException {
-        return cfarApi.getCfarContractsId(contractId, sessionId);
     }
 
     /**
@@ -62,5 +56,25 @@ public class HopperClient {
      */
     public AirlineSession createSession(CreateAirlineSessionRequest createAirlineSessionRequest) throws ApiException {
         return sessionsApi.postSessions(createAirlineSessionRequest);
+    }
+
+    public List<CfarOffer> createOffers(CreateCfarOfferRequest createCfarOfferRequest, String sessionId) throws ApiException {
+        return cfarApi.postCfarOffers(createCfarOfferRequest,sessionId);
+    }
+
+    public CfarContract createCfarContract(CreateCfarContractRequest createCfarContractRequest, String sessionId) throws ApiException {
+        return cfarApi.postCfarContracts(createCfarContractRequest,sessionId,false);
+    }
+
+    public CfarContract getContract(String contractId, String sessionId) throws ApiException {
+        return cfarApi.getCfarContractsId(contractId, sessionId);
+    }
+
+    public CfarContractExercise creatCfarContractExercise(CreateCfarContractExerciseRequest createCfarContractExerciseRequest, String sessionId) throws ApiException {
+        return cfarApi.postCfarContractExercises(createCfarContractExerciseRequest,sessionId);
+    }
+
+    public CfarContractExercise completeCfarContractExercise(MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String contractId, String sessionId) throws ApiException {
+        return cfarApi.putCfarContractExercisesIdMarkCompleted(contractId,markCfarContractExerciseCompleteRequest,sessionId);
     }
 }

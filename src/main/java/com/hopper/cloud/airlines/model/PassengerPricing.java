@@ -185,7 +185,7 @@ public class PassengerPricing {
       if (jsonObj.getAsJsonObject("passenger_count") != null) {
         PassengerCount.validateJsonObject(jsonObj.getAsJsonObject("passenger_count"));
       }
-      if (jsonObj.get("individual_price") != null && !jsonObj.get("individual_price").isJsonPrimitive()) {
+      if (jsonObj.get("individual_price") != null && !jsonObj.get("individual_price").isJsonNull() && !jsonObj.get("individual_price").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `individual_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("individual_price").toString()));
       }
   }

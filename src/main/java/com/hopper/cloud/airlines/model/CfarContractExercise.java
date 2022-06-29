@@ -472,7 +472,7 @@ public class CfarContractExercise {
       if (jsonObj.get("contract_id") != null && !jsonObj.get("contract_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `contract_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contract_id").toString()));
       }
-      if (jsonObj.get("exchange_rate") != null && !jsonObj.get("exchange_rate").isJsonPrimitive()) {
+      if (jsonObj.get("exchange_rate") != null && !jsonObj.get("exchange_rate").isJsonNull() && !jsonObj.get("exchange_rate").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `exchange_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exchange_rate").toString()));
       }
       if (jsonObj.get("hopper_refund") != null && !jsonObj.get("hopper_refund").isJsonPrimitive()) {
