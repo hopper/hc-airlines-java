@@ -8,3 +8,5 @@
 .gradle/
 #Build results
 build/
+*.gpg
+*.bak

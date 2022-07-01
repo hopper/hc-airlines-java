@@ -1,21 +1,20 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.owasp:dependency-check-gradle:7.1.1'
-    }
-}
-
-
 plugins {
     id 'java-library'
     id 'maven-publish'
     id "org.hidetake.swagger.generator" version "2.19.2"
+    id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
+    id "org.owasp.dependencycheck" version "7.1.1"
 }
 
+java {
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+
+
 group 'com.hopper.cloud'
-version '0.0.1-SNAPSHOT'
+version '0.0.1'
+ext.artifactId = 'cloud-airlines-java'
 
 repositories {
     mavenCentral()
@@ -36,19 +35,13 @@ dependencies {
 
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-}
+
+
 configurations.all {
     resolutionStrategy.dependencySubstitution {
         substitute module('com.google.code.gson:gson:2.8.6') using module('com.google.code.gson:gson:2.9.0')
     }
 }
-apply plugin: 'org.owasp.dependencycheck'
 
 /*swaggerSources {
     hcap {
