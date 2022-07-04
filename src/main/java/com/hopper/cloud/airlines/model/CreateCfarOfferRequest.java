@@ -49,10 +49,6 @@ import com.hopper.cloud.airlines.JSON;
 @ApiModel(description = "A create CFAR offer request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
 public class CreateCfarOfferRequest {
-  public static final String SERIALIZED_NAME_PARTNER_ID = "partner_id";
-  @SerializedName(SERIALIZED_NAME_PARTNER_ID)
-  private String partnerId;
-
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
   private List<CfarItinerary> itinerary = new ArrayList<>();
@@ -71,29 +67,6 @@ public class CreateCfarOfferRequest {
 
   public CreateCfarOfferRequest() { 
   }
-
-  public CreateCfarOfferRequest partnerId(String partnerId) {
-    
-    this.partnerId = partnerId;
-    return this;
-  }
-
-   /**
-   * The partner&#39;s unique identifier provided by Hopper
-   * @return partnerId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "8a411411-1083-4c00-94d1-0ee0ace17f61", value = "The partner's unique identifier provided by Hopper")
-
-  public String getPartnerId() {
-    return partnerId;
-  }
-
-
-  public void setPartnerId(String partnerId) {
-    this.partnerId = partnerId;
-  }
-
 
   public CreateCfarOfferRequest itinerary(List<CfarItinerary> itinerary) {
     
@@ -156,8 +129,8 @@ public class CreateCfarOfferRequest {
    * Get bookingDateTime
    * @return bookingDateTime
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public OffsetDateTime getBookingDateTime() {
     return bookingDateTime;
@@ -207,8 +180,7 @@ public class CreateCfarOfferRequest {
       return false;
     }
     CreateCfarOfferRequest createCfarOfferRequest = (CreateCfarOfferRequest) o;
-    return Objects.equals(this.partnerId, createCfarOfferRequest.partnerId) &&
-        Objects.equals(this.itinerary, createCfarOfferRequest.itinerary) &&
+    return Objects.equals(this.itinerary, createCfarOfferRequest.itinerary) &&
         Objects.equals(this.requestType, createCfarOfferRequest.requestType) &&
         Objects.equals(this.bookingDateTime, createCfarOfferRequest.bookingDateTime) &&
         Objects.equals(this.extAttributes, createCfarOfferRequest.extAttributes);
@@ -216,14 +188,13 @@ public class CreateCfarOfferRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(partnerId, itinerary, requestType, bookingDateTime, extAttributes);
+    return Objects.hash(itinerary, requestType, bookingDateTime, extAttributes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCfarOfferRequest {\n");
-    sb.append("    partnerId: ").append(toIndentedString(partnerId)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
     sb.append("    requestType: ").append(toIndentedString(requestType)).append("\n");
     sb.append("    bookingDateTime: ").append(toIndentedString(bookingDateTime)).append("\n");
@@ -250,7 +221,6 @@ public class CreateCfarOfferRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("partner_id");
     openapiFields.add("itinerary");
     openapiFields.add("request_type");
     openapiFields.add("booking_date_time");
@@ -260,7 +230,6 @@ public class CreateCfarOfferRequest {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("itinerary");
     openapiRequiredFields.add("request_type");
-    openapiRequiredFields.add("booking_date_time");
     openapiRequiredFields.add("ext_attributes");
   }
 
@@ -292,9 +261,6 @@ public class CreateCfarOfferRequest {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
-      }
-      if (jsonObj.get("partner_id") != null && !jsonObj.get("partner_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `partner_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("partner_id").toString()));
       }
       JsonArray jsonArrayitinerary = jsonObj.getAsJsonArray("itinerary");
       if (jsonArrayitinerary != null) {

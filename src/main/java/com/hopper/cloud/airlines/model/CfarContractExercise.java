@@ -23,7 +23,6 @@ import com.hopper.cloud.airlines.model.AirlineRefundMethod;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,14 +51,6 @@ public class CfarContractExercise {
   public static final String SERIALIZED_NAME_CONTRACT_ID = "contract_id";
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
   private String contractId;
-
-  public static final String SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME = "exercise_initiated_date_time";
-  @SerializedName(SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME)
-  private OffsetDateTime exerciseInitiatedDateTime;
-
-  public static final String SERIALIZED_NAME_EXERCISE_COMPLETED_DATE_TIME = "exercise_completed_date_time";
-  @SerializedName(SERIALIZED_NAME_EXERCISE_COMPLETED_DATE_TIME)
-  private OffsetDateTime exerciseCompletedDateTime;
 
   public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchange_rate";
   @SerializedName(SERIALIZED_NAME_EXCHANGE_RATE)
@@ -135,52 +126,6 @@ public class CfarContractExercise {
 
   public void setContractId(String contractId) {
     this.contractId = contractId;
-  }
-
-
-  public CfarContractExercise exerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
-    
-    this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
-    return this;
-  }
-
-   /**
-   * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated
-   * @return exerciseInitiatedDateTime
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-11-02T18:34:30Z", required = true, value = "A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated")
-
-  public OffsetDateTime getExerciseInitiatedDateTime() {
-    return exerciseInitiatedDateTime;
-  }
-
-
-  public void setExerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
-    this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
-  }
-
-
-  public CfarContractExercise exerciseCompletedDateTime(OffsetDateTime exerciseCompletedDateTime) {
-    
-    this.exerciseCompletedDateTime = exerciseCompletedDateTime;
-    return this;
-  }
-
-   /**
-   * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was completed
-   * @return exerciseCompletedDateTime
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2020-11-02T18:34:30Z", value = "A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was completed")
-
-  public OffsetDateTime getExerciseCompletedDateTime() {
-    return exerciseCompletedDateTime;
-  }
-
-
-  public void setExerciseCompletedDateTime(OffsetDateTime exerciseCompletedDateTime) {
-    this.exerciseCompletedDateTime = exerciseCompletedDateTime;
   }
 
 
@@ -362,8 +307,6 @@ public class CfarContractExercise {
     CfarContractExercise cfarContractExercise = (CfarContractExercise) o;
     return Objects.equals(this.id, cfarContractExercise.id) &&
         Objects.equals(this.contractId, cfarContractExercise.contractId) &&
-        Objects.equals(this.exerciseInitiatedDateTime, cfarContractExercise.exerciseInitiatedDateTime) &&
-        Objects.equals(this.exerciseCompletedDateTime, cfarContractExercise.exerciseCompletedDateTime) &&
         Objects.equals(this.exchangeRate, cfarContractExercise.exchangeRate) &&
         Objects.equals(this.hopperRefund, cfarContractExercise.hopperRefund) &&
         Objects.equals(this.hopperRefundMethod, cfarContractExercise.hopperRefundMethod) &&
@@ -375,7 +318,7 @@ public class CfarContractExercise {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contractId, exerciseInitiatedDateTime, exerciseCompletedDateTime, exchangeRate, hopperRefund, hopperRefundMethod, extAttributes, airlineRefundAllowance, airlineRefundMethod, currency);
+    return Objects.hash(id, contractId, exchangeRate, hopperRefund, hopperRefundMethod, extAttributes, airlineRefundAllowance, airlineRefundMethod, currency);
   }
 
   @Override
@@ -384,8 +327,6 @@ public class CfarContractExercise {
     sb.append("class CfarContractExercise {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    contractId: ").append(toIndentedString(contractId)).append("\n");
-    sb.append("    exerciseInitiatedDateTime: ").append(toIndentedString(exerciseInitiatedDateTime)).append("\n");
-    sb.append("    exerciseCompletedDateTime: ").append(toIndentedString(exerciseCompletedDateTime)).append("\n");
     sb.append("    exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
     sb.append("    hopperRefund: ").append(toIndentedString(hopperRefund)).append("\n");
     sb.append("    hopperRefundMethod: ").append(toIndentedString(hopperRefundMethod)).append("\n");

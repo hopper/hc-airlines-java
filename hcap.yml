@@ -773,6 +773,7 @@ components:
       properties:
         version:
           type: string
+          example: 15.0.2
         type:
           $ref: '#/components/schemas/browser_type'
     browser_type:
@@ -807,7 +808,6 @@ components:
     create_cfar_contract_exercise_request:
       required:
         - contract_id
-        - exercise_initiated_date_time
         - itinerary
         - pnr_reference
         - ext_attributes
@@ -817,12 +817,6 @@ components:
           type: string
           description: A unique identifier for a CFAR contract
           example: bf3291e3-5098-4bb1-90d0-0d4ebb25fe46
-        exercise_initiated_date_time:
-          type: string
-          description: A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)
-            datetime; the date and time at which a contract exercise was initiated
-          format: date-time
-          example: '2020-11-02T18:34:30Z'
         itinerary:
           $ref: '#/components/schemas/cfar_itinerary'
         pnr_reference:
@@ -841,7 +835,6 @@ components:
       required:
         - offer_ids
         - itinerary
-        - payment_method
         - ext_attributes
       type: object
       properties:
@@ -853,8 +846,6 @@ components:
             example: 2e1006b3-aba6-4899-8682-b95bce693c27
         itinerary:
           $ref: '#/components/schemas/cfar_itinerary'
-        payment_method:
-          $ref: '#/components/schemas/payment_method'
         ext_attributes:
           $ref: '#/components/schemas/map_string'
         pnr_reference:
@@ -864,14 +855,9 @@ components:
       required:
         - itinerary
         - request_type
-        - booking_date_time
         - ext_attributes
       type: object
       properties:
-        partner_id:
-          type: string
-          description: The partner's unique identifier provided by Hopper
-          example: 8a411411-1083-4c00-94d1-0ee0ace17f61
         itinerary:
           type: array
           items:
@@ -941,19 +927,12 @@ components:
         type: string
     mark_cfar_contract_exercise_complete_request:
       required:
-        - exercise_completed_date_time
         - hopper_refund
         - hopper_refund_method
         - airline_refund_allowance
         - airline_refund_method
       type: object
       properties:
-        exercise_completed_date_time:
-          type: string
-          description: A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)
-            datetime; the date and time at which a contract exercise was completed
-          format: date-time
-          example: '2020-11-02T18:34:30Z'
         hopper_refund:
           type: string
           description: The partner's share of the amount refunded to the customer
@@ -967,22 +946,19 @@ components:
         airline_refund_method:
           $ref: '#/components/schemas/airline_refund_method'
       description: An update CFAR contract exercise request
-    payment_method:
-      description: The payment method to be used for a transaction; offline_reconciliation
-        indicates that the partner has collected payment from the user, and will reconcile
-        with Hopper via a different process
-      required:
-        - type
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/payment_method_type'
-    payment_method_type:
+    page:
       type: string
-      example: offline_reconciliation
+      description: Unique screen name of the entry point where the user started the
+        engagement
+      example: home
       enum:
-        - offline_reconciliation
-        - spreedly_token
+        - add_ons
+        - flight_list
+        - flight_details
+        - home
+        - itinerary
+        - payment
+        - summary
     passenger_count:
       required:
         - count

@@ -55,10 +55,6 @@ public class CreateCfarContractRequest {
   @SerializedName(SERIALIZED_NAME_ITINERARY)
   private CfarItinerary itinerary;
 
-  public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
-  private PaymentMethod paymentMethod;
-
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   private Map<String, String> extAttributes = new HashMap<>();
@@ -118,29 +114,6 @@ public class CreateCfarContractRequest {
 
   public void setItinerary(CfarItinerary itinerary) {
     this.itinerary = itinerary;
-  }
-
-
-  public CreateCfarContractRequest paymentMethod(PaymentMethod paymentMethod) {
-    
-    this.paymentMethod = paymentMethod;
-    return this;
-  }
-
-   /**
-   * Get paymentMethod
-   * @return paymentMethod
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public PaymentMethod getPaymentMethod() {
-    return paymentMethod;
-  }
-
-
-  public void setPaymentMethod(PaymentMethod paymentMethod) {
-    this.paymentMethod = paymentMethod;
   }
 
 
@@ -207,14 +180,13 @@ public class CreateCfarContractRequest {
     CreateCfarContractRequest createCfarContractRequest = (CreateCfarContractRequest) o;
     return Objects.equals(this.offerIds, createCfarContractRequest.offerIds) &&
         Objects.equals(this.itinerary, createCfarContractRequest.itinerary) &&
-        Objects.equals(this.paymentMethod, createCfarContractRequest.paymentMethod) &&
         Objects.equals(this.extAttributes, createCfarContractRequest.extAttributes) &&
         Objects.equals(this.pnrReference, createCfarContractRequest.pnrReference);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offerIds, itinerary, paymentMethod, extAttributes, pnrReference);
+    return Objects.hash(offerIds, itinerary, extAttributes, pnrReference);
   }
 
   @Override
@@ -223,7 +195,6 @@ public class CreateCfarContractRequest {
     sb.append("class CreateCfarContractRequest {\n");
     sb.append("    offerIds: ").append(toIndentedString(offerIds)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
-    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
     sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
     sb.append("}");
@@ -250,7 +221,6 @@ public class CreateCfarContractRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("offer_ids");
     openapiFields.add("itinerary");
-    openapiFields.add("payment_method");
     openapiFields.add("ext_attributes");
     openapiFields.add("pnr_reference");
 
@@ -258,7 +228,6 @@ public class CreateCfarContractRequest {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("offer_ids");
     openapiRequiredFields.add("itinerary");
-    openapiRequiredFields.add("payment_method");
     openapiRequiredFields.add("ext_attributes");
   }
 
@@ -298,10 +267,6 @@ public class CreateCfarContractRequest {
       // validate the optional field `itinerary`
       if (jsonObj.getAsJsonObject("itinerary") != null) {
         CfarItinerary.validateJsonObject(jsonObj.getAsJsonObject("itinerary"));
-      }
-      // validate the optional field `payment_method`
-      if (jsonObj.getAsJsonObject("payment_method") != null) {
-        PaymentMethod.validateJsonObject(jsonObj.getAsJsonObject("payment_method"));
       }
       if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));

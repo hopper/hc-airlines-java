@@ -23,7 +23,6 @@ import com.hopper.cloud.airlines.model.AirlineRefundMethod;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -43,10 +42,6 @@ import com.hopper.cloud.airlines.JSON;
 @ApiModel(description = "An update CFAR contract exercise request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
 public class MarkCfarContractExerciseCompleteRequest {
-  public static final String SERIALIZED_NAME_EXERCISE_COMPLETED_DATE_TIME = "exercise_completed_date_time";
-  @SerializedName(SERIALIZED_NAME_EXERCISE_COMPLETED_DATE_TIME)
-  private OffsetDateTime exerciseCompletedDateTime;
-
   public static final String SERIALIZED_NAME_HOPPER_REFUND = "hopper_refund";
   @SerializedName(SERIALIZED_NAME_HOPPER_REFUND)
   private String hopperRefund;
@@ -65,29 +60,6 @@ public class MarkCfarContractExerciseCompleteRequest {
 
   public MarkCfarContractExerciseCompleteRequest() { 
   }
-
-  public MarkCfarContractExerciseCompleteRequest exerciseCompletedDateTime(OffsetDateTime exerciseCompletedDateTime) {
-    
-    this.exerciseCompletedDateTime = exerciseCompletedDateTime;
-    return this;
-  }
-
-   /**
-   * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was completed
-   * @return exerciseCompletedDateTime
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-11-02T18:34:30Z", required = true, value = "A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was completed")
-
-  public OffsetDateTime getExerciseCompletedDateTime() {
-    return exerciseCompletedDateTime;
-  }
-
-
-  public void setExerciseCompletedDateTime(OffsetDateTime exerciseCompletedDateTime) {
-    this.exerciseCompletedDateTime = exerciseCompletedDateTime;
-  }
-
 
   public MarkCfarContractExerciseCompleteRequest hopperRefund(String hopperRefund) {
     
@@ -191,8 +163,7 @@ public class MarkCfarContractExerciseCompleteRequest {
       return false;
     }
     MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest = (MarkCfarContractExerciseCompleteRequest) o;
-    return Objects.equals(this.exerciseCompletedDateTime, markCfarContractExerciseCompleteRequest.exerciseCompletedDateTime) &&
-        Objects.equals(this.hopperRefund, markCfarContractExerciseCompleteRequest.hopperRefund) &&
+    return Objects.equals(this.hopperRefund, markCfarContractExerciseCompleteRequest.hopperRefund) &&
         Objects.equals(this.hopperRefundMethod, markCfarContractExerciseCompleteRequest.hopperRefundMethod) &&
         Objects.equals(this.airlineRefundAllowance, markCfarContractExerciseCompleteRequest.airlineRefundAllowance) &&
         Objects.equals(this.airlineRefundMethod, markCfarContractExerciseCompleteRequest.airlineRefundMethod);
@@ -200,14 +171,13 @@ public class MarkCfarContractExerciseCompleteRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(exerciseCompletedDateTime, hopperRefund, hopperRefundMethod, airlineRefundAllowance, airlineRefundMethod);
+    return Objects.hash(hopperRefund, hopperRefundMethod, airlineRefundAllowance, airlineRefundMethod);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MarkCfarContractExerciseCompleteRequest {\n");
-    sb.append("    exerciseCompletedDateTime: ").append(toIndentedString(exerciseCompletedDateTime)).append("\n");
     sb.append("    hopperRefund: ").append(toIndentedString(hopperRefund)).append("\n");
     sb.append("    hopperRefundMethod: ").append(toIndentedString(hopperRefundMethod)).append("\n");
     sb.append("    airlineRefundAllowance: ").append(toIndentedString(airlineRefundAllowance)).append("\n");
@@ -234,7 +204,6 @@ public class MarkCfarContractExerciseCompleteRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("exercise_completed_date_time");
     openapiFields.add("hopper_refund");
     openapiFields.add("hopper_refund_method");
     openapiFields.add("airline_refund_allowance");
@@ -242,7 +211,6 @@ public class MarkCfarContractExerciseCompleteRequest {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("exercise_completed_date_time");
     openapiRequiredFields.add("hopper_refund");
     openapiRequiredFields.add("hopper_refund_method");
     openapiRequiredFields.add("airline_refund_allowance");

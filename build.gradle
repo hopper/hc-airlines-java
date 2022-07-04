@@ -83,8 +83,8 @@ configurations.all {
         substitute module('com.google.code.gson:gson:2.8.6') using module('com.google.code.gson:gson:2.9.0')
     }
 }
-
-/*swaggerSources {
+/*
+swaggerSources {
     hcap {
         inputFile = file('hcap.yml')
         code {
