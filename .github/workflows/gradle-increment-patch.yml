@@ -1,0 +1,26 @@
+name: increment-patch
+on:
+  workflow_dispatch:
+jobs:
+  incrementPatch:
+    name: incrementPatch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Grant Permission to Execute Gradle
+        run: chmod +x gradlew
+
+      - name: increment Patch Number
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: incrementPatchVersion
+
+      - name: Commit and push the new version
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git commit -a -m "[githubAction] increment Patch Version"
+          git push

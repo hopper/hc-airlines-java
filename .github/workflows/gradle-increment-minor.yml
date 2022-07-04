@@ -1,0 +1,26 @@
+name: increment-minor
+on:
+  workflow_dispatch:
+jobs:
+  incrementMinor:
+    name: incrementMinor
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Grant Permission to Execute Gradle
+        run: chmod +x gradlew
+
+      - name: increment Minor Number
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: incrementMinorVersion
+
+      - name: Commit and push the new version
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git commit -a -m "[githubAction] increment Minor Version"
+          git push

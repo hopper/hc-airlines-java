@@ -36,7 +36,43 @@ dependencies {
 }
 
 
+task incrementMinorVersion {
+    group "Custom task"
+    description "Increment the Minor number"
+    doLast {
+        String[] versionDetail = version.split('\\.')
+        String minor = (versionDetail[1].toInteger() + 1).toString() + "."
+        String major = versionDetail[0] + "."
+        String patch = "0"
+        String s = buildFile.getText().replaceFirst("version '$version'", "version '" + major + minor + patch + "'")
+        buildFile.setText(s)
+    }
+}
+task incrementPatchVersion {
+    group "Custom task"
+    description "Increment the Patch number"
+    doLast {
+        String[] versionDetail = version.split('\\.')
+        String minor = versionDetail[1] + "."
+        String major = versionDetail[0] + "."
+        String patch = (versionDetail[2].toInteger() + 1).toString()
+        String s = buildFile.getText().replaceFirst("version '$version'", "version '" + major + minor + patch + "'")
+        buildFile.setText(s)
+    }
+}
 
+task incrementMajorVersion {
+    group "Custom task"
+    description "Increment the Major number"
+    doLast {
+        String[] versionDetail = version.split('\\.')
+        String minor = "0."
+        String major = (versionDetail[0].toInteger() + 1).toString() + "."
+        String patch = "0"
+        String s = buildFile.getText().replaceFirst("version '$version'", "version '" + major + minor + patch + "'")
+        buildFile.setText(s)
+    }
+}
 configurations.all {
     resolutionStrategy.dependencySubstitution {
         substitute module('com.google.code.gson:gson:2.8.6') using module('com.google.code.gson:gson:2.9.0')
