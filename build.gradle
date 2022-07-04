@@ -13,7 +13,7 @@ java {
 
 
 group 'com.hopper.cloud'
-version '1.0.0'
+version '0.0.3'
 ext.artifactId = 'cloud-airlines-java'
 
 repositories {
@@ -33,6 +33,11 @@ dependencies {
     implementation 'io.gsonfire:gson-fire:1.8.5'
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
 
+}
+task printVersionName {
+    doLast {
+        println "version=$version"
+    }
 }
 
 

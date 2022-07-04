@@ -34,13 +34,16 @@ jobs:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
 
+      - id: get_version
+        name: Retrieve version
+        run: echo "::set-output name=VERSION::$(./gradlew printVersionName | grep version | cut -f 2 -d =)"
 
       - name: Create and push tag
         run: |
           git config --global user.email "jpinet@hopper.com"
           git config --global user.name "$GITHUB_ACTOR"
-          git tag -a $TAG -m "Release v$TAG"
-          git push origin $TAG
+          git tag -a ${{ steps.get_version.outputs.VERSION }} -m "Release v${{ steps.get_version.outputs.VERSION }}"
+          git push origin ${{ steps.get_version.outputs.VERSION }}
         env:
           TAG: ${{ github.event.inputs.versionName }}
 
