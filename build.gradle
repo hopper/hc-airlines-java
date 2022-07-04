@@ -13,7 +13,7 @@ java {
 
 
 group 'com.hopper.cloud'
-version '0.0.4'
+version '0.1.0'
 ext.artifactId = 'cloud-airlines-java'
 
 repositories {
