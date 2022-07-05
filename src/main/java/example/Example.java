@@ -24,7 +24,7 @@ public class Example {
             CfarContract updatedContract =  updateCfarContract(client, contractId,sessionId);
             CfarContractExercise exercise = creatCfarContractExercise(client, contractId, sessionId);
             CfarContractExercise completeCfarContractExercise = completeCfarContractExercise(client, exercise.getId(), sessionId);
-            CfarContract getContract = client.getContract(contractId,sessionId);
+            CfarContract getContract = client.getContract(sessionId, contractId);
 
             System.out.println("*********************************************************************");
             System.out.println("*************************** SESSION *********************************");
@@ -65,7 +65,7 @@ public class Example {
         markCfarContractExerciseCompleteRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
         markCfarContractExerciseCompleteRequest.setHopperRefund("146.64");
         markCfarContractExerciseCompleteRequest.setHopperRefundMethod(AirlineRefundMethod.CASH);
-        return client.completeCfarContractExercise(markCfarContractExerciseCompleteRequest,contractId,sessionId);
+        return client.completeCfarContractExercise(sessionId, markCfarContractExerciseCompleteRequest,contractId);
     }
 
     private static CfarContractExercise creatCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException {
@@ -124,7 +124,7 @@ public class Example {
         itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
 
         createCfarContractExerciseRequest.setItinerary(itinerary);
-        return client.creatCfarContractExercise(createCfarContractExerciseRequest,sessionId);
+        return client.creatCfarContractExercise(sessionId, createCfarContractExerciseRequest);
     }
 
     private static CfarContract createCfarContract(HopperClient client, List<CfarOffer> offers, String sessionId) throws ApiException {
@@ -182,7 +182,7 @@ public class Example {
         itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
 
         contractRequest.setItinerary(itinerary);
-        return client.createCfarContract(contractRequest, sessionId);
+        return client.createCfarContract(sessionId, contractRequest);
     }
 
     private static List<CfarOffer> createCfarOffers(HopperClient client, String sessionId) throws ApiException {
@@ -257,7 +257,7 @@ public class Example {
         itineraries.add(itinerary1);
         createCfarOfferRequest.setItinerary(itineraries);
 
-        return client.createOffers(createCfarOfferRequest, sessionId);
+        return client.createOffers(sessionId, createCfarOfferRequest);
     }
 
     private static CfarContract updateCfarContract(HopperClient client, String contractId, String sessionId) throws ApiException {
@@ -265,13 +265,13 @@ public class Example {
         updateCfarContractRequest.setEmailAddress("test@test.com");
         updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
         updateCfarContractRequest.setPnrReference("ABC123");
-        return client.updateCfarContractStatus(contractId, updateCfarContractRequest, sessionId);
+        return client.updateCfarContractStatus(sessionId, contractId, updateCfarContractRequest);
     }
 
     private static AirlineSession getAirlineSession(HopperClient client) throws ApiException {
         CreateAirlineSessionRequest sessionRequest = new CreateAirlineSessionRequest();
         sessionRequest.setLanguage("EN");
-        sessionRequest.setPointOfSale("FR");
+        sessionRequest.setPointOfSale("US");
 
         UserInfo userInfo = new UserInfo();
         userInfo.setAirlineUserId("airline-test-1");

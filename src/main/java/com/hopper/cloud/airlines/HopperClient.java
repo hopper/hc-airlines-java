@@ -37,13 +37,13 @@ public class HopperClient {
 
     /**
      * It has to be called after the payment details have been transferred, to confirm the contract.
+     * @param sessionId The current session IO
      * @param contractId the contract ID
      * @param updateCfarContractRequest The request with the update information
-     * @param sessionId The current session IO
      * @return The contract updated
      * @throws ApiException
      */
-    public CfarContract updateCfarContractStatus(String contractId, UpdateCfarContractRequest updateCfarContractRequest, String sessionId) throws ApiException {
+    public CfarContract updateCfarContractStatus(String sessionId, String contractId, UpdateCfarContractRequest updateCfarContractRequest) throws ApiException {
         return cfarApi.putCfarContractsIdUpdateStatus(contractId, updateCfarContractRequest, sessionId);
     }
 
@@ -58,23 +58,31 @@ public class HopperClient {
         return sessionsApi.postSessions(createAirlineSessionRequest);
     }
 
-    public List<CfarOffer> createOffers(CreateCfarOfferRequest createCfarOfferRequest, String sessionId) throws ApiException {
+    public List<CfarOffer> createOffers(String sessionId, CreateCfarOfferRequest createCfarOfferRequest) throws ApiException {
         return cfarApi.postCfarOffers(createCfarOfferRequest,sessionId);
     }
 
-    public CfarContract createCfarContract(CreateCfarContractRequest createCfarContractRequest, String sessionId) throws ApiException {
+    public CfarContract createCfarContract(String sessionId, CreateCfarContractRequest createCfarContractRequest) throws ApiException {
         return cfarApi.postCfarContracts(createCfarContractRequest,sessionId,false);
     }
 
-    public CfarContract getContract(String contractId, String sessionId) throws ApiException {
+    /**
+     * Called to retrieve details of a contract in order to update the shopping cart with the right amount
+     * Parameters
+     * @param sessionId The current session IO
+     * @param contractId the contract Id
+     * @return The corresponding contract
+     * @throws ApiException
+     */
+    public CfarContract getContract(String sessionId, String contractId) throws ApiException {
         return cfarApi.getCfarContractsId(contractId, sessionId);
     }
 
-    public CfarContractExercise creatCfarContractExercise(CreateCfarContractExerciseRequest createCfarContractExerciseRequest, String sessionId) throws ApiException {
+    public CfarContractExercise creatCfarContractExercise(String sessionId, CreateCfarContractExerciseRequest createCfarContractExerciseRequest) throws ApiException {
         return cfarApi.postCfarContractExercises(createCfarContractExerciseRequest,sessionId);
     }
 
-    public CfarContractExercise completeCfarContractExercise(MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String contractId, String sessionId) throws ApiException {
+    public CfarContractExercise completeCfarContractExercise(String sessionId, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String contractId) throws ApiException {
         return cfarApi.putCfarContractExercisesIdMarkCompleted(contractId,markCfarContractExerciseCompleteRequest,sessionId);
     }
 }
