@@ -88,7 +88,7 @@ An object containing information related to the airline's user. Should be includ
    <td>
 
 
-[Device](#devise)
+[Device](#device)
 <p>
 The end-user's device
    </td>
