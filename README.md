@@ -33,7 +33,7 @@ authentication tokens required to consume the Hopper Cloud Airlines API.
 Gradle:
 ```gradle
 dependencies {
-  implementation group: 'com.hopper.cloud', name: 'cloud-airlines-java', version: '0.1.2'
+  implementation group: 'com.hopper.cloud', name: 'cloud-airlines-java', version: '0.2.0'
 }
 ```
 
@@ -43,7 +43,7 @@ Maven:
 <dependency>
   <groupId>com.hopper.cloud</groupId>
   <artifactId>cloud-airlines-java</artifactId>
-  <version>0.1.2</version>
+  <version>0.2.0</version>
 </dependency>
 
 ```
