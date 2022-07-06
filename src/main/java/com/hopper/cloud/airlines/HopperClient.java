@@ -4,6 +4,7 @@ import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
 import com.hopper.cloud.airlines.model.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class HopperClient {
     public HopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
 
         Map<String, String> params = new HashMap<>();
-        params.put("audience", "https://airlines-api.development.hopper.com");
+        params.put("audience", String.join("/",Arrays.asList(url.split("/")).subList(0,3)));
         params.put("grant_type", "client_credentials");
         ApiClient apiClient = new ApiClient(clientId, clientSecret, params);
         cfarApi = new CancelForAnyReasonCfarApi(apiClient);

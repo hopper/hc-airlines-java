@@ -12,7 +12,9 @@ import java.util.stream.Collectors;
 public class Example {
     public static void main(String[] args) {
         try {
-            HopperClient client = new HopperClient("http://localhost:7071/airline/v1.0", "7lrxWCn9ZJOvhpeK03XzDXOsmrtWodIy", "IOLPDXhl6F9nmTb4l9nnmdzIy0_ZRBK0YP4R3WeFpq-uNIWPB3ahLaySMInYlwVc",false);
+
+
+            HopperClient client = new HopperClient("http://localhost:7071/airline/v1.0", "", "",false);
 
             AirlineSession session = getAirlineSession(client);
             String sessionId = session.getId();

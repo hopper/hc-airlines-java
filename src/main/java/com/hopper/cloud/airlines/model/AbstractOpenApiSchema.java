@@ -16,7 +16,7 @@ package com.hopper.cloud.airlines.model;
 import com.hopper.cloud.airlines.ApiException;
 import java.util.Objects;
 import java.util.Map;
-import jakarta.ws.rs.core.GenericType;
+import javax.ws.rs.core.GenericType;
 
 //import com.fasterxml.jackson.annotation.JsonValue;
 
