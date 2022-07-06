@@ -1,18 +1,48 @@
 # Java SDK
-
-The Java SDK aims to help implement all API calls coming from the AC backend. It will automatically retrieve and renew
+    
+The Java SDK aims to help implement all API calls coming from the airline backend. It will automatically retrieve and renew
 authentication tokens required to consume the Hopper Cloud Airlines API.
 
-## Purchase Flow
-
-![PurchaseFlow](./images/purchaseFlow.png)
-
+  * [Client initialization](#client-initialization)
+    + [Download](#download)
+    + [Parameters](#parameters)
+  * [Client methods](#client-methods)
+    + [createSession](#createsession)
+    + [getCfarContract](#getcfarcontract)
+      - [Example](#--example--)
+    + [processCfarPayment](#processcfarpayment)
+      - [Example](#--example---1)
+    + [updateCfarContractStatus](#updatecfarcontractstatus)
+  * [Data structures](#data-structures)
+    + [Device](#device)
+    + [Platform](#platform)
+    + [OperatingSystem](#operatingsystem)
+    + [Browser](#browser)
+    + [UserInfo](#userinfo)
+v
 ## Client initialization
+### Download
 
-**Parameters**
+Gradle:
+```gradle
+dependencies {
+  implementation group: 'com.hopper.cloud', name: 'cloud-airlines-java', version: '0.1.1'
+}
+```
 
-* Endpoint URL: [https://airlines-api.staging.hopper.com](https://airlines-api.staging.hopper.com)
-  or [https://airlines-api.hopper.com](https://airlines-api.hopper.com)
+Maven:
+```xml
+<!-- https://mvnrepository.com/artifact/com.hopper.cloud/cloud-airlines-java -->
+<dependency>
+  <groupId>com.hopper.cloud</groupId>
+  <artifactId>cloud-airlines-java</artifactId>
+  <version>0.1.1</version>
+</dependency>
+
+```
+### Parameters
+
+* Endpoint URL: Will be provided by Hopper for each environment
 * Client ID: Will be provided by Hopper for each environment
 * Client Secret: Will be provided by Hopper for each environment
 * Debugging : True to log input and output
@@ -21,14 +51,14 @@ authentication tokens required to consume the Hopper Cloud Airlines API.
 HopperClient client = new HopperClient(endpointUrl, clientId, clientSecret, debugging);
 ```
 
-## Client methods used by Air Canada
+## Client methods
 
-## createSession
+### createSession
 
-It has to be called each time an end-customer begins shopping on the AC website.
+It has to be called each time an end-customer begins shopping on the airline website.
 
 The returned sessionId will then be required in all subsequent calls to the API from the backend, but also from the
-frontend using the SDK, so it has to be returned to the AC frontend.
+frontend using the SDK, so it has to be returned to the airline frontend.
 
 **Parameters**
 
@@ -51,7 +81,7 @@ An object containing information related to the airline's user. Should be includ
    <td>
 
 
-[Device](#Devise)
+[Device](#devise)
 <p>
 The end-user's device
    </td>
@@ -135,7 +165,7 @@ sessionRequest.setUserInfo(userInfo);
 AirlineSession session = client.createSession(sessionRequest);
 ```
 
-### getCfarContract
+#### getCfarContract
 
 Called to retrieve details of a contract in order to update the shopping cart with the right amount
 
@@ -183,13 +213,13 @@ The CFAR Contract
   </tr>
 </table>
 
-### **Example**
+##### **Example**
 
 ```
 CfarContract getContract = client.getContract(sessionId,contractId);
 ```
 
-### processCfarPayment
+#### processCfarPayment
 
 **Parameters**
 
@@ -290,13 +320,13 @@ True if the payment succeeded, false if not
   </tr>
 </table>
 
-### **Example**
+##### **Example**
 
 ```
 boolean succeeded = client.processCfarPayment(sessionId,contractId,"Joe","Smith","4111111111111111","123","12","2029");
 ```
 
-### updateCfarContractStatus
+#### updateCfarContractStatus
 
 It has to be called after the payment details have been transferred, to confirm the contract.
 
@@ -383,9 +413,10 @@ The updated CFAR Contract
 ```
 
 UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
-updateCfarContractRequest.setEmailAddress("test@test.com"); updateCfarContractRequest.setStatus(
-CfarContractStatus.CONFIRMED); updateCfarContractRequest.setPnrReference("ABC123"); CfarContract contract =
-client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
+updateCfarContractRequest.setEmailAddress("test@test.com"); 
+updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
+updateCfarContractRequest.setPnrReference("ABC123"); 
+CfarContract contract = client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
 
 ```
 
