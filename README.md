@@ -1,19 +1,19 @@
 # Java SDK
-    
-The Java SDK aims to help implement all API calls coming from the airline backend. It will automatically retrieve and renew
-authentication tokens required to consume the Hopper Cloud Airlines API.
 
-  * [Client initialization](#client-initialization)
+The Java SDK aims to help implement all API calls coming from the airline backend. It will automatically retrieve and
+renew authentication tokens required to consume the Hopper Cloud Airlines API.
+
+* [Client initialization](#client-initialization)
     + [Download](#download)
     + [Parameters](#parameters)
-  * [Client methods](#client-methods)
+* [Client methods](#client-methods)
     + [createSession](#createsession)
     + [getCfarContract](#getcfarcontract)
-      - [Example](#--example--)
+        - [Example](#--example--)
     + [processCfarPayment](#processcfarpayment)
-      - [Example](#--example---1)
+        - [Example](#--example---1)
     + [updateCfarContractStatus](#updatecfarcontractstatus)
-  * [Data structures](#data-structures)
+* [Data structures](#data-structures)
     + [Device](#device)
     + [Platform](#platform)
     + [OperatingSystem](#operatingsystem)
@@ -28,9 +28,11 @@ authentication tokens required to consume the Hopper Cloud Airlines API.
     + [Ancillary](#ancillary)
 
 ## Client initialization
+
 ### Download
 
 Gradle:
+
 ```gradle
 dependencies {
   implementation group: 'com.hopper.cloud', name: 'cloud-airlines-java', version: '0.2.0'
@@ -38,6 +40,7 @@ dependencies {
 ```
 
 Maven:
+
 ```xml
 <!-- https://mvnrepository.com/artifact/com.hopper.cloud/cloud-airlines-java -->
 <dependency>
@@ -47,15 +50,17 @@ Maven:
 </dependency>
 
 ```
+
 ### Parameters
 
 * Endpoint URL: Will be provided by Hopper for each environment
 * Client ID: Will be provided by Hopper for each environment
 * Client Secret: Will be provided by Hopper for each environment
+* Pci Proxy Url: Will be provided by Hopper for each environment
 * Debugging : True to log input and output
 
 ```
-HopperClient client = new HopperClient(endpointUrl, clientId, clientSecret, debugging);
+HopperClient client = new HopperClient(endpointUrl, clientId, clientSecret, pciProxyUrl, debugging);
 ```
 
 ## Client methods
@@ -330,7 +335,14 @@ True if the payment succeeded, false if not
 ##### **Example**
 
 ```
-boolean succeeded = client.processCfarPayment(sessionId,contractId,"Joe","Smith","4111111111111111","123","12","2029");
+ProcessCfarPaymentRequest processCfarPaymentRequest = new ProcessCfarPaymentRequest();
+processCfarPaymentRequest.setFirstName("John");
+processCfarPaymentRequest.setLastName("Smith");
+processCfarPaymentRequest.setMonth("09");
+processCfarPaymentRequest.setYear("26");
+processCfarPaymentRequest.setNumber("4111111111111111");
+processCfarPaymentRequest.setVerificationValue("123");
+boolean succeeded =  client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);
 ```
 
 #### updateCfarContractStatus
@@ -585,7 +597,6 @@ Number of prior bookings a user has made
 
 ### CfarContract
 
-
 <table>
   <tr>
    <td>id
@@ -724,10 +735,7 @@ Reference of the PNR in the airline system
   </tr>
 </table>
 
-
-
 ### CfarOffer
-
 
 <table>
   <tr>
@@ -858,10 +866,7 @@ One or more paragraphs describing the offer and its conditions in the user’s p
   </tr>
 </table>
 
-
-
 ### CfarExercise
-
 
 <table>
   <tr>
@@ -981,10 +986,7 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
   </tr>
 </table>
 
-
-
 ### Itinerary
-
 
 <table>
   <tr>
@@ -1045,10 +1047,7 @@ Ancillaries attached to the itinerary and their prices
   </tr>
 </table>
 
-
-
 ### PassengerPricing
-
 
 <table>
   <tr>
@@ -1074,10 +1073,7 @@ Price per passenger
   </tr>
 </table>
 
-
-
 ### PassengerCount
-
 
 <table>
   <tr>
@@ -1112,10 +1108,7 @@ The type of passenger:
   </tr>
 </table>
 
-
-
 ### Slice
-
 
 <table>
   <tr>
@@ -1131,10 +1124,7 @@ A list of segments which make up the slice
   </tr>
 </table>
 
-
-
 ### Segment
-
 
 <table>
   <tr>
@@ -1216,10 +1206,7 @@ Service class of the segment
   </tr>
 </table>
 
-
-
 ### Ancillary
-
 
 <table>
   <tr>
