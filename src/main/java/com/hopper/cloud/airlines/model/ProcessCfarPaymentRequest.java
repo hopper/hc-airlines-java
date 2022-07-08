@@ -14,12 +14,32 @@ public class ProcessCfarPaymentRequest {
     private String verificationValue;
     private String month;
     private String year;
+    @JsonProperty("pnr_reference")
+    private String pnrReference;
+    @JsonProperty("email_address")
+    private String emailAddress;
 
     public ProcessCfarPaymentRequest() {
     }
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getPnrReference() {
+        return pnrReference;
+    }
+
+    public void setPnrReference(String pnrReference) {
+        this.pnrReference = pnrReference;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public void setFirstName(String firstName) {
@@ -80,12 +100,14 @@ public class ProcessCfarPaymentRequest {
                 Objects.equals(this.verificationValue, processCfarPayment.verificationValue) &&
                 Objects.equals(this.number, processCfarPayment.number) &&
                 Objects.equals(this.year, processCfarPayment.year) &&
-                Objects.equals(this.month, processCfarPayment.month);
+                Objects.equals(this.month, processCfarPayment.month) &&
+                Objects.equals(this.pnrReference, processCfarPayment.pnrReference) &&
+                Objects.equals(this.emailAddress, processCfarPayment.emailAddress);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, number, verificationValue, month, year);
+        return Objects.hash(firstName, lastName, number, verificationValue, month, year,pnrReference,emailAddress);
     }
 
     @Override
@@ -98,6 +120,8 @@ public class ProcessCfarPaymentRequest {
         sb.append("    verificationValue: ").append(toIndentedString(verificationValue)).append("\n");
         sb.append("    month: ").append(toIndentedString(month)).append("\n");
         sb.append("    year: ").append(toIndentedString(year)).append("\n");
+        sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
+        sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
         sb.append("}");
         return sb.toString();
     }

@@ -73,6 +73,8 @@ public class Example {
         processCfarPaymentRequest.setYear("26");
         processCfarPaymentRequest.setNumber("4111111111111111");
         processCfarPaymentRequest.setVerificationValue("123");
+        processCfarPaymentRequest.setEmailAddress("test@email.com");
+        processCfarPaymentRequest.setPnrReference("AB1234");
         return client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);
     }
 
