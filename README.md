@@ -313,6 +313,31 @@ The expiration month of the card
 <p>
 The expiration year of the card
    </td>
+<p>
+The new status of the contract
+   </td>
+  </tr>
+  <tr>
+   <td>pnrReference
+<p style="color:red">required</p>
+   </td>
+   <td>String
+<p>
+Example: ABC123
+<p>
+Reference of the PNR in the airline system
+   </td>
+  </tr>
+  <tr>
+   <td>emailAddress
+<p style="color:red">required</p>
+   </td>
+   <td>String
+<p>
+Example: john@doe.com
+<p>
+Contact email of the end customer
+   </td>
   </tr>
 </table>
 
@@ -342,6 +367,8 @@ processCfarPaymentRequest.setMonth("09");
 processCfarPaymentRequest.setYear("26");
 processCfarPaymentRequest.setNumber("4111111111111111");
 processCfarPaymentRequest.setVerificationValue("123");
+processCfarPaymentRequest.setEmailAddress("test@email.com");
+processCfarPaymentRequest.setPnrReference("AB1234");
 boolean succeeded =  client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);
 ```
 
