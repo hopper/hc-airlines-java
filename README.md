@@ -13,6 +13,7 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [processCfarPayment](#processcfarpayment)
         - [Example](#--example---1)
     + [updateCfarContractStatus](#updatecfarcontractstatus)
+    + [createCfarContractExercise](#createCfarContractExercise)
 * [Data structures](#data-structures)
     + [Device](#device)
     + [Platform](#platform)
@@ -464,6 +465,290 @@ updateCfarContractRequest.setPnrReference("ABC123");
 CfarContract contract = client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
 
 ```
+#### CreateCfarContractExercise
+
+**Parameters**
+
+<table>
+  <tr>
+   <td>contractId
+
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: 1ec9ef29-be31-6ed3-beec-9f5ae0d164ee
+<p>
+A unique identifier for a CFAR contract
+   </td>
+  </tr>
+  <tr>
+   <td>exerciseInitiateDateTime
+<p style="color:red">required</p>
+   </td>
+   <td>string &lt;date-time>
+<p>
+Example: 2022-03-08T15:20:30Z
+<p>
+A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was initiated
+   </td>
+  </tr>
+  <tr>
+   <td>itinerary
+<p style="color:red">required</p>
+   </td>
+   <td>
+
+  [Itinerary](#itinerary)
+<p>
+Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
+   </td>
+  </tr>
+  <tr>
+   <td>pnrReference
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example:ABC123
+<p>
+Reference of the PNR in the airline system
+   </td>
+  </tr>
+  <tr>
+   <td>airlineRefundAllowance
+   </td>
+   <td>string >= 0
+<p>
+Example:123.20
+<p>
+Refundable amount allowed by the airline
+   </td>
+  </tr>
+  <tr>
+   <td>airlineRefundMethod
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+The refund method used by the airline
+   </td>
+  </tr>
+  <tr>
+   <td>currency
+   </td>
+   <td>string
+<p>
+Example:CAD
+<p>
+The currency of the airline's refund allowance
+   </td>
+  </tr>
+  <tr>
+   <td>extAttributes
+   </td>
+   <td>object (map_string)
+<p>
+An array of arbitrary key-value pairs for storing airline-specific entity metadata
+   </td>
+  </tr>
+</table>
+
+
+Return value
+
+<table>
+  <tr>
+   <td>id
+
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example:1ec9ef4b-b3bf-64ae-8a3d-6b084d9f6b3c
+<p>
+Unique identifier for a CFAR exercise
+   </td>
+  </tr>
+  <tr>
+   <td>contractId
+
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example:1ec9ef29-be31-6ed3-beec-9f5ae0d164ee
+<p>
+Unique identifier for a contract
+   </td>
+  </tr>
+  <tr>
+   <td>exerciseInitiatedDateTime
+
+<p style="color:red">required</p>
+   </td>
+   <td>string &lt;date-time>
+<p>
+Example:2022-03-08T15:20:30Z
+<p>
+A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was initiated
+   </td>
+  </tr>
+  <tr>
+   <td>exerciseCompletedDateTime
+   </td>
+   <td>string &lt;date-time>
+<p>
+Example:2022-03-08T15:22:20Z
+<p>
+A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was completed
+   </td>
+  </tr>
+  <tr>
+   <td>exchangeRate
+<p>
+
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example:0.7771197300596905664658848324102446
+<p>
+Exchange rate
+   </td>
+  </tr>
+  <tr>
+   <td>hopperRefund
+<p>
+
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example:49.32
+<p>
+The amount refunded by hopper to the customer to complete the CFAR contract exercise
+   </td>
+  </tr>
+  <tr>
+   <td>hopperRefundMethod
+<p>
+
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+The refund method used by hopper
+   </td>
+  </tr>
+  <tr>
+   <td>airlineRefundAllowance
+   </td>
+   <td>string >= 0
+<p>
+Example:123.20
+<p>
+Refundable amount allowed by the airline
+   </td>
+  </tr>
+  <tr>
+   <td>airlineRefundMethod
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+The refund method used by the airline
+   </td>
+  </tr>
+  <tr>
+   <td>currency
+   </td>
+   <td>string
+<p>
+Example:CAD
+<p>
+The currency of the airline's refund allowance
+   </td>
+  </tr>
+  <tr>
+ <td>extAttributes
+<p>
+
+<p style="color:red">required</p>
+   </td>
+   <td>object (map_string)
+<p>
+An array of arbitrary key-value pairs for storing airline-specific entity metadata
+   </td>
+  </tr>
+</table>
+
+**Example :**
+
+```
+
+  CreateCfarContractExerciseRequest createCfarContractExerciseRequest = new CreateCfarContractExerciseRequest();
+  createCfarContractExerciseRequest.setContractId(contractId);
+  createCfarContractExerciseRequest.setCurrency("CAD");
+  createCfarContractExerciseRequest.setPnrReference("ABC123");
+  Map<String, String> params = new HashMap<>();
+  params.put("property1", "test1");
+  params.put("property2", "test2");
+  createCfarContractExerciseRequest.setExtAttributes(params);
+  createCfarContractExerciseRequest.setAirlineRefundAllowance("146.64");
+  createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
+
+  CfarItinerary itinerary = new CfarItinerary();
+  itinerary.setCurrency("CAD");
+  itinerary.setTotalPrice("183.30");
+
+  Ancillary ancillary = new Ancillary();
+  ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
+  ancillary.setTotalPrice("30.55");
+
+  CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
+  CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
+  cfarItinerarySliceSegment.setArrivalDateTime("2022-09-15T19:12:30");
+  cfarItinerarySliceSegment.setDepartureDateTime("2022-09-15T18:12:30");
+  cfarItinerarySliceSegment.setOriginAirport("LGA");
+  cfarItinerarySliceSegment.setDestinationAirport("BOS");
+  cfarItinerarySliceSegment.setFlightNumber("JB776");
+  cfarItinerarySliceSegment.setFareClass(FareClass.BASIC_ECONOMY);
+  cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
+
+  CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
+  cfarItinerarySliceSegment2.setArrivalDateTime("2022-09-15T19:12:30");
+  cfarItinerarySliceSegment2.setDepartureDateTime("2022-09-15T18:12:30");
+  cfarItinerarySliceSegment2.setOriginAirport("LGA");
+  cfarItinerarySliceSegment2.setDestinationAirport("BOS");
+  cfarItinerarySliceSegment2.setFlightNumber("JB777");
+  cfarItinerarySliceSegment2.setFareClass(FareClass.BASIC_ECONOMY);
+  cfarItinerarySliceSegment2.setValidatingCarrierCode("B6");
+
+  List<CfarItinerarySliceSegment> segments = new ArrayList<>();
+  segments.add(cfarItinerarySliceSegment);
+  segments.add(cfarItinerarySliceSegment2);
+  cfarItinerarySlice.setSegments(segments);
+
+  PassengerPricing passengerPricing = new PassengerPricing();
+  passengerPricing.setIndividualPrice("61.10");
+  PassengerCount passengerCount = new PassengerCount();
+  passengerCount.count(3);
+  passengerCount.setType(PassengerType.ADULT);
+  passengerPricing.setPassengerCount(passengerCount);
+
+  itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
+  itinerary.setAncillaries(Collections.singletonList(ancillary));
+  itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
+
+  createCfarContractExerciseRequest.setItinerary(itinerary);
+  CfarContractExercise cfarContractExercise = client.createfarContractExercise(sessionId, createCfarContractExerciseRequest);
+```
+
 
 ## Data structures
 
