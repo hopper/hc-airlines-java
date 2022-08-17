@@ -12,18 +12,18 @@ import java.util.stream.Collectors;
 public class Example {
     public static void main(String[] args) {
         try {
-
-
             HopperClient client = new HopperClient("http://localhost:7071/airline/v1.0", "", "","",false);
 
             AirlineSession session = getAirlineSession(client);
             String sessionId = session.getId();
 
             List<CfarOffer> offers = createCfarOffers(client, sessionId);
-            CfarContract contract = createCfarContract(client, offers, sessionId);
+            List<CfarOffer> selectedOffer = new ArrayList<>();
+            selectedOffer.add(offers.get(0));
+            selectedOffer.add(offers.get(1));
+            CfarContract contract = createCfarContract(client, selectedOffer, sessionId);
             String contractId = contract.getId();
             boolean isSucceeded = processCfarPayment(client, contractId, sessionId);
-            CfarContract updatedContract = updateCfarContract(client, contractId, sessionId);
             CfarContractExercise exercise = creatCfarContractExercise(client, contractId, sessionId);
             CfarContractExercise completeCfarContractExercise = completeCfarContractExercise(client, exercise.getId(), sessionId);
             CfarContract getContract = client.getContract(sessionId, contractId);
@@ -49,10 +49,6 @@ public class Example {
             System.out.println("*********************************************************************");
             System.out.println(exercise);
             System.out.println("*********************************************************************");
-            System.out.println("*************************** CONTRACT *********************************");
-            System.out.println("*********************************************************************");
-            System.out.println(updatedContract);
-            System.out.println("*********************************************************************");
             System.out.println("*************************** COMPLETED EXERCISE *********************************");
             System.out.println("*********************************************************************");
             System.out.println(completeCfarContractExercise);
@@ -70,11 +66,11 @@ public class Example {
         processCfarPaymentRequest.setFirstName("John");
         processCfarPaymentRequest.setLastName("Smith");
         processCfarPaymentRequest.setMonth("09");
-        processCfarPaymentRequest.setYear("26");
+        processCfarPaymentRequest.setYear("2029");
         processCfarPaymentRequest.setNumber("4111111111111111");
         processCfarPaymentRequest.setVerificationValue("123");
-        processCfarPaymentRequest.setEmailAddress("test@email.com");
-        processCfarPaymentRequest.setPnrReference("AB1234");
+        processCfarPaymentRequest.setEmailAddress("john@doe.com");
+        processCfarPaymentRequest.setPnrReference("ABC123");
         return client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);
     }
 
@@ -109,8 +105,8 @@ public class Example {
 
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-07-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-07-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2022-09-15T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2022-09-15T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -118,8 +114,8 @@ public class Example {
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime("2022-07-15T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime("2022-07-15T18:12:30");
+        cfarItinerarySliceSegment2.setArrivalDateTime("2022-09-15T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime("2022-09-15T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
         cfarItinerarySliceSegment2.setFlightNumber("JB777");
@@ -167,8 +163,8 @@ public class Example {
 
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-07-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-07-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2022-09-15T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2022-09-15T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -176,8 +172,8 @@ public class Example {
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime("2022-07-15T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime("2022-07-15T18:12:30");
+        cfarItinerarySliceSegment2.setArrivalDateTime("2022-09-15T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime("2022-09-15T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
         cfarItinerarySliceSegment2.setFlightNumber("JB777");
@@ -223,8 +219,8 @@ public class Example {
 
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-07-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-07-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2022-09-15T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2022-09-15T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -252,8 +248,8 @@ public class Example {
 
         CfarItinerarySlice cfarItinerarySlice1 = new CfarItinerarySlice();
         CfarItinerarySliceSegment cfarItinerarySliceSegment1 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment1.setArrivalDateTime("2022-07-15T19:12:30");
-        cfarItinerarySliceSegment1.setDepartureDateTime("2022-07-15T18:12:30");
+        cfarItinerarySliceSegment1.setArrivalDateTime("2022-09-15T19:12:30");
+        cfarItinerarySliceSegment1.setDepartureDateTime("2022-09-15T18:12:30");
         cfarItinerarySliceSegment1.setOriginAirport("LGA");
         cfarItinerarySliceSegment1.setDestinationAirport("BOS");
         cfarItinerarySliceSegment1.setFlightNumber("JB777");

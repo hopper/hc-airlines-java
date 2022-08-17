@@ -33,7 +33,9 @@ public enum CfarContractStatus {
   
   EXERCISED("exercised"),
   
-  EXPIRED("expired");
+  EXPIRED("expired"),
+
+  REFUNDING("refunding");
 
   private String value;
 

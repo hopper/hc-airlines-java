@@ -313,9 +313,6 @@ The expiration month of the card
 <p>
 The expiration year of the card
    </td>
-<p>
-The new status of the contract
-   </td>
   </tr>
   <tr>
    <td>pnrReference
@@ -685,7 +682,7 @@ Currency of contract
    <td>status
 <p style="color:red">required</p>
    </td>
-   <td>Enum: "created" "confirmed" "canceled" "exercised" "expired"
+   <td>Enum: "created" "confirmed" "canceled" "exercised" "expired" "refunding"
    </td>
   </tr>
   <tr>
