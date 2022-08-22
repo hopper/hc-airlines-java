@@ -967,7 +967,7 @@ Currency of contract
    <td>status
 <p style="color:red">required</p>
    </td>
-   <td>Enum: "created" "confirmed" "canceled" "exercised" "expired" "refunding"
+   <td>Enum: "created" "confirmed" "canceled" "exercised" "expired"
    </td>
   </tr>
   <tr>
