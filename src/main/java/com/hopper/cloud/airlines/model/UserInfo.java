@@ -214,7 +214,7 @@ public class UserInfo {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("airline_user_id") != null && !jsonObj.get("airline_user_id").isJsonPrimitive()) {
+      if (jsonObj.get("airline_user_id") != null && !jsonObj.get("airline_user_id").isJsonPrimitive() && !jsonObj.get("airline_user_id").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `airline_user_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("airline_user_id").toString()));
       }
   }

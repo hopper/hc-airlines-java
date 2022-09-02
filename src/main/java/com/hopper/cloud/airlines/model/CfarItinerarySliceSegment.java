@@ -339,22 +339,22 @@ public class CfarItinerarySliceSegment {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("origin_airport") != null && !jsonObj.get("origin_airport").isJsonPrimitive()) {
+      if (jsonObj.get("origin_airport") != null && !jsonObj.get("origin_airport").isJsonPrimitive() && !jsonObj.get("origin_airport").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `origin_airport` to be a primitive type in the JSON string but got `%s`", jsonObj.get("origin_airport").toString()));
       }
-      if (jsonObj.get("destination_airport") != null && !jsonObj.get("destination_airport").isJsonPrimitive()) {
+      if (jsonObj.get("destination_airport") != null && !jsonObj.get("destination_airport").isJsonPrimitive() && !jsonObj.get("destination_airport").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `destination_airport` to be a primitive type in the JSON string but got `%s`", jsonObj.get("destination_airport").toString()));
       }
-      if (jsonObj.get("departure_date_time") != null && !jsonObj.get("departure_date_time").isJsonPrimitive()) {
+      if (jsonObj.get("departure_date_time") != null && !jsonObj.get("departure_date_time").isJsonPrimitive() && !jsonObj.get("departure_date_time").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `departure_date_time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("departure_date_time").toString()));
       }
-      if (jsonObj.get("arrival_date_time") != null && !jsonObj.get("arrival_date_time").isJsonPrimitive()) {
+      if (jsonObj.get("arrival_date_time") != null && !jsonObj.get("arrival_date_time").isJsonPrimitive() && !jsonObj.get("arrival_date_time").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `arrival_date_time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arrival_date_time").toString()));
       }
-      if (jsonObj.get("flight_number") != null && !jsonObj.get("flight_number").isJsonPrimitive()) {
+      if (jsonObj.get("flight_number") != null && !jsonObj.get("flight_number").isJsonPrimitive() && !jsonObj.get("flight_number").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `flight_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flight_number").toString()));
       }
-      if (jsonObj.get("validating_carrier_code") != null && !jsonObj.get("validating_carrier_code").isJsonPrimitive()) {
+      if (jsonObj.get("validating_carrier_code") != null && !jsonObj.get("validating_carrier_code").isJsonPrimitive() && !jsonObj.get("validating_carrier_code").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `validating_carrier_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("validating_carrier_code").toString()));
       }
   }

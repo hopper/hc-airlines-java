@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class Example {
     public static void main(String[] args) {
         try {
-            HopperClient client = new HopperClient("http://localhost:7071/airline/v1.0", "", "","",false);
+            HopperClient client = new HopperClient("https://airlines-api.staging.hopper.com/airline/v1.0", "zadtgiFOdx8GPpKDXt3NI8ylDMzwaRhK", "eBk5doAuzRamolC7GPNZD69ExNMcVjNAL_eidhBdG4Prb4KE9I5q7Im7w8Lt3I0D", "https://sandbox.pci-proxy.com/v1/push/c069e57c4a5159b6/", true);
 
             AirlineSession session = getAirlineSession(client);
             String sessionId = session.getId();
@@ -25,7 +25,6 @@ public class Example {
             String contractId = contract.getId();
             boolean isSucceeded = processCfarPayment(client, contractId, sessionId);
             CfarContractExercise exercise = creatCfarContractExercise(client, contractId, sessionId);
-            CfarContractExercise completeCfarContractExercise = completeCfarContractExercise(client, exercise.getId(), sessionId);
             CfarContract getContract = client.getContract(sessionId, contractId);
 
             System.out.println("*********************************************************************");
@@ -48,10 +47,6 @@ public class Example {
             System.out.println("*************************** EXERCISE *********************************");
             System.out.println("*********************************************************************");
             System.out.println(exercise);
-            System.out.println("*********************************************************************");
-            System.out.println("*************************** COMPLETED EXERCISE *********************************");
-            System.out.println("*********************************************************************");
-            System.out.println(completeCfarContractExercise);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CONTRACT *********************************");
             System.out.println("*********************************************************************");
@@ -151,7 +146,6 @@ public class Example {
 
         contractRequest.setOfferIds(offers.stream().map(CfarOffer::getId).collect(Collectors.toList()));
         contractRequest.setExtAttributes(params);
-        contractRequest.setPnrReference("ABC123");
 
         CfarItinerary itinerary = new CfarItinerary();
         itinerary.setCurrency("CAD");

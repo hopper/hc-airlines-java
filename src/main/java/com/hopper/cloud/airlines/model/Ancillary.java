@@ -182,7 +182,7 @@ public class Ancillary {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonPrimitive()) {
+      if (jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonPrimitive() && !jsonObj.get("total_price").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `total_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_price").toString()));
       }
   }

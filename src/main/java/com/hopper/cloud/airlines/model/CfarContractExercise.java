@@ -407,22 +407,22 @@ public class CfarContractExercise {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive() && !jsonObj.get("id").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if (jsonObj.get("contract_id") != null && !jsonObj.get("contract_id").isJsonPrimitive()) {
+      if (jsonObj.get("contract_id") != null && !jsonObj.get("contract_id").isJsonPrimitive() && !jsonObj.get("contract_id").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `contract_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contract_id").toString()));
       }
-      if (jsonObj.get("exchange_rate") != null && !jsonObj.get("exchange_rate").isJsonNull() && !jsonObj.get("exchange_rate").isJsonPrimitive()) {
+      if (jsonObj.get("exchange_rate") != null && !jsonObj.get("exchange_rate").isJsonNull() && !jsonObj.get("exchange_rate").isJsonPrimitive() && !jsonObj.get("exchange_rate").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `exchange_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exchange_rate").toString()));
       }
-      if (jsonObj.get("hopper_refund") != null && !jsonObj.get("hopper_refund").isJsonPrimitive()) {
+      if (jsonObj.get("hopper_refund") != null && !jsonObj.get("hopper_refund").isJsonPrimitive() && !jsonObj.get("hopper_refund").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `hopper_refund` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hopper_refund").toString()));
       }
-      if (jsonObj.get("airline_refund_allowance") != null && !jsonObj.get("airline_refund_allowance").isJsonPrimitive()) {
+      if (jsonObj.get("airline_refund_allowance") != null && !jsonObj.get("airline_refund_allowance").isJsonPrimitive() && !jsonObj.get("airline_refund_allowance").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `airline_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("airline_refund_allowance").toString()));
       }
-      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive()) {
+      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
   }

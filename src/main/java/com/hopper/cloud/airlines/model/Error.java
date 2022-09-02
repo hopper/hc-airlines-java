@@ -180,10 +180,10 @@ public class Error {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("message") != null && !jsonObj.get("message").isJsonPrimitive()) {
+      if (jsonObj.get("message") != null && !jsonObj.get("message").isJsonPrimitive() && !jsonObj.get("message").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }
-      if (jsonObj.get("code") != null && !jsonObj.get("code").isJsonPrimitive()) {
+      if (jsonObj.get("code") != null && !jsonObj.get("code").isJsonPrimitive() && !jsonObj.get("code").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
       }
   }

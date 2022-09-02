@@ -246,10 +246,10 @@ public class MarkCfarContractExerciseCompleteRequest {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("hopper_refund") != null && !jsonObj.get("hopper_refund").isJsonPrimitive()) {
+      if (jsonObj.get("hopper_refund") != null && !jsonObj.get("hopper_refund").isJsonPrimitive() && !jsonObj.get("hopper_refund").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `hopper_refund` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hopper_refund").toString()));
       }
-      if (jsonObj.get("airline_refund_allowance") != null && !jsonObj.get("airline_refund_allowance").isJsonPrimitive()) {
+      if (jsonObj.get("airline_refund_allowance") != null && !jsonObj.get("airline_refund_allowance").isJsonPrimitive() && !jsonObj.get("airline_refund_allowance").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `airline_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("airline_refund_allowance").toString()));
       }
   }

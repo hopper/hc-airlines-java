@@ -215,10 +215,10 @@ public class UpdateCfarContractRequest {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive()) {
+      if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive() && !jsonObj.get("pnr_reference").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
       }
-      if (jsonObj.get("email_address") != null && !jsonObj.get("email_address").isJsonPrimitive()) {
+      if (jsonObj.get("email_address") != null && !jsonObj.get("email_address").isJsonPrimitive() && !jsonObj.get("email_address").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `email_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email_address").toString()));
       }
   }

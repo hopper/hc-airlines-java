@@ -251,10 +251,10 @@ public class CreateAirlineSessionRequest {
       if (jsonObj.getAsJsonObject("device") != null) {
         Device.validateJsonObject(jsonObj.getAsJsonObject("device"));
       }
-      if (jsonObj.get("point_of_sale") != null && !jsonObj.get("point_of_sale").isJsonPrimitive()) {
+      if (jsonObj.get("point_of_sale") != null && !jsonObj.get("point_of_sale").isJsonPrimitive() && !jsonObj.get("point_of_sale").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `point_of_sale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("point_of_sale").toString()));
       }
-      if (jsonObj.get("language") != null && !jsonObj.get("language").isJsonPrimitive()) {
+      if (jsonObj.get("language") != null && !jsonObj.get("language").isJsonPrimitive() && !jsonObj.get("language").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `language` to be a primitive type in the JSON string but got `%s`", jsonObj.get("language").toString()));
       }
   }

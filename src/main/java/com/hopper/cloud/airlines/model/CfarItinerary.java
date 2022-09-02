@@ -311,7 +311,7 @@ public class CfarItinerary {
           PassengerPricing.validateJsonObject(jsonArraypassengerPricing.get(i).getAsJsonObject());
         };
       }
-      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive()) {
+      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
       JsonArray jsonArrayslices = jsonObj.getAsJsonArray("slices");
@@ -338,7 +338,7 @@ public class CfarItinerary {
           Ancillary.validateJsonObject(jsonArrayancillaries.get(i).getAsJsonObject());
         };
       }
-      if (jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonPrimitive()) {
+      if (jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonPrimitive() && !jsonObj.get("total_price").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `total_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_price").toString()));
       }
   }

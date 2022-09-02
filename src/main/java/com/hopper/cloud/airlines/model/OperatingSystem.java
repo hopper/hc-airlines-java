@@ -181,7 +181,7 @@ public class OperatingSystem {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("version") != null && !jsonObj.get("version").isJsonPrimitive()) {
+      if (jsonObj.get("version") != null && !jsonObj.get("version").isJsonPrimitive() && !jsonObj.get("version").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
       }
   }

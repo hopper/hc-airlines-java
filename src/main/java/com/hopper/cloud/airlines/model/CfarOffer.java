@@ -479,19 +479,19 @@ public class CfarOffer {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive() && !jsonObj.get("id").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if (jsonObj.get("premium") != null && !jsonObj.get("premium").isJsonPrimitive()) {
+      if (jsonObj.get("premium") != null && !jsonObj.get("premium").isJsonPrimitive() && !jsonObj.get("premium").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `premium` to be a primitive type in the JSON string but got `%s`", jsonObj.get("premium").toString()));
       }
-      if (jsonObj.get("coverage") != null && !jsonObj.get("coverage").isJsonPrimitive()) {
+      if (jsonObj.get("coverage") != null && !jsonObj.get("coverage").isJsonPrimitive() && !jsonObj.get("coverage").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `coverage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage").toString()));
       }
-      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive()) {
+      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
-      if (jsonObj.get("to_usd_exchange_rate") != null && !jsonObj.get("to_usd_exchange_rate").isJsonPrimitive()) {
+      if (jsonObj.get("to_usd_exchange_rate") != null && !jsonObj.get("to_usd_exchange_rate").isJsonPrimitive() && !jsonObj.get("to_usd_exchange_rate").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `to_usd_exchange_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("to_usd_exchange_rate").toString()));
       }
       // validate the optional field `itinerary`
