@@ -15,6 +15,7 @@ package com.hopper.cloud.airlines.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
@@ -39,6 +40,7 @@ import com.hopper.cloud.airlines.JSON;
  * PassengerPricing
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-04T17:36:41.937885+02:00[Europe/Paris]")
+@JsonInclude(JsonInclude.Include. NON_NULL)
 public class PassengerPricing {
   public static final String SERIALIZED_NAME_PASSENGER_COUNT = "passenger_count";
   @SerializedName(SERIALIZED_NAME_PASSENGER_COUNT)

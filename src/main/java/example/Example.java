@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class Example {
     public static void main(String[] args) {
         try {
-            HopperClient client = new HopperClient("https://airlines-api.staging.hopper.com/airline/v1.0", "zadtgiFOdx8GPpKDXt3NI8ylDMzwaRhK", "eBk5doAuzRamolC7GPNZD69ExNMcVjNAL_eidhBdG4Prb4KE9I5q7Im7w8Lt3I0D", "https://sandbox.pci-proxy.com/v1/push/c069e57c4a5159b6/", true);
+            HopperClient client = new HopperClient("", "", "", "", true);
 
             AirlineSession session = getAirlineSession(client);
             String sessionId = session.getId();

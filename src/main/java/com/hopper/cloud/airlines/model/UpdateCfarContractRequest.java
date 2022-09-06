@@ -15,6 +15,7 @@ package com.hopper.cloud.airlines.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
@@ -41,6 +42,7 @@ import com.hopper.cloud.airlines.JSON;
  */
 @ApiModel(description = "Update CFAR contract request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
+@JsonInclude(JsonInclude.Include. NON_NULL)
 public class UpdateCfarContractRequest {
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)

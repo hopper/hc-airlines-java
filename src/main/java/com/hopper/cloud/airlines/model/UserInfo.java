@@ -15,6 +15,7 @@ package com.hopper.cloud.airlines.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
@@ -41,6 +42,7 @@ import com.hopper.cloud.airlines.JSON;
  */
 @ApiModel(description = "Informations related to the airline's user. Should be included if known, but not if the user is anonymous")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
+@JsonInclude(JsonInclude.Include. NON_NULL)
 public class UserInfo {
   public static final String SERIALIZED_NAME_AIRLINE_USER_ID = "airline_user_id";
   @SerializedName(SERIALIZED_NAME_AIRLINE_USER_ID)
