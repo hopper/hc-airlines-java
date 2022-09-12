@@ -145,7 +145,7 @@ public class HopperClient {
                 .asObject(ProcessCfarPayment.class);
     }
 
-    public CfarContractExercise createfarContractExercise(String sessionId, CreateCfarContractExerciseRequest createCfarContractExerciseRequest) throws ApiException {
+    public CfarContractExercise createCfarContractExercise(String sessionId, CreateCfarContractExerciseRequest createCfarContractExerciseRequest) throws ApiException {
         return cfarApi.postCfarContractExercises(createCfarContractExerciseRequest, sessionId);
     }
 

@@ -134,7 +134,7 @@ public class Example {
         itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
 
         createCfarContractExerciseRequest.setItinerary(itinerary);
-        return client.createfarContractExercise(sessionId, createCfarContractExerciseRequest);
+        return client.createCfarContractExercise(sessionId, createCfarContractExerciseRequest);
     }
 
     private static CfarContract createCfarContract(HopperClient client, List<CfarOffer> offers, String sessionId) throws ApiException {
@@ -305,8 +305,8 @@ public class Example {
         platform.setBrowser(browser);
         platform.setOperatingSystem(operatingSystem);
         device.setPlatform(platform);
-        sessionRequest.setDevice(device);
-        sessionRequest.setUserInfo(userInfo);
+        //sessionRequest.setDevice(device);
+        //sessionRequest.setUserInfo(userInfo);
 
         return client.createSession(sessionRequest);
     }
