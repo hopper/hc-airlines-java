@@ -69,13 +69,8 @@ public class Example {
         return client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);
     }
 
-    private static CfarContractExercise completeCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException {
-        MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest = new MarkCfarContractExerciseCompleteRequest();
-        markCfarContractExerciseCompleteRequest.setAirlineRefundAllowance("146.64");
-        markCfarContractExerciseCompleteRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
-        markCfarContractExerciseCompleteRequest.setHopperRefund("146.64");
-        markCfarContractExerciseCompleteRequest.setHopperRefundMethod(AirlineRefundMethod.CASH);
-        return client.completeCfarContractExercise(sessionId, markCfarContractExerciseCompleteRequest, contractId);
+    private static CfarContractExercise completeCfarContractExercise(HopperClient client, String exerciseId, String sessionId) throws ApiException {
+        return client.completeCfarContractExercise(sessionId, new MarkCfarContractExerciseCompleteRequest(), exerciseId);
     }
 
     private static CfarContractExercise creatCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException {

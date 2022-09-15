@@ -149,7 +149,7 @@ public class HopperClient {
         return cfarApi.postCfarContractExercises(createCfarContractExerciseRequest, sessionId);
     }
 
-    public CfarContractExercise completeCfarContractExercise(String sessionId, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String contractId) throws ApiException {
-        return cfarApi.putCfarContractExercisesIdMarkCompleted(contractId, markCfarContractExerciseCompleteRequest, sessionId);
+    public CfarContractExercise completeCfarContractExercise(String sessionId, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String exerciseId) throws ApiException {
+        return cfarApi.putCfarContractExercisesIdMarkCompleted(exerciseId, markCfarContractExerciseCompleteRequest, sessionId);
     }
 }

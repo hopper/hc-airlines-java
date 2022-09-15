@@ -748,8 +748,210 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
   createCfarContractExerciseRequest.setItinerary(itinerary);
   CfarContractExercise cfarContractExercise = client.createfarContractExercise(sessionId, createCfarContractExerciseRequest);
 ```
+#### CompleteCfarContractExercise
+
+**Parameters**
 
 
+<table>
+  <tr>
+   <td>sessionId
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+<p>
+The ID of the current session
+   </td>
+  </tr>
+  <tr>
+   <td>exerciseId
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: 35212c04-179b-4a9b-a939-89d99492a96d
+<p>
+A unique identifier for a CFAR contract exercise
+   </td>
+  </tr>
+  <tr>
+   <td>hopper_refund
+   </td>
+   <td>string >= 0
+<p>
+Example:<code> 49.32</code>
+<p>
+The amount refunded by hopper to the customer to complete the CFAR contract exercise
+   </td>
+  </tr>
+  <tr>
+   <td>hopper_refund_method
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+The refund method used by hopper
+   </td>
+  </tr>
+  <tr>
+   <td>airline_refund
+   </td>
+   <td>string >= 0
+<p>
+Example:60.77
+<p>
+The amount refunded by the airline to the customer to complete the CFAR contract exercise
+   </td>
+  </tr>
+  <tr>
+   <td>airline_refund_method
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+The refund method used by the airline
+   </td>
+  </tr>
+</table>
+
+
+Return value
+
+<table>
+  <tr>
+   <td>id
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example:1ec9efac-424e-6e87-953e-eb24a0886221
+<p>
+Unique identifier for a CFAR exercise
+   </td>
+  </tr>
+  <tr>
+   <td>contract_id
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example:1ec9ef4b-b3bf-64ae-8a3d-6b084d9f6b3c
+<p>
+Unique identifier for a contract
+   </td>
+  </tr>
+  <tr>
+   <td>exercise_initiated_date_time
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string &lt;date-time>
+<p>
+Example:2022-03-08T15:20:30Z
+<p>
+A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was initiated
+   </td>
+  </tr>
+  <tr>
+   <td>exercise_completed_date_time
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string &lt;date-time>
+<p>
+Example:2022-03-08T15:22:20Z
+<p>
+A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was completed
+   </td>
+  </tr>
+  <tr>
+   <td>hopper_refund
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example:49.32
+<p>
+The amount refunded by hopper to the customer to complete the CFAR contract exercise
+   </td>
+  </tr>
+  <tr>
+   <td>hopper_refund_method
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+The refund method used by hopper
+   </td>
+  </tr>
+  <tr>
+   <td>airline_refund
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example:60.77
+<p>
+The amount refunded by the airline to the customer to complete the CFAR contract exercise
+   </td>
+  </tr>
+  <tr>
+   <td>airline_refund_method
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+The refund method used by the airline
+   </td>
+  </tr>
+  <tr>
+   <td>currency
+   </td>
+   <td>string
+<p>
+Example:CAD
+<p>
+The currency of the airline's refund
+   </td>
+  </tr>
+  <tr>
+   <td>ext_attributes
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>object (map_string)
+<p>
+An array of arbitrary key-value pairs for storing airline-specific entity metadata
+   </td>
+  </tr>
+</table>
+
+
+**Example :**
+```
+
+UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
+updateCfarContractRequest.setEmailAddress("test@test.com"); 
+updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
+updateCfarContractRequest.setPnrReference("ABC123"); 
+CfarContract contract = client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
+
+```
 ## Data structures
 
 ### Device
