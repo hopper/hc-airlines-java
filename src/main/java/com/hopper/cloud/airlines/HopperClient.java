@@ -6,21 +6,26 @@ import com.hopper.cloud.airlines.api.SessionsApi;
 import com.hopper.cloud.airlines.auth.OAuth;
 import com.hopper.cloud.airlines.auth.RetryingOAuth;
 import com.hopper.cloud.airlines.model.*;
+import com.hopper.cloud.airlines.model.tokenization.*;
+import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
 import kong.unirest.HttpResponse;
 import kong.unirest.ObjectMapper;
 import kong.unirest.Unirest;
 
-import java.io.IOException;
 import java.util.*;
 
 
 public class HopperClient {
     private final CancelForAnyReasonCfarApi cfarApi;
     private final SessionsApi sessionsApi;
-    private final String pciProxyUrl;
+    private final String paymentUrl;
+    private final String paymentUsername;
+    private final String paymentPassword;
 
-    public HopperClient(String url, String clientId, String clientSecret, String pciProxyUrl, Boolean debugging) {
-        this.pciProxyUrl = pciProxyUrl;
+    public HopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
+        this.paymentUrl = paymentUrl;
+        this.paymentUsername = paymentUsername;
+        this.paymentPassword = paymentPassword;
         Map<String, String> params = new HashMap<>();
         params.put("audience", String.join("/", Arrays.asList(url.split("/")).subList(0, 3)));
         params.put("grant_type", "client_credentials");
@@ -93,7 +98,7 @@ public class HopperClient {
     }
 
     public CfarContract createCfarContract(String sessionId, CreateCfarContractRequest createCfarContractRequest) throws ApiException {
-        return cfarApi.postCfarContracts(createCfarContractRequest, sessionId, false);
+        return cfarApi.postCfarContracts(createCfarContractRequest, sessionId);
     }
 
     /**
@@ -111,38 +116,39 @@ public class HopperClient {
 
     public boolean processCfarPayment(String sessionId, String contractId, ProcessCfarPaymentRequest processCfarPaymentRequest) throws ApiException {
         try {
-            HttpResponse<ProcessCfarPayment> response = getProcessCfarPaymentHttpResponse(sessionId, contractId, processCfarPaymentRequest);
-            if (response.getStatus() == 401) {
-                refreshAuthentificationToken();
-                response = getProcessCfarPaymentHttpResponse(sessionId, contractId, processCfarPaymentRequest);
-            }
-            if (response.getStatus() == 200) {
-                return response.getBody().isSucceeded();
+            TokenizationRequest tokenizationRequest = new TokenizationRequest();
+            tokenizationRequest.setPaymentMethod(new PaymentMethod());
+            tokenizationRequest.getPaymentMethod().setCreditCard(new CreditCard());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setFirstName(processCfarPaymentRequest.getFirstName());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setLastName(processCfarPaymentRequest.getLastName());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setNumber(processCfarPaymentRequest.getNumber());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setVerificationValue(processCfarPaymentRequest.getVerificationValue());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setMonth(processCfarPaymentRequest.getMonth());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setYear(processCfarPaymentRequest.getYear());
+            tokenizationRequest.getPaymentMethod().setEmail(processCfarPaymentRequest.getEmailAddress());
+            HttpResponse<TokenizationResponse> response = getTokenizedPaymentHttpResponse(tokenizationRequest);
+
+            if (response.getStatus() == 201) {
+                ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest = new ProcessCfarPaymentTokenRequest();
+                processCfarPaymentTokenRequest.setPaymentMethodToken(response.getBody().getTransaction().getPaymentMethod().getToken());
+                processCfarPaymentTokenRequest.setPnrReference(processCfarPaymentRequest.getPnrReference());
+                processCfarPaymentTokenRequest.setEmailAddress(processCfarPaymentRequest.getEmailAddress());
+                ProcessCfarPayment processCfarPayment = cfarApi.postCfarContractsIdProcessPayment(contractId, processCfarPaymentTokenRequest, sessionId);
+                return processCfarPayment.isSucceeded();
             } else {
                 return false;
             }
         } catch (Exception e) {
             throw new ApiException(e);
         }
-
     }
 
-    private void refreshAuthentificationToken() throws IOException {
-        RetryingOAuth partnerAuth = (RetryingOAuth) (cfarApi.getApiClient().getAuthentication("PartnerAuth"));
-        String currentToken = partnerAuth.getAccessToken();
-        partnerAuth.updateAccessToken(currentToken);
-    }
-
-    private HttpResponse<ProcessCfarPayment> getProcessCfarPaymentHttpResponse(String sessionId, String contractId, ProcessCfarPaymentRequest processCfarPaymentRequest) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("HC-Session-ID", sessionId);
-        headers.put("Content-Type", "application/json");
-        OAuth partnerAuth = (RetryingOAuth) (cfarApi.getApiClient().getAuthentication("PartnerAuth"));
-        headers.put("Authorization", "Bearer " + partnerAuth.getAccessToken());
-        return Unirest.post(pciProxyUrl + contractId + "/payment")
-                .headers(headers)
-                .body(processCfarPaymentRequest)
-                .asObject(ProcessCfarPayment.class);
+    private HttpResponse<TokenizationResponse> getTokenizedPaymentHttpResponse(TokenizationRequest tokenizationRequest) {
+        return Unirest.post(paymentUrl)
+                .basicAuth(paymentUsername, paymentPassword)
+                .header("Content-Type", "application/json")
+                .body(tokenizationRequest)
+                .asObject(TokenizationResponse.class);
     }
 
     public CfarContractExercise createCfarContractExercise(String sessionId, CreateCfarContractExerciseRequest createCfarContractExerciseRequest) throws ApiException {

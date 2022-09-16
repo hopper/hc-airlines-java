@@ -25,16 +25,7 @@ import com.hopper.cloud.airlines.ProgressResponseBody;
 import com.google.gson.reflect.TypeToken;
 
 
-import com.hopper.cloud.airlines.model.BadRequest;
-import com.hopper.cloud.airlines.model.CfarContract;
-import com.hopper.cloud.airlines.model.CfarContractExercise;
-import com.hopper.cloud.airlines.model.CfarOffer;
-import com.hopper.cloud.airlines.model.CreateCfarContractExerciseRequest;
-import com.hopper.cloud.airlines.model.CreateCfarContractRequest;
-import com.hopper.cloud.airlines.model.CreateCfarOfferRequest;
-import com.hopper.cloud.airlines.model.MarkCfarContractExerciseCompleteRequest;
-import com.hopper.cloud.airlines.model.UnprocessableEntity;
-import com.hopper.cloud.airlines.model.UpdateCfarContractRequest;
+import com.hopper.cloud.airlines.model.*;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -397,7 +388,6 @@ public class CancelForAnyReasonCfarApi {
      * Build call for postCfarContracts
      * @param createCfarContractRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @param validateOnly When this flag is set to &#x60;true&#x60;, the CFAR contract creation will not be performed, it will only be validated (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -414,7 +404,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarContractsCall(CreateCfarContractRequest createCfarContractRequest, String hcSessionID, Boolean validateOnly, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postCfarContractsCall(CreateCfarContractRequest createCfarContractRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -438,10 +428,6 @@ public class CancelForAnyReasonCfarApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (validateOnly != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("validate_only", validateOnly));
-        }
 
         if (hcSessionID != null) {
             localVarHeaderParams.put("HC-Session-ID", localVarApiClient.parameterToString(hcSessionID));
@@ -468,7 +454,7 @@ public class CancelForAnyReasonCfarApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postCfarContractsValidateBeforeCall(CreateCfarContractRequest createCfarContractRequest, String hcSessionID, Boolean validateOnly, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call postCfarContractsValidateBeforeCall(CreateCfarContractRequest createCfarContractRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'createCfarContractRequest' is set
         if (createCfarContractRequest == null) {
@@ -476,9 +462,8 @@ public class CancelForAnyReasonCfarApi {
         }
         
 
-        okhttp3.Call localVarCall = postCfarContractsCall(createCfarContractRequest, hcSessionID, validateOnly, _callback);
+        okhttp3.Call localVarCall = postCfarContractsCall(createCfarContractRequest, hcSessionID, _callback);
         return localVarCall;
-
     }
 
     /**
@@ -486,7 +471,6 @@ public class CancelForAnyReasonCfarApi {
      * Create a CFAR contract from a purchased CFAR offer
      * @param createCfarContractRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @param validateOnly When this flag is set to &#x60;true&#x60;, the CFAR contract creation will not be performed, it will only be validated (optional, default to false)
      * @return CfarContract
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -502,8 +486,8 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarContract postCfarContracts(CreateCfarContractRequest createCfarContractRequest, String hcSessionID, Boolean validateOnly) throws ApiException {
-        ApiResponse<CfarContract> localVarResp = postCfarContractsWithHttpInfo(createCfarContractRequest, hcSessionID, validateOnly);
+    public CfarContract postCfarContracts(CreateCfarContractRequest createCfarContractRequest, String hcSessionID) throws ApiException {
+        ApiResponse<CfarContract> localVarResp = postCfarContractsWithHttpInfo(createCfarContractRequest, hcSessionID);
         return localVarResp.getData();
     }
 
@@ -512,7 +496,6 @@ public class CancelForAnyReasonCfarApi {
      * Create a CFAR contract from a purchased CFAR offer
      * @param createCfarContractRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @param validateOnly When this flag is set to &#x60;true&#x60;, the CFAR contract creation will not be performed, it will only be validated (optional, default to false)
      * @return ApiResponse&lt;CfarContract&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -528,8 +511,8 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarContract> postCfarContractsWithHttpInfo(CreateCfarContractRequest createCfarContractRequest, String hcSessionID, Boolean validateOnly) throws ApiException {
-        okhttp3.Call localVarCall = postCfarContractsValidateBeforeCall(createCfarContractRequest, hcSessionID, validateOnly, null);
+    public ApiResponse<CfarContract> postCfarContractsWithHttpInfo(CreateCfarContractRequest createCfarContractRequest, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = postCfarContractsValidateBeforeCall(createCfarContractRequest, hcSessionID, null);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -539,7 +522,6 @@ public class CancelForAnyReasonCfarApi {
      * Create a CFAR contract from a purchased CFAR offer
      * @param createCfarContractRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @param validateOnly When this flag is set to &#x60;true&#x60;, the CFAR contract creation will not be performed, it will only be validated (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -556,13 +538,15 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarContractsAsync(CreateCfarContractRequest createCfarContractRequest, String hcSessionID, Boolean validateOnly, final ApiCallback<CfarContract> _callback) throws ApiException {
+    public okhttp3.Call postCfarContractsAsync(CreateCfarContractRequest createCfarContractRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postCfarContractsValidateBeforeCall(createCfarContractRequest, hcSessionID, validateOnly, _callback);
+        okhttp3.Call localVarCall = postCfarContractsValidateBeforeCall(createCfarContractRequest, hcSessionID, _callback);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+
     /**
      * Build call for postCfarOffers
      * @param createCfarOfferRequest  (required)
@@ -1058,6 +1042,128 @@ public class CancelForAnyReasonCfarApi {
 
         okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusValidateBeforeCall(id, updateCfarContractRequest, hcSessionID, _callback);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+
+    /**
+     * Build call for postCfarContractsIdProcessPayment
+     * @param id A unique identifier for a CFAR contract (required)
+     * @param processCfarPaymentTokenRequest  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public okhttp3.Call postCfarContractsIdProcessPaymentCall(String id, ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = processCfarPaymentTokenRequest;
+
+        // create path and map variables
+        String localVarPath = "/cfar_contracts/{id}/payment"
+                .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (hcSessionID != null) {
+            localVarHeaderParams.put("HC-Session-ID", localVarApiClient.parameterToString(hcSessionID));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+                "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "PartnerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call postCfarContractsIdProcessPaymentValidateBeforeCall(String id, ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling postCfarContractsIdProcessPayment(Async)");
+        }
+
+        // verify the required parameter 'updateCfarContractRequest' is set
+        if (processCfarPaymentTokenRequest == null) {
+            throw new ApiException("Missing the required parameter 'processCfarPaymentTokenRequest' when calling postCfarContractsIdProcessPayments(Async)");
+        }
+
+
+        okhttp3.Call localVarCall = postCfarContractsIdProcessPaymentCall(id, processCfarPaymentTokenRequest, hcSessionID, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Process payment for CFAR contract
+     * @param id A unique identifier for a CFAR contract (required)
+     * @param processCfarPaymentTokenRequest  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @return CfarContract
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ProcessCfarPayment postCfarContractsIdProcessPayment(String id, ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest, String hcSessionID) throws ApiException {
+        ApiResponse<ProcessCfarPayment> localVarResp = postCfarContractsIdProcessPaymentWithHttpInfo(id, processCfarPaymentTokenRequest, hcSessionID);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Process payment for CFAR contract
+     * @param id A unique identifier for a CFAR contract (required)
+     * @param processCfarPaymentTokenRequest  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @return ApiResponse&lt;CfarContract&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<ProcessCfarPayment> postCfarContractsIdProcessPaymentWithHttpInfo(String id, ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = postCfarContractsIdProcessPaymentValidateBeforeCall(id, processCfarPaymentTokenRequest, hcSessionID, null);
+        Type localVarReturnType = new TypeToken<ProcessCfarPayment>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Process payment for CFAR contract (asynchronously)
+     * @param id A unique identifier for a CFAR contract (required)
+     * @param processCfarPaymentTokenRequest  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public okhttp3.Call postCfarContractsIdProcessPaymentAsync(String id, ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
+        okhttp3.Call localVarCall = postCfarContractsIdProcessPaymentValidateBeforeCall(id, processCfarPaymentTokenRequest, hcSessionID, _callback);
+        Type localVarReturnType = new TypeToken<ProcessCfarPayment>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -1176,7 +1176,6 @@ public class ApiClient {
      */
     public Call buildCall(String baseUrl, String path, String method, List<Pair> queryParams, List<Pair> collectionQueryParams, Object body, Map<String, String> headerParams, Map<String, String> cookieParams, Map<String, Object> formParams, String[] authNames, ApiCallback callback) throws ApiException {
         Request request = buildRequest(baseUrl, path, method, queryParams, collectionQueryParams, body, headerParams, cookieParams, formParams, authNames, callback);
-
         return httpClient.newCall(request);
     }
 
@@ -1530,7 +1529,7 @@ public class ApiClient {
     /**
      * Convert the HTTP request body to a string.
      *
-     * @param request The HTTP request object
+     * @param requestBody The HTTP request object
      * @return The string representation of the HTTP request body
      * @throws com.hopper.cloud.airlines.ApiException If fail to serialize the request body object into a string
      */

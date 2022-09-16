@@ -20,7 +20,6 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.AirlineRefundMethod;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -213,10 +212,6 @@ public class MarkCfarContractExerciseCompleteRequest {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("hopper_refund");
-    openapiRequiredFields.add("hopper_refund_method");
-    openapiRequiredFields.add("airline_refund_allowance");
-    openapiRequiredFields.add("airline_refund_method");
   }
 
  /**
