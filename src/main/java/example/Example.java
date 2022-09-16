@@ -15,42 +15,52 @@ public class Example {
             HopperClient client = new HopperClient("", "", "", "", "", "", true);
 
             AirlineSession session = getAirlineSession(client);
-            String sessionId = session.getId();
-
-            List<CfarOffer> offers = createCfarOffers(client, sessionId);
-            List<CfarOffer> selectedOffer = new ArrayList<>();
-            selectedOffer.add(offers.get(0));
-            selectedOffer.add(offers.get(1));
-            CfarContract contract = createCfarContract(client, selectedOffer, sessionId);
-            String contractId = contract.getId();
-            boolean isSucceeded = processCfarPayment(client, contractId, sessionId);
-            CfarContractExercise exercise = creatCfarContractExercise(client, contractId, sessionId);
-            CfarContract getContract = client.getContract(sessionId, contractId);
-
             System.out.println("*********************************************************************");
             System.out.println("*************************** SESSION *********************************");
             System.out.println("*********************************************************************");
             System.out.println(session);
+
+            String sessionId = session.getId();
+            List<CfarOffer> offers = createCfarOffers(client, sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** OFFERS *********************************");
             System.out.println("*********************************************************************");
             System.out.println(offers);
+
+            List<CfarOffer> selectedOffer = new ArrayList<>();
+            selectedOffer.add(offers.get(0));
+            selectedOffer.add(offers.get(1));
+            CfarContract contract = createCfarContract(client, selectedOffer, sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CONTRACT *********************************");
             System.out.println("*********************************************************************");
             System.out.println(contract);
-            System.out.println("*********************************************************************");
-            System.out.println("*************************** PAYMENT *********************************");
-            System.out.println("*********************************************************************");
-            System.out.println(isSucceeded);
-            System.out.println("*********************************************************************");
-            System.out.println("*************************** EXERCISE *********************************");
-            System.out.println("*********************************************************************");
-            System.out.println(exercise);
+
+            String contractId = contract.getId();
+            CfarContract getContract = client.getContract(sessionId, contractId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CONTRACT *********************************");
             System.out.println("*********************************************************************");
             System.out.println(getContract);
+
+            boolean isSucceeded = processCfarPayment(client, contractId, sessionId);
+            System.out.println("*********************************************************************");
+            System.out.println("*************************** PAYMENT *********************************");
+            System.out.println("*********************************************************************");
+            System.out.println(isSucceeded);
+
+            session = getAirlineSession(client);
+            System.out.println("*********************************************************************");
+            System.out.println("*************************** SESSION *********************************");
+            System.out.println("*********************************************************************");
+            System.out.println(session);
+
+            sessionId = session.getId();
+            CfarContractExercise exercise = creatCfarContractExercise(client, contractId, sessionId);
+            System.out.println("*********************************************************************");
+            System.out.println("*************************** EXERCISE *********************************");
+            System.out.println("*********************************************************************");
+            System.out.println(exercise);
         } catch (ApiException e) {
             e.printStackTrace();
         }
