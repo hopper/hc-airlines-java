@@ -121,7 +121,14 @@ public class HopperClient {
             tokenizationRequest.getPaymentMethod().setCreditCard(new CreditCard());
             tokenizationRequest.getPaymentMethod().getCreditCard().setFirstName(processCfarPaymentRequest.getFirstName());
             tokenizationRequest.getPaymentMethod().getCreditCard().setLastName(processCfarPaymentRequest.getLastName());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setNumber(processCfarPaymentRequest.getNumber());
+
+            // Map test credit cards to an accepted one on staging environment
+            if (cfarApi.getCustomBaseUrl().contains("staging") && Arrays.asList("371449635398431", "5454545454545454").contains(processCfarPaymentRequest.getNumber())) {
+                tokenizationRequest.getPaymentMethod().getCreditCard().setNumber("4111111111111111");
+            } else {
+                tokenizationRequest.getPaymentMethod().getCreditCard().setNumber(processCfarPaymentRequest.getNumber());
+            }
+
             tokenizationRequest.getPaymentMethod().getCreditCard().setVerificationValue(processCfarPaymentRequest.getVerificationValue());
             tokenizationRequest.getPaymentMethod().getCreditCard().setMonth(processCfarPaymentRequest.getMonth());
             tokenizationRequest.getPaymentMethod().getCreditCard().setYear(processCfarPaymentRequest.getYear());
