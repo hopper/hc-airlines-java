@@ -14,6 +14,7 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
         - [Example](#--example---1)
     + [updateCfarContractStatus](#updatecfarcontractstatus)
     + [createCfarContractExercise](#createCfarContractExercise)
+    + [completeCfarContractExercise](#completeCfarContractExercise)
 * [Data structures](#data-structures)
     + [Device](#device)
     + [Platform](#platform)
@@ -57,11 +58,13 @@ Maven:
 * Endpoint URL: Will be provided by Hopper for each environment
 * Client ID: Will be provided by Hopper for each environment
 * Client Secret: Will be provided by Hopper for each environment
-* Pci Proxy Url: Will be provided by Hopper for each environment
+* Payment Url: Will be provided by Hopper for each environment
+* Payment Username: Will be provided by Hopper for each environment
+* Payment Password: Will be provided by Hopper for each environment
 * Debugging : True to log input and output
 
 ```
-HopperClient client = new HopperClient(endpointUrl, clientId, clientSecret, pciProxyUrl, debugging);
+HopperClient client = new HopperClient(endpointUrl, clientId, clientSecret, paymentUrl, paymentUsername, paymentPassword, debugging);
 ```
 
 ## Client methods
@@ -945,11 +948,8 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
 **Example :**
 ```
 
-UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
-updateCfarContractRequest.setEmailAddress("test@test.com"); 
-updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
-updateCfarContractRequest.setPnrReference("ABC123"); 
-CfarContract contract = client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
+MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest = new MarkCfarContractExerciseCompleteRequest();
+CfarContractExercise exercise = client.completeCfarContractExercise(sessionId, markCfarContractExerciseCompleteRequest, exerciseId);
 
 ```
 ## Data structures
