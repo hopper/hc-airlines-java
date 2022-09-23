@@ -43,6 +43,10 @@ import com.hopper.cloud.airlines.JSON;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
 @JsonInclude(JsonInclude.Include. NON_NULL)
 public class CreateAirlineSessionRequest {
+  public static final String SERIALIZED_NAME_FLOW_TYPE = "flow_type";
+  @SerializedName(SERIALIZED_NAME_FLOW_TYPE)
+  private FlowType flowType;
+
   public static final String SERIALIZED_NAME_USER_INFO = "user_info";
   @SerializedName(SERIALIZED_NAME_USER_INFO)
   private UserInfo userInfo;
@@ -61,6 +65,29 @@ public class CreateAirlineSessionRequest {
 
   public CreateAirlineSessionRequest() { 
   }
+
+    public CreateAirlineSessionRequest flowType(FlowType flowType) {
+
+        this.flowType = flowType;
+        return this;
+    }
+
+    /**
+     * The flow type for which the session is opened.
+     * @return flowType
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "The flow type for which the session is opened.")
+
+    public FlowType getFlowType() {
+        return flowType;
+    }
+
+
+    public void setFlowType(FlowType flowType) {
+        this.flowType = flowType;
+    }
+
 
   public CreateAirlineSessionRequest userInfo(UserInfo userInfo) {
     
