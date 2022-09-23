@@ -81,6 +81,18 @@ frontend using the SDK, so it has to be returned to the airline frontend.
 
 <table>
   <tr>
+   <td>flowType
+<p style="color:red">required</p>
+   </td>
+   <td>Enum
+<p>
+Possible values: PURCHASE, EXERCISE
+<p>
+The flow type for which the session is opened.
+   </td>
+  </tr>
+  <tr>
+  <tr>
    <td>userInfo
    </td>
    <td>
