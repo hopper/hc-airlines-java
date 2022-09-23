@@ -14,7 +14,7 @@ public class Example {
         try {
             HopperClient client = new HopperClient("", "", "", "", "", "", true);
 
-            AirlineSession session = getAirlineSession(client);
+            AirlineSession session = getAirlineSession(client, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
             System.out.println("*************************** SESSION *********************************");
             System.out.println("*********************************************************************");
@@ -49,7 +49,7 @@ public class Example {
             System.out.println("*********************************************************************");
             System.out.println(isSucceeded);
 
-            session = getAirlineSession(client);
+            session = getAirlineSession(client, FlowType.EXERCISE);
             System.out.println("*********************************************************************");
             System.out.println("*************************** SESSION *********************************");
             System.out.println("*********************************************************************");
@@ -282,8 +282,9 @@ public class Example {
         return client.updateCfarContractStatus(sessionId, contractId, updateCfarContractRequest);
     }
 
-    private static AirlineSession getAirlineSession(HopperClient client) throws ApiException {
+    private static AirlineSession getAirlineSession(HopperClient client, FlowType flowType) throws ApiException {
         CreateAirlineSessionRequest sessionRequest = new CreateAirlineSessionRequest();
+        sessionRequest.setFlowType(flowType);
         sessionRequest.setLanguage("EN");
         sessionRequest.setPointOfSale("US");
 
