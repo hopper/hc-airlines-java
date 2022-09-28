@@ -91,10 +91,6 @@ public class CfarContract {
     @SerializedName(SERIALIZED_NAME_CANCELED_DATE_TIME)
     private OffsetDateTime canceledDateTime;
 
-    public static final String SERIALIZED_NAME_CONTRACT_EXERCISE = "contract_exercise";
-    @SerializedName(SERIALIZED_NAME_CONTRACT_EXERCISE)
-    private CfarContractExercise contractExercise;
-
     public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
     @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
     private String pnrReference;
@@ -374,37 +370,6 @@ public class CfarContract {
         this.canceledDateTime = canceledDateTime;
     }
 
-
-    public CfarContract contractExercise(CfarContractExercise contractExercise) {
-
-        this.contractExercise = contractExercise;
-        return this;
-    }
-
-    /**
-     * Get contractExercise
-     *
-     * @return contractExercise
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
-
-    public CfarContractExercise getContractExercise() {
-        return contractExercise;
-    }
-
-
-    public void setContractExercise(CfarContractExercise contractExercise) {
-        this.contractExercise = contractExercise;
-    }
-
-
-    public CfarContract pnrReference(String pnrReference) {
-
-        this.pnrReference = pnrReference;
-        return this;
-    }
-
     /**
      * Get pnrReference
      *
@@ -472,14 +437,13 @@ public class CfarContract {
                 Objects.equals(this.status, cfarContract.status) &&
                 Objects.equals(this.confirmedDateTime, cfarContract.confirmedDateTime) &&
                 Objects.equals(this.canceledDateTime, cfarContract.canceledDateTime) &&
-                Objects.equals(this.contractExercise, cfarContract.contractExercise) &&
                 Objects.equals(this.pnrReference, cfarContract.pnrReference) &&
                 Objects.equals(this.extAttributes, cfarContract.extAttributes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, offers, itinerary, coverage, premium, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, contractExercise, pnrReference, extAttributes);
+        return Objects.hash(id, offers, itinerary, coverage, premium, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, pnrReference, extAttributes);
     }
 
     @Override
@@ -497,7 +461,6 @@ public class CfarContract {
         sb.append("    status: ").append(toIndentedString(status)).append("\n");
         sb.append("    confirmedDateTime: ").append(toIndentedString(confirmedDateTime)).append("\n");
         sb.append("    canceledDateTime: ").append(toIndentedString(canceledDateTime)).append("\n");
-        sb.append("    contractExercise: ").append(toIndentedString(contractExercise)).append("\n");
         sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
         sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
         sb.append("}");
@@ -533,7 +496,6 @@ public class CfarContract {
         openapiFields.add("status");
         openapiFields.add("confirmed_date_time");
         openapiFields.add("canceled_date_time");
-        openapiFields.add("contract_exercise");
         openapiFields.add("pnr_reference");
         openapiFields.add("ext_attributes");
 
@@ -609,11 +571,7 @@ public class CfarContract {
         if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
         }
-        // validate the optional field `contract_exercise`
-        JsonElement element = jsonObj.get("contract_exercise");
-        if (!(element instanceof JsonNull)) {
-            CfarContractExercise.validateJsonObject(jsonObj.getAsJsonObject("contract_exercise"));
-        }
+
         if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive() && !jsonObj.get("pnr_reference").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
         }

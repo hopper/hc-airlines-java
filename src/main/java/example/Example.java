@@ -56,7 +56,7 @@ public class Example {
             System.out.println(session);
 
             sessionId = session.getId();
-            CfarContractExercise exercise = creatCfarContractExercise(client, contractId, sessionId);
+            CfarContractExercise exercise = createCfarContractExercise(client, contractId, sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** EXERCISE *********************************");
             System.out.println("*********************************************************************");
@@ -83,7 +83,7 @@ public class Example {
         return client.completeCfarContractExercise(sessionId, new MarkCfarContractExerciseCompleteRequest(), exerciseId);
     }
 
-    private static CfarContractExercise creatCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException {
+    private static CfarContractExercise createCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException {
         CreateCfarContractExerciseRequest createCfarContractExerciseRequest = new CreateCfarContractExerciseRequest();
         createCfarContractExerciseRequest.setContractId(contractId);
         createCfarContractExerciseRequest.setCurrency("CAD");

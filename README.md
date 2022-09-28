@@ -22,7 +22,6 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [Browser](#browser)
     + [CfarContract](#cfarcontract)
     + [CfarOffer](#cfaroffer)
-    + [CfarExercise](#cfarexercise)
     + [PassengerPricing](#passengerpricing)
     + [PassengerCount](#passengercount)
     + [Slice](#slice)
@@ -558,6 +557,16 @@ The refund method used by the airline
 Example:CAD
 <p>
 The currency of the airline's refund allowance
+   </td>
+  </tr>
+  <tr>
+   <td>redirection_token
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: 226c6f97-c94d-46b4-a2cc-8f5f9c20f4a6
+<p>
    </td>
   </tr>
   <tr>
@@ -1227,12 +1236,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
   </tr>
   <tr>
-   <td>contract_exercise
-   </td>
-   <td>
-
-[CfarExercise](#cfarexercise)
-
+   
 <p>
 An object containing exercise information for a contract
    </td>
@@ -1385,126 +1389,6 @@ Example:  [
 ]
 <p>
 One or more paragraphs describing the offer and its conditions in the user’s preferred language (or in english by default).
-   </td>
-  </tr>
-</table>
-
-### CfarExercise
-
-<table>
-  <tr>
-   <td>id
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example: 1ec9ef4b-b3bf-64ae-8a3d-6b084d9f6b3c
-<p>
-Unique identifier for a CFAR exercise
-   </td>
-  </tr>
-  <tr>
-   <td>contract_id
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example: 1ec9ef29-be31-6ed3-beec-9f5ae0d164ee
-<p>
-Unique identifier for a contract
-   </td>
-  </tr>
-  <tr>
-   <td>exercise_initiated_date_time
-<p style="color:red">required</p>
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example: 2022-03-08T15:20:30Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was initiated
-   </td>
-  </tr>
-  <tr>
-   <td>exercise_completed_date_time
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example: 2022-03-08T15:22:20Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was completed
-   </td>
-  </tr>
-  <tr>
-   <td>exchange_rate
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example: 0.7771197300596905664658848324102446
-<p>
-Exchange rate
-   </td>
-  </tr>
-  <tr>
-   <td>hopper_refund
-<p style="color:red">required</p>
-   </td>
-   <td>string >= 0
-<p>
-Example: 49.32
-<p>
-The amount refunded by hopper to the customer to complete the CFAR contract exercise
-   </td>
-  </tr>
-  <tr>
-   <td>hopper_refund_method
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by hopper
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund_allowance
-   </td>
-   <td>string >= 0
-<p>
-Example: 123.20
-<p>
-Refundable amount allowed by the airline
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund_method
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by the airline
-   </td>
-  </tr>
-  <tr>
-   <td>currency
-   </td>
-   <td>string
-<p>
-Example: CAD
-<p>
-The currency of the airline's refund allowance
-   </td>
-  </tr>
-  <tr>
-   <td>ext_attributes
-<p style="color:red">required</p>
-   </td>
-   <td>object (map_string)
-<p>
-An array of arbitrary key-value pairs for storing airline-specific entity metadata
    </td>
   </tr>
 </table>
