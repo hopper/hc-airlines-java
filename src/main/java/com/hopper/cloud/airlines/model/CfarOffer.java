@@ -498,10 +498,6 @@ public class CfarOffer {
       if (jsonObj.getAsJsonObject("itinerary") != null) {
         CfarItinerary.validateJsonObject(jsonObj.getAsJsonObject("itinerary"));
       }
-      // ensure the json data is an array
-      if (jsonObj.get("offer_description") != null && !jsonObj.get("offer_description").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `offer_description` to be an array in the JSON string but got `%s`", jsonObj.get("offer_description").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
