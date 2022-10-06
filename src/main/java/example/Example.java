@@ -228,6 +228,7 @@ public class Example {
         cfarItinerarySlice.setSegments(Collections.singletonList(cfarItinerarySliceSegment));
 
         PassengerPricing passengerPricing = new PassengerPricing();
+        passengerPricing.setIndividualPrice("30.55");
         PassengerCount passengerCount = new PassengerCount();
         passengerCount.count(3);
         passengerCount.setType(PassengerType.ADULT);
@@ -257,6 +258,7 @@ public class Example {
         cfarItinerarySlice1.setSegments(Collections.singletonList(cfarItinerarySliceSegment1));
 
         PassengerPricing passengerPricing1 = new PassengerPricing();
+        passengerPricing1.setIndividualPrice("30.55");
         PassengerCount passengerCount1 = new PassengerCount();
         passengerCount1.count(3);
         passengerCount1.setType(PassengerType.ADULT);

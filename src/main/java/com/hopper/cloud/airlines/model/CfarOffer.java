@@ -86,7 +86,7 @@ public class CfarOffer {
 
   public static final String SERIALIZED_NAME_OFFER_DESCRIPTION = "offer_description";
   @SerializedName(SERIALIZED_NAME_OFFER_DESCRIPTION)
-  private List<String> offerDescription = new ArrayList<>();
+  private Map<String, List<String>> offerDescription = new HashMap<>();
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
@@ -302,14 +302,14 @@ public class CfarOffer {
   }
 
 
-  public CfarOffer offerDescription(List<String> offerDescription) {
+  public CfarOffer offerDescription(Map<String, List<String>> offerDescription) {
     
     this.offerDescription = offerDescription;
     return this;
   }
 
-  public CfarOffer addOfferDescriptionItem(String offerDescriptionItem) {
-    this.offerDescription.add(offerDescriptionItem);
+  public CfarOffer putOfferDescriptionItem(String key, List<String> offerDescriptionItem) {
+    this.offerDescription.put(key, offerDescriptionItem);
     return this;
   }
 
@@ -320,12 +320,12 @@ public class CfarOffer {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public List<String> getOfferDescription() {
+  public Map<String, List<String>> getOfferDescription() {
     return offerDescription;
   }
 
 
-  public void setOfferDescription(List<String> offerDescription) {
+  public void setOfferDescription(Map<String, List<String>> offerDescription) {
     this.offerDescription = offerDescription;
   }
 
@@ -497,10 +497,6 @@ public class CfarOffer {
       // validate the optional field `itinerary`
       if (jsonObj.getAsJsonObject("itinerary") != null) {
         CfarItinerary.validateJsonObject(jsonObj.getAsJsonObject("itinerary"));
-      }
-      // ensure the json data is an array
-      if (jsonObj.get("offer_description") != null && !jsonObj.get("offer_description").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `offer_description` to be an array in the JSON string but got `%s`", jsonObj.get("offer_description").toString()));
       }
   }
 
