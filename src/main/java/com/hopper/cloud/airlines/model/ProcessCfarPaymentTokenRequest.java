@@ -17,6 +17,10 @@ import java.util.Set;
 public class ProcessCfarPaymentTokenRequest {
     @SerializedName("payment_method_token")
     private String paymentMethodToken;
+    @SerializedName("billing_country")
+    private String billingCountry;
+    @SerializedName("billing_state_or_province")
+    private String billingStateOrProvince;
     @SerializedName("pnr_reference")
     private String pnrReference;
     @SerializedName("email_address")
@@ -28,6 +32,14 @@ public class ProcessCfarPaymentTokenRequest {
     public String getPaymentMethodToken() { return paymentMethodToken; }
 
     public void setPaymentMethodToken(String paymentMethodToken) { this.paymentMethodToken = paymentMethodToken; }
+
+    public String getBillingCountry() { return billingCountry; }
+
+    public void setBillingCountry(String billingCountry) { this.billingCountry = billingCountry; }
+
+    public String getBillingStateOrProvince() { return billingStateOrProvince; }
+
+    public void setBillingStateOrProvince(String billingStateOrProvince) { this.billingStateOrProvince = billingStateOrProvince; }
 
     public String getPnrReference() {
         return pnrReference;

@@ -74,6 +74,8 @@ public class Example {
         processCfarPaymentRequest.setYear("2029");
         processCfarPaymentRequest.setNumber("4111111111111111");
         processCfarPaymentRequest.setVerificationValue("123");
+        processCfarPaymentRequest.setCountry("US");
+        processCfarPaymentRequest.setStateOrProvince("FL");
         processCfarPaymentRequest.setEmailAddress("john@doe.com");
         processCfarPaymentRequest.setPnrReference("ABC123");
         return client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);

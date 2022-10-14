@@ -12,6 +12,8 @@ public class ProcessCfarPaymentRequest {
     private String verificationValue;
     private String month;
     private String year;
+    private String country;
+    private String stateOrProvince;
     private String pnrReference;
     private String emailAddress;
 
@@ -82,6 +84,14 @@ public class ProcessCfarPaymentRequest {
         this.year = year;
     }
 
+    public String getCountry() { return country; }
+
+    public void setCountry(String country) { this.country = country; }
+
+    public String getStateOrProvince() { return stateOrProvince; }
+
+    public void setStateOrProvince(String stateOrProvince) { this.stateOrProvince = stateOrProvince; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -97,13 +107,15 @@ public class ProcessCfarPaymentRequest {
                 Objects.equals(this.number, processCfarPayment.number) &&
                 Objects.equals(this.year, processCfarPayment.year) &&
                 Objects.equals(this.month, processCfarPayment.month) &&
+                Objects.equals(this.country, processCfarPayment.country) &&
+                Objects.equals(this.stateOrProvince, processCfarPayment.stateOrProvince) &&
                 Objects.equals(this.pnrReference, processCfarPayment.pnrReference) &&
                 Objects.equals(this.emailAddress, processCfarPayment.emailAddress);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, number, verificationValue, month, year,pnrReference,emailAddress);
+        return Objects.hash(firstName, lastName, number, verificationValue, month, year, country, stateOrProvince, pnrReference, emailAddress);
     }
 
     @Override
@@ -116,6 +128,8 @@ public class ProcessCfarPaymentRequest {
         sb.append("    verificationValue: ").append(toIndentedString(verificationValue)).append("\n");
         sb.append("    month: ").append(toIndentedString(month)).append("\n");
         sb.append("    year: ").append(toIndentedString(year)).append("\n");
+        sb.append("    country: ").append(toIndentedString(country)).append("\n");
+        sb.append("    stateOrProvince: ").append(toIndentedString(stateOrProvince)).append("\n");
         sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
         sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
         sb.append("}");
