@@ -138,6 +138,8 @@ public class HopperClient {
             if (response.getStatus() == 201) {
                 ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest = new ProcessCfarPaymentTokenRequest();
                 processCfarPaymentTokenRequest.setPaymentMethodToken(response.getBody().getTransaction().getPaymentMethod().getToken());
+                processCfarPaymentTokenRequest.setBillingCountry(processCfarPaymentRequest.getCountry());
+                processCfarPaymentTokenRequest.setBillingStateOrProvince(processCfarPaymentRequest.getStateOrProvince());
                 processCfarPaymentTokenRequest.setPnrReference(processCfarPaymentRequest.getPnrReference());
                 processCfarPaymentTokenRequest.setEmailAddress(processCfarPaymentRequest.getEmailAddress());
                 ProcessCfarPayment processCfarPayment = cfarApi.postCfarContractsIdProcessPayment(contractId, processCfarPaymentTokenRequest, sessionId);
