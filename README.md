@@ -275,24 +275,6 @@ A unique identifier for a contract
    </td>
   </tr>
   <tr>
-   <td>firstName
-<p style="color:red">required</p>
-   </td>
-   <td>String
-<p>
-The first name of the cardholder
-   </td>
-  </tr>
-  <tr>
-   <td>lastName
-<p style="color:red">required</p>
-   </td>
-   <td>String
-<p>
-The last name of the cardholder
-   </td>
-  </tr>
-  <tr>
    <td>number
 <p style="color:red">required</p>
    </td>
@@ -330,6 +312,69 @@ The expiration year of the card
    </td>
   </tr>
   <tr>
+  <tr>
+   <td>firstName
+<p style="color:red">required</p>
+   </td>
+   <td>String
+<p>
+The first name of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>lastName
+<p style="color:red">required</p>
+   </td>
+   <td>String
+<p>
+The last name of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>addressLine1
+<p style="color:red"></p>
+   </td>
+   <td>String
+<p>
+The first line of the billing address
+   </td>
+  </tr>
+  <tr>
+   <td>addressLine2
+<p style="color:red"></p>
+   </td>
+   <td>String
+<p>
+The second line of the billing address
+   </td>
+  </tr>
+  <tr>
+   <td>stateOrProvince
+<p style="color:red"></p>
+   </td>
+   <td>String
+<p>
+The state or province of the billing address
+   </td>
+  </tr>
+  <tr>
+   <td>postalCode
+<p style="color:red"></p>
+   </td>
+   <td>String
+<p>
+The postal code of the billing address
+   </td>
+  </tr>
+  <tr>
+   <td>country
+<p style="color:red"></p>
+   </td>
+   <td>String
+<p>
+The country of the billing address
+   </td>
+  </tr>
    <td>pnrReference
 <p style="color:red">required</p>
    </td>
@@ -373,12 +418,17 @@ True if the payment succeeded, false if not
 
 ```
 ProcessCfarPaymentRequest processCfarPaymentRequest = new ProcessCfarPaymentRequest();
-processCfarPaymentRequest.setFirstName("John");
-processCfarPaymentRequest.setLastName("Smith");
+processCfarPaymentRequest.setNumber("4111111111111111");
 processCfarPaymentRequest.setMonth("09");
 processCfarPaymentRequest.setYear("26");
-processCfarPaymentRequest.setNumber("4111111111111111");
 processCfarPaymentRequest.setVerificationValue("123");
+processCfarPaymentRequest.setFirstName("John");
+processCfarPaymentRequest.setLastName("Smith");
+processCfarPaymentRequest.setAddressLine1("123 12th St");
+processCfarPaymentRequest.setAddressLine2("Building B");
+processCfarPaymentRequest.setPostalCode("G1R 4S9");
+processCfarPaymentRequest.setStateOrProvince("QC");
+processCfarPaymentRequest.setCountry("CA");
 processCfarPaymentRequest.setEmailAddress("test@email.com");
 processCfarPaymentRequest.setPnrReference("AB1234");
 boolean succeeded =  client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);
