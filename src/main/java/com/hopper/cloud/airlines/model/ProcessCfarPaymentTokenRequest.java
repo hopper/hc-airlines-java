@@ -17,10 +17,22 @@ import java.util.Set;
 public class ProcessCfarPaymentTokenRequest {
     @SerializedName("payment_method_token")
     private String paymentMethodToken;
-    @SerializedName("billing_country")
-    private String billingCountry;
-    @SerializedName("billing_state_or_province")
-    private String billingStateOrProvince;
+    @SerializedName("first_name")
+    private String firstName;
+    @SerializedName("last_name")
+    private String lastName;
+    @SerializedName("address_line1")
+    private String addressLine1;
+    @SerializedName("address_line2")
+    private String addressLine2;
+    @SerializedName("city")
+    private String city;
+    @SerializedName("postal_code")
+    private String postalCode;
+    @SerializedName("state_or_province")
+    private String stateOrProvince;
+    @SerializedName("country")
+    private String country;
     @SerializedName("pnr_reference")
     private String pnrReference;
     @SerializedName("email_address")
@@ -29,17 +41,77 @@ public class ProcessCfarPaymentTokenRequest {
     public ProcessCfarPaymentTokenRequest() {
     }
 
-    public String getPaymentMethodToken() { return paymentMethodToken; }
+    public String getPaymentMethodToken() {
+        return paymentMethodToken;
+    }
 
-    public void setPaymentMethodToken(String paymentMethodToken) { this.paymentMethodToken = paymentMethodToken; }
+    public void setPaymentMethodToken(String paymentMethodToken) {
+        this.paymentMethodToken = paymentMethodToken;
+    }
 
-    public String getBillingCountry() { return billingCountry; }
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public void setBillingCountry(String billingCountry) { this.billingCountry = billingCountry; }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public String getBillingStateOrProvince() { return billingStateOrProvince; }
+    public String getLastName() {
+        return lastName;
+    }
 
-    public void setBillingStateOrProvince(String billingStateOrProvince) { this.billingStateOrProvince = billingStateOrProvince; }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getStateOrProvince() {
+        return stateOrProvince;
+    }
+
+    public void setStateOrProvince(String stateOrProvince) {
+        this.stateOrProvince = stateOrProvince;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public String getPnrReference() {
         return pnrReference;
@@ -59,32 +131,15 @@ public class ProcessCfarPaymentTokenRequest {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ProcessCfarPaymentTokenRequest processCfarPayment = (ProcessCfarPaymentTokenRequest) o;
-        return Objects.equals(this.paymentMethodToken, processCfarPayment.paymentMethodToken) &&
-                Objects.equals(this.pnrReference, processCfarPayment.pnrReference) &&
-                Objects.equals(this.emailAddress, processCfarPayment.emailAddress);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProcessCfarPaymentTokenRequest that = (ProcessCfarPaymentTokenRequest) o;
+        return Objects.equals(paymentMethodToken, that.paymentMethodToken) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(addressLine1, that.addressLine1) && Objects.equals(addressLine2, that.addressLine2) && Objects.equals(city, that.city) && Objects.equals(postalCode, that.postalCode) && Objects.equals(stateOrProvince, that.stateOrProvince) && Objects.equals(country, that.country) && Objects.equals(pnrReference, that.pnrReference) && Objects.equals(emailAddress, that.emailAddress);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(paymentMethodToken, pnrReference, emailAddress);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class ProcessCfarPaymentTokenRequest {\n");
-        sb.append("    paymentMethodToken: ").append(toIndentedString(paymentMethodToken)).append("\n");
-        sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
-        sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
-        sb.append("}");
-        return sb.toString();
+        return Objects.hash(paymentMethodToken, firstName, lastName, addressLine1, addressLine2, city, postalCode, stateOrProvince, country, pnrReference, emailAddress);
     }
 
     /**
@@ -107,6 +162,14 @@ public class ProcessCfarPaymentTokenRequest {
         openapiFields.add("payment_method_token");
         openapiFields.add("pnr_reference");
         openapiFields.add("email_address");
+        openapiFields.add("first_name");
+        openapiFields.add("last_name");
+        openapiFields.add("address_line1");
+        openapiFields.add("address_line2");
+        openapiFields.add("city");
+        openapiFields.add("postal_code");
+        openapiFields.add("state_or_province");
+        openapiFields.add("country");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();

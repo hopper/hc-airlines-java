@@ -14,6 +14,12 @@ public class CreditCard {
     private String verificationValue;
     private String month;
     private String year;
+    private String address1;
+    private String address2;
+    private String city;
+    private String state;
+    private String zip;
+    private String country;
 
     public CreditCard() {
     }
@@ -66,6 +72,54 @@ public class CreditCard {
         this.year = year;
     }
 
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -80,12 +134,18 @@ public class CreditCard {
                 Objects.equals(this.number, creditCard.number) &&
                 Objects.equals(this.verificationValue, creditCard.verificationValue) &&
                 Objects.equals(this.month, creditCard.month) &&
-                Objects.equals(this.year, creditCard.year);
+                Objects.equals(this.year, creditCard.year) &&
+                Objects.equals(this.address1, creditCard.address1) &&
+                Objects.equals(this.address2, creditCard.address2) &&
+                Objects.equals(this.city, creditCard.city) &&
+                Objects.equals(this.state, creditCard.state) &&
+                Objects.equals(this.zip, creditCard.zip) &&
+                Objects.equals(this.country, creditCard.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, number, verificationValue, month, year);
+        return Objects.hash(firstName, lastName, number, verificationValue, month, year, address1, address2, city, state, zip, country);
     }
 
     @Override
@@ -98,6 +158,12 @@ public class CreditCard {
         sb.append("    verificationValue: ").append(toIndentedString(verificationValue)).append("\n");
         sb.append("    month: ").append(toIndentedString(month)).append("\n");
         sb.append("    year: ").append(toIndentedString(year)).append("\n");
+        sb.append("    address1: ").append(toIndentedString(address1)).append("\n");
+        sb.append("    address2: ").append(toIndentedString(address2)).append("\n");
+        sb.append("    city: ").append(toIndentedString(city)).append("\n");
+        sb.append("    state: ").append(toIndentedString(state)).append("\n");
+        sb.append("    zip: ").append(toIndentedString(zip)).append("\n");
+        sb.append("    country: ").append(toIndentedString(country)).append("\n");
         sb.append("}");
         return sb.toString();
     }
