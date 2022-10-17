@@ -76,6 +76,7 @@ public class Example {
         processCfarPaymentRequest.setVerificationValue("123");
         processCfarPaymentRequest.setAddressLine1("123 12th St");
         processCfarPaymentRequest.setAddressLine2("Building B");
+        processCfarPaymentRequest.setCity("Quebec City");
         processCfarPaymentRequest.setPostalCode("G1R 4S9");
         processCfarPaymentRequest.setStateOrProvince("QC");
         processCfarPaymentRequest.setCountry("CA");

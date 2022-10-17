@@ -148,6 +148,7 @@ public class HopperClient {
                 processCfarPaymentTokenRequest.setLastName(processCfarPaymentRequest.getLastName());
                 processCfarPaymentTokenRequest.setAddressLine1(processCfarPaymentRequest.getAddressLine1());
                 processCfarPaymentTokenRequest.setAddressLine2(processCfarPaymentRequest.getAddressLine2());
+                processCfarPaymentTokenRequest.setCity(processCfarPaymentRequest.getCity());
                 processCfarPaymentTokenRequest.setPostalCode(processCfarPaymentRequest.getPostalCode());
                 processCfarPaymentTokenRequest.setStateOrProvince(processCfarPaymentRequest.getStateOrProvince());
                 processCfarPaymentTokenRequest.setCountry(processCfarPaymentRequest.getCountry());
