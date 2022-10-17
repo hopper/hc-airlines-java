@@ -132,14 +132,25 @@ public class HopperClient {
             tokenizationRequest.getPaymentMethod().getCreditCard().setVerificationValue(processCfarPaymentRequest.getVerificationValue());
             tokenizationRequest.getPaymentMethod().getCreditCard().setMonth(processCfarPaymentRequest.getMonth());
             tokenizationRequest.getPaymentMethod().getCreditCard().setYear(processCfarPaymentRequest.getYear());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setAddress1(processCfarPaymentRequest.getAddressLine1());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setAddress2(processCfarPaymentRequest.getAddressLine2());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setCity(processCfarPaymentRequest.getCity());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setState(processCfarPaymentRequest.getStateOrProvince());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setZip(processCfarPaymentRequest.getPostalCode());
+            tokenizationRequest.getPaymentMethod().getCreditCard().setCountry(processCfarPaymentRequest.getCountry());
             tokenizationRequest.getPaymentMethod().setEmail(processCfarPaymentRequest.getEmailAddress());
             HttpResponse<TokenizationResponse> response = getTokenizedPaymentHttpResponse(tokenizationRequest);
 
             if (response.getStatus() == 201) {
                 ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest = new ProcessCfarPaymentTokenRequest();
                 processCfarPaymentTokenRequest.setPaymentMethodToken(response.getBody().getTransaction().getPaymentMethod().getToken());
-                processCfarPaymentTokenRequest.setBillingCountry(processCfarPaymentRequest.getCountry());
-                processCfarPaymentTokenRequest.setBillingStateOrProvince(processCfarPaymentRequest.getStateOrProvince());
+                processCfarPaymentTokenRequest.setFirstName(processCfarPaymentRequest.getFirstName());
+                processCfarPaymentTokenRequest.setLastName(processCfarPaymentRequest.getLastName());
+                processCfarPaymentTokenRequest.setAddressLine1(processCfarPaymentRequest.getAddressLine1());
+                processCfarPaymentTokenRequest.setAddressLine2(processCfarPaymentRequest.getAddressLine2());
+                processCfarPaymentTokenRequest.setPostalCode(processCfarPaymentRequest.getPostalCode());
+                processCfarPaymentTokenRequest.setStateOrProvince(processCfarPaymentRequest.getStateOrProvince());
+                processCfarPaymentTokenRequest.setCountry(processCfarPaymentRequest.getCountry());
                 processCfarPaymentTokenRequest.setPnrReference(processCfarPaymentRequest.getPnrReference());
                 processCfarPaymentTokenRequest.setEmailAddress(processCfarPaymentRequest.getEmailAddress());
                 ProcessCfarPayment processCfarPayment = cfarApi.postCfarContractsIdProcessPayment(contractId, processCfarPaymentTokenRequest, sessionId);
