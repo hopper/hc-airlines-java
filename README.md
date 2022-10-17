@@ -349,6 +349,15 @@ The second line of the billing address
    </td>
   </tr>
   <tr>
+   <td>city
+<p style="color:red"></p>
+   </td>
+   <td>String
+<p>
+The city of the billing address
+   </td>
+  </tr>
+  <tr>
    <td>stateOrProvince
 <p style="color:red"></p>
    </td>
@@ -426,6 +435,7 @@ processCfarPaymentRequest.setFirstName("John");
 processCfarPaymentRequest.setLastName("Smith");
 processCfarPaymentRequest.setAddressLine1("123 12th St");
 processCfarPaymentRequest.setAddressLine2("Building B");
+processCfarPaymentRequest.setCity("Quebec City");
 processCfarPaymentRequest.setPostalCode("G1R 4S9");
 processCfarPaymentRequest.setStateOrProvince("QC");
 processCfarPaymentRequest.setCountry("CA");
