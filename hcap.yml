@@ -493,6 +493,7 @@ components:
         - id
         - offers
         - itinerary
+        - coverage_percentage
         - coverage
         - premium
         - currency
@@ -514,6 +515,11 @@ components:
           example: 60a128e4-a12d-42bf-b977-b6329392282d
         itinerary:
           $ref: '#/components/schemas/cfar_itinerary'
+        coverage_percentage:
+          type: string
+          description: Percentage of the amount to be refunded to customer compared to flight tickets price
+          example: '80.00'
+          minimum: 0
         coverage:
           type: string
           description: Total amount to be refunded to user upon CFAR exercise
@@ -707,6 +713,7 @@ components:
         - id
         - premium
         - coverage
+        - coverage_percentage
         - currency
         - request_type
         - to_usd_exchange_rate
@@ -730,6 +737,11 @@ components:
           type: string
           description: Amount per passenger to be refunded to user upon CFAR exercise
           example: '180.60'
+          minimum: 0
+        coverage_percentage:
+          type: string
+          description: Percentage of the amount to be refunded to customer compared to flight tickets price
+          example: '80.00'
           minimum: 0
         currency:
           type: string

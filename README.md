@@ -1236,6 +1236,17 @@ Total amount to be refunded upon CFAR exercise
    </td>
   </tr>
   <tr>
+   <td>coveragePercentage
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 80.00
+<p>
+Percentage of the amount to be refunded to customer compared to flight tickets price
+   </td>
+  </tr>
+  <tr>
    <td>currency
 <p style="color:red">required</p>
    </td>
@@ -1379,6 +1390,17 @@ Total amount to be paid for CFAR
 Example:  400.00
 <p>
 Total amount to be refunded upon CFAR exercise
+   </td>
+  </tr>
+  <tr>
+   <td>coveragePercentage
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 80.0
+<p>
+Percentage of the amount to be refunded to customer compared to flight tickets price
    </td>
   </tr>
   <tr>

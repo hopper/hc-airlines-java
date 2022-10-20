@@ -59,6 +59,10 @@ public class CfarContract {
     @SerializedName(SERIALIZED_NAME_ITINERARY)
     private CfarItinerary itinerary;
 
+    public static final String SERIALIZED_NAME_COVERAGE_PERCENTAGE = "coverage_percentage";
+    @SerializedName(SERIALIZED_NAME_COVERAGE_PERCENTAGE)
+    private String coveragePercentage;
+
     public static final String SERIALIZED_NAME_COVERAGE = "coverage";
     @SerializedName(SERIALIZED_NAME_COVERAGE)
     private String coverage;
@@ -176,6 +180,29 @@ public class CfarContract {
 
     public void setItinerary(CfarItinerary itinerary) {
         this.itinerary = itinerary;
+    }
+
+
+    public CfarContract coveragePercentage(String coveragePercentage) {
+
+        this.coveragePercentage = coveragePercentage;
+        return this;
+    }
+
+    /**
+     * Percentage of the amount to be refunded to customer compared to flight tickets price
+     * @return coveragePercentage
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "80.0", required = true, value = "Percentage of the amount to be refunded to customer compared to flight tickets price")
+
+    public String getCoveragePercentage() {
+        return coveragePercentage;
+    }
+
+
+    public void setCoveragePercentage(String coveragePercentage) {
+        this.coveragePercentage = coveragePercentage;
     }
 
 
@@ -430,6 +457,7 @@ public class CfarContract {
                 Objects.equals(this.offers, cfarContract.offers) &&
                 Objects.equals(this.itinerary, cfarContract.itinerary) &&
                 Objects.equals(this.coverage, cfarContract.coverage) &&
+                Objects.equals(this.coveragePercentage, cfarContract.coveragePercentage) &&
                 Objects.equals(this.premium, cfarContract.premium) &&
                 Objects.equals(this.currency, cfarContract.currency) &&
                 Objects.equals(this.createdDateTime, cfarContract.createdDateTime) &&
@@ -443,7 +471,7 @@ public class CfarContract {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, offers, itinerary, coverage, premium, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, pnrReference, extAttributes);
+        return Objects.hash(id, offers, itinerary, coverage, coveragePercentage, premium, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, pnrReference, extAttributes);
     }
 
     @Override
@@ -454,6 +482,7 @@ public class CfarContract {
         sb.append("    offers: ").append(toIndentedString(offers)).append("\n");
         sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
         sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
+        sb.append("    coveragePercentage: ").append(toIndentedString(coveragePercentage)).append("\n");
         sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
         sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
@@ -489,6 +518,7 @@ public class CfarContract {
         openapiFields.add("offers");
         openapiFields.add("itinerary");
         openapiFields.add("coverage");
+        openapiFields.add("coverage_percentage");
         openapiFields.add("premium");
         openapiFields.add("currency");
         openapiFields.add("created_date_time");
@@ -505,6 +535,7 @@ public class CfarContract {
         openapiRequiredFields.add("offers");
         openapiRequiredFields.add("itinerary");
         openapiRequiredFields.add("coverage");
+        openapiRequiredFields.add("coverage_percentage");
         openapiRequiredFields.add("premium");
         openapiRequiredFields.add("currency");
         openapiRequiredFields.add("created_date_time");
@@ -564,6 +595,9 @@ public class CfarContract {
         }
         if (jsonObj.get("coverage") != null && !jsonObj.get("coverage").isJsonPrimitive() && !jsonObj.get("coverage").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `coverage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage").toString()));
+        }
+        if (jsonObj.get("coveragePercentage") != null && !jsonObj.get("coveragePercentage").isJsonPrimitive() && !jsonObj.get("coveragePercentage").isJsonNull()) {
+            throw new IllegalArgumentException(String.format("Expected the field `coveragePercentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coveragePercentage").toString()));
         }
         if (jsonObj.get("premium") != null && !jsonObj.get("premium").isJsonPrimitive() && !jsonObj.get("premium").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `premium` to be a primitive type in the JSON string but got `%s`", jsonObj.get("premium").toString()));
