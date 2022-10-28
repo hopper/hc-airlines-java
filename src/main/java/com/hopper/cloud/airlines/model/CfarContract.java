@@ -51,6 +51,10 @@ public class CfarContract {
     @SerializedName(SERIALIZED_NAME_ID)
     private String id;
 
+    public static final String SERIALIZED_NAME_REFERENCE = "reference";
+    @SerializedName(SERIALIZED_NAME_REFERENCE)
+    private String reference;
+
     public static final String SERIALIZED_NAME_OFFERS = "offers";
     @SerializedName(SERIALIZED_NAME_OFFERS)
     private List<CfarOffer> offers = new ArrayList<>();
@@ -127,6 +131,29 @@ public class CfarContract {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public CfarContract reference(String reference) {
+
+        this.reference = reference;
+        return this;
+    }
+
+    /**
+     * Unique reference for a contract
+     *
+     * @return reference
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "MCNZZABRTYFEUAAL", required = true, value = "Unique reference for a contract")
+
+    public String getReference() {
+        return reference;
+    }
+
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
 
@@ -454,6 +481,7 @@ public class CfarContract {
         }
         CfarContract cfarContract = (CfarContract) o;
         return Objects.equals(this.id, cfarContract.id) &&
+                Objects.equals(this.reference, cfarContract.reference) &&
                 Objects.equals(this.offers, cfarContract.offers) &&
                 Objects.equals(this.itinerary, cfarContract.itinerary) &&
                 Objects.equals(this.coverage, cfarContract.coverage) &&
@@ -471,7 +499,7 @@ public class CfarContract {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, offers, itinerary, coverage, coveragePercentage, premium, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, pnrReference, extAttributes);
+        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, pnrReference, extAttributes);
     }
 
     @Override
@@ -479,6 +507,7 @@ public class CfarContract {
         StringBuilder sb = new StringBuilder();
         sb.append("class CfarContract {\n");
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
         sb.append("    offers: ").append(toIndentedString(offers)).append("\n");
         sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
         sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
@@ -515,6 +544,7 @@ public class CfarContract {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("id");
+        openapiFields.add("reference");
         openapiFields.add("offers");
         openapiFields.add("itinerary");
         openapiFields.add("coverage");
@@ -532,6 +562,7 @@ public class CfarContract {
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
         openapiRequiredFields.add("id");
+        openapiRequiredFields.add("reference");
         openapiRequiredFields.add("offers");
         openapiRequiredFields.add("itinerary");
         openapiRequiredFields.add("coverage");
@@ -575,6 +606,9 @@ public class CfarContract {
         }
         if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive() && !jsonObj.get("id").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+        }
+        if (jsonObj.get("reference") != null && !jsonObj.get("reference").isJsonPrimitive() && !jsonObj.get("reference").isJsonNull()) {
+            throw new IllegalArgumentException(String.format("Expected the field `reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reference").toString()));
         }
         JsonArray jsonArrayoffers = jsonObj.getAsJsonArray("offers");
         if (jsonArrayoffers != null) {
