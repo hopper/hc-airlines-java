@@ -50,7 +50,9 @@ public class CfarItinerarySlice {
   public static final String SERIALIZED_NAME_SEGMENTS = "segments";
   @SerializedName(SERIALIZED_NAME_SEGMENTS)
   private List<CfarItinerarySliceSegment> segments = new ArrayList<>();
-
+    public static final String SERIALIZED_NAME_FARE_BRAND = "fare_brand";
+    @SerializedName(SERIALIZED_NAME_FARE_BRAND)
+  private String fareBrand;
   public CfarItinerarySlice() { 
   }
 
@@ -65,7 +67,15 @@ public class CfarItinerarySlice {
     return this;
   }
 
-   /**
+    public String getFareBrand() {
+        return fareBrand;
+    }
+
+    public void setFareBrand(String fareBrand) {
+        this.fareBrand = fareBrand;
+    }
+
+    /**
    * A list of segments which make up the slice of the fare
    * @return segments
   **/
@@ -92,12 +102,13 @@ public class CfarItinerarySlice {
       return false;
     }
     CfarItinerarySlice cfarItinerarySlice = (CfarItinerarySlice) o;
-    return Objects.equals(this.segments, cfarItinerarySlice.segments);
+    return Objects.equals(this.segments, cfarItinerarySlice.segments)
+            && Objects.equals(this.fareBrand, cfarItinerarySlice.fareBrand);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(segments);
+    return Objects.hash(segments,fareBrand);
   }
 
   @Override
@@ -105,6 +116,7 @@ public class CfarItinerarySlice {
     StringBuilder sb = new StringBuilder();
     sb.append("class CfarItinerarySlice {\n");
     sb.append("    segments: ").append(toIndentedString(segments)).append("\n");
+    sb.append("    fare_brand: ").append(toIndentedString(fareBrand)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -128,6 +140,7 @@ public class CfarItinerarySlice {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("segments");
+    openapiFields.add("fare_brand");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -162,6 +175,9 @@ public class CfarItinerarySlice {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
+      }
+      if (jsonObj.get("fare_brand") != null && !jsonObj.get("fare_brand").isJsonPrimitive() && !jsonObj.get("fare_brand").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `fare_brand` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_brand").toString()));
       }
       JsonArray jsonArraysegments = jsonObj.getAsJsonArray("segments");
       if (jsonArraysegments != null) {

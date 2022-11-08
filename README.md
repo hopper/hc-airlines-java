@@ -817,7 +817,7 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
   segments.add(cfarItinerarySliceSegment);
   segments.add(cfarItinerarySliceSegment2);
   cfarItinerarySlice.setSegments(segments);
-
+  cfarItinerarySlice.setFareBrand("economy");
   PassengerPricing passengerPricing = new PassengerPricing();
   passengerPricing.setIndividualPrice("61.10");
   PassengerCount passengerCount = new PassengerCount();
@@ -1609,6 +1609,15 @@ The type of passenger:
 array ( [Segment](#segment) )
 <p>
 A list of segments which make up the slice
+   </td>
+  </tr>
+  <tr>
+   <td>fare_brand
+   </td>
+   <td>string
+<p>
+Fare brand information
+<p></p>
    </td>
   </tr>
 </table>

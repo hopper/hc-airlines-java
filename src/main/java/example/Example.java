@@ -223,6 +223,7 @@ public class Example {
         ancillary.setTotalPrice("30.55");
 
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
+        cfarItinerarySlice.setFareBrand("economy");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
         cfarItinerarySliceSegment.setArrivalDateTime("2022-11-15T19:12:30");
         cfarItinerarySliceSegment.setDepartureDateTime("2022-11-15T18:12:30");
