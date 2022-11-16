@@ -652,16 +652,16 @@ public class CfarContract {
         if (jsonObj.get("reference") != null && !jsonObj.get("reference").isJsonPrimitive() && !jsonObj.get("reference").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reference").toString()));
         }
-        JsonArray jsonArrayoffers = jsonObj.getAsJsonArray("offers");
-        if (jsonArrayoffers != null) {
+        JsonArray jsonArrayOffers = jsonObj.getAsJsonArray("offers");
+        if (jsonArrayOffers != null) {
             // ensure the json data is an array
             if (!jsonObj.get("offers").isJsonArray()) {
                 throw new IllegalArgumentException(String.format("Expected the field `offers` to be an array in the JSON string but got `%s`", jsonObj.get("offers").toString()));
             }
 
             // validate the optional field `offers` (array)
-            for (int i = 0; i < jsonArrayoffers.size(); i++) {
-                CfarOffer.validateJsonObject(jsonArrayoffers.get(i).getAsJsonObject());
+            for (int i = 0; i < jsonArrayOffers.size(); i++) {
+                CfarOffer.validateJsonObject(jsonArrayOffers.get(i).getAsJsonObject());
             }
             ;
         }
@@ -699,7 +699,7 @@ public class CfarContract {
 
             // validate the optional field `taxes` (array)
             for (int i = 0; i < jsonArrayTaxes.size(); i++) {
-                CfarOffer.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
+                CfarTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
             };
         }
     }

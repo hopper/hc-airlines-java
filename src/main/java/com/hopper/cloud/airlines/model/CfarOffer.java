@@ -574,7 +574,7 @@ public class CfarOffer {
 
         // validate the optional field `taxes` (array)
         for (int i = 0; i < jsonArrayTaxes.size(); i++) {
-          CfarOffer.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
+          CfarTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
         };
       }
   }
