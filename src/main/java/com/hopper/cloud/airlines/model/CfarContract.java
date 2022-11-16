@@ -75,6 +75,14 @@ public class CfarContract {
     @SerializedName(SERIALIZED_NAME_PREMIUM)
     private String premium;
 
+    public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
+    @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
+    private String taxesTotal;
+
+    public static final String SERIALIZED_NAME_TAXES = "taxes";
+    @SerializedName(SERIALIZED_NAME_TAXES)
+    private List<CfarTax> taxes = new ArrayList<>();
+
     public static final String SERIALIZED_NAME_CURRENCY = "currency";
     @SerializedName(SERIALIZED_NAME_CURRENCY)
     private String currency;
@@ -280,6 +288,34 @@ public class CfarContract {
         this.premium = premium;
     }
 
+    public String getTaxesTotal() {
+        return taxesTotal;
+    }
+
+    public void setTaxesTotal(String taxesTotal) {
+        this.taxesTotal = taxesTotal;
+    }
+
+    public CfarContract taxes(List<CfarTax> taxes) {
+
+        this.taxes = taxes;
+        return this;
+    }
+
+    public CfarContract addCfarTaxItem(CfarTax cfarTaxItem) {
+        if (this.taxes != null) {
+            this.taxes.add(cfarTaxItem);
+        }
+        return this;
+    }
+
+    public List<CfarTax> getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(List<CfarTax> taxes) {
+        this.taxes = taxes;
+    }
 
     public CfarContract currency(String currency) {
 
@@ -487,6 +523,8 @@ public class CfarContract {
                 Objects.equals(this.coverage, cfarContract.coverage) &&
                 Objects.equals(this.coveragePercentage, cfarContract.coveragePercentage) &&
                 Objects.equals(this.premium, cfarContract.premium) &&
+                Objects.equals(this.taxesTotal, cfarContract.taxesTotal) &&
+                Objects.equals(this.taxes, cfarContract.taxes) &&
                 Objects.equals(this.currency, cfarContract.currency) &&
                 Objects.equals(this.createdDateTime, cfarContract.createdDateTime) &&
                 Objects.equals(this.expiryDateTime, cfarContract.expiryDateTime) &&
@@ -499,7 +537,7 @@ public class CfarContract {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, pnrReference, extAttributes);
+        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, taxesTotal, taxes, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, pnrReference, extAttributes);
     }
 
     @Override
@@ -513,6 +551,8 @@ public class CfarContract {
         sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
         sb.append("    coveragePercentage: ").append(toIndentedString(coveragePercentage)).append("\n");
         sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
+        sb.append("    taxes_total: ").append(toIndentedString(taxesTotal)).append("\n");
+        sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
         sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
         sb.append("    expiryDateTime: ").append(toIndentedString(expiryDateTime)).append("\n");
@@ -550,6 +590,8 @@ public class CfarContract {
         openapiFields.add("coverage");
         openapiFields.add("coverage_percentage");
         openapiFields.add("premium");
+        openapiFields.add("taxes_total");
+        openapiFields.add("taxes");
         openapiFields.add("currency");
         openapiFields.add("created_date_time");
         openapiFields.add("expiry_date_time");
@@ -636,12 +678,29 @@ public class CfarContract {
         if (jsonObj.get("premium") != null && !jsonObj.get("premium").isJsonPrimitive() && !jsonObj.get("premium").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `premium` to be a primitive type in the JSON string but got `%s`", jsonObj.get("premium").toString()));
         }
+        if (jsonObj.get("taxes_total") != null && !jsonObj.get("taxes_total").isJsonPrimitive() && !jsonObj.get("taxes_total").isJsonNull()) {
+            throw new IllegalArgumentException(String.format("Expected the field `taxes_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taxes_total").toString()));
+        }
         if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
         }
 
         if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive() && !jsonObj.get("pnr_reference").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
+        }
+
+        // validate the optional list `taxes`
+        JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
+        if (jsonArrayTaxes != null) {
+            // ensure the json data is an array
+            if (!jsonObj.get("taxes").isJsonArray()) {
+                throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
+            }
+
+            // validate the optional field `taxes` (array)
+            for (int i = 0; i < jsonArrayTaxes.size(); i++) {
+                CfarOffer.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
+            };
         }
     }
 
