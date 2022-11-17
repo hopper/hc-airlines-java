@@ -565,17 +565,20 @@ public class CfarOffer {
       }
 
       // validate the optional list `taxes`
-      JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
-      if (jsonArrayTaxes != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("taxes").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
-        }
+      if (!jsonObj.get("taxes").isJsonNull()) {
+        JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
+        if (jsonArrayTaxes != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("taxes").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
+          }
 
-        // validate the optional field `taxes` (array)
-        for (int i = 0; i < jsonArrayTaxes.size(); i++) {
-          CfarTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
-        };
+          // validate the optional field `taxes` (array)
+          for (int i = 0; i < jsonArrayTaxes.size(); i++) {
+            CfarTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
+          }
+          ;
+        }
       }
   }
 
