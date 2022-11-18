@@ -50,9 +50,11 @@ public class CfarItinerarySlice {
   public static final String SERIALIZED_NAME_SEGMENTS = "segments";
   @SerializedName(SERIALIZED_NAME_SEGMENTS)
   private List<CfarItinerarySliceSegment> segments = new ArrayList<>();
-    public static final String SERIALIZED_NAME_FARE_BRAND = "fare_brand";
-    @SerializedName(SERIALIZED_NAME_FARE_BRAND)
+
+  public static final String SERIALIZED_NAME_FARE_BRAND = "fare_brand";
+  @SerializedName(SERIALIZED_NAME_FARE_BRAND)
   private String fareBrand;
+
   public CfarItinerarySlice() { 
   }
 
@@ -67,14 +69,6 @@ public class CfarItinerarySlice {
     return this;
   }
 
-    public String getFareBrand() {
-        return fareBrand;
-    }
-
-    public void setFareBrand(String fareBrand) {
-        this.fareBrand = fareBrand;
-    }
-
     /**
    * A list of segments which make up the slice of the fare
    * @return segments
@@ -86,12 +80,17 @@ public class CfarItinerarySlice {
     return segments;
   }
 
-
   public void setSegments(List<CfarItinerarySliceSegment> segments) {
     this.segments = segments;
   }
 
+  public String getFareBrand() {
+    return fareBrand;
+}
 
+  public void setFareBrand(String fareBrand) {
+        this.fareBrand = fareBrand;
+    }
 
   @Override
   public boolean equals(Object o) {
@@ -179,16 +178,16 @@ public class CfarItinerarySlice {
       if (jsonObj.get("fare_brand") != null && !jsonObj.get("fare_brand").isJsonPrimitive() && !jsonObj.get("fare_brand").isJsonNull()) {
           throw new IllegalArgumentException(String.format("Expected the field `fare_brand` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_brand").toString()));
       }
-      JsonArray jsonArraysegments = jsonObj.getAsJsonArray("segments");
-      if (jsonArraysegments != null) {
+      JsonArray jsonArraySegments = jsonObj.getAsJsonArray("segments");
+      if (jsonArraySegments != null) {
         // ensure the json data is an array
         if (!jsonObj.get("segments").isJsonArray()) {
           throw new IllegalArgumentException(String.format("Expected the field `segments` to be an array in the JSON string but got `%s`", jsonObj.get("segments").toString()));
         }
 
         // validate the optional field `segments` (array)
-        for (int i = 0; i < jsonArraysegments.size(); i++) {
-          CfarItinerarySliceSegment.validateJsonObject(jsonArraysegments.get(i).getAsJsonObject());
+        for (int i = 0; i < jsonArraySegments.size(); i++) {
+          CfarItinerarySliceSegment.validateJsonObject(jsonArraySegments.get(i).getAsJsonObject());
         };
       }
   }
