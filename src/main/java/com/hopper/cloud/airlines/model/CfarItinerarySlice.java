@@ -84,13 +84,25 @@ public class CfarItinerarySlice {
     this.segments = segments;
   }
 
+  public CfarItinerarySlice fareBrand(String fareBrand) {
+      this.fareBrand = fareBrand;
+      return this;
+  }
+
+  /**
+   * Get fareBrand
+   * @return fareBrand
+   **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = false, value = "")
+
   public String getFareBrand() {
     return fareBrand;
 }
 
   public void setFareBrand(String fareBrand) {
-        this.fareBrand = fareBrand;
-    }
+    this.fareBrand = fareBrand;
+}
 
   @Override
   public boolean equals(Object o) {

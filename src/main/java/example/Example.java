@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class Example {
     public static void main(String[] args) {
         try {
-            HopperClient client = new HopperClient("", "", "", "", "", "", true);
+            HopperClient client = new HopperClient("http://localhost:7071/airline/v1.0", "7lrxWCn9ZJOvhpeK03XzDXOsmrtWodIy", "0gPGKrQeckjgElCRwlMLSvl9Nfzc_K_5ZNnVWpKuNZ8r3U0NiKSgBLC70D1QrzGP", "https://core.spreedly.com/v1/payment_methods.json", "XIpPV7pmjMGArYcpckA5Ut00dWE", "cWmuZ3IO0ws9Jiz7A86GhRsnUpCnl5jPeSkXRFAuIyIgCqTBFNW2Q4d0kgGFYmYf", true);
 
             AirlineSession session = getAirlineSession(client, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
@@ -110,22 +110,26 @@ public class Example {
         ancillary.setTotalPrice("30.55");
 
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
+        cfarItinerarySlice.setFareBrand("flex");
+
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-11-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-11-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
-        cfarItinerarySliceSegment.setFareClass(FareClass.BASIC_ECONOMY);
+        cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
+        cfarItinerarySliceSegment.setFareBrand("basic");
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime("2022-11-15T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime("2022-11-15T18:12:30");
+        cfarItinerarySliceSegment2.setArrivalDateTime("2022-12-15T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime("2022-12-15T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
         cfarItinerarySliceSegment2.setFlightNumber("JB777");
-        cfarItinerarySliceSegment2.setFareClass(FareClass.BASIC_ECONOMY);
+        cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
+        cfarItinerarySliceSegment2.setFareBrand("flex");
         cfarItinerarySliceSegment2.setValidatingCarrierCode("B6");
 
         List<CfarItinerarySliceSegment> segments = new ArrayList<>();
@@ -167,22 +171,25 @@ public class Example {
         ancillary.setTotalPrice("30.55");
 
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
+        cfarItinerarySlice.setFareBrand("flex");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-11-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-11-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
-        cfarItinerarySliceSegment.setFareClass(FareClass.BASIC_ECONOMY);
+        cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
+        cfarItinerarySliceSegment.setFareBrand("basic");
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime("2022-11-15T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime("2022-11-15T18:12:30");
+        cfarItinerarySliceSegment2.setArrivalDateTime("2022-12-15T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime("2022-12-15T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
         cfarItinerarySliceSegment2.setFlightNumber("JB777");
-        cfarItinerarySliceSegment2.setFareClass(FareClass.BASIC_ECONOMY);
+        cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
+        cfarItinerarySliceSegment2.setFareBrand("flex");
         cfarItinerarySliceSegment2.setValidatingCarrierCode("B6");
 
         List<CfarItinerarySliceSegment> segments = new ArrayList<>();
@@ -223,14 +230,15 @@ public class Example {
         ancillary.setTotalPrice("30.55");
 
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
-        cfarItinerarySlice.setFareBrand("economy");
+        cfarItinerarySlice.setFareBrand("basic");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-11-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-11-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
-        cfarItinerarySliceSegment.setFareClass(FareClass.BASIC_ECONOMY);
+        cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
+        cfarItinerarySliceSegment.setFareBrand("basic");
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
         cfarItinerarySlice.setSegments(Collections.singletonList(cfarItinerarySliceSegment));
 
@@ -254,13 +262,15 @@ public class Example {
         ancillary1.setTotalPrice("30.55");
 
         CfarItinerarySlice cfarItinerarySlice1 = new CfarItinerarySlice();
+        cfarItinerarySlice1.setFareBrand("flex");
         CfarItinerarySliceSegment cfarItinerarySliceSegment1 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment1.setArrivalDateTime("2022-11-15T19:12:30");
-        cfarItinerarySliceSegment1.setDepartureDateTime("2022-11-15T18:12:30");
+        cfarItinerarySliceSegment1.setArrivalDateTime("2022-12-15T19:12:30");
+        cfarItinerarySliceSegment1.setDepartureDateTime("2022-12-15T18:12:30");
         cfarItinerarySliceSegment1.setOriginAirport("LGA");
         cfarItinerarySliceSegment1.setDestinationAirport("BOS");
         cfarItinerarySliceSegment1.setFlightNumber("JB777");
-        cfarItinerarySliceSegment1.setFareClass(FareClass.BASIC_ECONOMY);
+        cfarItinerarySliceSegment1.setFareClass(FareClass.BUSINESS);
+        cfarItinerarySliceSegment1.setFareBrand("flex");
         cfarItinerarySliceSegment1.setValidatingCarrierCode("B6");
         cfarItinerarySlice1.setSegments(Collections.singletonList(cfarItinerarySliceSegment1));
 
