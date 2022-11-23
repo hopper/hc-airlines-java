@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class Example {
     public static void main(String[] args) {
         try {
-            HopperClient client = new HopperClient("http://localhost:7071/airline/v1.0", "7lrxWCn9ZJOvhpeK03XzDXOsmrtWodIy", "0gPGKrQeckjgElCRwlMLSvl9Nfzc_K_5ZNnVWpKuNZ8r3U0NiKSgBLC70D1QrzGP", "https://core.spreedly.com/v1/payment_methods.json", "XIpPV7pmjMGArYcpckA5Ut00dWE", "cWmuZ3IO0ws9Jiz7A86GhRsnUpCnl5jPeSkXRFAuIyIgCqTBFNW2Q4d0kgGFYmYf", true);
+            HopperClient client = new HopperClient("", "", "", "", "", "", true);
 
             AirlineSession session = getAirlineSession(client, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
