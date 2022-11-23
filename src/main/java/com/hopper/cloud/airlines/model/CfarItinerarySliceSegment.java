@@ -72,6 +72,10 @@ public class CfarItinerarySliceSegment {
   @SerializedName(SERIALIZED_NAME_FARE_CLASS)
   private FareClass fareClass;
 
+  public static final String SERIALIZED_NAME_FARE_BRAND = "fare_brand";
+  @SerializedName(SERIALIZED_NAME_FARE_BRAND)
+  private String fareBrand;
+
   public CfarItinerarySliceSegment() { 
   }
 
@@ -236,6 +240,29 @@ public class CfarItinerarySliceSegment {
   }
 
 
+  public CfarItinerarySliceSegment fareBrand(String fareBrand) {
+
+    this.fareBrand = fareBrand;
+    return this;
+  }
+
+  /**
+   * Get fareBrand
+   * @return fareBrand
+   **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = false, value = "")
+
+  public String getFareBrand() {
+    return fareBrand;
+  }
+
+
+  public void setFareBrand(String fareBrand) {
+    this.fareBrand = fareBrand;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -252,12 +279,13 @@ public class CfarItinerarySliceSegment {
         Objects.equals(this.arrivalDateTime, cfarItinerarySliceSegment.arrivalDateTime) &&
         Objects.equals(this.flightNumber, cfarItinerarySliceSegment.flightNumber) &&
         Objects.equals(this.validatingCarrierCode, cfarItinerarySliceSegment.validatingCarrierCode) &&
-        Objects.equals(this.fareClass, cfarItinerarySliceSegment.fareClass);
+        Objects.equals(this.fareClass, cfarItinerarySliceSegment.fareClass) &&
+        Objects.equals(this.fareBrand, cfarItinerarySliceSegment.fareBrand);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(originAirport, destinationAirport, departureDateTime, arrivalDateTime, flightNumber, validatingCarrierCode, fareClass);
+    return Objects.hash(originAirport, destinationAirport, departureDateTime, arrivalDateTime, flightNumber, validatingCarrierCode, fareClass, fareBrand);
   }
 
   @Override
@@ -271,6 +299,7 @@ public class CfarItinerarySliceSegment {
     sb.append("    flightNumber: ").append(toIndentedString(flightNumber)).append("\n");
     sb.append("    validatingCarrierCode: ").append(toIndentedString(validatingCarrierCode)).append("\n");
     sb.append("    fareClass: ").append(toIndentedString(fareClass)).append("\n");
+    sb.append("    fareBrand: ").append(toIndentedString(fareBrand)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -300,6 +329,7 @@ public class CfarItinerarySliceSegment {
     openapiFields.add("flight_number");
     openapiFields.add("validating_carrier_code");
     openapiFields.add("fare_class");
+    openapiFields.add("fare_brand");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -358,6 +388,9 @@ public class CfarItinerarySliceSegment {
       }
       if (jsonObj.get("validating_carrier_code") != null && !jsonObj.get("validating_carrier_code").isJsonPrimitive() && !jsonObj.get("validating_carrier_code").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `validating_carrier_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("validating_carrier_code").toString()));
+      }
+      if (jsonObj.get("fare_brand") != null && !jsonObj.get("fare_brand").isJsonPrimitive() && !jsonObj.get("fare_brand").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `fare_brand` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_brand").toString()));
       }
   }
 
