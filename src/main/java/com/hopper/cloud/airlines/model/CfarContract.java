@@ -103,9 +103,13 @@ public class CfarContract {
     @SerializedName(SERIALIZED_NAME_CONFIRMED_DATE_TIME)
     private OffsetDateTime confirmedDateTime;
 
-    public static final String SERIALIZED_NAME_CANCELED_DATE_TIME = "canceled_date_time";
-    @SerializedName(SERIALIZED_NAME_CANCELED_DATE_TIME)
-    private OffsetDateTime canceledDateTime;
+    public static final String SERIALIZED_NAME_VOIDED_DATE_TIME = "voided_date_time";
+    @SerializedName(SERIALIZED_NAME_VOIDED_DATE_TIME)
+    private OffsetDateTime voidedDateTime;
+
+    public static final String SERIALIZED_NAME_CHARGED_BACK_DATE_TIME = "charged_back_date_time";
+    @SerializedName(SERIALIZED_NAME_CHARGED_BACK_DATE_TIME)
+    private OffsetDateTime chargedBackDateTime;
 
     public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
     @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
@@ -437,27 +441,51 @@ public class CfarContract {
     }
 
 
-    public CfarContract canceledDateTime(OffsetDateTime canceledDateTime) {
+    public CfarContract voidedDateTime(OffsetDateTime voidedDateTime) {
 
-        this.canceledDateTime = canceledDateTime;
+        this.voidedDateTime = voidedDateTime;
         return this;
     }
 
     /**
-     * Get canceledDateTime
+     * Get voidedDateTime
      *
-     * @return canceledDateTime
+     * @return voidedDateTime
      **/
     @javax.annotation.Nullable
     @ApiModelProperty(value = "")
 
-    public OffsetDateTime getCanceledDateTime() {
-        return canceledDateTime;
+    public OffsetDateTime getVoidedDateTime() {
+        return voidedDateTime;
     }
 
 
-    public void setCanceledDateTime(OffsetDateTime canceledDateTime) {
-        this.canceledDateTime = canceledDateTime;
+    public void setVoidedDateTime(OffsetDateTime voidedDateTime) {
+        this.voidedDateTime = voidedDateTime;
+    }
+
+
+    public CfarContract chargedBackDateTime(OffsetDateTime chargedBackDateTime) {
+
+        this.chargedBackDateTime = chargedBackDateTime;
+        return this;
+    }
+
+    /**
+     * Get chargedBackDateTime
+     *
+     * @return chargedBackDateTime
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(value = "")
+
+    public OffsetDateTime getChargedBackDateTime() {
+        return chargedBackDateTime;
+    }
+
+
+    public void setChargedBackDateTime(OffsetDateTime chargedBackDateTime) {
+        this.chargedBackDateTime = chargedBackDateTime;
     }
 
     /**
@@ -530,14 +558,15 @@ public class CfarContract {
                 Objects.equals(this.expiryDateTime, cfarContract.expiryDateTime) &&
                 Objects.equals(this.status, cfarContract.status) &&
                 Objects.equals(this.confirmedDateTime, cfarContract.confirmedDateTime) &&
-                Objects.equals(this.canceledDateTime, cfarContract.canceledDateTime) &&
+                Objects.equals(this.voidedDateTime, cfarContract.voidedDateTime) &&
+                Objects.equals(this.chargedBackDateTime, cfarContract.chargedBackDateTime) &&
                 Objects.equals(this.pnrReference, cfarContract.pnrReference) &&
                 Objects.equals(this.extAttributes, cfarContract.extAttributes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, taxesTotal, taxes, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, canceledDateTime, pnrReference, extAttributes);
+        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, taxesTotal, taxes, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, voidedDateTime,chargedBackDateTime, pnrReference, extAttributes);
     }
 
     @Override
@@ -558,7 +587,8 @@ public class CfarContract {
         sb.append("    expiryDateTime: ").append(toIndentedString(expiryDateTime)).append("\n");
         sb.append("    status: ").append(toIndentedString(status)).append("\n");
         sb.append("    confirmedDateTime: ").append(toIndentedString(confirmedDateTime)).append("\n");
-        sb.append("    canceledDateTime: ").append(toIndentedString(canceledDateTime)).append("\n");
+        sb.append("    voidedDateTime: ").append(toIndentedString(voidedDateTime)).append("\n");
+        sb.append("    chargedBackDateTime: ").append(toIndentedString(chargedBackDateTime)).append("\n");
         sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
         sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
         sb.append("}");
@@ -597,7 +627,8 @@ public class CfarContract {
         openapiFields.add("expiry_date_time");
         openapiFields.add("status");
         openapiFields.add("confirmed_date_time");
-        openapiFields.add("canceled_date_time");
+        openapiFields.add("voided_date_time");
+        openapiFields.add("charged_back_date_time");
         openapiFields.add("pnr_reference");
         openapiFields.add("ext_attributes");
 
