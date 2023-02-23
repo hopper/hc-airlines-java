@@ -30,9 +30,9 @@ public enum Gender {
 
   FEMALE("female"),
 
-  SEATED_INFANT("undisclosed"),
+  UNDISCLOSED("undisclosed"),
 
-  LAP_INFANT("unspecified");
+  UNSPECIFIED("unspecified");
 
   private String value;
 

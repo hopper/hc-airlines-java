@@ -98,7 +98,6 @@ public class Example {
         params.put("property1", "test1");
         params.put("property2", "test2");
         createCfarContractExerciseRequest.setExtAttributes(params);
-        createCfarContractExerciseRequest.setAirlineRefundAllowance("146.64");
         createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
 
         CfarItinerary itinerary = new CfarItinerary();
@@ -113,8 +112,8 @@ public class Example {
         cfarItinerarySlice.setFareBrand("flex");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2023-02-27T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2023-02-27T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -123,8 +122,8 @@ public class Example {
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment2.setArrivalDateTime("2023-02-27T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime("2023-02-27T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
         cfarItinerarySliceSegment2.setFlightNumber("JB777");
@@ -143,6 +142,13 @@ public class Example {
         passengerCount.count(3);
         passengerCount.setType(PassengerType.ADULT);
         passengerPricing.setPassengerCount(passengerCount);
+
+        CfarPassengerTax cfarPassengerTax = new CfarPassengerTax();
+        cfarPassengerTax.amount("15.50");
+        cfarPassengerTax.code("CF");
+        cfarPassengerTax.currency("CAD");
+
+        passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
 
         itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
         itinerary.setAncillaries(Collections.singletonList(ancillary));
@@ -173,8 +179,8 @@ public class Example {
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         cfarItinerarySlice.setFareBrand("flex");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2023-02-27T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2023-02-27T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -183,8 +189,8 @@ public class Example {
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment2.setArrivalDateTime("2023-02-27T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime("2023-02-27T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
         cfarItinerarySliceSegment2.setFlightNumber("JB777");
@@ -232,8 +238,8 @@ public class Example {
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         cfarItinerarySlice.setFareBrand("basic");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime("2023-02-27T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime("2023-02-27T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -264,8 +270,8 @@ public class Example {
         CfarItinerarySlice cfarItinerarySlice1 = new CfarItinerarySlice();
         cfarItinerarySlice1.setFareBrand("flex");
         CfarItinerarySliceSegment cfarItinerarySliceSegment1 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment1.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment1.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment1.setArrivalDateTime("2023-02-27T19:12:30");
+        cfarItinerarySliceSegment1.setDepartureDateTime("2023-02-27T18:12:30");
         cfarItinerarySliceSegment1.setOriginAirport("LGA");
         cfarItinerarySliceSegment1.setDestinationAirport("BOS");
         cfarItinerarySliceSegment1.setFlightNumber("JB777");

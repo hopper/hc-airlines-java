@@ -172,7 +172,7 @@ public class Ancillary {
     openapiFields = new HashSet<String>();
     openapiFields.add("total_price");
     openapiFields.add("type");
-    openapiFields.add("passengerReference");
+    openapiFields.add("passenger_reference");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

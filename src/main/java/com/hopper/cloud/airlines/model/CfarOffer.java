@@ -77,9 +77,9 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_ITINERARY)
   private CfarItinerary itinerary;
 
-  public static final String SERIALIZED_NAME_OFFER_DESCRIPTION = "offer_description";
+  public static final String SERIALIZED_NAME_OFFER_DESCRIPTION = "contents";
   @SerializedName(SERIALIZED_NAME_OFFER_DESCRIPTION)
-  private Map<String, List<String>> offerDescription = new HashMap<>();
+  private Map<String, CfarContents> contents = new HashMap<>();
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
@@ -324,14 +324,14 @@ public class CfarOffer {
   }
 
 
-  public CfarOffer offerDescription(Map<String, List<String>> offerDescription) {
+  public CfarOffer contents(Map<String, CfarContents> cfarContents) {
 
-    this.offerDescription = offerDescription;
+    this.contents = cfarContents;
     return this;
   }
 
-  public CfarOffer putOfferDescriptionItem(String key, List<String> offerDescriptionItem) {
-    this.offerDescription.put(key, offerDescriptionItem);
+  public CfarOffer putContentsItem(String key, CfarContents cfarContents) {
+    this.contents.put(key, cfarContents);
     return this;
   }
 
@@ -342,13 +342,13 @@ public class CfarOffer {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public Map<String, List<String>> getOfferDescription() {
-    return offerDescription;
+  public Map<String, CfarContents> getContents() {
+    return contents;
   }
 
 
-  public void setOfferDescription(Map<String, List<String>> offerDescription) {
-    this.offerDescription = offerDescription;
+  public void setContents(Map<String, CfarContents> contents) {
+    this.contents = contents;
   }
 
 
@@ -401,13 +401,13 @@ public class CfarOffer {
         Objects.equals(this.contractExpiryDateTime, cfarOffer.contractExpiryDateTime) &&
         Objects.equals(this.createdDateTime, cfarOffer.createdDateTime) &&
         Objects.equals(this.itinerary, cfarOffer.itinerary) &&
-        Objects.equals(this.offerDescription, cfarOffer.offerDescription) &&
+        Objects.equals(this.contents, cfarOffer.contents) &&
         Objects.equals(this.extAttributes, cfarOffer.extAttributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, offerDescription, extAttributes);
+    return Objects.hash(id, premium, coverage, coveragePercentage, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes);
   }
 
   @Override
@@ -425,7 +425,7 @@ public class CfarOffer {
     sb.append("    contractExpiryDateTime: ").append(toIndentedString(contractExpiryDateTime)).append("\n");
     sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
-    sb.append("    offerDescription: ").append(toIndentedString(offerDescription)).append("\n");
+    sb.append("    offerDescription: ").append(toIndentedString(contents)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -460,7 +460,7 @@ public class CfarOffer {
     openapiFields.add("contract_expiry_date_time");
     openapiFields.add("created_date_time");
     openapiFields.add("itinerary");
-    openapiFields.add("offer_description");
+    openapiFields.add("contents");
     openapiFields.add("ext_attributes");
 
     // a set of required properties/fields (JSON key names)
@@ -474,7 +474,7 @@ public class CfarOffer {
     openapiRequiredFields.add("contract_expiry_date_time");
     openapiRequiredFields.add("created_date_time");
     openapiRequiredFields.add("itinerary");
-    openapiRequiredFields.add("offer_description");
+    openapiRequiredFields.add("contents");
     openapiRequiredFields.add("ext_attributes");
   }
 

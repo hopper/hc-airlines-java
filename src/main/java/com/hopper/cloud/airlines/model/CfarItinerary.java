@@ -65,6 +65,10 @@ public class CfarItinerary {
   @SerializedName(SERIALIZED_NAME_ANCILLARIES)
   private List<Ancillary> ancillaries = null;
 
+    public static final String SERIALIZED_NAME_PASSENGERS = "passengers";
+    @SerializedName(SERIALIZED_NAME_PASSENGERS)
+    private List<CfarPassenger> passengers = null;
+
   public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
   private String totalPrice;
@@ -164,6 +168,27 @@ public class CfarItinerary {
     this.ancillaries.add(ancillariesItem);
     return this;
   }
+    public CfarItinerary passengers(List<CfarPassenger> passengers) {
+
+        this.passengers = passengers;
+        return this;
+    }
+
+    public CfarItinerary addPassengersItem(CfarPassenger passengerItem) {
+        if (this.passengers == null) {
+            this.passengers = new ArrayList<>();
+        }
+        this.passengers.add(passengerItem);
+        return this;
+    }
+    public List<CfarPassenger> getPassengers() {
+        return passengers;
+    }
+
+
+    public void setPassengers(List<CfarPassenger> passengers) {
+        this.passengers = passengers;
+    }
 
    /**
    * Ancillaries attached to a fare and their prices
@@ -219,12 +244,13 @@ public class CfarItinerary {
         Objects.equals(this.currency, cfarItinerary.currency) &&
         Objects.equals(this.slices, cfarItinerary.slices) &&
         Objects.equals(this.ancillaries, cfarItinerary.ancillaries) &&
+        Objects.equals(this.passengers, cfarItinerary.passengers) &&
         Objects.equals(this.totalPrice, cfarItinerary.totalPrice);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(passengerPricing, currency, slices, ancillaries, totalPrice);
+    return Objects.hash(passengerPricing, currency, slices, ancillaries,passengers, totalPrice);
   }
 
   @Override
@@ -235,6 +261,7 @@ public class CfarItinerary {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    slices: ").append(toIndentedString(slices)).append("\n");
     sb.append("    ancillaries: ").append(toIndentedString(ancillaries)).append("\n");
+    sb.append("    passengers: ").append(toIndentedString(passengers)).append("\n");
     sb.append("    totalPrice: ").append(toIndentedString(totalPrice)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -262,6 +289,7 @@ public class CfarItinerary {
     openapiFields.add("currency");
     openapiFields.add("slices");
     openapiFields.add("ancillaries");
+    openapiFields.add("passengers");
     openapiFields.add("total_price");
 
     // a set of required properties/fields (JSON key names)
@@ -339,6 +367,22 @@ public class CfarItinerary {
         for (int i = 0; i < jsonArrayancillaries.size(); i++) {
           Ancillary.validateJsonObject(jsonArrayancillaries.get(i).getAsJsonObject());
         };
+      }
+      // validate the optional list `passengers`
+      if (!jsonObj.get("passengers").isJsonNull()) {
+          JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("passengers");
+          if (jsonArrayTaxes != null) {
+              // ensure the json data is an array
+              if (!jsonObj.get("passengers").isJsonArray()) {
+                  throw new IllegalArgumentException(String.format("Expected the field `passengers` to be an array in the JSON string but got `%s`", jsonObj.get("passengers").toString()));
+              }
+
+              // validate the optional field `passengers` (array)
+              for (int i = 0; i < jsonArrayTaxes.size(); i++) {
+                  CfarPassenger.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
+              }
+              ;
+          }
       }
       if (jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonPrimitive() && !jsonObj.get("total_price").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `total_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_price").toString()));
