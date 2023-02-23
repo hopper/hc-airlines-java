@@ -183,8 +183,6 @@ public class UpdateCfarContractRequest {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("pnr_reference");
-    openapiRequiredFields.add("email_address");
     openapiRequiredFields.add("status");
   }
 

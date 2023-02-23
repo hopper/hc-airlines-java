@@ -13,39 +13,30 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import java.io.IOException;
+
 /**
- * Ancillary type of the itinerary
+ * The gender of a passenger
  */
-@JsonAdapter(AncillaryType.Adapter.class)
-public enum AncillaryType {
-  
-  TRAVEL_INSURANCE("travel_insurance"),
-  
-  CABIN_BAG("cabin_bag"),
+@JsonAdapter(Gender.Adapter.class)
+public enum Gender {
 
-  CHECKED_BAG("checked_bag"),
+  MALE("male"),
 
-  SEAT("seat"),
+  FEMALE("female"),
 
-  LOUNGE("lounge"),
+  SEATED_INFANT("undisclosed"),
 
-  MEAL("meal"),
-
-  FAST_TRACK("fast_track"),
-
-  PET("pet"),
-
-  OTHER("other");
+  LAP_INFANT("unspecified");
 
   private String value;
 
-  AncillaryType(String value) {
+  Gender(String value) {
     this.value = value;
   }
 
@@ -58,8 +49,8 @@ public enum AncillaryType {
     return String.valueOf(value);
   }
 
-  public static AncillaryType fromValue(String value) {
-    for (AncillaryType b : AncillaryType.values()) {
+  public static Gender fromValue(String value) {
+    for (Gender b : Gender.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -67,16 +58,16 @@ public enum AncillaryType {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<AncillaryType> {
+  public static class Adapter extends TypeAdapter<Gender> {
     @Override
-    public void write(final JsonWriter jsonWriter, final AncillaryType enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final Gender enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public AncillaryType read(final JsonReader jsonReader) throws IOException {
+    public Gender read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return AncillaryType.fromValue(value);
+      return Gender.fromValue(value);
     }
   }
 }

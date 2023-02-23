@@ -13,14 +13,13 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.util.Objects;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.PassengerCount;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
@@ -30,9 +29,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.HashSet;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -49,6 +46,10 @@ public class PassengerPricing {
   public static final String SERIALIZED_NAME_INDIVIDUAL_PRICE = "individual_price";
   @SerializedName(SERIALIZED_NAME_INDIVIDUAL_PRICE)
   private String individualPrice;
+
+  public static final String SERIALIZED_NAME_TAXES = "taxes";
+  @SerializedName(SERIALIZED_NAME_TAXES)
+  private List<CfarPassengerTax> taxes = new ArrayList<>();
 
   public PassengerPricing() { 
   }
@@ -98,6 +99,27 @@ public class PassengerPricing {
     this.individualPrice = individualPrice;
   }
 
+
+  public PassengerPricing taxes(List<CfarPassengerTax> taxes) {
+
+    this.taxes = taxes;
+    return this;
+  }
+
+  public PassengerPricing addCfarPassengerTaxItem(CfarPassengerTax cfarPassengerTaxItem) {
+    if (this.taxes != null) {
+      this.taxes.add(cfarPassengerTaxItem);
+    }
+    return this;
+  }
+
+  public List<CfarPassengerTax> getTaxes() {
+        return taxes;
+    }
+
+  public void setTaxes(List<CfarPassengerTax> taxes) {
+        this.taxes = taxes;
+    }
 
 
   @Override

@@ -690,19 +690,6 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
   </tr>
   <tr>
-   <td>exchangeRate
-<p>
-
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example:0.7771197300596905664658848324102446
-<p>
-Exchange rate
-   </td>
-  </tr>
-  <tr>
    <td>hopperRefund
 <p>
 
@@ -1414,18 +1401,6 @@ Example:  CAD
 Currency of offer
    </td>
   </tr>
-  <tr>
-   <td>to_usd_exchange_rate
-<p style="color:red">required</p>
-   </td>
-   <td>string > 0
-<p>
-Example:  0.7796267926543563596106543797484144
-<p>
-USD Exchange rate for currency; amount * toUsdExchangeRate == USD
-   </td>
-  </tr>
-  <tr>
    <td>contract_expiry_date_time
 <p style="color:red">required</p>
    </td>

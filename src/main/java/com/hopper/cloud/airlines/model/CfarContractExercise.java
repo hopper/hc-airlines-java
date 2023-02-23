@@ -52,10 +52,6 @@ public class CfarContractExercise {
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
   private String contractId;
 
-  public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchange_rate";
-  @SerializedName(SERIALIZED_NAME_EXCHANGE_RATE)
-  private String exchangeRate;
-
   public static final String SERIALIZED_NAME_HOPPER_REFUND = "hopper_refund";
   @SerializedName(SERIALIZED_NAME_HOPPER_REFUND)
   private String hopperRefund;
@@ -130,29 +126,6 @@ public class CfarContractExercise {
 
   public void setContractId(String contractId) {
     this.contractId = contractId;
-  }
-
-
-  public CfarContractExercise exchangeRate(String exchangeRate) {
-
-    this.exchangeRate = exchangeRate;
-    return this;
-  }
-
-   /**
-   * USD Exchange rate for currency where 1 of &lt;currency&gt; &#x3D;&#x3D; X USD; e.g. 1CAD &#x3D;&#x3D; 0.79USD at the date time CFAR exercise was completed
-   * @return exchangeRate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "0.79", value = "USD Exchange rate for currency where 1 of <currency> == X USD; e.g. 1CAD == 0.79USD at the date time CFAR exercise was completed")
-
-  public String getExchangeRate() {
-    return exchangeRate;
-  }
-
-
-  public void setExchangeRate(String exchangeRate) {
-    this.exchangeRate = exchangeRate;
   }
 
 
@@ -324,7 +297,6 @@ public class CfarContractExercise {
     CfarContractExercise cfarContractExercise = (CfarContractExercise) o;
     return Objects.equals(this.id, cfarContractExercise.id) &&
         Objects.equals(this.contractId, cfarContractExercise.contractId) &&
-        Objects.equals(this.exchangeRate, cfarContractExercise.exchangeRate) &&
         Objects.equals(this.hopperRefund, cfarContractExercise.hopperRefund) &&
         Objects.equals(this.hopperRefundMethod, cfarContractExercise.hopperRefundMethod) &&
         Objects.equals(this.extAttributes, cfarContractExercise.extAttributes) &&
@@ -336,7 +308,7 @@ public class CfarContractExercise {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contractId, exchangeRate, hopperRefund, hopperRefundMethod, extAttributes, airlineRefundAllowance, airlineRefundMethod, redirectionToken,currency);
+    return Objects.hash(id, contractId, hopperRefund, hopperRefundMethod, extAttributes, airlineRefundAllowance, airlineRefundMethod, redirectionToken,currency);
   }
 
   @Override
@@ -345,7 +317,6 @@ public class CfarContractExercise {
     sb.append("class CfarContractExercise {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    contractId: ").append(toIndentedString(contractId)).append("\n");
-    sb.append("    exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
     sb.append("    hopperRefund: ").append(toIndentedString(hopperRefund)).append("\n");
     sb.append("    hopperRefundMethod: ").append(toIndentedString(hopperRefundMethod)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");

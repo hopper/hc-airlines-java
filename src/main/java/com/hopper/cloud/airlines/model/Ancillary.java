@@ -50,6 +50,10 @@ public class Ancillary {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private AncillaryType type;
 
+  public static final String SERIALIZED_NAME_PASSENGER_REFERENCE = "passenger_reference";
+  @SerializedName(SERIALIZED_NAME_PASSENGER_REFERENCE)
+  private String passengerReference;
+
   public Ancillary() { 
   }
 
@@ -98,7 +102,26 @@ public class Ancillary {
     this.type = type;
   }
 
+  public Ancillary passengerReference(String passengerReference) {
 
+    this.passengerReference = passengerReference;
+    return this;
+  }
+
+  /**
+  * Get passengerReference
+  * @return passengerReference
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public String getPassengerReference() {
+        return passengerReference;
+    }
+
+  public void setPassengerReference(String passengerReference) {
+        this.passengerReference = passengerReference;
+    }
 
   @Override
   public boolean equals(Object o) {
@@ -124,6 +147,7 @@ public class Ancillary {
     sb.append("class Ancillary {\n");
     sb.append("    totalPrice: ").append(toIndentedString(totalPrice)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    passengerReference: ").append(toIndentedString(passengerReference)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -148,6 +172,7 @@ public class Ancillary {
     openapiFields = new HashSet<String>();
     openapiFields.add("total_price");
     openapiFields.add("type");
+    openapiFields.add("passengerReference");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

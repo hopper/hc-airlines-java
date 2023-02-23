@@ -13,39 +13,26 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import java.io.IOException;
+
 /**
- * Ancillary type of the itinerary
+ * Gets or Sets product
  */
-@JsonAdapter(AncillaryType.Adapter.class)
-public enum AncillaryType {
-  
-  TRAVEL_INSURANCE("travel_insurance"),
-  
-  CABIN_BAG("cabin_bag"),
+@JsonAdapter(Product.Adapter.class)
+public enum Product {
 
-  CHECKED_BAG("checked_bag"),
+  CFAR("cfar"),
 
-  SEAT("seat"),
-
-  LOUNGE("lounge"),
-
-  MEAL("meal"),
-
-  FAST_TRACK("fast_track"),
-
-  PET("pet"),
-
-  OTHER("other");
+  DG("dg");
 
   private String value;
 
-  AncillaryType(String value) {
+  Product(String value) {
     this.value = value;
   }
 
@@ -58,8 +45,8 @@ public enum AncillaryType {
     return String.valueOf(value);
   }
 
-  public static AncillaryType fromValue(String value) {
-    for (AncillaryType b : AncillaryType.values()) {
+  public static Product fromValue(String value) {
+    for (Product b : Product.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -67,16 +54,16 @@ public enum AncillaryType {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<AncillaryType> {
+  public static class Adapter extends TypeAdapter<Product> {
     @Override
-    public void write(final JsonWriter jsonWriter, final AncillaryType enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final Product enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public AncillaryType read(final JsonReader jsonReader) throws IOException {
+    public Product read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return AncillaryType.fromValue(value);
+      return Product.fromValue(value);
     }
   }
 }

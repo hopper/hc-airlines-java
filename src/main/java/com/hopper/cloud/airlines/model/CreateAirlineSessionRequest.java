@@ -63,6 +63,10 @@ public class CreateAirlineSessionRequest {
   @SerializedName(SERIALIZED_NAME_LANGUAGE)
   private String language;
 
+    public static final String SERIALIZED_NAME_PRODUCT = "product";
+    @SerializedName(SERIALIZED_NAME_PRODUCT)
+    private Product product;
+
   public CreateAirlineSessionRequest() { 
   }
 
@@ -180,6 +184,27 @@ public class CreateAirlineSessionRequest {
     this.language = language;
   }
 
+  public CreateAirlineSessionRequest product(Product product) {
+
+    this.product = product;
+    return this;
+  }
+
+  /**
+  * The product for which the session is opened.
+  * @return product
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The product for which the session is opened.")
+
+  public Product getProduct() {
+        return product;
+    }
+
+
+  public void setProduct(Product product) {
+        this.product = product;
+    }
 
 
   @Override
@@ -194,12 +219,13 @@ public class CreateAirlineSessionRequest {
     return Objects.equals(this.userInfo, createAirlineSessionRequest.userInfo) &&
         Objects.equals(this.device, createAirlineSessionRequest.device) &&
         Objects.equals(this.pointOfSale, createAirlineSessionRequest.pointOfSale) &&
-        Objects.equals(this.language, createAirlineSessionRequest.language);
+        Objects.equals(this.language, createAirlineSessionRequest.language) &&
+        Objects.equals(this.product, createAirlineSessionRequest.product);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userInfo, device, pointOfSale, language);
+    return Objects.hash(userInfo, device, pointOfSale, language, product);
   }
 
   @Override
@@ -210,6 +236,7 @@ public class CreateAirlineSessionRequest {
     sb.append("    device: ").append(toIndentedString(device)).append("\n");
     sb.append("    pointOfSale: ").append(toIndentedString(pointOfSale)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    product: ").append(toIndentedString(product)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -236,6 +263,7 @@ public class CreateAirlineSessionRequest {
     openapiFields.add("device");
     openapiFields.add("point_of_sale");
     openapiFields.add("language");
+    openapiFields.add("product");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

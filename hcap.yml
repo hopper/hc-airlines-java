@@ -749,13 +749,6 @@ components:
           example: CAD
         request_type:
           $ref: '#/components/schemas/request_type'
-        to_usd_exchange_rate:
-          type: string
-          description: USD Exchange rate for currency; amount * toUsdExchangeRate
-            == USD
-          example: '0.79'
-          minimum: 0
-          exclusiveMinimum: true
         contract_expiry_date_time:
           type: string
           description: A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)
