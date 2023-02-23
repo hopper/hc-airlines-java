@@ -52,10 +52,6 @@ public class CreateCfarContractExerciseRequest {
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
   private String contractId;
 
-  public static final String SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME = "exercise_initiated_date_time";
-  @SerializedName(SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME)
-  private OffsetDateTime exerciseInitiatedDateTime;
-
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
   private CfarItinerary itinerary;
@@ -64,9 +60,9 @@ public class CreateCfarContractExerciseRequest {
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
   private String pnrReference;
 
-  public static final String SERIALIZED_NAME_AIRLINE_REFUND_ALLOWANCE = "airline_refund_allowance";
-  @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_ALLOWANCE)
-  private String airlineRefundAllowance;
+  public static final String SERIALIZED_NAME_AIRLINE_REFUND_PENALTY = "airline_refund_penalty";
+  @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_PENALTY)
+  private String airlineRefundPenalty;
 
   public static final String SERIALIZED_NAME_AIRLINE_REFUND_METHOD = "airline_refund_method";
   @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_METHOD)
@@ -103,29 +99,6 @@ public class CreateCfarContractExerciseRequest {
 
   public void setContractId(String contractId) {
     this.contractId = contractId;
-  }
-
-
-  public CreateCfarContractExerciseRequest exerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
-    
-    this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
-    return this;
-  }
-
-   /**
-   * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated
-   * @return exerciseInitiatedDateTime
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2020-11-02T18:34:30Z", required = true, value = "A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated")
-
-  public OffsetDateTime getExerciseInitiatedDateTime() {
-    return exerciseInitiatedDateTime;
-  }
-
-
-  public void setExerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
-    this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
   }
 
 
@@ -175,26 +148,26 @@ public class CreateCfarContractExerciseRequest {
   }
 
 
-  public CreateCfarContractExerciseRequest airlineRefundAllowance(String airlineRefundAllowance) {
+  public CreateCfarContractExerciseRequest airlineRefundPenalty(String airlineRefundPenalty) {
     
-    this.airlineRefundAllowance = airlineRefundAllowance;
+    this.airlineRefundPenalty = airlineRefundPenalty;
     return this;
   }
 
    /**
-   * Get airlineRefundAllowance
-   * @return airlineRefundAllowance
+   * Get airlineRefundPenalty
+   * @return airlineRefundPenalty
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getAirlineRefundAllowance() {
-    return airlineRefundAllowance;
+  public String getAirlineRefundPenalty() {
+    return airlineRefundPenalty;
   }
 
 
-  public void setAirlineRefundAllowance(String airlineRefundAllowance) {
-    this.airlineRefundAllowance = airlineRefundAllowance;
+  public void setAirlineRefundPenalty(String airlineRefundPenalty) {
+    this.airlineRefundPenalty = airlineRefundPenalty;
   }
 
 
@@ -283,10 +256,9 @@ public class CreateCfarContractExerciseRequest {
     }
     CreateCfarContractExerciseRequest createCfarContractExerciseRequest = (CreateCfarContractExerciseRequest) o;
     return Objects.equals(this.contractId, createCfarContractExerciseRequest.contractId) &&
-        Objects.equals(this.exerciseInitiatedDateTime, createCfarContractExerciseRequest.exerciseInitiatedDateTime) &&
         Objects.equals(this.itinerary, createCfarContractExerciseRequest.itinerary) &&
         Objects.equals(this.pnrReference, createCfarContractExerciseRequest.pnrReference) &&
-        Objects.equals(this.airlineRefundAllowance, createCfarContractExerciseRequest.airlineRefundAllowance) &&
+        Objects.equals(this.airlineRefundPenalty, createCfarContractExerciseRequest.airlineRefundPenalty) &&
         Objects.equals(this.airlineRefundMethod, createCfarContractExerciseRequest.airlineRefundMethod) &&
         Objects.equals(this.currency, createCfarContractExerciseRequest.currency) &&
         Objects.equals(this.extAttributes, createCfarContractExerciseRequest.extAttributes);
@@ -294,7 +266,7 @@ public class CreateCfarContractExerciseRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contractId, exerciseInitiatedDateTime, itinerary, pnrReference, airlineRefundAllowance, airlineRefundMethod, currency, extAttributes);
+    return Objects.hash(contractId, itinerary, pnrReference, airlineRefundPenalty, airlineRefundMethod, currency, extAttributes);
   }
 
   @Override
@@ -302,10 +274,9 @@ public class CreateCfarContractExerciseRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCfarContractExerciseRequest {\n");
     sb.append("    contractId: ").append(toIndentedString(contractId)).append("\n");
-    sb.append("    exerciseInitiatedDateTime: ").append(toIndentedString(exerciseInitiatedDateTime)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
     sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
-    sb.append("    airlineRefundAllowance: ").append(toIndentedString(airlineRefundAllowance)).append("\n");
+    sb.append("    airlineRefundPenalty: ").append(toIndentedString(airlineRefundPenalty)).append("\n");
     sb.append("    airlineRefundMethod: ").append(toIndentedString(airlineRefundMethod)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
@@ -332,10 +303,9 @@ public class CreateCfarContractExerciseRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("contract_id");
-    openapiFields.add("exercise_initiated_date_time");
     openapiFields.add("itinerary");
     openapiFields.add("pnr_reference");
-    openapiFields.add("airline_refund_allowance");
+    openapiFields.add("airline_refund_penalty");
     openapiFields.add("airline_refund_method");
     openapiFields.add("currency");
     openapiFields.add("ext_attributes");
@@ -343,7 +313,6 @@ public class CreateCfarContractExerciseRequest {
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("contract_id");
-    openapiRequiredFields.add("exercise_initiated_date_time");
     openapiRequiredFields.add("itinerary");
     openapiRequiredFields.add("pnr_reference");
     openapiRequiredFields.add("ext_attributes");
@@ -388,8 +357,8 @@ public class CreateCfarContractExerciseRequest {
       if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive() && !jsonObj.get("pnr_reference").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
       }
-      if (jsonObj.get("airline_refund_allowance") != null && !jsonObj.get("airline_refund_allowance").isJsonPrimitive() && !jsonObj.get("airline_refund_allowance").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `airline_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("airline_refund_allowance").toString()));
+      if (jsonObj.get("airline_refund_penalty") != null && !jsonObj.get("airline_refund_penalty").isJsonPrimitive() && !jsonObj.get("airline_refund_penalty").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `airline_refund_penalty` to be a primitive type in the JSON string but got `%s`", jsonObj.get("airline_refund_penalty").toString()));
       }
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));

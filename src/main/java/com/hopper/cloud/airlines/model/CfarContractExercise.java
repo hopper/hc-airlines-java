@@ -19,7 +19,6 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.AirlineRefundMethod;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -52,25 +51,17 @@ public class CfarContractExercise {
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
   private String contractId;
 
-  public static final String SERIALIZED_NAME_HOPPER_REFUND = "hopper_refund";
-  @SerializedName(SERIALIZED_NAME_HOPPER_REFUND)
-  private String hopperRefund;
+  public static final String SERIALIZED_NAME_CASH_REFUND_ALLOWANCE = "cash_refund_allowance";
+  @SerializedName(SERIALIZED_NAME_CASH_REFUND_ALLOWANCE)
+  private String cashRefundAllowance;
 
-  public static final String SERIALIZED_NAME_HOPPER_REFUND_METHOD = "hopper_refund_method";
-  @SerializedName(SERIALIZED_NAME_HOPPER_REFUND_METHOD)
-  private AirlineRefundMethod hopperRefundMethod;
+  public static final String SERIALIZED_NAME_FTC_REFUND_ALLOWANCE = "ftc_refund_allowance";
+  @SerializedName(SERIALIZED_NAME_FTC_REFUND_ALLOWANCE)
+  private String ftcRefundAllowance;
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   private Map<String, String> extAttributes = new HashMap<>();
-
-  public static final String SERIALIZED_NAME_AIRLINE_REFUND_ALLOWANCE = "airline_refund_allowance";
-  @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_ALLOWANCE)
-  private String airlineRefundAllowance;
-
-  public static final String SERIALIZED_NAME_AIRLINE_REFUND_METHOD = "airline_refund_method";
-  @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_METHOD)
-  private AirlineRefundMethod airlineRefundMethod;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -129,49 +120,26 @@ public class CfarContractExercise {
   }
 
 
-  public CfarContractExercise hopperRefund(String hopperRefund) {
+  public CfarContractExercise cashRefundAllowance(String cashRefundAllowance) {
 
-    this.hopperRefund = hopperRefund;
+    this.cashRefundAllowance = cashRefundAllowance;
     return this;
   }
 
    /**
    * The partner&#39;s share of the amount refunded to the customer to complete the CFAR contract exercise
-   * @return hopperRefund
+   * @return cashRefundAllowance
   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "123.45", required = true, value = "The partner's share of the amount refunded to the customer to complete the CFAR contract exercise")
 
-  public String getHopperRefund() {
-    return hopperRefund;
+  public String getCashRefundAllowance() {
+    return cashRefundAllowance;
   }
 
 
-  public void setHopperRefund(String hopperRefund) {
-    this.hopperRefund = hopperRefund;
-  }
-
-
-  public CfarContractExercise hopperRefundMethod(AirlineRefundMethod hopperRefundMethod) {
-
-    this.hopperRefundMethod = hopperRefundMethod;
-    return this;
-  }
-
-   /**
-   * Get hopperRefundMethod
-   * @return hopperRefundMethod
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public AirlineRefundMethod getHopperRefundMethod() {
-    return hopperRefundMethod;
-  }
-
-
-  public void setHopperRefundMethod(AirlineRefundMethod hopperRefundMethod) {
-    this.hopperRefundMethod = hopperRefundMethod;
+  public void setCashRefundAllowance(String cashRefundAllowance) {
+    this.cashRefundAllowance = cashRefundAllowance;
   }
 
 
@@ -203,49 +171,26 @@ public class CfarContractExercise {
   }
 
 
-  public CfarContractExercise airlineRefundAllowance(String airlineRefundAllowance) {
+  public CfarContractExercise ftcRefundAllowance(String ftcRefundAllowance) {
 
-    this.airlineRefundAllowance = airlineRefundAllowance;
+    this.ftcRefundAllowance = ftcRefundAllowance;
     return this;
   }
 
    /**
-   * Get airlineRefundAllowance
-   * @return airlineRefundAllowance
+   * Get ftcRefundAllowance
+   * @return ftcRefundAllowance
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getAirlineRefundAllowance() {
-    return airlineRefundAllowance;
+  public String getFtcRefundAllowance() {
+    return ftcRefundAllowance;
   }
 
 
-  public void setAirlineRefundAllowance(String airlineRefundAllowance) {
-    this.airlineRefundAllowance = airlineRefundAllowance;
-  }
-
-
-  public CfarContractExercise airlineRefundMethod(AirlineRefundMethod airlineRefundMethod) {
-
-    this.airlineRefundMethod = airlineRefundMethod;
-    return this;
-  }
-
-   /**
-   * Get airlineRefundMethod
-   * @return airlineRefundMethod
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AirlineRefundMethod getAirlineRefundMethod() {
-    return airlineRefundMethod;
-  }
-
-
-  public void setAirlineRefundMethod(AirlineRefundMethod airlineRefundMethod) {
-    this.airlineRefundMethod = airlineRefundMethod;
+  public void setFtcRefundAllowance(String ftcRefundAllowance) {
+    this.ftcRefundAllowance = ftcRefundAllowance;
   }
 
 
@@ -297,18 +242,16 @@ public class CfarContractExercise {
     CfarContractExercise cfarContractExercise = (CfarContractExercise) o;
     return Objects.equals(this.id, cfarContractExercise.id) &&
         Objects.equals(this.contractId, cfarContractExercise.contractId) &&
-        Objects.equals(this.hopperRefund, cfarContractExercise.hopperRefund) &&
-        Objects.equals(this.hopperRefundMethod, cfarContractExercise.hopperRefundMethod) &&
+        Objects.equals(this.cashRefundAllowance, cfarContractExercise.cashRefundAllowance) &&
         Objects.equals(this.extAttributes, cfarContractExercise.extAttributes) &&
-        Objects.equals(this.airlineRefundAllowance, cfarContractExercise.airlineRefundAllowance) &&
-        Objects.equals(this.airlineRefundMethod, cfarContractExercise.airlineRefundMethod) &&
+        Objects.equals(this.ftcRefundAllowance, cfarContractExercise.ftcRefundAllowance) &&
         Objects.equals(this.redirectionToken, cfarContractExercise.redirectionToken) &&
         Objects.equals(this.currency, cfarContractExercise.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contractId, hopperRefund, hopperRefundMethod, extAttributes, airlineRefundAllowance, airlineRefundMethod, redirectionToken,currency);
+    return Objects.hash(id, contractId, cashRefundAllowance, extAttributes, ftcRefundAllowance, redirectionToken,currency);
   }
 
   @Override
@@ -317,11 +260,9 @@ public class CfarContractExercise {
     sb.append("class CfarContractExercise {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    contractId: ").append(toIndentedString(contractId)).append("\n");
-    sb.append("    hopperRefund: ").append(toIndentedString(hopperRefund)).append("\n");
-    sb.append("    hopperRefundMethod: ").append(toIndentedString(hopperRefundMethod)).append("\n");
+    sb.append("    cashRefundAllowance: ").append(toIndentedString(cashRefundAllowance)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
-    sb.append("    airlineRefundAllowance: ").append(toIndentedString(airlineRefundAllowance)).append("\n");
-    sb.append("    airlineRefundMethod: ").append(toIndentedString(airlineRefundMethod)).append("\n");
+    sb.append("    ftcRefundAllowance: ").append(toIndentedString(ftcRefundAllowance)).append("\n");
     sb.append("    redirectionToken: ").append(toIndentedString(redirectionToken)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
@@ -351,11 +292,9 @@ public class CfarContractExercise {
     openapiFields.add("exercise_initiated_date_time");
     openapiFields.add("exercise_completed_date_time");
     openapiFields.add("exchange_rate");
-    openapiFields.add("hopper_refund");
-    openapiFields.add("hopper_refund_method");
+    openapiFields.add("cash_refund_allowance");
     openapiFields.add("ext_attributes");
-    openapiFields.add("airline_refund_allowance");
-    openapiFields.add("airline_refund_method");
+    openapiFields.add("ftc_refund_allowance");
     openapiFields.add("redirection_token");
     openapiFields.add("currency");
 
@@ -364,8 +303,7 @@ public class CfarContractExercise {
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("contract_id");
     openapiRequiredFields.add("exercise_initiated_date_time");
-    openapiRequiredFields.add("hopper_refund");
-    openapiRequiredFields.add("hopper_refund_method");
+    openapiRequiredFields.add("cash_refund_allowance");
     openapiRequiredFields.add("redirection_token");
     openapiRequiredFields.add("ext_attributes");
   }
@@ -411,11 +349,11 @@ public class CfarContractExercise {
       if (jsonObj.get("exchange_rate") != null && !jsonObj.get("exchange_rate").isJsonNull() && !jsonObj.get("exchange_rate").isJsonPrimitive() && !jsonObj.get("exchange_rate").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `exchange_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exchange_rate").toString()));
       }
-      if (jsonObj.get("hopper_refund") != null && !jsonObj.get("hopper_refund").isJsonPrimitive() && !jsonObj.get("hopper_refund").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `hopper_refund` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hopper_refund").toString()));
+      if (jsonObj.get("ftc_refund_allowance") != null && !jsonObj.get("ftc_refund_allowance").isJsonPrimitive() && !jsonObj.get("ftc_refund_allowance").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ftc_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ftc_refund_allowance").toString()));
       }
-      if (jsonObj.get("airline_refund_allowance") != null && !jsonObj.get("airline_refund_allowance").isJsonPrimitive() && !jsonObj.get("airline_refund_allowance").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `airline_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("airline_refund_allowance").toString()));
+      if (jsonObj.get("cash_refund_allowance") != null && !jsonObj.get("cash_refund_allowance").isJsonPrimitive() && !jsonObj.get("cash_refund_allowance").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cash_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cash_refund_allowance").toString()));
       }
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
