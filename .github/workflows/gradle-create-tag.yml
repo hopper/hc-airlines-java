@@ -1,0 +1,44 @@
+name: CreateTag
+on:
+  workflow_dispatch:
+jobs:
+  CreateTag:
+    name: Create-tag
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: get_version
+        name: Retrieve version
+        run: echo "::set-output name=VERSION::$(./gradlew printVersionName | grep version | cut -f 2 -d =)"
+
+      - name: Update version on ReadMe
+        run: |
+          sed -i 's:<version>.*</version>:<version>${{ steps.get_version.outputs.VERSION }}</version>:g' README.md
+          sed -i "s;version: '.*';version: '${{ steps.get_version.outputs.VERSION }}';g" README.md
+
+      - name: Commit and push the new version
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git commit -a -m "[githubAction] increment Patch Version to ${{ steps.get_version.outputs.VERSION }} in README.md"
+          git push
+
+      - name: Create and push tag
+        run: |
+          git config --global user.email "jpinet@hopper.com"
+          git config --global user.name "$GITHUB_ACTOR"
+          git tag -a ${{ steps.get_version.outputs.VERSION }} -m "Release v${{ steps.get_version.outputs.VERSION }}"
+          git push origin ${{ steps.get_version.outputs.VERSION }}
+        env:
+          TAG: ${{ github.event.inputs.versionName }}
+
+      - name: Create Release on GitHub
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          release_name: v${{ steps.get_version.outputs.VERSION }}
+          draft: true
+          prerelease: false
