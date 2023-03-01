@@ -57,7 +57,7 @@ public class CfarPassengerTax {
         return code;
     }
 
-    public void setCode(String name) {
+    public void setCode(String code) {
         this.code = code;
     }
 
