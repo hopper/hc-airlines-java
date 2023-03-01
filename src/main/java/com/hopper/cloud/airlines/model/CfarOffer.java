@@ -49,6 +49,10 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_COVERAGE_PERCENTAGE)
   private String coveragePercentage;
 
+  public static final String SERIALIZED_NAME_COVERAGE_EXTENSION = "coverage_extension";
+  @SerializedName(SERIALIZED_NAME_COVERAGE_EXTENSION)
+  private String coverageExtension;
+
   public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
   @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
   private String taxesTotal;
@@ -208,6 +212,14 @@ public class CfarOffer {
     this.coveragePercentage = coveragePercentage;
   }
 
+  public String getCoverageExtension() {
+    return coverageExtension;
+  }
+
+
+  public void setCoverageExtension(String coverageExtension) {
+    this.coverageExtension = coverageExtension;
+  }
 
   public CfarOffer currency(String currency) {
 
@@ -394,6 +406,7 @@ public class CfarOffer {
         Objects.equals(this.premium, cfarOffer.premium) &&
         Objects.equals(this.coverage, cfarOffer.coverage) &&
         Objects.equals(this.coveragePercentage, cfarOffer.coveragePercentage) &&
+        Objects.equals(this.coverageExtension, cfarOffer.coverageExtension) &&
         Objects.equals(this.currency, cfarOffer.currency) &&
         Objects.equals(this.taxesTotal, cfarOffer.taxesTotal) &&
         Objects.equals(this.taxes, cfarOffer.taxes) &&
@@ -418,6 +431,7 @@ public class CfarOffer {
     sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
     sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
     sb.append("    coverage_percentage: ").append(toIndentedString(coveragePercentage)).append("\n");
+    sb.append("    coverage_extension: ").append(toIndentedString(coverageExtension)).append("\n");
     sb.append("    taxes_total: ").append(toIndentedString(taxesTotal)).append("\n");
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
@@ -462,6 +476,7 @@ public class CfarOffer {
     openapiFields.add("itinerary");
     openapiFields.add("contents");
     openapiFields.add("ext_attributes");
+    openapiFields.add("coverage_extension");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
