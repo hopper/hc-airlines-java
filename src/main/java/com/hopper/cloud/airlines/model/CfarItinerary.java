@@ -369,7 +369,7 @@ public class CfarItinerary {
         };
       }
       // validate the optional list `passengers`
-      if (!jsonObj.get("passengers").isJsonNull()) {
+      if (jsonObj.get("passengers") != null) {
           JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("passengers");
           if (jsonArrayTaxes != null) {
               // ensure the json data is an array

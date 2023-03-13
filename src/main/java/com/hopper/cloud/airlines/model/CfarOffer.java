@@ -549,7 +549,7 @@ public class CfarOffer {
       }
 
       // validate the optional list `taxes`
-      if (!jsonObj.get("taxes").isJsonNull()) {
+      if (jsonObj.get("taxes") != null) {
         JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
         if (jsonArrayTaxes != null) {
           // ensure the json data is an array
