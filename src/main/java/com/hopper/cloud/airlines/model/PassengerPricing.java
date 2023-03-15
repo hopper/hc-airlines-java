@@ -157,76 +157,6 @@ public class PassengerPricing {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("passenger_count");
-    openapiFields.add("individual_price");
-    openapiFields.add("taxes");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("passenger_count");
-  }
-
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to PassengerPricing
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (PassengerPricing.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PassengerPricing is not found in the empty JSON string", PassengerPricing.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!PassengerPricing.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PassengerPricing` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : PassengerPricing.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
-      }
-      // validate the optional field `passenger_count`
-      if (jsonObj.getAsJsonObject("passenger_count") != null) {
-        PassengerCount.validateJsonObject(jsonObj.getAsJsonObject("passenger_count"));
-      }
-      // validate the optional list `taxes`
-      if (jsonObj.get("taxes") != null) {
-          JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
-          if (jsonArrayTaxes != null) {
-              // ensure the json data is an array
-              if (!jsonObj.get("taxes").isJsonArray()) {
-                  throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
-              }
-
-              // validate the optional field `taxes` (array)
-              for (int i = 0; i < jsonArrayTaxes.size(); i++) {
-                  CfarPassengerTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
-              }
-              ;
-          }
-      }
-      if (jsonObj.get("individual_price") != null && !jsonObj.get("individual_price").isJsonNull() && !jsonObj.get("individual_price").isJsonPrimitive() && !jsonObj.get("individual_price").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `individual_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("individual_price").toString()));
-      }
-  }
-
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
@@ -248,7 +178,6 @@ public class PassengerPricing {
            @Override
            public PassengerPricing read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
            }
 

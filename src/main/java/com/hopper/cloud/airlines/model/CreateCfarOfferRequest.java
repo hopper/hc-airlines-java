@@ -216,68 +216,6 @@ public class CreateCfarOfferRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("itinerary");
-    openapiFields.add("request_type");
-    openapiFields.add("booking_date_time");
-    openapiFields.add("ext_attributes");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("itinerary");
-    openapiRequiredFields.add("request_type");
-    openapiRequiredFields.add("ext_attributes");
-  }
-
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateCfarOfferRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (CreateCfarOfferRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateCfarOfferRequest is not found in the empty JSON string", CreateCfarOfferRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateCfarOfferRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCfarOfferRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateCfarOfferRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
-      }
-      JsonArray jsonArrayitinerary = jsonObj.getAsJsonArray("itinerary");
-      if (jsonArrayitinerary != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("itinerary").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `itinerary` to be an array in the JSON string but got `%s`", jsonObj.get("itinerary").toString()));
-        }
-
-        // validate the optional field `itinerary` (array)
-        for (int i = 0; i < jsonArrayitinerary.size(); i++) {
-          CfarItinerary.validateJsonObject(jsonArrayitinerary.get(i).getAsJsonObject());
-        };
-      }
-  }
-
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
@@ -299,7 +237,6 @@ public class CreateCfarOfferRequest {
            @Override
            public CreateCfarOfferRequest read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
            }
 

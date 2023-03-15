@@ -252,70 +252,6 @@ public class CreateAirlineSessionRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("user_info");
-    openapiFields.add("device");
-    openapiFields.add("point_of_sale");
-    openapiFields.add("language");
-    openapiFields.add("product");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("point_of_sale");
-    openapiRequiredFields.add("language");
-  }
-
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateAirlineSessionRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (CreateAirlineSessionRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateAirlineSessionRequest is not found in the empty JSON string", CreateAirlineSessionRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateAirlineSessionRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateAirlineSessionRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateAirlineSessionRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
-      }
-      // validate the optional field `user_info`
-      if (jsonObj.getAsJsonObject("user_info") != null) {
-        UserInfo.validateJsonObject(jsonObj.getAsJsonObject("user_info"));
-      }
-      // validate the optional field `device`
-      if (jsonObj.getAsJsonObject("device") != null) {
-        Device.validateJsonObject(jsonObj.getAsJsonObject("device"));
-      }
-      if (jsonObj.get("point_of_sale") != null && !jsonObj.get("point_of_sale").isJsonPrimitive() && !jsonObj.get("point_of_sale").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `point_of_sale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("point_of_sale").toString()));
-      }
-      if (jsonObj.get("language") != null && !jsonObj.get("language").isJsonPrimitive() && !jsonObj.get("language").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `language` to be a primitive type in the JSON string but got `%s`", jsonObj.get("language").toString()));
-      }
-  }
-
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
@@ -337,7 +273,6 @@ public class CreateAirlineSessionRequest {
            @Override
            public CreateAirlineSessionRequest read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
            }
 

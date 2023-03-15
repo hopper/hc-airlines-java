@@ -295,76 +295,6 @@ public class CreateCfarContractExerciseRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("contract_id");
-    openapiFields.add("itinerary");
-    openapiFields.add("pnr_reference");
-    openapiFields.add("airline_refund_penalty");
-    openapiFields.add("airline_refund_method");
-    openapiFields.add("currency");
-    openapiFields.add("ext_attributes");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("contract_id");
-    openapiRequiredFields.add("itinerary");
-    openapiRequiredFields.add("pnr_reference");
-    openapiRequiredFields.add("ext_attributes");
-  }
-
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateCfarContractExerciseRequest
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (CreateCfarContractExerciseRequest.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateCfarContractExerciseRequest is not found in the empty JSON string", CreateCfarContractExerciseRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateCfarContractExerciseRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCfarContractExerciseRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateCfarContractExerciseRequest.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
-      }
-      if (jsonObj.get("contract_id") != null && !jsonObj.get("contract_id").isJsonPrimitive() && !jsonObj.get("contract_id").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `contract_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contract_id").toString()));
-      }
-      // validate the optional field `itinerary`
-      if (jsonObj.getAsJsonObject("itinerary") != null) {
-        CfarItinerary.validateJsonObject(jsonObj.getAsJsonObject("itinerary"));
-      }
-      if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive() && !jsonObj.get("pnr_reference").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
-      }
-      if (jsonObj.get("airline_refund_penalty") != null && !jsonObj.get("airline_refund_penalty").isJsonPrimitive() && !jsonObj.get("airline_refund_penalty").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `airline_refund_penalty` to be a primitive type in the JSON string but got `%s`", jsonObj.get("airline_refund_penalty").toString()));
-      }
-      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-  }
-
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
@@ -386,7 +316,6 @@ public class CreateCfarContractExerciseRequest {
            @Override
            public CreateCfarContractExerciseRequest read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
            }
 

@@ -153,62 +153,6 @@ public class ProcessCfarPaymentTokenRequest {
         return o.toString().replace("\n", "\n    ");
     }
 
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("payment_method_token");
-        openapiFields.add("pnr_reference");
-        openapiFields.add("email_address");
-        openapiFields.add("first_name");
-        openapiFields.add("last_name");
-        openapiFields.add("address_line1");
-        openapiFields.add("address_line2");
-        openapiFields.add("city");
-        openapiFields.add("postal_code");
-        openapiFields.add("state_or_province");
-        openapiFields.add("country");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-        openapiFields.add("payment_method_token");
-        openapiFields.add("pnr_reference");
-        openapiFields.add("email_address");
-    }
-
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to ProcessCfarPaymentTokenRequest
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (ProcessCfarPaymentTokenRequest.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ProcessCfarPaymentTokenRequest is not found in the empty JSON string", ProcessCfarPaymentTokenRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonObj.entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ProcessCfarPaymentTokenRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProcessCfarPaymentTokenRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-            }
-        }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : ProcessCfarPaymentTokenRequest.openapiRequiredFields) {
-            if (jsonObj.get(requiredField) == null) {
-                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-            }
-        }
-    }
-
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
@@ -230,7 +174,6 @@ public class ProcessCfarPaymentTokenRequest {
                 @Override
                 public ProcessCfarPaymentTokenRequest read(JsonReader in) throws IOException {
                     JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-                    validateJsonObject(jsonObj);
                     return thisAdapter.fromJsonTree(jsonObj);
                 }
 
