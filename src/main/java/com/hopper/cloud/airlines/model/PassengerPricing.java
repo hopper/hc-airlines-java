@@ -13,10 +13,10 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.util.Objects;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.gson.TypeAdapter;
+import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
@@ -24,15 +24,9 @@ import com.hopper.cloud.airlines.model.PassengerCount;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.HashSet;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -49,6 +43,10 @@ public class PassengerPricing {
   public static final String SERIALIZED_NAME_INDIVIDUAL_PRICE = "individual_price";
   @SerializedName(SERIALIZED_NAME_INDIVIDUAL_PRICE)
   private String individualPrice;
+
+  public static final String SERIALIZED_NAME_TAXES = "taxes";
+  @SerializedName(SERIALIZED_NAME_TAXES)
+  private List<CfarPassengerTax> taxes = new ArrayList<>();
 
   public PassengerPricing() { 
   }
@@ -98,6 +96,25 @@ public class PassengerPricing {
     this.individualPrice = individualPrice;
   }
 
+  public PassengerPricing taxes(List<CfarPassengerTax> taxes) {
+
+      this.taxes = taxes;
+      return this;
+  }
+
+  public PassengerPricing addCfarTaxItem(CfarPassengerTax cfarTaxItem) {
+      if (this.taxes != null) {
+          this.taxes.add(cfarTaxItem);
+      }
+      return this;
+  }
+
+  public List<CfarPassengerTax> getTaxes() {
+        return taxes;
+    }
+    public void setTaxes(List<CfarPassengerTax> taxes) {
+        this.taxes = taxes;
+    }
 
 
   @Override
@@ -110,12 +127,13 @@ public class PassengerPricing {
     }
     PassengerPricing passengerPricing = (PassengerPricing) o;
     return Objects.equals(this.passengerCount, passengerPricing.passengerCount) &&
-        Objects.equals(this.individualPrice, passengerPricing.individualPrice);
+        Objects.equals(this.individualPrice, passengerPricing.individualPrice) &&
+        Objects.equals(this.taxes, passengerPricing.taxes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(passengerCount, individualPrice);
+    return Objects.hash(passengerCount, individualPrice, taxes);
   }
 
   @Override
@@ -124,6 +142,7 @@ public class PassengerPricing {
     sb.append("class PassengerPricing {\n");
     sb.append("    passengerCount: ").append(toIndentedString(passengerCount)).append("\n");
     sb.append("    individualPrice: ").append(toIndentedString(individualPrice)).append("\n");
+    sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -148,6 +167,7 @@ public class PassengerPricing {
     openapiFields = new HashSet<String>();
     openapiFields.add("passenger_count");
     openapiFields.add("individual_price");
+    openapiFields.add("taxes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -189,6 +209,23 @@ public class PassengerPricing {
       }
       if (jsonObj.get("individual_price") != null && !jsonObj.get("individual_price").isJsonNull() && !jsonObj.get("individual_price").isJsonPrimitive() && !jsonObj.get("individual_price").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `individual_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("individual_price").toString()));
+      }
+
+      // validate the optional list `taxes`
+      if (!jsonObj.get("taxes").isJsonNull()) {
+          JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
+          if (jsonArrayTaxes != null) {
+              // ensure the json data is an array
+              if (!jsonObj.get("taxes").isJsonArray()) {
+                  throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
+              }
+
+              // validate the optional field `taxes` (array)
+              for (int i = 0; i < jsonArrayTaxes.size(); i++) {
+                  CfarTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
+              }
+              ;
+          }
       }
   }
 

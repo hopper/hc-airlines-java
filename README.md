@@ -24,6 +24,7 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [CfarOffer](#cfaroffer)
     + [CfarItinerary](#cfaritinerary)
     + [CfarPassenger](#cfarpassenger)
+    + [CfarPassengerTax](#cfarpassengertax)
     + [CfarTax](#cfartax)
     + [PassengerPricing](#passengerpricing)
     + [PassengerCount](#passengercount)
@@ -1687,6 +1688,44 @@ Enum: "male" "female" "undisclosed" "unspecified"
   </tr>
 </table>
 
+### CfarPassengerTax
+
+<table>
+  <tr>
+   <td>code
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: RC
+<p>
+The code of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>amount
+    <p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+    <p>
+  Example: 0.20
+  <p>
+The amount of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>currency
+    <p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: USD
+<p>
+The currency of the tax
+   </td>
+  </tr>
+</table>
+
 ### CfarTax
 
 <table>
@@ -1696,7 +1735,7 @@ Enum: "male" "female" "undisclosed" "unspecified"
    </td>
    <td>string
 <p>
-Example: VAT
+Example: CAD
 <p>
 The name of the tax
    </td>
@@ -1766,6 +1805,15 @@ Type and number of passengers
 Example: 200.55
 <p>
 Price per passenger
+   </td>
+  </tr>
+  <tr>
+   <td>taxes</td>
+   <td>
+
+array ([CfarPassengerTax](#cfarpassengertax))
+
+Taxes applicable to this itinerary
    </td>
   </tr>
 </table>

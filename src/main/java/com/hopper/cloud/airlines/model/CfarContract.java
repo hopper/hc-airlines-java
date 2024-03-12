@@ -320,12 +320,12 @@ public class CfarContract {
     }
 
     /**
-     * Currency of offer
+     * Currency of the contract
      *
      * @return currency
      **/
     @javax.annotation.Nonnull
-    @ApiModelProperty(example = "CAD", required = true, value = "Currency of offer")
+    @ApiModelProperty(example = "CAD", required = true, value = "Currency of the contract")
 
     public String getCurrency() {
         return currency;
