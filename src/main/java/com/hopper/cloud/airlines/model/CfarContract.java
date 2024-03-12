@@ -643,8 +643,8 @@ public class CfarContract {
         if (jsonObj.get("coverage") != null && !jsonObj.get("coverage").isJsonPrimitive() && !jsonObj.get("coverage").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `coverage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage").toString()));
         }
-        if (jsonObj.get("coveragePercentage") != null && !jsonObj.get("coveragePercentage").isJsonPrimitive() && !jsonObj.get("coveragePercentage").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `coveragePercentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coveragePercentage").toString()));
+        if (jsonObj.get("coverage_percentage") != null && !jsonObj.get("coverage_percentage").isJsonPrimitive() && !jsonObj.get("coverage_percentage").isJsonNull()) {
+            throw new IllegalArgumentException(String.format("Expected the field `coverage_percentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage_percentage").toString()));
         }
         if (jsonObj.get("premium") != null && !jsonObj.get("premium").isJsonPrimitive() && !jsonObj.get("premium").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `premium` to be a primitive type in the JSON string but got `%s`", jsonObj.get("premium").toString()));
