@@ -1247,6 +1247,28 @@ Percentage of the amount to be refunded to customer compared to flight tickets p
    </td>
   </tr>
   <tr>
+   <td>taxesTotal
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 35.50
+<p>
+Part of the premium which are taxes
+   </td>
+  </tr>
+   <tr>
+   <td>taxes
+   </td>
+   <td>
+
+array ( [CfarTax](#taxes) )
+
+<p>
+List of applicable taxes
+   </td>
+  </tr>
+  <tr>
    <td>currency
 <p style="color:red">required</p>
    </td>
@@ -1304,12 +1326,6 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
 Example: 2022-06-01T15:00:00Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the CFAR contract will expire once purchased
-   </td>
-  </tr>
-  <tr>
-   
-<p>
-An object containing exercise information for a contract
    </td>
   </tr>
   <tr>
@@ -1415,6 +1431,28 @@ Currency of offer
    </td>
   </tr>
   <tr>
+   <td>taxesTotal
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 35.50
+<p>
+Part of the premium which are taxes
+   </td>
+  </tr>
+   <tr>
+   <td>taxes
+   </td>
+   <td>
+
+array ( [CfarTax](#taxes) )
+
+<p>
+List of applicable taxes
+   </td>
+  </tr>
+  <tr>
    <td>to_usd_exchange_rate
 <p style="color:red">required</p>
    </td>
@@ -1492,7 +1530,7 @@ List of passengers type, count and pricing for the itinerary
   <tr>
    <td>total_price
 <p>
-required
+<p style="color:red">required</p>
    </td>
    <td>string >=0
 <p>
@@ -1700,6 +1738,63 @@ The IATA airline code of the validating carrier for this segment
 Enum: "basic_economy" "economy" "premium_economy" "business" "first"
 <p>
 Service class of the segment
+   </td>
+  </tr>
+</table>
+
+### CfarTax
+
+<table>
+  <tr>
+   <td>name
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: VAT
+<p>
+The name of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>rate
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 0.20
+<p>
+The rate of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>amount
+    <p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+    <p>
+  Example: 20.20
+  <p>
+The amount of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>estimated
+    <p style="color:red">required</p>
+   </td>
+   <td>boolean
+<p>
+true if the tax amount is estimated. The real amount will be known only at contract confirmation
+   </td>
+  </tr>
+  <tr>
+   <td>registrationNumber
+   </td>
+   <td>string
+<p>
+Example: 0123456ABCDEF
+<p>
+The registration number of the tax if applicable
    </td>
   </tr>
 </table>
