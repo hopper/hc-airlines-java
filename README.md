@@ -1251,7 +1251,7 @@ Total amount to be refunded upon CFAR exercise
    </td>
   </tr>
   <tr>
-   <td>coveragePercentage
+   <td>coverage_percentage
 <p style="color:red">required</p>
    </td>
    <td>string >= 0
@@ -1424,7 +1424,7 @@ Total amount to be refunded upon CFAR exercise
    </td>
   </tr>
   <tr>
-   <td>coveragePercentage
+   <td>coverage_percentage
 <p style="color:red">required</p>
    </td>
    <td>string >= 0
@@ -1432,6 +1432,15 @@ Total amount to be refunded upon CFAR exercise
 Example: 80.0
 <p>
 Percentage of the amount to be refunded to customer compared to flight tickets price
+   </td>
+  </tr>
+  <tr>
+   <td>coverage_extension</td>
+   <td>string >= 0
+<p>
+Example: 40.0
+<p>
+Maximum amount added on top of the coverage to cover ancillaries
    </td>
   </tr>
   <tr>

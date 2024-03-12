@@ -49,6 +49,10 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_COVERAGE_PERCENTAGE)
   private String coveragePercentage;
 
+  public static final String SERIALIZED_NAME_COVERAGE_EXTENSION = "coverage_extension";
+  @SerializedName(SERIALIZED_NAME_COVERAGE_EXTENSION)
+  private String coverageExtension;
+
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
@@ -167,6 +171,40 @@ public class CfarOffer {
     return this;
   }
 
+  /**
+   * Percentage of the amount to be refunded to customer compared to flight tickets price
+   * @return coveragePercentage
+   **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "80.00", required = true, value = "Percentage of the amount to be refunded to customer compared to flight tickets price")
+
+  public String getCoveragePercentage() {
+    return coveragePercentage;
+  }
+
+
+  public void setCoveragePercentage(String coveragePercentage) {
+    this.coveragePercentage = coveragePercentage;
+  }
+
+  public CfarOffer coverageExtension(String coverageExtension) {
+    this.coverageExtension = coverageExtension;
+    return this;
+  }
+
+  /**
+   * Maximum amount added on top of the coverage to cover ancillaries
+   * @return coverageExtension
+   **/
+  @ApiModelProperty(example = "40.00", value = "Maximum amount added on top of the coverage to cover ancillaries")
+  public String getCoverageExtension() {
+    return coverageExtension;
+  }
+
+  public void setCoverageExtension(String coverageExtension) {
+    this.coverageExtension = coverageExtension;
+  }
+
   public String getTaxesTotal() {
     return taxesTotal;
   }
@@ -194,22 +232,6 @@ public class CfarOffer {
 
   public void setTaxes(List<CfarTax> taxes) {
     this.taxes = taxes;
-  }
-
-  /**
-   * Percentage of the amount to be refunded to customer compared to flight tickets price
-   * @return coveragePercentage
-   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "80.0", required = true, value = "Percentage of the amount to be refunded to customer compared to flight tickets price")
-
-  public String getCoveragePercentage() {
-    return coveragePercentage;
-  }
-
-
-  public void setCoveragePercentage(String coveragePercentage) {
-    this.coveragePercentage = coveragePercentage;
   }
 
 
@@ -421,6 +443,7 @@ public class CfarOffer {
         Objects.equals(this.premium, cfarOffer.premium) &&
         Objects.equals(this.coverage, cfarOffer.coverage) &&
         Objects.equals(this.coveragePercentage, cfarOffer.coveragePercentage) &&
+        Objects.equals(this.coverageExtension, cfarOffer.coverageExtension) &&
         Objects.equals(this.currency, cfarOffer.currency) &&
         Objects.equals(this.taxesTotal, cfarOffer.taxesTotal) &&
         Objects.equals(this.taxes, cfarOffer.taxes) &&
@@ -435,7 +458,7 @@ public class CfarOffer {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, currency, taxesTotal, taxes, requestType, toUsdExchangeRate, contractExpiryDateTime, createdDateTime, itinerary, offerDescription, extAttributes);
+    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, toUsdExchangeRate, contractExpiryDateTime, createdDateTime, itinerary, offerDescription, extAttributes);
   }
 
   @Override
@@ -445,8 +468,9 @@ public class CfarOffer {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
     sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
-    sb.append("    coverage_percentage: ").append(toIndentedString(coveragePercentage)).append("\n");
-    sb.append("    taxes_total: ").append(toIndentedString(taxesTotal)).append("\n");
+    sb.append("    coveragePercentage: ").append(toIndentedString(coveragePercentage)).append("\n");
+    sb.append("    coverageExtension: ").append(toIndentedString(coverageExtension)).append("\n");
+    sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    requestType: ").append(toIndentedString(requestType)).append("\n");
@@ -482,6 +506,7 @@ public class CfarOffer {
     openapiFields.add("premium");
     openapiFields.add("coverage");
     openapiFields.add("coverage_percentage");
+    openapiFields.add("coverage_extension");
     openapiFields.add("taxes_total");
     openapiFields.add("taxes");
     openapiFields.add("currency");
@@ -552,6 +577,9 @@ public class CfarOffer {
       }
       if (jsonObj.get("coverage_percentage") != null && !jsonObj.get("coverage_percentage").isJsonPrimitive() && !jsonObj.get("coverage_percentage").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `coverage_percentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage_percentage").toString()));
+      }
+      if (jsonObj.get("coverage_extension") != null && !jsonObj.get("coverage_extension").isJsonPrimitive() && !jsonObj.get("coverage_extension").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `coverage_extension` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage_extension").toString()));
       }
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
