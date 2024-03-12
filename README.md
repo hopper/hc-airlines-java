@@ -22,11 +22,15 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [Browser](#browser)
     + [CfarContract](#cfarcontract)
     + [CfarOffer](#cfaroffer)
+    + [CfarItinerary](#cfaritinerary)
+    + [CfarPassenger](#cfarpassenger)
+    + [CfarTax](#cfartax)
     + [PassengerPricing](#passengerpricing)
     + [PassengerCount](#passengercount)
     + [Slice](#slice)
     + [Segment](#segment)
     + [Ancillary](#ancillary)
+    + [FareRule](#farerule)
 
 ## Client initialization
 
@@ -573,7 +577,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>
 
-  [Itinerary](#itinerary)
+  [CfarItinerary](#cfaritinerary)
 <p>
 Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
    </td>
@@ -1214,6 +1218,17 @@ CFAR Offer(s) used to create the contract
    </td>
   </tr>
   <tr>
+   <td>itinerary
+<p style="color:red">required</p>
+   </td>
+   <td>
+
+[CfarItinerary](#cfaritinerary)
+<p>
+An object detailing the itinerary and fare used to create this CFAR contract
+   </td>
+  </tr>
+  <tr>
    <td>premium
 <p style="color:red">required</p>
    </td>
@@ -1247,7 +1262,7 @@ Percentage of the amount to be refunded to customer compared to flight tickets p
    </td>
   </tr>
   <tr>
-   <td>taxesTotal
+   <td>taxes_total
 <p style="color:red">required</p>
    </td>
    <td>string >= 0
@@ -1262,7 +1277,7 @@ Part of the premium which are taxes
    </td>
    <td>
 
-array ( [CfarTax](#taxes) )
+array ( [CfarTax](#cfartax) )
 
 <p>
 List of applicable taxes
@@ -1381,7 +1396,7 @@ Type of CFAR offer
    </td>
    <td>
 
-array ( [Itinerary](#itinerary) )
+[CfarItinerary](#cfaritinerary)
 <p>
 An object detailing the itinerary and fare used to create this CFAR offer
    </td>
@@ -1431,7 +1446,7 @@ Currency of offer
    </td>
   </tr>
   <tr>
-   <td>taxesTotal
+   <td>taxes_total
 <p style="color:red">required</p>
    </td>
    <td>string >= 0
@@ -1446,7 +1461,7 @@ Part of the premium which are taxes
    </td>
    <td>
 
-array ( [CfarTax](#taxes) )
+array ( [CfarTax](#cfartax) )
 
 <p>
 List of applicable taxes
@@ -1513,7 +1528,7 @@ One or more paragraphs describing the offer and its conditions in the user’s p
   </tr>
 </table>
 
-### Itinerary
+### CfarItinerary
 
 <table>
   <tr>
@@ -1570,6 +1585,152 @@ array ( [Ancillary](#ancillary) )
 
 <p>
 Ancillaries attached to the itinerary and their prices
+   </td>
+  </tr>
+  <tr>
+   <td>passengers
+   </td>
+   <td>
+
+array ( [CfarPassenger](#passenger) )
+
+<p>
+Details of the passengers
+   </td>
+  </tr>
+  <tr>
+   <td>fare_rules
+   </td>
+   <td>
+
+array ( [FareRule](#farerule) )
+
+<p>
+The fare rules associated to the itinerary. If different fare rules apply to different slices in the itinerary, indicate the most restrictive.
+   </td>
+  </tr>
+</table>
+
+### CfarPassenger
+
+<table>
+  <tr>
+   <td>passenger_reference
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Unique reference of the passenger
+   </td>
+  </tr>
+  <tr>
+   <td>passenger_type
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "adult" "child" "seated_infant" "lap_infant"
+<p>
+The type of passenger:
+<p>
+* adult - 12+ years of age
+<p>
+* child - 2-11 years of age
+<p>
+* seated_infant - &lt; 2 years of age, in their own seat
+<p>
+* lap_infant - &lt; 2 years of age, not in their own seat
+   </td>
+  </tr>
+  <tr>
+   <td>first_name
+   </td>
+   <td>string
+<p>
+The first name of the passenger
+   </td>
+  </tr>
+  <tr>
+   <td>last_name
+   </td>
+   <td>string
+<p>
+The last name of the passenger
+   </td>
+  </tr>
+  <tr>
+   <td>date_of_birth
+   </td>
+   <td>string
+    <p>
+  Example: 2000-04-02
+<p>
+The birth date in ISO Local Date format
+   </td>
+  </tr>
+  <tr>
+   <td>gender</td>
+   <td>string
+<p>
+Enum: "male" "female" "undisclosed" "unspecified"
+<p>The gender of the passenger
+   </td>
+  </tr>
+</table>
+
+### CfarTax
+
+<table>
+  <tr>
+   <td>name
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: VAT
+<p>
+The name of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>rate
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 0.20
+<p>
+The rate of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>amount
+    <p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+    <p>
+  Example: 20.20
+  <p>
+The amount of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>estimated
+    <p style="color:red">required</p>
+   </td>
+   <td>boolean
+<p>
+true if the tax amount is estimated. The real amount will be known only at contract confirmation
+   </td>
+  </tr>
+  <tr>
+   <td>registration_number
+   </td>
+   <td>string
+<p>
+Example: 0123456ABCDEF
+<p>
+The registration number of the tax if applicable
    </td>
   </tr>
 </table>
@@ -1742,63 +1903,6 @@ Service class of the segment
   </tr>
 </table>
 
-### CfarTax
-
-<table>
-  <tr>
-   <td>name
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example: VAT
-<p>
-The name of the tax
-   </td>
-  </tr>
-  <tr>
-   <td>rate
-<p style="color:red">required</p>
-   </td>
-   <td>string >= 0
-<p>
-Example: 0.20
-<p>
-The rate of the tax
-   </td>
-  </tr>
-  <tr>
-   <td>amount
-    <p style="color:red">required</p>
-   </td>
-   <td>string >= 0
-    <p>
-  Example: 20.20
-  <p>
-The amount of the tax
-   </td>
-  </tr>
-  <tr>
-   <td>estimated
-    <p style="color:red">required</p>
-   </td>
-   <td>boolean
-<p>
-true if the tax amount is estimated. The real amount will be known only at contract confirmation
-   </td>
-  </tr>
-  <tr>
-   <td>registrationNumber
-   </td>
-   <td>string
-<p>
-Example: 0123456ABCDEF
-<p>
-The registration number of the tax if applicable
-   </td>
-  </tr>
-</table>
-
 ### Ancillary
 
 <table>
@@ -1822,6 +1926,71 @@ Total price of ancillaries of this type
 Enum: "travel_insurance" "cabin_bag" "checked_bag" "seat" "lounge" "meal" "fast_track" "pet" "other"
 <p>
 The type of ancillary
+   </td>
+  </tr>
+</table>
+
+### FareRule
+
+<table>
+  <tr>
+   <td>modification_type
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "cancellation" "change"
+<p>
+The type of modification in question in this fare rule
+   </td>
+  </tr>
+  <tr>
+   <td>modification_time
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "after_departure" "anytime" "before_departure"
+<p>
+The time at which the modification is requested
+   </td>
+  </tr>
+  <tr>
+   <td>allowed
+<p style="color:red">required</p>
+   </td>
+   <td>boolean
+<p>
+Determines if that type of modification at this time is allowed
+   </td>
+  </tr>
+  <tr>
+   <td>fee</td>
+   <td>string >= 0
+<p>
+Example: 20.55
+<p>
+Amount to be paid as penalty fee to perform the modification
+   </td>
+  </tr>
+  <tr>
+   <td>percentage</td>
+   </td>
+   <td>string >= 0
+<p>
+Example: 10.00
+<p>
+Percentage of the fare to be paid as penalty to perform the modification
+   </td>
+  </tr>
+  <tr>
+   <td>refund_method
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+Method of refund in question in this fare rule
    </td>
   </tr>
 </table>
