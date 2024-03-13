@@ -44,9 +44,9 @@ import java.util.Set;
 import com.hopper.cloud.airlines.JSON;
 
 /**
- * An object detailing the fare used to create a CFAR offer
+ * An object detailing a CFAR itinerary
  */
-@ApiModel(description = "An object detailing the fare used to create a CFAR offer")
+@ApiModel(description = "An object detailing a CFAR itinerary")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
 @JsonInclude(JsonInclude.Include. NON_NULL)
 public class CfarItinerary {

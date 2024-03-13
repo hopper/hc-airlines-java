@@ -28,9 +28,10 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [CfarTax](#cfartax)
     + [PassengerPricing](#passengerpricing)
     + [PassengerCount](#passengercount)
-    + [Slice](#slice)
-    + [Segment](#segment)
+    + [CfarItinerarySlice](#cfaritineraryslice)
+    + [CfarItinerarySliceSegment](#cfaritineraryslicesegment)
     + [Ancillary](#ancillary)
+    + [Fare](#fare)
     + [FareRule](#farerule)
 
 ## Client initialization
@@ -1581,7 +1582,7 @@ Currency of pricing fields
    </td>
    <td>
 
-array ( [Slice](#slice) )
+array ( [CfarItinerarySlice](#cfaritineraryslice) )
 <p>
 List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed
    </td>
@@ -1853,7 +1854,7 @@ The type of passenger:
   </tr>
 </table>
 
-### Slice
+### CfarItinerarySlice
 
 <table>
   <tr>
@@ -1862,9 +1863,29 @@ The type of passenger:
    </td>
    <td>
 
-array ( [Segment](#segment) )
+array ( [CfarItinerarySliceSegment](#cfaritineraryslicesegment) )
 <p>
 A list of segments which make up the slice
+   </td>
+  </tr>
+  <tr>
+   <td>passenger_pricing
+   </td>
+   <td>
+
+array ( [PassengerPricing](#passengerpricing) )
+<p>
+List of passengers type, count and pricing for the slice
+   </td>
+  </tr>
+  <tr>
+   <td>total_price
+   </td>
+   <td>string >= 0
+<p>
+Example: 401.10
+<p>
+The price of the slice for all the passengers
    </td>
   </tr>
   <tr>
@@ -1872,13 +1893,49 @@ A list of segments which make up the slice
    </td>
    <td>string
 <p>
-Fare brand information
+Example: flex
+<p>
+Code of the fare brand applied to the slice
 <p></p>
+   </td>
+  </tr>
+  </tr>
+  <tr>
+   <td>fare_basis
+   </td>
+   <td>string
+<p>
+Example: YBA123US
+<p>
+Code of the fare basis applied to the slice
+<p></p>
+   </td>
+  </tr>
+  <tr>
+   <td>fare_rules
+   </td>
+   <td>
+
+array ( [FareRule](#farerule) )
+
+<p>
+The fare rules associated to the slice.
+   </td>
+  </tr>
+  <tr>
+   <td>other_fares
+   </td>
+   <td>
+
+array ( [Fare](#fare) )
+
+<p>
+Other available fares in the same cabin.
    </td>
   </tr>
 </table>
 
-### Segment
+### CfarItinerarySliceSegment
 
 <table>
   <tr>
@@ -1983,6 +2040,55 @@ Total price of ancillaries of this type
 Enum: "travel_insurance" "cabin_bag" "checked_bag" "seat" "lounge" "meal" "fast_track" "pet" "other"
 <p>
 The type of ancillary
+   </td>
+  </tr>
+</table>
+
+### Fare
+
+<table>
+  <tr>
+   <td>price
+   </td>
+   <td>string >= 0
+<p>
+Example: 401.10
+<p>
+The price of the slice for all the passengers with this fare
+   </td>
+  </tr>
+  <tr>
+   <td>fare_brand
+   </td>
+   <td>string
+<p>
+Example: flex
+<p>
+Code of the fare brand applied to this fare
+<p></p>
+   </td>
+  </tr>
+  </tr>
+  <tr>
+   <td>fare_basis
+   </td>
+   <td>string
+<p>
+Example: YBA123US
+<p>
+Code of the fare basis applied to this fare
+<p></p>
+   </td>
+  </tr>
+  <tr>
+   <td>fare_rules
+   </td>
+   <td>
+
+array ( [FareRule](#farerule) )
+
+<p>
+The fare rules associated to the fare.
    </td>
   </tr>
 </table>
