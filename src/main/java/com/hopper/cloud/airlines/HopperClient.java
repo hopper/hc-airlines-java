@@ -3,6 +3,7 @@ package com.hopper.cloud.airlines;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
+import com.hopper.cloud.airlines.api.AnalyticsApi;
 import com.hopper.cloud.airlines.auth.OAuth;
 import com.hopper.cloud.airlines.auth.RetryingOAuth;
 import com.hopper.cloud.airlines.model.*;
@@ -18,6 +19,7 @@ import java.util.*;
 public class HopperClient {
     private final CancelForAnyReasonCfarApi cfarApi;
     private final SessionsApi sessionsApi;
+    private final AnalyticsApi analyticsApi;
     private final String paymentUrl;
     private final String paymentUsername;
     private final String paymentPassword;
@@ -43,6 +45,13 @@ public class HopperClient {
         sessionsApi.getApiClient().setConnectTimeout(60000);
         sessionsApi.getApiClient().setReadTimeout(60000);
         sessionsApi.getApiClient().setWriteTimeout(60000);
+
+        analyticsApi = new AnalyticsApi(apiClient);
+        analyticsApi.getApiClient().setDebugging(debugging);
+        analyticsApi.getApiClient().setBasePath(url);
+        analyticsApi.getApiClient().setConnectTimeout(60000);
+        analyticsApi.getApiClient().setReadTimeout(60000);
+        analyticsApi.getApiClient().setWriteTimeout(60000);
 
 
         Unirest.config().setObjectMapper(new ObjectMapper() {
