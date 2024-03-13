@@ -2068,6 +2068,14 @@ Example: 20.55
 <p>
 Total price of ancillaries of this type
    </td>
+  <tr>
+   <td>passenger_reference
+   </td>
+   <td>string
+<p>
+Unique reference of the passenger
+   </td>
+  </tr>
   </tr>
   <tr>
    <td>type
@@ -2078,6 +2086,14 @@ Total price of ancillaries of this type
 Enum: "travel_insurance" "cabin_bag" "checked_bag" "seat" "lounge" "meal" "fast_track" "pet" "other"
 <p>
 The type of ancillary
+   </td>
+  </tr>
+  <tr>
+   <td>covered
+   </td>
+   <td>boolean
+<p>
+Is this ancillary covered by the product. By default true if not specified
    </td>
   </tr>
 </table>
