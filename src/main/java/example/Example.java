@@ -16,14 +16,14 @@ public class Example {
 
             AirlineSession session = getAirlineSession(client, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
-            System.out.println("*************************** SESSION *********************************");
+            System.out.println("*************************** CREATE PURCHASE SESSION *****************");
             System.out.println("*********************************************************************");
             System.out.println(session);
 
             String sessionId = session.getId();
             List<CfarOffer> offers = createCfarOffers(client, sessionId);
             System.out.println("*********************************************************************");
-            System.out.println("*************************** OFFERS *********************************");
+            System.out.println("*************************** CREATE OFFERS ***************************");
             System.out.println("*********************************************************************");
             System.out.println(offers);
 
@@ -32,33 +32,39 @@ public class Example {
             selectedOffer.add(offers.get(1));
             CfarContract contract = createCfarContract(client, selectedOffer, sessionId);
             System.out.println("*********************************************************************");
-            System.out.println("*************************** CONTRACT *********************************");
+            System.out.println("*************************** CREATE CONTRACT *************************");
             System.out.println("*********************************************************************");
             System.out.println(contract);
 
             String contractId = contract.getId();
             CfarContract getContract = client.getContract(sessionId, contractId);
             System.out.println("*********************************************************************");
-            System.out.println("*************************** CONTRACT *********************************");
+            System.out.println("*************************** GET CONTRACT ****************************");
             System.out.println("*********************************************************************");
             System.out.println(getContract);
 
             boolean isSucceeded = processCfarPayment(client, contractId, sessionId);
             System.out.println("*********************************************************************");
-            System.out.println("*************************** PAYMENT *********************************");
+            System.out.println("*************************** PROCESS PAYMENT *************************");
+            System.out.println("*********************************************************************");
+            System.out.println(isSucceeded);
+
+            createBookingConfirmedEvent(client, sessionId);
+            System.out.println("*********************************************************************");
+            System.out.println("*************************** CREATE EVENT ****************************");
             System.out.println("*********************************************************************");
             System.out.println(isSucceeded);
 
             session = getAirlineSession(client, FlowType.EXERCISE);
             System.out.println("*********************************************************************");
-            System.out.println("*************************** SESSION *********************************");
+            System.out.println("*************************** CREATE EXERCISE SESSION *****************");
             System.out.println("*********************************************************************");
             System.out.println(session);
 
             sessionId = session.getId();
             CfarContractExercise exercise = createCfarContractExercise(client, contractId, sessionId);
             System.out.println("*********************************************************************");
-            System.out.println("*************************** EXERCISE *********************************");
+            System.out.println("*************************** CREATE EXERCISE *************************");
             System.out.println("*********************************************************************");
             System.out.println(exercise);
         } catch (ApiException e) {
@@ -334,5 +340,11 @@ public class Example {
         //sessionRequest.setUserInfo(userInfo);
 
         return client.createSession(sessionRequest);
+    }
+
+    private static void createBookingConfirmedEvent(HopperClient client, String sessionId) throws ApiException {
+        Event event = new Event();
+        event.setType("booking_confirmed");
+        client.createEvent(sessionId, event);
     }
 }

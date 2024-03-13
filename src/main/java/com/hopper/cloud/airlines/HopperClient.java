@@ -53,7 +53,6 @@ public class HopperClient {
         analyticsApi.getApiClient().setReadTimeout(60000);
         analyticsApi.getApiClient().setWriteTimeout(60000);
 
-
         Unirest.config().setObjectMapper(new ObjectMapper() {
             com.fasterxml.jackson.databind.ObjectMapper mapper
                     = new com.fasterxml.jackson.databind.ObjectMapper();
@@ -108,6 +107,10 @@ public class HopperClient {
 
     public CfarContract createCfarContract(String sessionId, CreateCfarContractRequest createCfarContractRequest) throws ApiException {
         return cfarApi.postCfarContracts(createCfarContractRequest, sessionId);
+    }
+
+    public void createEvent(String sessionId, Event event) throws ApiException {
+        analyticsApi.postEvents(event, sessionId);
     }
 
     /**
