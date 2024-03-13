@@ -26,6 +26,7 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [CfarPassenger](#cfarpassenger)
     + [CfarPassengerTax](#cfarpassengertax)
     + [CfarTax](#cfartax)
+    + [CfarPrice](#cfarprice)
     + [PassengerPricing](#passengerpricing)
     + [PassengerCount](#passengercount)
     + [CfarItinerarySlice](#cfaritineraryslice)
