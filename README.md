@@ -1522,21 +1522,24 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
    </td>
   </tr>
   <tr>
-   <td>offer_description
+   <td>contents
 <p style="color:red">required</p>
    </td>
-   <td>array (string)
+   <td>
+
+object (map ([CfarContents](#cfarcontents)))
 <p>
-Example:  [
 <p>
- "Get 80% of your flight cost back in cash",
-<p>
- "Cancel in a few taps right in the app — no forms or claims required"
-<p>
-]
-<p>
-One or more paragraphs describing the offer and its conditions in the user’s preferred language (or in english by default).
+An array of arbitrary key-value pairs for storing airline-specific entity metadata
    </td>
+  </tr>
+  <tr>
+   <td>terms_conditions_url
+   </td>
+   <td>string 
+<p>
+The terms and conditions URL for this offer
+</td>
   </tr>
 </table>
 
