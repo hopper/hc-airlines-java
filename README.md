@@ -30,6 +30,7 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [PassengerCount](#passengercount)
     + [CfarItinerarySlice](#cfaritineraryslice)
     + [CfarItinerarySliceSegment](#cfaritineraryslicesegment)
+    + [CfarContents](#cfarcontents)
     + [Ancillary](#ancillary)
     + [Fare](#fare)
     + [FareRule](#farerule)
@@ -2023,6 +2024,30 @@ Fare class of the segment
 Example: flex
 <p>
 Name of the fare brand applied to the segment (if applicable)
+   </td>
+  </tr>
+</table>
+
+### CfarContents
+
+<table>
+  <tr>
+   <td>bullet_points
+<p style="color:red">required</p>
+   </td>
+   <td>Array (string)
+<p>
+An array containing the bullet points to be displayed
+   </td>
+  </tr>
+  <tr>
+   <td>labels
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>object (map_string)
+<p>
+A map of key-value pairs for storing all labels to be displayed
    </td>
   </tr>
 </table>
