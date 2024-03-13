@@ -2005,14 +2005,24 @@ The IATA airline code of the validating carrier for this segment
    </td>
   </tr>
   <tr>
-   <td>service_class
+   <td>fare_class
 <p style="color:red">required</p>
    </td>
    <td>string
 <p>
 Enum: "basic_economy" "economy" "premium_economy" "business" "first"
 <p>
-Service class of the segment
+Fare class of the segment
+   </td>
+  </tr>
+  <tr>
+   <td>fare_brand
+   </td>
+   <td>string
+<p>
+Example: flex
+<p>
+Name of the fare brand applied to the segment (if applicable)
    </td>
   </tr>
 </table>
