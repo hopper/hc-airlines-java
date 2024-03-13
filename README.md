@@ -1288,6 +1288,17 @@ List of applicable taxes
    </td>
   </tr>
   <tr>
+   <td>cfar_prices
+   </td>
+   <td>
+
+array ( [CfarPrice](#cfarprice) )
+
+<p>
+The prices associated to contract.
+   </td>
+  </tr>
+  <tr>
    <td>currency
 <p style="color:red">required</p>
    </td>
@@ -1785,6 +1796,87 @@ true if the tax amount is estimated. The real amount will be known only at contr
 Example: 0123456ABCDEF
 <p>
 The registration number of the tax if applicable
+   </td>
+  </tr>
+</table>
+
+### CfarPrice
+
+<table>
+  <tr>
+   <td>passenger_type
+   </td>
+   <td>string
+<p>
+Enum: "adult" "child" "seated_infant" "lap_infant"
+<p>
+The type of passenger:
+<p>
+* adult - 12+ years of age
+<p>
+* child - 2-11 years of age
+<p>
+* seated_infant - &lt; 2 years of age, in their own seat
+<p>
+* lap_infant - &lt; 2 years of age, not in their own seat
+   </td>
+  </tr>
+  <tr>
+   <td>nb_pax
+   </td>
+   <td>int
+<p>
+The number of passengers associated with the price
+   </td>
+  </tr>
+  <tr>
+   <td>coverage
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 98.64
+<p>
+Total amount to be refunded
+   </td>
+  <tr>
+   <td>premium
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example:  80.00
+<p>
+Total amount to be paid
+   </td>
+  </tr>
+  </tr>
+  <tr>
+   <td>ancillary_type
+   </td>
+   <td>string
+<p>
+Enum: "travel_insurance" "cabin_bag" "checked_bag" "seat" "lounge" "meal" "fast_track" "pet" "other"
+<p>
+The type of ancillary
+   </td>
+  </tr>
+  <tr>
+   <td>passenger_reference
+   </td>
+   <td>string
+<p>
+Unique reference of the passenger
+   </td>
+  </tr>
+  <tr>
+   <td>cfar_price_type
+   </td>
+   <td>string
+<p>
+Enum: "ticket" "ancillary"
+<p>
+The type of price
    </td>
   </tr>
 </table>
