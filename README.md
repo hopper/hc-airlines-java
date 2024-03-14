@@ -15,6 +15,7 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [updateCfarContractStatus](#updatecfarcontractstatus)
     + [createCfarContractExercise](#createCfarContractExercise)
     + [completeCfarContractExercise](#completeCfarContractExercise)
+    + [createEvent](#createEvent)
 * [Data structures](#data-structures)
     + [Device](#device)
     + [Platform](#platform)
@@ -1041,6 +1042,48 @@ MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest 
 CfarContractExercise exercise = client.completeCfarContractExercise(sessionId, markCfarContractExerciseCompleteRequest, exerciseId);
 
 ```
+
+
+### createEvent
+
+It allows to send an event to HTS
+
+**Parameters**
+
+
+<table>
+  <tr>
+   <td>sessionId
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+<p>
+The ID of the current session
+   </td>
+  <tr>
+   <td>type
+<p style="color:red">required</p>
+   </td>
+   <td>String
+<p>
+Possible values: booking_confirmed, offers_displayed
+<p>
+The event type
+   </td>
+  </tr>
+</table>
+
+
+**Example :**
+
+```
+Event event = new Event();
+event.setType("booking_confirmed");
+client.createEvent(sessionId, event);
+```
+
 ## Data structures
 
 ### Device

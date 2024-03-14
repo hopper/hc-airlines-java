@@ -53,7 +53,7 @@ public class CfarItinerarySlice {
 
   public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
   @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
-  private List<PassengerPricing> passengerPricing = new ArrayList<>();
+  private List<PassengerPricing> passengerPricing = null;
 
   public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)

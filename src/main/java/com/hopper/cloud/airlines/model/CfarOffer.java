@@ -69,10 +69,6 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_REQUEST_TYPE)
   private RequestType requestType;
 
-  public static final String SERIALIZED_NAME_TO_USD_EXCHANGE_RATE = "to_usd_exchange_rate";
-  @SerializedName(SERIALIZED_NAME_TO_USD_EXCHANGE_RATE)
-  private String toUsdExchangeRate;
-
   public static final String SERIALIZED_NAME_CONTRACT_EXPIRY_DATE_TIME = "contract_expiry_date_time";
   @SerializedName(SERIALIZED_NAME_CONTRACT_EXPIRY_DATE_TIME)
   private OffsetDateTime contractExpiryDateTime;
@@ -285,29 +281,6 @@ public class CfarOffer {
   }
 
 
-  public CfarOffer toUsdExchangeRate(String toUsdExchangeRate) {
-
-    this.toUsdExchangeRate = toUsdExchangeRate;
-    return this;
-  }
-
-   /**
-   * USD Exchange rate for currency; amount * toUsdExchangeRate &#x3D;&#x3D; USD
-   * @return toUsdExchangeRate
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0.79", required = true, value = "USD Exchange rate for currency; amount * toUsdExchangeRate == USD")
-
-  public String getToUsdExchangeRate() {
-    return toUsdExchangeRate;
-  }
-
-
-  public void setToUsdExchangeRate(String toUsdExchangeRate) {
-    this.toUsdExchangeRate = toUsdExchangeRate;
-  }
-
-
   public CfarOffer contractExpiryDateTime(OffsetDateTime contractExpiryDateTime) {
 
     this.contractExpiryDateTime = contractExpiryDateTime;
@@ -473,7 +446,6 @@ public class CfarOffer {
         Objects.equals(this.taxesTotal, cfarOffer.taxesTotal) &&
         Objects.equals(this.taxes, cfarOffer.taxes) &&
         Objects.equals(this.requestType, cfarOffer.requestType) &&
-        Objects.equals(this.toUsdExchangeRate, cfarOffer.toUsdExchangeRate) &&
         Objects.equals(this.contractExpiryDateTime, cfarOffer.contractExpiryDateTime) &&
         Objects.equals(this.createdDateTime, cfarOffer.createdDateTime) &&
         Objects.equals(this.itinerary, cfarOffer.itinerary) &&
@@ -484,7 +456,7 @@ public class CfarOffer {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, toUsdExchangeRate, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, termsConditionsUrl);
+    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, termsConditionsUrl);
   }
 
   @Override
@@ -500,7 +472,6 @@ public class CfarOffer {
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    requestType: ").append(toIndentedString(requestType)).append("\n");
-    sb.append("    toUsdExchangeRate: ").append(toIndentedString(toUsdExchangeRate)).append("\n");
     sb.append("    contractExpiryDateTime: ").append(toIndentedString(contractExpiryDateTime)).append("\n");
     sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
@@ -538,7 +509,6 @@ public class CfarOffer {
     openapiFields.add("taxes");
     openapiFields.add("currency");
     openapiFields.add("request_type");
-    openapiFields.add("to_usd_exchange_rate");
     openapiFields.add("contract_expiry_date_time");
     openapiFields.add("created_date_time");
     openapiFields.add("itinerary");
@@ -554,7 +524,6 @@ public class CfarOffer {
     openapiRequiredFields.add("coverage_percentage");
     openapiRequiredFields.add("currency");
     openapiRequiredFields.add("request_type");
-    openapiRequiredFields.add("to_usd_exchange_rate");
     openapiRequiredFields.add("contract_expiry_date_time");
     openapiRequiredFields.add("created_date_time");
     openapiRequiredFields.add("itinerary");
@@ -612,9 +581,6 @@ public class CfarOffer {
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
-      if (jsonObj.get("to_usd_exchange_rate") != null && !jsonObj.get("to_usd_exchange_rate").isJsonPrimitive() && !jsonObj.get("to_usd_exchange_rate").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `to_usd_exchange_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("to_usd_exchange_rate").toString()));
-      }
       // validate the optional field `itinerary`
       if (jsonObj.getAsJsonObject("itinerary") != null) {
         CfarItinerary.validateJsonObject(jsonObj.getAsJsonObject("itinerary"));
@@ -624,7 +590,7 @@ public class CfarOffer {
       }
 
       // validate the optional list `taxes`
-      if (!jsonObj.get("taxes").isJsonNull()) {
+      if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
         JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
         if (jsonArrayTaxes != null) {
           // ensure the json data is an array

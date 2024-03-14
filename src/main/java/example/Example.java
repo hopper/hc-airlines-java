@@ -53,7 +53,6 @@ public class Example {
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE EVENT ****************************");
             System.out.println("*********************************************************************");
-            System.out.println(isSucceeded);
 
             session = getAirlineSession(client, FlowType.EXERCISE);
             System.out.println("*********************************************************************");
@@ -71,6 +70,8 @@ public class Example {
             e.printStackTrace();
         }
     }
+
+    private static String flightDate = "2024-03-15";
 
     private static boolean processCfarPayment(HopperClient client, String contractId, String sessionId) throws ApiException {
         ProcessCfarPaymentRequest processCfarPaymentRequest = new ProcessCfarPaymentRequest();
@@ -119,8 +120,8 @@ public class Example {
         cfarItinerarySlice.setFareBrand("flex");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -129,8 +130,8 @@ public class Example {
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
         cfarItinerarySliceSegment2.setFlightNumber("JB777");
@@ -170,17 +171,14 @@ public class Example {
 
         CfarItinerary itinerary = new CfarItinerary();
         itinerary.setCurrency("CAD");
-        itinerary.setTotalPrice("183.30");
+        itinerary.setTotalPrice("190.00");
 
-        Ancillary ancillary = new Ancillary();
-        ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
-        ancillary.setTotalPrice("30.55");
-
+        //-- Slices
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         cfarItinerarySlice.setFareBrand("flex");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -189,8 +187,8 @@ public class Example {
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
         cfarItinerarySliceSegment2.setFlightNumber("JB777");
@@ -203,16 +201,23 @@ public class Example {
         segments.add(cfarItinerarySliceSegment2);
         cfarItinerarySlice.setSegments(segments);
 
+        itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
+
+        //-- Ancillaries
+        Ancillary ancillary = new Ancillary();
+        ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
+        ancillary.setTotalPrice("10.00");
+
+        itinerary.setAncillaries(Collections.singletonList(ancillary));
+
+        //-- Passenger Pricings
         PassengerPricing passengerPricing = new PassengerPricing();
-        passengerPricing.setIndividualPrice("61.10");
+        passengerPricing.setIndividualPrice("60.00");
         PassengerCount passengerCount = new PassengerCount();
         passengerCount.count(3);
         passengerCount.setType(PassengerType.ADULT);
-        passengerPricing.setPassengerCount(passengerCount);
 
-        itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
-        itinerary.setAncillaries(Collections.singletonList(ancillary));
-        itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
+        passengerPricing.setPassengerCount(passengerCount);itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
 
         contractRequest.setItinerary(itinerary);
         return client.createCfarContract(sessionId, contractRequest);
@@ -227,19 +232,17 @@ public class Example {
         params.put("property2", "test2");
         createCfarOfferRequest.setExtAttributes(params);
 
+        // First itinerary
         CfarItinerary itinerary = new CfarItinerary();
         itinerary.setCurrency("CAD");
-        itinerary.setTotalPrice("91.65");
+        itinerary.setTotalPrice("100.00");
 
-        Ancillary ancillary = new Ancillary();
-        ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
-        ancillary.setTotalPrice("30.55");
-
+        //-- Slices
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         cfarItinerarySlice.setFareBrand("basic");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("JB776");
@@ -248,30 +251,35 @@ public class Example {
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
         cfarItinerarySlice.setSegments(Collections.singletonList(cfarItinerarySliceSegment));
 
+        itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
+
+        //-- Ancillaries
+        Ancillary ancillary = new Ancillary();
+        ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
+        ancillary.setTotalPrice("10.00");
+
+        itinerary.setAncillaries(Collections.singletonList(ancillary));
+
+        //-- Passenger Pricings
         PassengerPricing passengerPricing = new PassengerPricing();
-        passengerPricing.setIndividualPrice("30.55");
+        passengerPricing.setIndividualPrice("30.00");
         PassengerCount passengerCount = new PassengerCount();
         passengerCount.count(3);
         passengerCount.setType(PassengerType.ADULT);
         passengerPricing.setPassengerCount(passengerCount);
-
-        itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
-        itinerary.setAncillaries(Collections.singletonList(ancillary));
         itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
 
+        // Second itinerary
         CfarItinerary itinerary1 = new CfarItinerary();
         itinerary1.setCurrency("CAD");
-        itinerary1.setTotalPrice("91.65");
+        itinerary1.setTotalPrice("120.00");
 
-        Ancillary ancillary1 = new Ancillary();
-        ancillary1.setType(AncillaryType.TRAVEL_INSURANCE);
-        ancillary1.setTotalPrice("30.55");
-
+        //-- Slices
         CfarItinerarySlice cfarItinerarySlice1 = new CfarItinerarySlice();
         cfarItinerarySlice1.setFareBrand("flex");
         CfarItinerarySliceSegment cfarItinerarySliceSegment1 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment1.setArrivalDateTime("2022-12-15T19:12:30");
-        cfarItinerarySliceSegment1.setDepartureDateTime("2022-12-15T18:12:30");
+        cfarItinerarySliceSegment1.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment1.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment1.setOriginAirport("LGA");
         cfarItinerarySliceSegment1.setDestinationAirport("BOS");
         cfarItinerarySliceSegment1.setFlightNumber("JB777");
@@ -280,15 +288,22 @@ public class Example {
         cfarItinerarySliceSegment1.setValidatingCarrierCode("B6");
         cfarItinerarySlice1.setSegments(Collections.singletonList(cfarItinerarySliceSegment1));
 
+        itinerary1.setSlices(Collections.singletonList(cfarItinerarySlice1));
+
+        //-- Ancillaries
+        Ancillary ancillary1 = new Ancillary();
+        ancillary1.setType(AncillaryType.TRAVEL_INSURANCE);
+        ancillary1.setTotalPrice("30.00");
+        itinerary1.setAncillaries(Collections.singletonList(ancillary1));
+
+        //-- Passenger Pricings
         PassengerPricing passengerPricing1 = new PassengerPricing();
-        passengerPricing1.setIndividualPrice("30.55");
+        passengerPricing1.setIndividualPrice("30.00");
         PassengerCount passengerCount1 = new PassengerCount();
         passengerCount1.count(3);
         passengerCount1.setType(PassengerType.ADULT);
         passengerPricing1.setPassengerCount(passengerCount1);
 
-        itinerary1.setSlices(Collections.singletonList(cfarItinerarySlice1));
-        itinerary1.setAncillaries(Collections.singletonList(ancillary1));
         itinerary1.setPassengerPricing(Collections.singletonList(passengerPricing1));
 
         List<CfarItinerary> itineraries = new ArrayList<>();
