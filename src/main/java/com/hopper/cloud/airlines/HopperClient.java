@@ -109,6 +109,19 @@ public class HopperClient {
         return cfarApi.postCfarContracts(createCfarContractRequest, sessionId);
     }
 
+    public List<CfarOffer> initPurchase(CreateAirlineSessionRequest createAirlineSessionRequest, CreateCfarOfferRequest createCfarOfferRequest) throws ApiException {
+        // Create Session
+        AirlineSession airlineSession = sessionsApi.postSessions(createAirlineSessionRequest);
+        String sessionId = airlineSession.getId();
+
+        // Create offers
+        List<CfarOffer> cfarOffers = cfarApi.postCfarOffers(createCfarOfferRequest, sessionId);
+
+        // Create a contract for each offers created
+
+        return cfarOffers;
+    }
+
     public void createEvent(String sessionId, Event event) throws ApiException {
         analyticsApi.postEvents(event, sessionId);
     }
