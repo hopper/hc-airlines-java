@@ -110,11 +110,11 @@ public class Example {
 
         CfarItinerary itinerary = new CfarItinerary();
         itinerary.setCurrency("CAD");
-        itinerary.setTotalPrice("183.30");
+        itinerary.setTotalPrice("190.00");
 
         Ancillary ancillary = new Ancillary();
         ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
-        ancillary.setTotalPrice("30.55");
+        ancillary.setTotalPrice("10.00");
 
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         cfarItinerarySlice.setFareBrand("flex");
@@ -145,7 +145,7 @@ public class Example {
         cfarItinerarySlice.setSegments(segments);
 
         PassengerPricing passengerPricing = new PassengerPricing();
-        passengerPricing.setIndividualPrice("61.10");
+        passengerPricing.setIndividualPrice("60.00");
         PassengerCount passengerCount = new PassengerCount();
         passengerCount.count(3);
         passengerCount.setType(PassengerType.ADULT);
