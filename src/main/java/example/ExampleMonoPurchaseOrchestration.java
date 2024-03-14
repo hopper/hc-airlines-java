@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 public class ExampleMonoPurchaseOrchestration extends CommonExample {
     public static void main(String[] args) {
         try {
-            List<CfarOffer> offers = initPurchaseElements(client);
+            CreateSessionOffersContractResponse initPurchaseResponse = createSessionOffersAndContracts(client);
             System.out.println("*********************************************************************");
             System.out.println("*************************** INIT PURCHASE ELEMENTS ******************");
             System.out.println("*********************************************************************");
-            System.out.println(offers);
+            System.out.println(initPurchaseResponse);
         } catch (ApiException e) {
             e.printStackTrace();
         }

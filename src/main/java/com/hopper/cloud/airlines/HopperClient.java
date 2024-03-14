@@ -14,6 +14,7 @@ import kong.unirest.ObjectMapper;
 import kong.unirest.Unirest;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class HopperClient {
@@ -109,17 +110,32 @@ public class HopperClient {
         return cfarApi.postCfarContracts(createCfarContractRequest, sessionId);
     }
 
-    public List<CfarOffer> initPurchase(CreateAirlineSessionRequest createAirlineSessionRequest, CreateCfarOfferRequest createCfarOfferRequest) throws ApiException {
+    public CreateSessionOffersContractResponse createSessionOffersAndContracts(CreateAirlineSessionRequest createAirlineSessionRequest, CreateCfarOfferRequest createCfarOfferRequest) throws ApiException {
         // Create Session
-        AirlineSession airlineSession = sessionsApi.postSessions(createAirlineSessionRequest);
+        AirlineSession airlineSession = createSession(createAirlineSessionRequest);
         String sessionId = airlineSession.getId();
 
         // Create offers
-        List<CfarOffer> cfarOffers = cfarApi.postCfarOffers(createCfarOfferRequest, sessionId);
+        List<CfarOffer> cfarOffers = createOffers(sessionId, createCfarOfferRequest);
 
         // Create a contract for each offers created
+        List<CfarContract> cfarContracts = new ArrayList<>();
+        if (cfarOffers != null && !cfarOffers.isEmpty()) {
+            for (CfarOffer offer : cfarOffers) {
+                CreateCfarContractRequest createCfarContractRequest = new CreateCfarContractRequest();
+                createCfarContractRequest.setOfferIds(Arrays.asList(offer.getId()));
+                createCfarContractRequest.setItinerary(offer.getItinerary());
 
-        return cfarOffers;
+                CfarContract cfarContract = createCfarContract(sessionId, createCfarContractRequest);
+                cfarContracts.add(cfarContract);
+            }
+        }
+
+        CreateSessionOffersContractResponse response = new CreateSessionOffersContractResponse();
+        response.setAirlineSession(airlineSession);
+        response.setOffers(cfarOffers);
+        response.setContracts(cfarContracts);
+        return response;
     }
 
     public void createEvent(String sessionId, Event event) throws ApiException {

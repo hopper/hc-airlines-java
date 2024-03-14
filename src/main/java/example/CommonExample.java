@@ -9,9 +9,9 @@ import java.time.ZoneOffset;
 import java.util.*;
 
 public class CommonExample {
-    protected static HopperClient client = new HopperClient("", "", "", "", "", "", true);
+    //protected static HopperClient client = new HopperClient("", "", "", "", "", "", true);
     // Testing locally
-    // protected static HopperClient client = new HopperClient("http://localhost:7071/airline/v1.1", "7lrxWCn9ZJOvhpeK03XzDXOsmrtWodIy", "0gPGKrQeckjgElCRwlMLSvl9Nfzc_K_5ZNnVWpKuNZ8r3U0NiKSgBLC70D1QrzGP", "", "", "", true);
+    protected static HopperClient client = new HopperClient("http://localhost:7071/airline/v1.1", "7lrxWCn9ZJOvhpeK03XzDXOsmrtWodIy", "0gPGKrQeckjgElCRwlMLSvl9Nfzc_K_5ZNnVWpKuNZ8r3U0NiKSgBLC70D1QrzGP", "", "", "", true);
     protected static String flightDate = "2024-03-15";
 
     private static CreateAirlineSessionRequest prepareCreateAirlineSessionRequest(FlowType flowType) {
@@ -153,7 +153,7 @@ public class CommonExample {
         return client.createOffers(sessionId, prepareCreateCfarOfferRequest());
     }
 
-    protected static List<CfarOffer> initPurchaseElements(HopperClient client) throws ApiException {
-        return client.initPurchase(prepareCreateAirlineSessionRequest(FlowType.PURCHASE), prepareCreateCfarOfferRequest());
+    protected static CreateSessionOffersContractResponse createSessionOffersAndContracts(HopperClient client) throws ApiException {
+        return client.createSessionOffersAndContracts(prepareCreateAirlineSessionRequest(FlowType.PURCHASE), prepareCreateCfarOfferRequest());
     }
 }
