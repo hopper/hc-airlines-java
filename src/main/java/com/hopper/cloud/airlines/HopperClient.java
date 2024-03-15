@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
 import com.hopper.cloud.airlines.api.AnalyticsApi;
-import com.hopper.cloud.airlines.auth.OAuth;
-import com.hopper.cloud.airlines.auth.RetryingOAuth;
 import com.hopper.cloud.airlines.model.*;
 import com.hopper.cloud.airlines.model.tokenization.*;
 import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
@@ -18,14 +16,22 @@ import java.util.stream.Collectors;
 
 
 public class HopperClient {
-    private final CancelForAnyReasonCfarApi cfarApi;
-    private final SessionsApi sessionsApi;
-    private final AnalyticsApi analyticsApi;
-    private final String paymentUrl;
-    private final String paymentUsername;
-    private final String paymentPassword;
+    private CancelForAnyReasonCfarApi cfarApi;
+    private SessionsApi sessionsApi;
+    private AnalyticsApi analyticsApi;
+    private String paymentUrl;
+    private String paymentUsername;
+    private String paymentPassword;
+
+    public HopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
+        this.initHopperClient(url, clientId, clientSecret, null, null, null, debugging);
+    }
 
     public HopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
+        this.initHopperClient(url, clientId, clientSecret, paymentUrl, paymentUsername, paymentPassword, debugging);
+    }
+
+    private void initHopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
         this.paymentUrl = paymentUrl;
         this.paymentUsername = paymentUsername;
         this.paymentPassword = paymentPassword;
@@ -211,7 +217,10 @@ public class HopperClient {
         }
     }
 
-    private HttpResponse<TokenizationResponse> getTokenizedPaymentHttpResponse(TokenizationRequest tokenizationRequest) {
+    private HttpResponse<TokenizationResponse> getTokenizedPaymentHttpResponse(TokenizationRequest tokenizationRequest) throws ApiException {
+        if (StringUtil.isEmpty(paymentUrl) || StringUtil.isEmpty(paymentUsername) || StringUtil.isEmpty(paymentPassword)) {
+            throw new ApiException("Missing credentials for payment");
+        }
         return Unirest.post(paymentUrl)
                 .basicAuth(paymentUsername, paymentPassword)
                 .header("Content-Type", "application/json")
