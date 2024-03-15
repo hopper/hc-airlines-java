@@ -13,10 +13,10 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.util.Objects;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.gson.TypeAdapter;
+import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
@@ -25,15 +25,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.HashSet;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -91,6 +85,14 @@ public class UpdateCfarContractRequest {
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   private String country;
+
+  public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
+  @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
+  private String taxesTotal;
+
+  public static final String SERIALIZED_NAME_TAXES = "taxes";
+  @SerializedName(SERIALIZED_NAME_TAXES)
+  private List<CfarTax> taxes = new ArrayList<>();
 
   public UpdateCfarContractRequest() { 
   }
@@ -320,6 +322,35 @@ public class UpdateCfarContractRequest {
         this.country = country;
     }
 
+    public String getTaxesTotal() {
+        return taxesTotal;
+    }
+
+    public void setTaxesTotal(String taxesTotal) {
+        this.taxesTotal = taxesTotal;
+    }
+
+    public UpdateCfarContractRequest taxes(List<CfarTax> taxes) {
+
+        this.taxes = taxes;
+        return this;
+    }
+
+    public UpdateCfarContractRequest addCfarTaxItem(CfarTax cfarTaxItem) {
+        if (this.taxes != null) {
+            this.taxes.add(cfarTaxItem);
+        }
+        return this;
+    }
+
+    public List<CfarTax> getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(List<CfarTax> taxes) {
+        this.taxes = taxes;
+    }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -340,12 +371,14 @@ public class UpdateCfarContractRequest {
         Objects.equals(this.city, updateCfarContractRequest.city) &&
         Objects.equals(this.stateOrProvince, updateCfarContractRequest.stateOrProvince) &&
         Objects.equals(this.postalCode, updateCfarContractRequest.postalCode) &&
-        Objects.equals(this.country, updateCfarContractRequest.country);
+        Objects.equals(this.country, updateCfarContractRequest.country) &&
+        Objects.equals(this.taxesTotal, updateCfarContractRequest.taxesTotal) &&
+        Objects.equals(this.taxes, updateCfarContractRequest.taxes);
   }
 
   @Override
   public int hashCode() {
-      return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country);
+      return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes);
   }
 
   @Override
@@ -365,6 +398,8 @@ public class UpdateCfarContractRequest {
     sb.append("    stateOrProvince: ").append(toIndentedString(stateOrProvince)).append("\n");
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
+    sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -399,6 +434,8 @@ public class UpdateCfarContractRequest {
     openapiFields.add("state_or_province");
     openapiFields.add("postal_code");
     openapiFields.add("country");
+    openapiFields.add("taxes_total");
+    openapiFields.add("taxes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -468,6 +505,26 @@ public class UpdateCfarContractRequest {
       }
       if (jsonObj.get("country") != null && !jsonObj.get("country").isJsonPrimitive() && !jsonObj.get("country").isJsonNull()) {
           throw new IllegalArgumentException(String.format("Expected the field `country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("country").toString()));
+      }
+      if (jsonObj.get("taxes_total") != null && !jsonObj.get("taxes_total").isJsonPrimitive() && !jsonObj.get("taxes_total").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `taxes_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taxes_total").toString()));
+      }
+
+      // validate the optional list `taxes`
+      if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
+          JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
+          if (jsonArrayTaxes != null) {
+              // ensure the json data is an array
+              if (!jsonObj.get("taxes").isJsonArray()) {
+                  throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
+              }
+
+              // validate the optional field `taxes` (array)
+              for (int i = 0; i < jsonArrayTaxes.size(); i++) {
+                  CfarTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
+              }
+              ;
+          }
       }
   }
 

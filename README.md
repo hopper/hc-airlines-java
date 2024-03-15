@@ -656,7 +656,16 @@ The updated CFAR Contract
 UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
 updateCfarContractRequest.setEmailAddress("test@test.com"); 
 updateCfarContractRequest.setStatus(CfarStatus.CONFIRMED);
-updateCfarContractRequest.setPnrReference("ABC123"); 
+updateCfarContractRequest.setPnrReference("ABC123");
+updateCfarContractRequest.setPhoneNumber("123456789");
+updateCfarContractRequest.setFirstName("John");
+updateCfarContractRequest.setLastName("Smith");
+updateCfarContractRequest.setAddressLine1("123 12th St");
+updateCfarContractRequest.setAddressLine2("Building B");
+updateCfarContractRequest.setCity("Quebec City");
+updateCfarContractRequest.setPostalCode("G1R 4S9");
+updateCfarContractRequest.setStateOrProvince("QC");
+updateCfarContractRequest.setCountry("CA");
 CfarContract contract = client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
 
 ```
