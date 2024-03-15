@@ -608,7 +608,7 @@ Country  of the cardholder
    </td>
   </tr>
   <tr>
-   <td>taxes_total
+   <td>taxesTotal
    </td>
    <td>string >= 0
 <p>
@@ -1007,7 +1007,7 @@ Example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
 The ID of the current session
    </td>
   <tr>
-   <td>occured_date_time
+   <td>occuredDateTime
    </td>
    <td>string &lt;date-time>
 <p>
