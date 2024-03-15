@@ -941,165 +941,39 @@ A unique identifier for a CFAR contract exercise
    </td>
   </tr>
   <tr>
-   <td>hopper_refund
+   <td>refundAmount
    </td>
    <td>string >= 0
 <p>
 Example:<code> 49.32</code>
 <p>
-The amount refunded by hopper to the customer to complete the CFAR contract exercise
+The amount refunded to the customer
    </td>
   </tr>
   <tr>
-   <td>hopper_refund_method
+   <td>refundMethod
    </td>
    <td>string
 <p>
 Enum: "cash" "ftc"
 <p>
-The refund method used by hopper
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund
-   </td>
-   <td>string >= 0
-<p>
-Example:60.77
-<p>
-The amount refunded by the airline to the customer to complete the CFAR contract exercise
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund_method
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by the airline
+The refund method chosen by the customer
    </td>
   </tr>
 </table>
 
 
-Return value
+**Return value**
+
 
 <table>
   <tr>
-   <td>id
-<p>
+   <td>exercise
 <p style="color:red">required</p>
    </td>
-   <td>string
+   <td>CfarContractExercise
 <p>
-Example:1ec9efac-424e-6e87-953e-eb24a0886221
-<p>
-Unique identifier for a CFAR exercise
-   </td>
-  </tr>
-  <tr>
-   <td>contract_id
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example:1ec9ef4b-b3bf-64ae-8a3d-6b084d9f6b3c
-<p>
-Unique identifier for a contract
-   </td>
-  </tr>
-  <tr>
-   <td>exercise_initiated_date_time
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example:2022-03-08T15:20:30Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was initiated
-   </td>
-  </tr>
-  <tr>
-   <td>exercise_completed_date_time
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example:2022-03-08T15:22:20Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was completed
-   </td>
-  </tr>
-  <tr>
-   <td>hopper_refund
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string >= 0
-<p>
-Example:49.32
-<p>
-The amount refunded by hopper to the customer to complete the CFAR contract exercise
-   </td>
-  </tr>
-  <tr>
-   <td>hopper_refund_method
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by hopper
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string >= 0
-<p>
-Example:60.77
-<p>
-The amount refunded by the airline to the customer to complete the CFAR contract exercise
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund_method
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by the airline
-   </td>
-  </tr>
-  <tr>
-   <td>currency
-   </td>
-   <td>string
-<p>
-Example:CAD
-<p>
-The currency of the airline's refund
-   </td>
-  </tr>
-  <tr>
-   <td>ext_attributes
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>object (map_string)
-<p>
-An array of arbitrary key-value pairs for storing airline-specific entity metadata
+The CFAR exercise
    </td>
   </tr>
 </table>
