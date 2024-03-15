@@ -165,7 +165,7 @@ public class Example extends CommonExample {
         params.put("property1", "test1");
         params.put("property2", "test2");
         createCfarContractExerciseRequest.setExtAttributes(params);
-        createCfarContractExerciseRequest.setAirlineRefundAllowance("146.64");
+        createCfarContractExerciseRequest.setAirlineRefundPenalty("146.64");
         createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
 
         CfarItinerary itinerary = new CfarItinerary();
@@ -222,7 +222,7 @@ public class Example extends CommonExample {
     private static CfarContract updateCfarContract(HopperClient client, String contractId, String sessionId) throws ApiException {
         UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
         updateCfarContractRequest.setEmailAddress("test@test.com");
-        updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
+        updateCfarContractRequest.setStatus(CfarStatus.CONFIRMED);
         updateCfarContractRequest.setPnrReference("ABC123");
         return client.updateCfarContractStatus(sessionId, contractId, updateCfarContractRequest);
     }

@@ -78,19 +78,6 @@ public class HopperClient {
     }
 
     /**
-     * It has to be called after the payment details have been transferred, to confirm the contract.
-     *
-     * @param sessionId                 The current session IO
-     * @param contractId                the contract ID
-     * @param updateCfarContractRequest The request with the update information
-     * @return The contract updated
-     * @throws ApiException
-     */
-    public CfarContract updateCfarContractStatus(String sessionId, String contractId, UpdateCfarContractRequest updateCfarContractRequest) throws ApiException {
-        return cfarApi.putCfarContractsIdUpdateStatus(contractId, updateCfarContractRequest, sessionId);
-    }
-
-    /**
      * It has to be called each time an end-customer begins shopping on the AC website.
      * The returned sessionId will then be required in all subsequent calls to the API from the backend
      *
@@ -138,6 +125,25 @@ public class HopperClient {
         return response;
     }
 
+    /**
+     * It has to be called after the payment details have been transferred, to confirm the contract.
+     *
+     * @param sessionId                 The current session IO
+     * @param contractId                the contract ID
+     * @param updateCfarContractRequest The request with the update information
+     * @return The contract updated
+     * @throws ApiException
+     */
+    public CfarContract updateCfarContractStatus(String sessionId, String contractId, UpdateCfarContractRequest updateCfarContractRequest) throws ApiException {
+        return cfarApi.putCfarContractsIdUpdateStatus(contractId, updateCfarContractRequest, sessionId);
+    }
+
+    /**
+     * Create an event
+     * @param sessionId     The current session IO
+     * @param event         The event with its type
+     * @throws ApiException
+     */
     public void createEvent(String sessionId, Event event) throws ApiException {
         analyticsApi.postEvents(event, sessionId);
     }

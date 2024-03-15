@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.hopper.cloud.airlines.model.CfarContractExercise;
-import com.hopper.cloud.airlines.model.CfarContractStatus;
+import com.hopper.cloud.airlines.model.CfarStatus;
 import com.hopper.cloud.airlines.model.CfarItinerary;
 import com.hopper.cloud.airlines.model.CfarOffer;
 import io.swagger.annotations.ApiModel;
@@ -101,7 +101,7 @@ public class CfarContract {
 
     public static final String SERIALIZED_NAME_STATUS = "status";
     @SerializedName(SERIALIZED_NAME_STATUS)
-    private CfarContractStatus status;
+    private CfarStatus status;
 
     public static final String SERIALIZED_NAME_CONFIRMED_DATE_TIME = "confirmed_date_time";
     @SerializedName(SERIALIZED_NAME_CONFIRMED_DATE_TIME)
@@ -416,7 +416,7 @@ public class CfarContract {
     }
 
 
-    public CfarContract status(CfarContractStatus status) {
+    public CfarContract status(CfarStatus status) {
 
         this.status = status;
         return this;
@@ -430,12 +430,12 @@ public class CfarContract {
     @javax.annotation.Nonnull
     @ApiModelProperty(required = true, value = "")
 
-    public CfarContractStatus getStatus() {
+    public CfarStatus getStatus() {
         return status;
     }
 
 
-    public void setStatus(CfarContractStatus status) {
+    public void setStatus(CfarStatus status) {
         this.status = status;
     }
 

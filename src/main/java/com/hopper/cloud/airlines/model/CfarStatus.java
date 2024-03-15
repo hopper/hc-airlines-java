@@ -13,31 +13,34 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import java.io.IOException;
+
 /**
- * Gets or Sets cfar_contract_status
+ * Gets or Sets cfar_status
  */
-@JsonAdapter(CfarContractStatus.Adapter.class)
-public enum CfarContractStatus {
-  
+@JsonAdapter(CfarStatus.Adapter.class)
+public enum CfarStatus {
+
   CREATED("created"),
-  
+
   CONFIRMED("confirmed"),
-  
+
   CANCELED("canceled"),
-  
-  EXERCISED("exercised"),
-  
-  EXPIRED("expired");
+
+  FAILED("failed"),
+
+  VOIDED("voided"),
+
+  CHARGED_BACK("charged_back");
 
   private String value;
 
-  CfarContractStatus(String value) {
+  CfarStatus(String value) {
     this.value = value;
   }
 
@@ -50,8 +53,8 @@ public enum CfarContractStatus {
     return String.valueOf(value);
   }
 
-  public static CfarContractStatus fromValue(String value) {
-    for (CfarContractStatus b : CfarContractStatus.values()) {
+  public static CfarStatus fromValue(String value) {
+    for (CfarStatus b : CfarStatus.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -59,16 +62,16 @@ public enum CfarContractStatus {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<CfarContractStatus> {
+  public static class Adapter extends TypeAdapter<CfarStatus> {
     @Override
-    public void write(final JsonWriter jsonWriter, final CfarContractStatus enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final CfarStatus enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public CfarContractStatus read(final JsonReader jsonReader) throws IOException {
+    public CfarStatus read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return CfarContractStatus.fromValue(value);
+      return CfarStatus.fromValue(value);
     }
   }
 }

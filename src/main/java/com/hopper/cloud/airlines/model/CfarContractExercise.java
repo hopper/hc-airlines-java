@@ -13,13 +13,13 @@
 
 package com.hopper.cloud.airlines.model;
 
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.AirlineRefundMethod;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -52,29 +52,21 @@ public class CfarContractExercise {
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
   private String contractId;
 
-  public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchange_rate";
-  @SerializedName(SERIALIZED_NAME_EXCHANGE_RATE)
-  private String exchangeRate;
+  public static final String SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME = "exercise_initiated_date_time";
+  @SerializedName(SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME)
+  private OffsetDateTime exerciseInitiatedDateTime;
 
-  public static final String SERIALIZED_NAME_HOPPER_REFUND = "hopper_refund";
-  @SerializedName(SERIALIZED_NAME_HOPPER_REFUND)
-  private String hopperRefund;
-
-  public static final String SERIALIZED_NAME_HOPPER_REFUND_METHOD = "hopper_refund_method";
-  @SerializedName(SERIALIZED_NAME_HOPPER_REFUND_METHOD)
-  private AirlineRefundMethod hopperRefundMethod;
+  public static final String SERIALIZED_NAME_CASH_REFUND_ALLOWANCE = "cash_refund_allowance";
+  @SerializedName(SERIALIZED_NAME_CASH_REFUND_ALLOWANCE)
+  private String cashRefundAllowance;
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   private Map<String, String> extAttributes = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_AIRLINE_REFUND_ALLOWANCE = "airline_refund_allowance";
-  @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_ALLOWANCE)
-  private String airlineRefundAllowance;
-
-  public static final String SERIALIZED_NAME_AIRLINE_REFUND_METHOD = "airline_refund_method";
-  @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_METHOD)
-  private AirlineRefundMethod airlineRefundMethod;
+  public static final String SERIALIZED_NAME_FTC_REFUND_ALLOWANCE = "ftc_refund_allowance";
+  @SerializedName(SERIALIZED_NAME_FTC_REFUND_ALLOWANCE)
+  private String ftcRefundAllowance;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -83,6 +75,10 @@ public class CfarContractExercise {
   public static final String SERIALIZED_REDIRECTION_TOKEN = "redirection_token";
   @SerializedName(SERIALIZED_REDIRECTION_TOKEN)
   private String redirectionToken;
+
+  public static final String SERIALIZED_NAME_REDIRECTION_URL = "redirection_url";
+  @SerializedName(SERIALIZED_NAME_REDIRECTION_URL)
+  private String redirectionUrl;
 
   public CfarContractExercise() {
   }
@@ -133,72 +129,48 @@ public class CfarContractExercise {
   }
 
 
-  public CfarContractExercise exchangeRate(String exchangeRate) {
+  public CfarContractExercise exerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
 
-    this.exchangeRate = exchangeRate;
+    this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
+    return this;
+  }
+
+  /**
+   * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated
+   * @return exerciseInitiatedDateTime
+   **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "2020-11-02T18:34:30Z", required = true, value = "A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated")
+
+  public OffsetDateTime getExerciseInitiatedDateTime() {
+    return exerciseInitiatedDateTime;
+  }
+
+
+  public void setExerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
+    this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
+  }
+
+  public CfarContractExercise cashRefundAllowance(String cashRefundAllowance) {
+
+    this.cashRefundAllowance = cashRefundAllowance;
     return this;
   }
 
    /**
-   * USD Exchange rate for currency where 1 of &lt;currency&gt; &#x3D;&#x3D; X USD; e.g. 1CAD &#x3D;&#x3D; 0.79USD at the date time CFAR exercise was completed
-   * @return exchangeRate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "0.79", value = "USD Exchange rate for currency where 1 of <currency> == X USD; e.g. 1CAD == 0.79USD at the date time CFAR exercise was completed")
-
-  public String getExchangeRate() {
-    return exchangeRate;
-  }
-
-
-  public void setExchangeRate(String exchangeRate) {
-    this.exchangeRate = exchangeRate;
-  }
-
-
-  public CfarContractExercise hopperRefund(String hopperRefund) {
-
-    this.hopperRefund = hopperRefund;
-    return this;
-  }
-
-   /**
-   * The partner&#39;s share of the amount refunded to the customer to complete the CFAR contract exercise
-   * @return hopperRefund
+   * Refundable amount allowed in cash
+   * @return cashRefundAllowance
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "123.45", required = true, value = "The partner's share of the amount refunded to the customer to complete the CFAR contract exercise")
+  @ApiModelProperty(required = true, value = "Refundable amount allowed in cash")
 
-  public String getHopperRefund() {
-    return hopperRefund;
+  public String getCashRefundAllowance() {
+    return cashRefundAllowance;
   }
 
 
-  public void setHopperRefund(String hopperRefund) {
-    this.hopperRefund = hopperRefund;
-  }
-
-
-  public CfarContractExercise hopperRefundMethod(AirlineRefundMethod hopperRefundMethod) {
-
-    this.hopperRefundMethod = hopperRefundMethod;
-    return this;
-  }
-
-   /**
-   * Get hopperRefundMethod
-   * @return hopperRefundMethod
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public AirlineRefundMethod getHopperRefundMethod() {
-    return hopperRefundMethod;
-  }
-
-
-  public void setHopperRefundMethod(AirlineRefundMethod hopperRefundMethod) {
-    this.hopperRefundMethod = hopperRefundMethod;
+  public void setCashRefundAllowance(String cashRefundAllowance) {
+    this.cashRefundAllowance = cashRefundAllowance;
   }
 
 
@@ -230,51 +202,27 @@ public class CfarContractExercise {
   }
 
 
-  public CfarContractExercise airlineRefundAllowance(String airlineRefundAllowance) {
+  public CfarContractExercise ftcRefundAllowance(String ftcRefundAllowance) {
 
-    this.airlineRefundAllowance = airlineRefundAllowance;
+    this.ftcRefundAllowance = ftcRefundAllowance;
     return this;
   }
 
    /**
-   * Get airlineRefundAllowance
-   * @return airlineRefundAllowance
+   * Get the refundable amount allowed in future travel credit
+   * @return ftcRefundAllowance
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Refundable amount allowed in future travel credit")
 
-  public String getAirlineRefundAllowance() {
-    return airlineRefundAllowance;
+  public String getFtcRefundAllowance() {
+    return ftcRefundAllowance;
   }
 
 
-  public void setAirlineRefundAllowance(String airlineRefundAllowance) {
-    this.airlineRefundAllowance = airlineRefundAllowance;
+  public void setFtcRefundAllowance(String ftcRefundAllowance) {
+    this.ftcRefundAllowance = ftcRefundAllowance;
   }
-
-
-  public CfarContractExercise airlineRefundMethod(AirlineRefundMethod airlineRefundMethod) {
-
-    this.airlineRefundMethod = airlineRefundMethod;
-    return this;
-  }
-
-   /**
-   * Get airlineRefundMethod
-   * @return airlineRefundMethod
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AirlineRefundMethod getAirlineRefundMethod() {
-    return airlineRefundMethod;
-  }
-
-
-  public void setAirlineRefundMethod(AirlineRefundMethod airlineRefundMethod) {
-    this.airlineRefundMethod = airlineRefundMethod;
-  }
-
 
   public CfarContractExercise currency(String currency) {
 
@@ -313,6 +261,27 @@ public class CfarContractExercise {
     this.redirectionToken = redirectionToken;
   }
 
+  public CfarContractExercise redirectionUrl(String redirectionUrl) {
+
+    this.redirectionUrl = redirectionUrl;
+    return this;
+  }
+
+  /**
+   * URL on which the customer should be redirected to exercise (if applicable)
+   * @return redirectionUrl
+   **/
+  @ApiModelProperty(value = "URL on which the customer should be redirected to exercise (if applicable)")
+  public String getRedirectionUrl() {
+    return redirectionUrl;
+  }
+
+
+  public void setRedirectionUrl(String redirectionUrl) {
+    this.redirectionUrl = redirectionUrl;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -324,19 +293,18 @@ public class CfarContractExercise {
     CfarContractExercise cfarContractExercise = (CfarContractExercise) o;
     return Objects.equals(this.id, cfarContractExercise.id) &&
         Objects.equals(this.contractId, cfarContractExercise.contractId) &&
-        Objects.equals(this.exchangeRate, cfarContractExercise.exchangeRate) &&
-        Objects.equals(this.hopperRefund, cfarContractExercise.hopperRefund) &&
-        Objects.equals(this.hopperRefundMethod, cfarContractExercise.hopperRefundMethod) &&
+        Objects.equals(this.exerciseInitiatedDateTime, cfarContractExercise.exerciseInitiatedDateTime) &&
+        Objects.equals(this.cashRefundAllowance, cfarContractExercise.cashRefundAllowance) &&
         Objects.equals(this.extAttributes, cfarContractExercise.extAttributes) &&
-        Objects.equals(this.airlineRefundAllowance, cfarContractExercise.airlineRefundAllowance) &&
-        Objects.equals(this.airlineRefundMethod, cfarContractExercise.airlineRefundMethod) &&
-        Objects.equals(this.redirectionToken, cfarContractExercise.redirectionToken) &&
+        Objects.equals(this.ftcRefundAllowance, cfarContractExercise.ftcRefundAllowance) &&
+        Objects.equals(this.redirectionToken, cfarContractExercise.redirectionToken)
+        && Objects.equals(this.redirectionUrl, cfarContractExercise.redirectionUrl) &&
         Objects.equals(this.currency, cfarContractExercise.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contractId, exchangeRate, hopperRefund, hopperRefundMethod, extAttributes, airlineRefundAllowance, airlineRefundMethod, redirectionToken,currency);
+    return Objects.hash(id, contractId, exerciseInitiatedDateTime, cashRefundAllowance, extAttributes, ftcRefundAllowance, redirectionToken, redirectionUrl, currency);
   }
 
   @Override
@@ -345,13 +313,12 @@ public class CfarContractExercise {
     sb.append("class CfarContractExercise {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    contractId: ").append(toIndentedString(contractId)).append("\n");
-    sb.append("    exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
-    sb.append("    hopperRefund: ").append(toIndentedString(hopperRefund)).append("\n");
-    sb.append("    hopperRefundMethod: ").append(toIndentedString(hopperRefundMethod)).append("\n");
+    sb.append("    exerciseInitiatedDateTime: ").append(toIndentedString(exerciseInitiatedDateTime)).append("\n");
+    sb.append("    cashRefundAllowance: ").append(toIndentedString(cashRefundAllowance)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
-    sb.append("    airlineRefundAllowance: ").append(toIndentedString(airlineRefundAllowance)).append("\n");
-    sb.append("    airlineRefundMethod: ").append(toIndentedString(airlineRefundMethod)).append("\n");
+    sb.append("    ftcRefundAllowance: ").append(toIndentedString(ftcRefundAllowance)).append("\n");
     sb.append("    redirectionToken: ").append(toIndentedString(redirectionToken)).append("\n");
+    sb.append("    redirectionUrl: ").append(toIndentedString(redirectionUrl)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -378,23 +345,19 @@ public class CfarContractExercise {
     openapiFields.add("id");
     openapiFields.add("contract_id");
     openapiFields.add("exercise_initiated_date_time");
-    openapiFields.add("exercise_completed_date_time");
-    openapiFields.add("exchange_rate");
-    openapiFields.add("hopper_refund");
-    openapiFields.add("hopper_refund_method");
+    openapiFields.add("cash_refund_allowance");
     openapiFields.add("ext_attributes");
-    openapiFields.add("airline_refund_allowance");
-    openapiFields.add("airline_refund_method");
-    openapiFields.add("redirection_token");
+    openapiFields.add("ftc_refund_allowance");
     openapiFields.add("currency");
+    openapiFields.add("redirection_token");
+    openapiFields.add("redirection_url");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("contract_id");
     openapiRequiredFields.add("exercise_initiated_date_time");
-    openapiRequiredFields.add("hopper_refund");
-    openapiRequiredFields.add("hopper_refund_method");
+    openapiRequiredFields.add("cash_refund_allowance");
     openapiRequiredFields.add("redirection_token");
     openapiRequiredFields.add("ext_attributes");
   }
@@ -437,14 +400,11 @@ public class CfarContractExercise {
       if (jsonObj.get("redirection_token") != null && !jsonObj.get("redirection_token").isJsonPrimitive() && !jsonObj.get("redirection_token").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `redirection_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirection_token").toString()));
       }
-      if (jsonObj.get("exchange_rate") != null && !jsonObj.get("exchange_rate").isJsonNull() && !jsonObj.get("exchange_rate").isJsonPrimitive() && !jsonObj.get("exchange_rate").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `exchange_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exchange_rate").toString()));
+      if (jsonObj.get("redirection_url") != null && !jsonObj.get("redirection_url").isJsonPrimitive() && !jsonObj.get("redirection_url").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `redirection_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirection_url").toString()));
       }
-      if (jsonObj.get("hopper_refund") != null && !jsonObj.get("hopper_refund").isJsonPrimitive() && !jsonObj.get("hopper_refund").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `hopper_refund` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hopper_refund").toString()));
-      }
-      if (jsonObj.get("airline_refund_allowance") != null && !jsonObj.get("airline_refund_allowance").isJsonPrimitive() && !jsonObj.get("airline_refund_allowance").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `airline_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("airline_refund_allowance").toString()));
+      if (jsonObj.get("ftc_refund_allowance") != null && !jsonObj.get("ftc_refund_allowance").isJsonPrimitive() && !jsonObj.get("ftc_refund_allowance").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ftc_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ftc_refund_allowance").toString()));
       }
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));

@@ -489,7 +489,7 @@ A unique identifier for a contract
    </td>
    <td>Enum
 <p>
-Possible values: CONFIRMED, CANCELED
+Possible values : "created" "confirmed" "failed" "charged_back" "voided" "canceled"
 <p>
 The new status of the contract
    </td>
@@ -514,6 +514,118 @@ Reference of the PNR in the airline system
 Example: john@doe.com
 <p>
 Contact email of the end customer
+   </td>
+  </tr>
+  <tr>
+   <td>pnrReference
+<p style="color:red">required</p>
+   </td>
+   <td>String
+<p>
+Example: ABC123
+<p>
+Reference of the PNR in the airline system
+   </td>
+  <tr>
+   <td>phoneNumber
+   </td>
+   <td>String
+<p>
+Example: 12345678900
+<p>
+Phone number of the customer
+   </td>
+  </tr>
+  <tr>
+   <td>firstName
+   </td>
+   <td>String
+<p>
+Example: John
+<p>
+First name of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>lastName
+   </td>
+   <td>String
+<p>
+Example: Smith
+<p>
+Last name of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>addressLine1
+   </td>
+   <td>String
+<p>
+Example: 123 12th St
+<p>
+Address of the cardholder (first line)
+   </td>
+  <tr>
+   <td>addressLine2
+   </td>
+   <td>String
+<p>
+Example: Building B
+<p>
+Address of the cardholder (second line)
+   </td>
+  </tr>
+  <tr>
+   <td>city
+   </td>
+   <td>String
+<p>
+City of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>stateOrProvince
+   </td>
+   <td>String
+<p>
+State or province of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>postalCode
+   </td>
+   <td>String
+<p>
+Postal code  of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>country
+   </td>
+   <td>String
+<p>
+Country  of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>taxes_total
+   </td>
+   <td>string >= 0
+<p>
+Example: 35.50
+<p>
+Part of the premium which are taxes
+   </td>
+  </tr>
+   <tr>
+   <td>taxes
+   </td>
+   <td>
+
+array ( [CfarTax](#cfartax) )
+
+<p>
+List of applicable taxes
    </td>
   </tr>
 </table>
@@ -543,7 +655,7 @@ The updated CFAR Contract
 
 UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
 updateCfarContractRequest.setEmailAddress("test@test.com"); 
-updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
+updateCfarContractRequest.setStatus(CfarStatus.CONFIRMED);
 updateCfarContractRequest.setPnrReference("ABC123"); 
 CfarContract contract = client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
 
@@ -564,18 +676,6 @@ Example: 1ec9ef29-be31-6ed3-beec-9f5ae0d164ee
 <p>
 A unique identifier for a CFAR contract
    </td>
-  </tr>
-  <tr>
-   <td>exerciseInitiateDateTime
-<p style="color:red">required</p>
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example: 2022-03-08T15:20:30Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was initiated
-   </td>
-  </tr>
   <tr>
    <td>itinerary
 <p style="color:red">required</p>
@@ -599,13 +699,13 @@ Reference of the PNR in the airline system
    </td>
   </tr>
   <tr>
-   <td>airlineRefundAllowance
+   <td>airlineRefundPenalty
    </td>
    <td>string >= 0
 <p>
-Example:123.20
+Example:99.00
 <p>
-Refundable amount allowed by the airline
+The penalty fee applied by the airline when issuing a refund for the booking
    </td>
   </tr>
   <tr>
@@ -627,17 +727,6 @@ Example:CAD
 <p>
 The currency of the airline's refund allowance
    </td>
-  </tr>
-  <tr>
-   <td>redirection_token
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example: 226c6f97-c94d-46b4-a2cc-8f5f9c20f4a6
-<p>
-   </td>
-  </tr>
   <tr>
    <td>extAttributes
    </td>
@@ -689,72 +778,26 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
   </tr>
   <tr>
-   <td>exerciseCompletedDateTime
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example:2022-03-08T15:22:20Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was completed
-   </td>
-  </tr>
-  <tr>
-   <td>exchangeRate
+   <td>cashRefundAllowance
 <p>
 
 <p style="color:red">required</p>
    </td>
    <td>string
-<p>
-Example:0.7771197300596905664658848324102446
-<p>
-Exchange rate
-   </td>
-  </tr>
-  <tr>
-   <td>hopperRefund
-<p>
-
-<p style="color:red">required</p>
-   </td>
-   <td>string >= 0
 <p>
 Example:49.32
 <p>
-The amount refunded by hopper to the customer to complete the CFAR contract exercise
+Refundable amount allowed in cash
    </td>
   </tr>
   <tr>
-   <td>hopperRefundMethod
-<p>
-
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by hopper
-   </td>
-  </tr>
-  <tr>
-   <td>airlineRefundAllowance
+   <td>ftcRefundAllowance
    </td>
    <td>string >= 0
 <p>
 Example:123.20
 <p>
-Refundable amount allowed by the airline
-   </td>
-  </tr>
-  <tr>
-   <td>airlineRefundMethod
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by the airline
+Refundable amount allowed in future travel credit
    </td>
   </tr>
   <tr>
@@ -765,6 +808,24 @@ The refund method used by the airline
 Example:CAD
 <p>
 The currency of the airline's refund allowance
+   </td>
+  </tr>
+  <tr>
+   <td>redirectionToken
+   </td>
+   <td>string
+<p>
+Token used to authenticate the redirection after filling refund information in claims portal
+   </td>
+  </tr>
+  <tr>
+   <td>redirectionUrl
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+URL on which the customer should be redirected to exercise (if applicable)
    </td>
   </tr>
   <tr>
@@ -792,7 +853,7 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
   params.put("property1", "test1");
   params.put("property2", "test2");
   createCfarContractExerciseRequest.setExtAttributes(params);
-  createCfarContractExerciseRequest.setAirlineRefundAllowance("146.64");
+  createCfarContractExerciseRequest.setAirlineRefundPenalty("146.64");
   createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
 
   CfarItinerary itinerary = new CfarItinerary();
@@ -1063,6 +1124,16 @@ Example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
 The ID of the current session
    </td>
   <tr>
+   <td>occured_date_time
+   </td>
+   <td>string &lt;date-time>
+<p>
+Example: 2024-01-08T14:36:56.324Z
+<p>
+A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the contract was created
+   </td>
+  </tr>
+  <tr>
    <td>type
 <p style="color:red">required</p>
    </td>
@@ -1221,7 +1292,7 @@ The airline's unique identifier for a user.
    </td>
    <td>String &lt;date-time>
 <p>
-Example: 2022-01-01T18:34:30Z
+Example: 2024-01-01T18:34:30Z
 <p>
 A UTC RFC3339 datetime; the date and time at which a user's account was created
    </td>
@@ -1365,7 +1436,7 @@ Currency of contract
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-01-08T14:36:56.324Z
+Example: 2024-01-08T14:36:56.324Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the contract was created
    </td>
@@ -1375,7 +1446,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-01-09T15:37:57.325Z
+Example: 2024-01-09T15:37:57.325Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the contract was confirmed
    </td>
@@ -1385,7 +1456,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-01-10T16:38:58.326Z
+Example: 2024-01-10T16:38:58.326Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the contract was canceled
    </td>
@@ -1396,7 +1467,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-06-01T15:00:00Z
+Example: 2024-06-01T15:00:00Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the CFAR contract will expire once purchased
    </td>
@@ -1551,7 +1622,7 @@ USD Exchange rate for currency; amount * toUsdExchangeRate == USD
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-04-01T22:34:30Z
+Example: 2024-04-01T22:34:30Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the CFAR contract will expire once purchased
    </td>
@@ -1562,7 +1633,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-01-08T14:36:56.324Z
+Example: 2024-01-08T14:36:56.324Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a CFAR offer was created
    </td>
@@ -2106,7 +2177,7 @@ IATA airport code of destination
    </td>
    <td>string
 <p>
-Example: 2022-04-02T18:34:30
+Example: 2024-04-02T18:34:30
 <p>
 The local date and time of departure in ISO Local Date Time format
    </td>
@@ -2117,7 +2188,7 @@ The local date and time of departure in ISO Local Date Time format
    </td>
    <td>string
 <p>
-Example: 2022-04-02T19:12:30
+Example: 2024-04-02T19:12:30
 <p>
 The local date and time of arrival in ISO Local Date Time format
    </td>
