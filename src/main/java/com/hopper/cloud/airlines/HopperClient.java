@@ -12,7 +12,6 @@ import kong.unirest.ObjectMapper;
 import kong.unirest.Unirest;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class HopperClient {
@@ -103,7 +102,7 @@ public class HopperClient {
         return cfarApi.postCfarContracts(createCfarContractRequest, sessionId);
     }
 
-    public CreateSessionOffersContractResponse createSessionOffersAndContracts(CreateAirlineSessionRequest createAirlineSessionRequest, CreateCfarOfferRequest createCfarOfferRequest) throws ApiException {
+    public CreateSessionOffersContractsResponse createSessionOffersAndContracts(CreateAirlineSessionRequest createAirlineSessionRequest, CreateCfarOfferRequest createCfarOfferRequest) throws ApiException {
         // Create Session
         AirlineSession airlineSession = createSession(createAirlineSessionRequest);
         String sessionId = airlineSession.getId();
@@ -124,7 +123,7 @@ public class HopperClient {
             }
         }
 
-        CreateSessionOffersContractResponse response = new CreateSessionOffersContractResponse();
+        CreateSessionOffersContractsResponse response = new CreateSessionOffersContractsResponse();
         response.setAirlineSession(airlineSession);
         response.setOffers(cfarOffers);
         response.setContracts(cfarContracts);

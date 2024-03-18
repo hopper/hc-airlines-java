@@ -10,7 +10,7 @@ import java.util.*;
 
 public class CommonExample {
     protected static HopperClient client = new HopperClient("", "", "", "", "", "", true);
-    protected static String flightDate = "2024-03-15";
+    protected static String flightDate = "2024-03-19";
 
     private static CreateAirlineSessionRequest prepareCreateAirlineSessionRequest(FlowType flowType) {
         CreateAirlineSessionRequest sessionRequest = new CreateAirlineSessionRequest();
@@ -151,7 +151,7 @@ public class CommonExample {
         return client.createOffers(sessionId, prepareCreateCfarOfferRequest());
     }
 
-    protected static CreateSessionOffersContractResponse createSessionOffersAndContracts(HopperClient client) throws ApiException {
+    protected static CreateSessionOffersContractsResponse createSessionOffersAndContracts(HopperClient client) throws ApiException {
         return client.createSessionOffersAndContracts(prepareCreateAirlineSessionRequest(FlowType.PURCHASE), prepareCreateCfarOfferRequest());
     }
 }

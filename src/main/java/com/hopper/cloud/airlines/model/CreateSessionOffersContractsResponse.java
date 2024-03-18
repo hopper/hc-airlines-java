@@ -3,7 +3,7 @@ package com.hopper.cloud.airlines.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateSessionOffersContractResponse {
+public class CreateSessionOffersContractsResponse {
 
     private AirlineSession airlineSession;
 
