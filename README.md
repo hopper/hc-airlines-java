@@ -15,6 +15,7 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [updateCfarContractStatus](#updatecfarcontractstatus)
     + [createCfarContractExercise](#createCfarContractExercise)
     + [completeCfarContractExercise](#completeCfarContractExercise)
+    + [createEvent](#createEvent)
 * [Data structures](#data-structures)
     + [Device](#device)
     + [Platform](#platform)
@@ -22,11 +23,19 @@ renew authentication tokens required to consume the Hopper Cloud Airlines API.
     + [Browser](#browser)
     + [CfarContract](#cfarcontract)
     + [CfarOffer](#cfaroffer)
+    + [CfarItinerary](#cfaritinerary)
+    + [CfarPassenger](#cfarpassenger)
+    + [CfarPassengerTax](#cfarpassengertax)
+    + [CfarTax](#cfartax)
+    + [CfarPrice](#cfarprice)
     + [PassengerPricing](#passengerpricing)
     + [PassengerCount](#passengercount)
-    + [Slice](#slice)
-    + [Segment](#segment)
+    + [CfarItinerarySlice](#cfaritineraryslice)
+    + [CfarItinerarySliceSegment](#cfaritineraryslicesegment)
+    + [CfarContents](#cfarcontents)
     + [Ancillary](#ancillary)
+    + [Fare](#fare)
+    + [FareRule](#farerule)
 
 ## Client initialization
 
@@ -464,14 +473,14 @@ A unique identifier for a session
    </td>
   </tr>
   <tr>
-   <td>contractId
+   <td>contractReference
 <p style="color:red">required</p>
    </td>
    <td>String
 <p>
-Example: af585dfd-dddf-4726-9ef7-f1bb8909a79a
+Example: RNNPN5QAFKZ1TBHC
 <p>
-A unique identifier for a contract
+The reference of the contract
    </td>
   </tr>
   <tr>
@@ -480,7 +489,7 @@ A unique identifier for a contract
    </td>
    <td>Enum
 <p>
-Possible values: CONFIRMED, CANCELED
+Possible values : "created" "confirmed" "failed" "charged_back" "voided" "canceled"
 <p>
 The new status of the contract
    </td>
@@ -505,6 +514,118 @@ Reference of the PNR in the airline system
 Example: john@doe.com
 <p>
 Contact email of the end customer
+   </td>
+  </tr>
+  <tr>
+   <td>pnrReference
+<p style="color:red">required</p>
+   </td>
+   <td>String
+<p>
+Example: ABC123
+<p>
+Reference of the PNR in the airline system
+   </td>
+  <tr>
+   <td>phoneNumber
+   </td>
+   <td>String
+<p>
+Example: 12345678900
+<p>
+Phone number of the customer
+   </td>
+  </tr>
+  <tr>
+   <td>firstName
+   </td>
+   <td>String
+<p>
+Example: John
+<p>
+First name of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>lastName
+   </td>
+   <td>String
+<p>
+Example: Smith
+<p>
+Last name of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>addressLine1
+   </td>
+   <td>String
+<p>
+Example: 123 12th St
+<p>
+Address of the cardholder (first line)
+   </td>
+  <tr>
+   <td>addressLine2
+   </td>
+   <td>String
+<p>
+Example: Building B
+<p>
+Address of the cardholder (second line)
+   </td>
+  </tr>
+  <tr>
+   <td>city
+   </td>
+   <td>String
+<p>
+City of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>stateOrProvince
+   </td>
+   <td>String
+<p>
+State or province of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>postalCode
+   </td>
+   <td>String
+<p>
+Postal code  of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>country
+   </td>
+   <td>String
+<p>
+Country  of the cardholder
+   </td>
+  </tr>
+  <tr>
+   <td>taxesTotal
+   </td>
+   <td>string >= 0
+<p>
+Example: 35.50
+<p>
+Part of the premium which are taxes
+   </td>
+  </tr>
+   <tr>
+   <td>taxes
+   </td>
+   <td>
+
+array ( [CfarTax](#cfartax) )
+
+<p>
+List of applicable taxes
    </td>
   </tr>
 </table>
@@ -534,9 +655,18 @@ The updated CFAR Contract
 
 UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
 updateCfarContractRequest.setEmailAddress("test@test.com"); 
-updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
-updateCfarContractRequest.setPnrReference("ABC123"); 
-CfarContract contract = client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
+updateCfarContractRequest.setStatus(CfarStatus.CONFIRMED);
+updateCfarContractRequest.setPnrReference("ABC123");
+updateCfarContractRequest.setPhoneNumber("123456789");
+updateCfarContractRequest.setFirstName("John");
+updateCfarContractRequest.setLastName("Smith");
+updateCfarContractRequest.setAddressLine1("123 12th St");
+updateCfarContractRequest.setAddressLine2("Building B");
+updateCfarContractRequest.setCity("Quebec City");
+updateCfarContractRequest.setPostalCode("G1R 4S9");
+updateCfarContractRequest.setStateOrProvince("QC");
+updateCfarContractRequest.setCountry("CA");
+CfarContract contract = client.updateCfarContractStatus(sessionId,contractReference, updateCfarContractRequest);
 
 ```
 #### CreateCfarContractExercise
@@ -555,25 +685,13 @@ Example: 1ec9ef29-be31-6ed3-beec-9f5ae0d164ee
 <p>
 A unique identifier for a CFAR contract
    </td>
-  </tr>
-  <tr>
-   <td>exerciseInitiateDateTime
-<p style="color:red">required</p>
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example: 2022-03-08T15:20:30Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was initiated
-   </td>
-  </tr>
   <tr>
    <td>itinerary
 <p style="color:red">required</p>
    </td>
    <td>
 
-  [Itinerary](#itinerary)
+  [CfarItinerary](#cfaritinerary)
 <p>
 Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
    </td>
@@ -590,13 +708,13 @@ Reference of the PNR in the airline system
    </td>
   </tr>
   <tr>
-   <td>airlineRefundAllowance
+   <td>airlineRefundPenalty
    </td>
    <td>string >= 0
 <p>
-Example:123.20
+Example:99.00
 <p>
-Refundable amount allowed by the airline
+The penalty fee applied by the airline when issuing a refund for the booking
    </td>
   </tr>
   <tr>
@@ -618,17 +736,6 @@ Example:CAD
 <p>
 The currency of the airline's refund allowance
    </td>
-  </tr>
-  <tr>
-   <td>redirection_token
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example: 226c6f97-c94d-46b4-a2cc-8f5f9c20f4a6
-<p>
-   </td>
-  </tr>
   <tr>
    <td>extAttributes
    </td>
@@ -680,72 +787,26 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
   </tr>
   <tr>
-   <td>exerciseCompletedDateTime
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example:2022-03-08T15:22:20Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was completed
-   </td>
-  </tr>
-  <tr>
-   <td>exchangeRate
+   <td>cashRefundAllowance
 <p>
 
 <p style="color:red">required</p>
    </td>
    <td>string
-<p>
-Example:0.7771197300596905664658848324102446
-<p>
-Exchange rate
-   </td>
-  </tr>
-  <tr>
-   <td>hopperRefund
-<p>
-
-<p style="color:red">required</p>
-   </td>
-   <td>string >= 0
 <p>
 Example:49.32
 <p>
-The amount refunded by hopper to the customer to complete the CFAR contract exercise
+Refundable amount allowed in cash
    </td>
   </tr>
   <tr>
-   <td>hopperRefundMethod
-<p>
-
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by hopper
-   </td>
-  </tr>
-  <tr>
-   <td>airlineRefundAllowance
+   <td>ftcRefundAllowance
    </td>
    <td>string >= 0
 <p>
 Example:123.20
 <p>
-Refundable amount allowed by the airline
-   </td>
-  </tr>
-  <tr>
-   <td>airlineRefundMethod
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by the airline
+Refundable amount allowed in future travel credit
    </td>
   </tr>
   <tr>
@@ -756,6 +817,24 @@ The refund method used by the airline
 Example:CAD
 <p>
 The currency of the airline's refund allowance
+   </td>
+  </tr>
+  <tr>
+   <td>redirectionToken
+   </td>
+   <td>string
+<p>
+Token used to authenticate the redirection after filling refund information in claims portal
+   </td>
+  </tr>
+  <tr>
+   <td>redirectionUrl
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+URL on which the customer should be redirected to exercise (if applicable)
    </td>
   </tr>
   <tr>
@@ -783,7 +862,7 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
   params.put("property1", "test1");
   params.put("property2", "test2");
   createCfarContractExerciseRequest.setExtAttributes(params);
-  createCfarContractExerciseRequest.setAirlineRefundAllowance("146.64");
+  createCfarContractExerciseRequest.setAirlineRefundPenalty("146.64");
   createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
 
   CfarItinerary itinerary = new CfarItinerary();
@@ -862,165 +941,39 @@ A unique identifier for a CFAR contract exercise
    </td>
   </tr>
   <tr>
-   <td>hopper_refund
+   <td>refundAmount
    </td>
    <td>string >= 0
 <p>
 Example:<code> 49.32</code>
 <p>
-The amount refunded by hopper to the customer to complete the CFAR contract exercise
+The amount refunded to the customer
    </td>
   </tr>
   <tr>
-   <td>hopper_refund_method
+   <td>refundMethod
    </td>
    <td>string
 <p>
 Enum: "cash" "ftc"
 <p>
-The refund method used by hopper
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund
-   </td>
-   <td>string >= 0
-<p>
-Example:60.77
-<p>
-The amount refunded by the airline to the customer to complete the CFAR contract exercise
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund_method
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by the airline
+The refund method chosen by the customer
    </td>
   </tr>
 </table>
 
 
-Return value
+**Return value**
+
 
 <table>
   <tr>
-   <td>id
-<p>
+   <td>exercise
 <p style="color:red">required</p>
    </td>
-   <td>string
+   <td>CfarContractExercise
 <p>
-Example:1ec9efac-424e-6e87-953e-eb24a0886221
-<p>
-Unique identifier for a CFAR exercise
-   </td>
-  </tr>
-  <tr>
-   <td>contract_id
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Example:1ec9ef4b-b3bf-64ae-8a3d-6b084d9f6b3c
-<p>
-Unique identifier for a contract
-   </td>
-  </tr>
-  <tr>
-   <td>exercise_initiated_date_time
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example:2022-03-08T15:20:30Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was initiated
-   </td>
-  </tr>
-  <tr>
-   <td>exercise_completed_date_time
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string &lt;date-time>
-<p>
-Example:2022-03-08T15:22:20Z
-<p>
-A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a contract exercise was completed
-   </td>
-  </tr>
-  <tr>
-   <td>hopper_refund
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string >= 0
-<p>
-Example:49.32
-<p>
-The amount refunded by hopper to the customer to complete the CFAR contract exercise
-   </td>
-  </tr>
-  <tr>
-   <td>hopper_refund_method
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by hopper
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string >= 0
-<p>
-Example:60.77
-<p>
-The amount refunded by the airline to the customer to complete the CFAR contract exercise
-   </td>
-  </tr>
-  <tr>
-   <td>airline_refund_method
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>string
-<p>
-Enum: "cash" "ftc"
-<p>
-The refund method used by the airline
-   </td>
-  </tr>
-  <tr>
-   <td>currency
-   </td>
-   <td>string
-<p>
-Example:CAD
-<p>
-The currency of the airline's refund
-   </td>
-  </tr>
-  <tr>
-   <td>ext_attributes
-<p>
-<p style="color:red">required</p>
-   </td>
-   <td>object (map_string)
-<p>
-An array of arbitrary key-value pairs for storing airline-specific entity metadata
+The CFAR exercise
    </td>
   </tr>
 </table>
@@ -1033,6 +986,58 @@ MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest 
 CfarContractExercise exercise = client.completeCfarContractExercise(sessionId, markCfarContractExerciseCompleteRequest, exerciseId);
 
 ```
+
+
+### createEvent
+
+It allows to send an event to HTS
+
+**Parameters**
+
+
+<table>
+  <tr>
+   <td>sessionId
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+<p>
+The ID of the current session
+   </td>
+  <tr>
+   <td>occuredDateTime
+   </td>
+   <td>string &lt;date-time>
+<p>
+Example: 2024-01-08T14:36:56.324Z
+<p>
+A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the contract was created
+   </td>
+  </tr>
+  <tr>
+   <td>type
+<p style="color:red">required</p>
+   </td>
+   <td>String
+<p>
+Possible values: booking_confirmed, offers_displayed
+<p>
+The event type
+   </td>
+  </tr>
+</table>
+
+
+**Example :**
+
+```
+Event event = new Event();
+event.setType("booking_confirmed");
+client.createEvent(sessionId, event);
+```
+
 ## Data structures
 
 ### Device
@@ -1170,7 +1175,7 @@ The airline's unique identifier for a user.
    </td>
    <td>String &lt;date-time>
 <p>
-Example: 2022-01-01T18:34:30Z
+Example: 2024-01-01T18:34:30Z
 <p>
 A UTC RFC3339 datetime; the date and time at which a user's account was created
    </td>
@@ -1214,6 +1219,17 @@ CFAR Offer(s) used to create the contract
    </td>
   </tr>
   <tr>
+   <td>itinerary
+<p style="color:red">required</p>
+   </td>
+   <td>
+
+[CfarItinerary](#cfaritinerary)
+<p>
+An object detailing the itinerary and fare used to create this CFAR contract
+   </td>
+  </tr>
+  <tr>
    <td>premium
 <p style="color:red">required</p>
    </td>
@@ -1236,7 +1252,7 @@ Total amount to be refunded upon CFAR exercise
    </td>
   </tr>
   <tr>
-   <td>coveragePercentage
+   <td>coverage_percentage
 <p style="color:red">required</p>
    </td>
    <td>string >= 0
@@ -1244,6 +1260,39 @@ Total amount to be refunded upon CFAR exercise
 Example: 80.00
 <p>
 Percentage of the amount to be refunded to customer compared to flight tickets price
+   </td>
+  </tr>
+  <tr>
+   <td>taxes_total
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 35.50
+<p>
+Part of the premium which are taxes
+   </td>
+  </tr>
+   <tr>
+   <td>taxes
+   </td>
+   <td>
+
+array ( [CfarTax](#cfartax) )
+
+<p>
+List of applicable taxes
+   </td>
+  </tr>
+  <tr>
+   <td>cfar_prices
+   </td>
+   <td>
+
+array ( [CfarPrice](#cfarprice) )
+
+<p>
+The prices associated to contract.
    </td>
   </tr>
   <tr>
@@ -1270,7 +1319,7 @@ Currency of contract
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-01-08T14:36:56.324Z
+Example: 2024-01-08T14:36:56.324Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the contract was created
    </td>
@@ -1280,7 +1329,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-01-09T15:37:57.325Z
+Example: 2024-01-09T15:37:57.325Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the contract was confirmed
    </td>
@@ -1290,7 +1339,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-01-10T16:38:58.326Z
+Example: 2024-01-10T16:38:58.326Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the contract was canceled
    </td>
@@ -1301,15 +1350,9 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-06-01T15:00:00Z
+Example: 2024-06-01T15:00:00Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the CFAR contract will expire once purchased
-   </td>
-  </tr>
-  <tr>
-   
-<p>
-An object containing exercise information for a contract
    </td>
   </tr>
   <tr>
@@ -1365,7 +1408,7 @@ Type of CFAR offer
    </td>
    <td>
 
-array ( [Itinerary](#itinerary) )
+[CfarItinerary](#cfaritinerary)
 <p>
 An object detailing the itinerary and fare used to create this CFAR offer
    </td>
@@ -1393,7 +1436,7 @@ Total amount to be refunded upon CFAR exercise
    </td>
   </tr>
   <tr>
-   <td>coveragePercentage
+   <td>coverage_percentage
 <p style="color:red">required</p>
    </td>
    <td>string >= 0
@@ -1401,6 +1444,15 @@ Total amount to be refunded upon CFAR exercise
 Example: 80.0
 <p>
 Percentage of the amount to be refunded to customer compared to flight tickets price
+   </td>
+  </tr>
+  <tr>
+   <td>coverage_extension</td>
+   <td>string >= 0
+<p>
+Example: 40.0
+<p>
+Maximum amount added on top of the coverage to cover ancillaries
    </td>
   </tr>
   <tr>
@@ -1412,6 +1464,28 @@ Percentage of the amount to be refunded to customer compared to flight tickets p
 Example:  CAD
 <p>
 Currency of offer
+   </td>
+  </tr>
+  <tr>
+   <td>taxes_total
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 35.50
+<p>
+Part of the premium which are taxes
+   </td>
+  </tr>
+   <tr>
+   <td>taxes
+   </td>
+   <td>
+
+array ( [CfarTax](#cfartax) )
+
+<p>
+List of applicable taxes
    </td>
   </tr>
   <tr>
@@ -1431,7 +1505,7 @@ USD Exchange rate for currency; amount * toUsdExchangeRate == USD
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-04-01T22:34:30Z
+Example: 2024-04-01T22:34:30Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which the CFAR contract will expire once purchased
    </td>
@@ -1442,7 +1516,7 @@ A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#ancho
    </td>
    <td>string &lt;date-time>
 <p>
-Example: 2022-01-08T14:36:56.324Z
+Example: 2024-01-08T14:36:56.324Z
 <p>
 A UTC <a href="https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14">RFC3339</a> datetime; the date and time at which a CFAR offer was created
    </td>
@@ -1457,25 +1531,28 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
    </td>
   </tr>
   <tr>
-   <td>offer_description
+   <td>contents
 <p style="color:red">required</p>
    </td>
-   <td>array (string)
+   <td>
+
+object (map ([CfarContents](#cfarcontents)))
 <p>
-Example:  [
 <p>
- "Get 80% of your flight cost back in cash",
-<p>
- "Cancel in a few taps right in the app — no forms or claims required"
-<p>
-]
-<p>
-One or more paragraphs describing the offer and its conditions in the user’s preferred language (or in english by default).
+An array of arbitrary key-value pairs for storing airline-specific entity metadata
    </td>
+  </tr>
+  <tr>
+   <td>terms_conditions_url
+   </td>
+   <td>string 
+<p>
+The terms and conditions URL for this offer
+</td>
   </tr>
 </table>
 
-### Itinerary
+### CfarItinerary
 
 <table>
   <tr>
@@ -1492,7 +1569,7 @@ List of passengers type, count and pricing for the itinerary
   <tr>
    <td>total_price
 <p>
-required
+<p style="color:red">required</p>
    </td>
    <td>string >=0
 <p>
@@ -1518,7 +1595,7 @@ Currency of pricing fields
    </td>
    <td>
 
-array ( [Slice](#slice) )
+array ( [CfarItinerarySlice](#cfaritineraryslice) )
 <p>
 List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed
    </td>
@@ -1532,6 +1609,271 @@ array ( [Ancillary](#ancillary) )
 
 <p>
 Ancillaries attached to the itinerary and their prices
+   </td>
+  </tr>
+  <tr>
+   <td>passengers
+   </td>
+   <td>
+
+array ( [CfarPassenger](#passenger) )
+
+<p>
+Details of the passengers
+   </td>
+  </tr>
+  <tr>
+   <td>fare_rules
+   </td>
+   <td>
+
+array ( [FareRule](#farerule) )
+
+<p>
+The fare rules associated to the itinerary. If different fare rules apply to different slices in the itinerary, indicate the most restrictive.
+   </td>
+  </tr>
+</table>
+
+### CfarPassenger
+
+<table>
+  <tr>
+   <td>passenger_reference
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Unique reference of the passenger
+   </td>
+  </tr>
+  <tr>
+   <td>passenger_type
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "adult" "child" "seated_infant" "lap_infant"
+<p>
+The type of passenger:
+<p>
+* adult - 12+ years of age
+<p>
+* child - 2-11 years of age
+<p>
+* seated_infant - &lt; 2 years of age, in their own seat
+<p>
+* lap_infant - &lt; 2 years of age, not in their own seat
+   </td>
+  </tr>
+  <tr>
+   <td>first_name
+   </td>
+   <td>string
+<p>
+The first name of the passenger
+   </td>
+  </tr>
+  <tr>
+   <td>last_name
+   </td>
+   <td>string
+<p>
+The last name of the passenger
+   </td>
+  </tr>
+  <tr>
+   <td>date_of_birth
+   </td>
+   <td>string
+    <p>
+  Example: 2000-04-02
+<p>
+The birth date in ISO Local Date format
+   </td>
+  </tr>
+  <tr>
+   <td>gender</td>
+   <td>string
+<p>
+Enum: "male" "female" "undisclosed" "unspecified"
+<p>The gender of the passenger
+   </td>
+  </tr>
+</table>
+
+### CfarPassengerTax
+
+<table>
+  <tr>
+   <td>code
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: RC
+<p>
+The code of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>amount
+    <p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+    <p>
+  Example: 0.20
+  <p>
+The amount of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>currency
+    <p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: USD
+<p>
+The currency of the tax
+   </td>
+  </tr>
+</table>
+
+### CfarTax
+
+<table>
+  <tr>
+   <td>name
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Example: CAD
+<p>
+The name of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>rate
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 0.20
+<p>
+The rate of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>amount
+    <p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+    <p>
+  Example: 20.20
+  <p>
+The amount of the tax
+   </td>
+  </tr>
+  <tr>
+   <td>estimated
+    <p style="color:red">required</p>
+   </td>
+   <td>boolean
+<p>
+true if the tax amount is estimated. The real amount will be known only at contract confirmation
+   </td>
+  </tr>
+  <tr>
+   <td>registration_number
+   </td>
+   <td>string
+<p>
+Example: 0123456ABCDEF
+<p>
+The registration number of the tax if applicable
+   </td>
+  </tr>
+</table>
+
+### CfarPrice
+
+<table>
+  <tr>
+   <td>passenger_type
+   </td>
+   <td>string
+<p>
+Enum: "adult" "child" "seated_infant" "lap_infant"
+<p>
+The type of passenger:
+<p>
+* adult - 12+ years of age
+<p>
+* child - 2-11 years of age
+<p>
+* seated_infant - &lt; 2 years of age, in their own seat
+<p>
+* lap_infant - &lt; 2 years of age, not in their own seat
+   </td>
+  </tr>
+  <tr>
+   <td>nb_pax
+   </td>
+   <td>int
+<p>
+The number of passengers associated with the price
+   </td>
+  </tr>
+  <tr>
+   <td>coverage
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example: 98.64
+<p>
+Total amount to be refunded
+   </td>
+  <tr>
+   <td>premium
+<p style="color:red">required</p>
+   </td>
+   <td>string >= 0
+<p>
+Example:  80.00
+<p>
+Total amount to be paid
+   </td>
+  </tr>
+  </tr>
+  <tr>
+   <td>ancillary_type
+   </td>
+   <td>string
+<p>
+Enum: "travel_insurance" "cabin_bag" "checked_bag" "seat" "lounge" "meal" "fast_track" "pet" "other"
+<p>
+The type of ancillary
+   </td>
+  </tr>
+  <tr>
+   <td>passenger_reference
+   </td>
+   <td>string
+<p>
+Unique reference of the passenger
+   </td>
+  </tr>
+  <tr>
+   <td>cfar_price_type
+   </td>
+   <td>string
+<p>
+Enum: "ticket" "ancillary"
+<p>
+The type of price
    </td>
   </tr>
 </table>
@@ -1558,6 +1900,15 @@ Type and number of passengers
 Example: 200.55
 <p>
 Price per passenger
+   </td>
+  </tr>
+  <tr>
+   <td>taxes</td>
+   <td>
+
+array ([CfarPassengerTax](#cfarpassengertax))
+
+Taxes applicable to this itinerary
    </td>
   </tr>
 </table>
@@ -1597,7 +1948,7 @@ The type of passenger:
   </tr>
 </table>
 
-### Slice
+### CfarItinerarySlice
 
 <table>
   <tr>
@@ -1606,9 +1957,29 @@ The type of passenger:
    </td>
    <td>
 
-array ( [Segment](#segment) )
+array ( [CfarItinerarySliceSegment](#cfaritineraryslicesegment) )
 <p>
 A list of segments which make up the slice
+   </td>
+  </tr>
+  <tr>
+   <td>passenger_pricing
+   </td>
+   <td>
+
+array ( [PassengerPricing](#passengerpricing) )
+<p>
+List of passengers type, count and pricing for the slice
+   </td>
+  </tr>
+  <tr>
+   <td>total_price
+   </td>
+   <td>string >= 0
+<p>
+Example: 401.10
+<p>
+The price of the slice for all the passengers
    </td>
   </tr>
   <tr>
@@ -1616,13 +1987,49 @@ A list of segments which make up the slice
    </td>
    <td>string
 <p>
-Fare brand information
+Example: flex
+<p>
+Code of the fare brand applied to the slice
 <p></p>
+   </td>
+  </tr>
+  </tr>
+  <tr>
+   <td>fare_basis
+   </td>
+   <td>string
+<p>
+Example: YBA123US
+<p>
+Code of the fare basis applied to the slice
+<p></p>
+   </td>
+  </tr>
+  <tr>
+   <td>fare_rules
+   </td>
+   <td>
+
+array ( [FareRule](#farerule) )
+
+<p>
+The fare rules associated to the slice.
+   </td>
+  </tr>
+  <tr>
+   <td>other_fares
+   </td>
+   <td>
+
+array ( [Fare](#fare) )
+
+<p>
+Other available fares in the same cabin.
    </td>
   </tr>
 </table>
 
-### Segment
+### CfarItinerarySliceSegment
 
 <table>
   <tr>
@@ -1653,7 +2060,7 @@ IATA airport code of destination
    </td>
    <td>string
 <p>
-Example: 2022-04-02T18:34:30
+Example: 2024-04-02T18:34:30
 <p>
 The local date and time of departure in ISO Local Date Time format
    </td>
@@ -1664,7 +2071,7 @@ The local date and time of departure in ISO Local Date Time format
    </td>
    <td>string
 <p>
-Example: 2022-04-02T19:12:30
+Example: 2024-04-02T19:12:30
 <p>
 The local date and time of arrival in ISO Local Date Time format
    </td>
@@ -1692,14 +2099,48 @@ The IATA airline code of the validating carrier for this segment
    </td>
   </tr>
   <tr>
-   <td>service_class
+   <td>fare_class
 <p style="color:red">required</p>
    </td>
    <td>string
 <p>
 Enum: "basic_economy" "economy" "premium_economy" "business" "first"
 <p>
-Service class of the segment
+Fare class of the segment
+   </td>
+  </tr>
+  <tr>
+   <td>fare_brand
+   </td>
+   <td>string
+<p>
+Example: flex
+<p>
+Name of the fare brand applied to the segment (if applicable)
+   </td>
+  </tr>
+</table>
+
+### CfarContents
+
+<table>
+  <tr>
+   <td>bullet_points
+<p style="color:red">required</p>
+   </td>
+   <td>Array (string)
+<p>
+An array containing the bullet points to be displayed
+   </td>
+  </tr>
+  <tr>
+   <td>labels
+<p>
+<p style="color:red">required</p>
+   </td>
+   <td>object (map_string)
+<p>
+A map of key-value pairs for storing all labels to be displayed
    </td>
   </tr>
 </table>
@@ -1717,6 +2158,14 @@ Example: 20.55
 <p>
 Total price of ancillaries of this type
    </td>
+  <tr>
+   <td>passenger_reference
+   </td>
+   <td>string
+<p>
+Unique reference of the passenger
+   </td>
+  </tr>
   </tr>
   <tr>
    <td>type
@@ -1727,6 +2176,128 @@ Total price of ancillaries of this type
 Enum: "travel_insurance" "cabin_bag" "checked_bag" "seat" "lounge" "meal" "fast_track" "pet" "other"
 <p>
 The type of ancillary
+   </td>
+  </tr>
+  <tr>
+   <td>covered
+   </td>
+   <td>boolean
+<p>
+Is this ancillary covered by the product. By default true if not specified
+   </td>
+  </tr>
+</table>
+
+### Fare
+
+<table>
+  <tr>
+   <td>price
+   </td>
+   <td>string >= 0
+<p>
+Example: 401.10
+<p>
+The price of the slice for all the passengers with this fare
+   </td>
+  </tr>
+  <tr>
+   <td>fare_brand
+   </td>
+   <td>string
+<p>
+Example: flex
+<p>
+Code of the fare brand applied to this fare
+<p></p>
+   </td>
+  </tr>
+  </tr>
+  <tr>
+   <td>fare_basis
+   </td>
+   <td>string
+<p>
+Example: YBA123US
+<p>
+Code of the fare basis applied to this fare
+<p></p>
+   </td>
+  </tr>
+  <tr>
+   <td>fare_rules
+   </td>
+   <td>
+
+array ( [FareRule](#farerule) )
+
+<p>
+The fare rules associated to the fare.
+   </td>
+  </tr>
+</table>
+
+### FareRule
+
+<table>
+  <tr>
+   <td>modification_type
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "cancellation" "change"
+<p>
+The type of modification in question in this fare rule
+   </td>
+  </tr>
+  <tr>
+   <td>modification_time
+<p style="color:red">required</p>
+   </td>
+   <td>string
+<p>
+Enum: "after_departure" "anytime" "before_departure"
+<p>
+The time at which the modification is requested
+   </td>
+  </tr>
+  <tr>
+   <td>allowed
+<p style="color:red">required</p>
+   </td>
+   <td>boolean
+<p>
+Determines if that type of modification at this time is allowed
+   </td>
+  </tr>
+  <tr>
+   <td>fee</td>
+   <td>string >= 0
+<p>
+Example: 20.55
+<p>
+Amount to be paid as penalty fee to perform the modification
+   </td>
+  </tr>
+  <tr>
+   <td>percentage</td>
+   </td>
+   <td>string >= 0
+<p>
+Example: 10.00
+<p>
+Percentage of the fare to be paid as penalty to perform the modification
+   </td>
+  </tr>
+  <tr>
+   <td>refund_method
+   </td>
+   <td>string
+<p>
+Enum: "cash" "ftc"
+<p>
+Method of refund in question in this fare rule
    </td>
   </tr>
 </table>

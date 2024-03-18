@@ -20,24 +20,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets cfar_contract_status
+ * Gets or Sets modification_time
  */
-@JsonAdapter(CfarContractStatus.Adapter.class)
-public enum CfarContractStatus {
+@JsonAdapter(ModificationTime.Adapter.class)
+public enum ModificationTime {
   
-  CREATED("created"),
+  AFTER_DEPARTURE("after_departure"),
   
-  CONFIRMED("confirmed"),
-  
-  CANCELED("canceled"),
-  
-  EXERCISED("exercised"),
-  
-  EXPIRED("expired");
+  ANYTIME("anytime"),
+
+  BEFORE_DEPARTURE("before_departure");
 
   private String value;
 
-  CfarContractStatus(String value) {
+  ModificationTime(String value) {
     this.value = value;
   }
 
@@ -50,8 +46,8 @@ public enum CfarContractStatus {
     return String.valueOf(value);
   }
 
-  public static CfarContractStatus fromValue(String value) {
-    for (CfarContractStatus b : CfarContractStatus.values()) {
+  public static ModificationTime fromValue(String value) {
+    for (ModificationTime b : ModificationTime.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -59,16 +55,16 @@ public enum CfarContractStatus {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<CfarContractStatus> {
+  public static class Adapter extends TypeAdapter<ModificationTime> {
     @Override
-    public void write(final JsonWriter jsonWriter, final CfarContractStatus enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final ModificationTime enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public CfarContractStatus read(final JsonReader jsonReader) throws IOException {
+    public ModificationTime read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return CfarContractStatus.fromValue(value);
+      return ModificationTime.fromValue(value);
     }
   }
 }

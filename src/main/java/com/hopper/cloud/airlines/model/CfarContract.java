@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.hopper.cloud.airlines.model.CfarContractExercise;
-import com.hopper.cloud.airlines.model.CfarContractStatus;
+import com.hopper.cloud.airlines.model.CfarStatus;
 import com.hopper.cloud.airlines.model.CfarItinerary;
 import com.hopper.cloud.airlines.model.CfarOffer;
 import io.swagger.annotations.ApiModel;
@@ -75,6 +75,10 @@ public class CfarContract {
     @SerializedName(SERIALIZED_NAME_PREMIUM)
     private String premium;
 
+    public static final String SERIALIZED_NAME_CURRENCY = "currency";
+    @SerializedName(SERIALIZED_NAME_CURRENCY)
+    private String currency;
+
     public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
     @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
     private String taxesTotal;
@@ -83,9 +87,9 @@ public class CfarContract {
     @SerializedName(SERIALIZED_NAME_TAXES)
     private List<CfarTax> taxes = new ArrayList<>();
 
-    public static final String SERIALIZED_NAME_CURRENCY = "currency";
-    @SerializedName(SERIALIZED_NAME_CURRENCY)
-    private String currency;
+    public static final String SERIALIZED_NAME_CFAR_PRICES = "cfarPrices";
+    @SerializedName(SERIALIZED_NAME_CFAR_PRICES)
+    private List<CfarPrice> cfarPrices = new ArrayList<>();
 
     public static final String SERIALIZED_NAME_CREATED_DATE_TIME = "created_date_time";
     @SerializedName(SERIALIZED_NAME_CREATED_DATE_TIME)
@@ -97,7 +101,7 @@ public class CfarContract {
 
     public static final String SERIALIZED_NAME_STATUS = "status";
     @SerializedName(SERIALIZED_NAME_STATUS)
-    private CfarContractStatus status;
+    private CfarStatus status;
 
     public static final String SERIALIZED_NAME_CONFIRMED_DATE_TIME = "confirmed_date_time";
     @SerializedName(SERIALIZED_NAME_CONFIRMED_DATE_TIME)
@@ -313,6 +317,33 @@ public class CfarContract {
         this.taxes = taxes;
     }
 
+
+    public CfarContract cfarPrices(List<CfarPrice> cfarPrices) {
+
+        this.cfarPrices = cfarPrices;
+        return this;
+    }
+
+    public CfarContract addSlicesItem(CfarPrice cfarPricesItem) {
+        this.cfarPrices.add(cfarPricesItem);
+        return this;
+    }
+
+    /**
+     * List of prices associated to the contract
+     * @return cfarPrices
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "List of prices associated to the contract")
+    public List<CfarPrice> getCfarPrices() {
+        return cfarPrices;
+    }
+
+
+    public void setCfarPrices(List<CfarPrice> cfarPrices) {
+        this.cfarPrices = cfarPrices;
+    }
+
     public CfarContract currency(String currency) {
 
         this.currency = currency;
@@ -320,12 +351,12 @@ public class CfarContract {
     }
 
     /**
-     * Currency of offer
+     * Currency of the contract
      *
      * @return currency
      **/
     @javax.annotation.Nonnull
-    @ApiModelProperty(example = "CAD", required = true, value = "Currency of offer")
+    @ApiModelProperty(example = "CAD", required = true, value = "Currency of the contract")
 
     public String getCurrency() {
         return currency;
@@ -385,7 +416,7 @@ public class CfarContract {
     }
 
 
-    public CfarContract status(CfarContractStatus status) {
+    public CfarContract status(CfarStatus status) {
 
         this.status = status;
         return this;
@@ -399,12 +430,12 @@ public class CfarContract {
     @javax.annotation.Nonnull
     @ApiModelProperty(required = true, value = "")
 
-    public CfarContractStatus getStatus() {
+    public CfarStatus getStatus() {
         return status;
     }
 
 
-    public void setStatus(CfarContractStatus status) {
+    public void setStatus(CfarStatus status) {
         this.status = status;
     }
 
@@ -497,6 +528,7 @@ public class CfarContract {
                 Objects.equals(this.premium, cfarContract.premium) &&
                 Objects.equals(this.taxesTotal, cfarContract.taxesTotal) &&
                 Objects.equals(this.taxes, cfarContract.taxes) &&
+                Objects.equals(this.cfarPrices, cfarContract.taxes) &&
                 Objects.equals(this.currency, cfarContract.currency) &&
                 Objects.equals(this.createdDateTime, cfarContract.createdDateTime) &&
                 Objects.equals(this.expiryDateTime, cfarContract.expiryDateTime) &&
@@ -508,7 +540,7 @@ public class CfarContract {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, taxesTotal, taxes, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, pnrReference, extAttributes);
+        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, taxesTotal, taxes, cfarPrices, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, pnrReference, extAttributes);
     }
 
     @Override
@@ -524,6 +556,7 @@ public class CfarContract {
         sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
         sb.append("    taxes_total: ").append(toIndentedString(taxesTotal)).append("\n");
         sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
+        sb.append("    cfarPrices: ").append(toIndentedString(cfarPrices)).append("\n");
         sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
         sb.append("    expiryDateTime: ").append(toIndentedString(expiryDateTime)).append("\n");
@@ -562,6 +595,7 @@ public class CfarContract {
         openapiFields.add("premium");
         openapiFields.add("taxes_total");
         openapiFields.add("taxes");
+        openapiFields.add("cfar_prices");
         openapiFields.add("currency");
         openapiFields.add("created_date_time");
         openapiFields.add("expiry_date_time");
@@ -582,6 +616,7 @@ public class CfarContract {
         openapiRequiredFields.add("coverage_percentage");
         openapiRequiredFields.add("premium");
         openapiRequiredFields.add("currency");
+        openapiRequiredFields.add("cfar_prices");
         openapiRequiredFields.add("created_date_time");
         openapiRequiredFields.add("expiry_date_time");
         openapiRequiredFields.add("status");
@@ -643,8 +678,8 @@ public class CfarContract {
         if (jsonObj.get("coverage") != null && !jsonObj.get("coverage").isJsonPrimitive() && !jsonObj.get("coverage").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `coverage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage").toString()));
         }
-        if (jsonObj.get("coveragePercentage") != null && !jsonObj.get("coveragePercentage").isJsonPrimitive() && !jsonObj.get("coveragePercentage").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `coveragePercentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coveragePercentage").toString()));
+        if (jsonObj.get("coverage_percentage") != null && !jsonObj.get("coverage_percentage").isJsonPrimitive() && !jsonObj.get("coverage_percentage").isJsonNull()) {
+            throw new IllegalArgumentException(String.format("Expected the field `coverage_percentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage_percentage").toString()));
         }
         if (jsonObj.get("premium") != null && !jsonObj.get("premium").isJsonPrimitive() && !jsonObj.get("premium").isJsonNull()) {
             throw new IllegalArgumentException(String.format("Expected the field `premium` to be a primitive type in the JSON string but got `%s`", jsonObj.get("premium").toString()));
@@ -661,7 +696,7 @@ public class CfarContract {
         }
 
         // validate the optional list `taxes`
-        if (!jsonObj.get("taxes").isJsonNull()) {
+        if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
             JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
             if (jsonArrayTaxes != null) {
                 // ensure the json data is an array
@@ -675,6 +710,25 @@ public class CfarContract {
                 }
                 ;
             }
+        }
+
+        // validate the optional NonEmptyList `cfarPrices`
+        JsonArray jsonArrayCfarPrices = jsonObj.getAsJsonArray("cfar_prices");
+        if (jsonArrayCfarPrices != null) {
+            // ensure the json data is an array
+            if (!jsonObj.get("cfar_prices").isJsonArray()) {
+                throw new IllegalArgumentException(String.format("Expected the field `cfar_prices` to be an array in the JSON string but got `%s`", jsonObj.get("cfar_prices").toString()));
+            }
+
+            // ensure the json data is a non empty array
+            if (jsonArrayCfarPrices.isEmpty()) {
+                throw new IllegalArgumentException(String.format("Expected the field `cfar_prices` to be a non empty array in the JSON string"));
+            }
+
+            // validate the optional field `cfar_prices` (array)
+            for (int i = 0; i < jsonArrayCfarPrices.size(); i++) {
+                CfarPrice.validateJsonObject(jsonArrayCfarPrices.get(i).getAsJsonObject());
+            };
         }
     }
 

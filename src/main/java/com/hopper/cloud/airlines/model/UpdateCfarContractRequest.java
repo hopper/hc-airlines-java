@@ -13,27 +13,20 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.util.Objects;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.gson.TypeAdapter;
+import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.CfarContractStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.HashSet;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -54,7 +47,51 @@ public class UpdateCfarContractRequest {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private CfarContractStatus status;
+  private CfarStatus status;
+
+  public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
+  @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  private String phoneNumber;
+
+  public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
+  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  private String firstName;
+
+  public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
+  @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  private String lastName;
+
+  public static final String SERIALIZED_NAME_ADDRESS_LINE_1 = "address_line1";
+  @SerializedName(SERIALIZED_NAME_ADDRESS_LINE_1)
+  private String addressLine1;
+
+  public static final String SERIALIZED_NAME_ADDRESS_LINE_2 = "address_line2";
+  @SerializedName(SERIALIZED_NAME_ADDRESS_LINE_2)
+  private String addressLine2;
+
+  public static final String SERIALIZED_NAME_CITY = "city";
+  @SerializedName(SERIALIZED_NAME_CITY)
+  private String city;
+
+  public static final String SERIALIZED_NAME_STATE_OR_PROVINCE = "state_or_province";
+  @SerializedName(SERIALIZED_NAME_STATE_OR_PROVINCE)
+  private String stateOrProvince;
+
+  public static final String SERIALIZED_NAME_POSTAL_CODE = "postal_code";
+  @SerializedName(SERIALIZED_NAME_POSTAL_CODE)
+  private String postalCode;
+
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
+
+  public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
+  @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
+  private String taxesTotal;
+
+  public static final String SERIALIZED_NAME_TAXES = "taxes";
+  @SerializedName(SERIALIZED_NAME_TAXES)
+  private List<CfarTax> taxes = new ArrayList<>();
 
   public UpdateCfarContractRequest() { 
   }
@@ -105,7 +142,7 @@ public class UpdateCfarContractRequest {
   }
 
 
-  public UpdateCfarContractRequest status(CfarContractStatus status) {
+  public UpdateCfarContractRequest status(CfarStatus status) {
     
     this.status = status;
     return this;
@@ -118,16 +155,200 @@ public class UpdateCfarContractRequest {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CfarContractStatus getStatus() {
+  public CfarStatus getStatus() {
     return status;
   }
 
 
-  public void setStatus(CfarContractStatus status) {
+  public void setStatus(CfarStatus status) {
     this.status = status;
   }
 
+    /**
+     * Phone number of the customer
+     * @return phoneNumber
+     **/
+    @ApiModelProperty(example = "12345678900", value = "Phone number of the customer")
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public UpdateCfarContractRequest firstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    /**
+     * First name of the cardholder
+     * @return firstName
+     **/
+    @ApiModelProperty(example = "John", value = "First name of the cardholder")
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public UpdateCfarContractRequest lastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    /**
+     * Last name of the cardholder
+     * @return lastName
+     **/
+    @ApiModelProperty(example = "Smith", value = "Last name of the cardholder")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public UpdateCfarContractRequest addressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+        return this;
+    }
+
+    /**
+     * Address of the cardholder (first line)
+     * @return addressLine1
+     **/
+    @ApiModelProperty(example = "123 12th St", value = "Address of the cardholder (first line)")
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public UpdateCfarContractRequest addressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+        return this;
+    }
+
+    /**
+     * Address of the cardholder (second line)
+     * @return addressLine2
+     **/
+    @ApiModelProperty(example = "Building B", value = "Address of the cardholder (second line)")
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public UpdateCfarContractRequest city(String city) {
+        this.city = city;
+        return this;
+    }
+
+    /**
+     * City of the cardholder
+     * @return city
+     **/
+    @ApiModelProperty(example = "Quebec City", value = "City of the cardholder")
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public UpdateCfarContractRequest stateOrProvince(String stateOrProvince) {
+        this.stateOrProvince = stateOrProvince;
+        return this;
+    }
+
+    /**
+     * State or province of the cardholder
+     * @return stateOrProvince
+     **/
+    @ApiModelProperty(example = "QC", value = "State or province of the cardholder")
+    public String getStateOrProvince() {
+        return stateOrProvince;
+    }
+
+    public void setStateOrProvince(String stateOrProvince) {
+        this.stateOrProvince = stateOrProvince;
+    }
+
+    public UpdateCfarContractRequest postalCode(String postalCode) {
+        this.postalCode = postalCode;
+        return this;
+    }
+
+    /**
+     * Postal code  of the cardholder
+     * @return postalCode
+     **/
+    @ApiModelProperty(example = "G1R 4S9", value = "Postal code  of the cardholder")
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public UpdateCfarContractRequest country(String country) {
+        this.country = country;
+        return this;
+    }
+
+    /**
+     * Country of the cardholder
+     * @return country
+     **/
+    @ApiModelProperty(example = "CA", value = "Country of the cardholder")
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getTaxesTotal() {
+        return taxesTotal;
+    }
+
+    public void setTaxesTotal(String taxesTotal) {
+        this.taxesTotal = taxesTotal;
+    }
+
+    public UpdateCfarContractRequest taxes(List<CfarTax> taxes) {
+
+        this.taxes = taxes;
+        return this;
+    }
+
+    public UpdateCfarContractRequest addCfarTaxItem(CfarTax cfarTaxItem) {
+        if (this.taxes != null) {
+            this.taxes.add(cfarTaxItem);
+        }
+        return this;
+    }
+
+    public List<CfarTax> getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(List<CfarTax> taxes) {
+        this.taxes = taxes;
+    }
 
   @Override
   public boolean equals(Object o) {
@@ -140,21 +361,44 @@ public class UpdateCfarContractRequest {
     UpdateCfarContractRequest updateCfarContractRequest = (UpdateCfarContractRequest) o;
     return Objects.equals(this.pnrReference, updateCfarContractRequest.pnrReference) &&
         Objects.equals(this.emailAddress, updateCfarContractRequest.emailAddress) &&
-        Objects.equals(this.status, updateCfarContractRequest.status);
+        Objects.equals(this.status, updateCfarContractRequest.status) &&
+        Objects.equals(this.phoneNumber, updateCfarContractRequest.phoneNumber) &&
+        Objects.equals(this.firstName, updateCfarContractRequest.firstName) &&
+        Objects.equals(this.lastName, updateCfarContractRequest.lastName) &&
+        Objects.equals(this.addressLine1, updateCfarContractRequest.addressLine1) &&
+        Objects.equals(this.addressLine2, updateCfarContractRequest.addressLine2) &&
+        Objects.equals(this.city, updateCfarContractRequest.city) &&
+        Objects.equals(this.stateOrProvince, updateCfarContractRequest.stateOrProvince) &&
+        Objects.equals(this.postalCode, updateCfarContractRequest.postalCode) &&
+        Objects.equals(this.country, updateCfarContractRequest.country) &&
+        Objects.equals(this.taxesTotal, updateCfarContractRequest.taxesTotal) &&
+        Objects.equals(this.taxes, updateCfarContractRequest.taxes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pnrReference, emailAddress, status);
+      return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateCfarContractRequest {\n");
+
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
+    sb.append("    addressLine1: ").append(toIndentedString(addressLine1)).append("\n");
+    sb.append("    addressLine2: ").append(toIndentedString(addressLine2)).append("\n");
+    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    stateOrProvince: ").append(toIndentedString(stateOrProvince)).append("\n");
+    sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
+    sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -180,6 +424,17 @@ public class UpdateCfarContractRequest {
     openapiFields.add("pnr_reference");
     openapiFields.add("email_address");
     openapiFields.add("status");
+    openapiFields.add("phone_number");
+    openapiFields.add("first_name");
+    openapiFields.add("last_name");
+    openapiFields.add("address_line1");
+    openapiFields.add("address_line2");
+    openapiFields.add("city");
+    openapiFields.add("state_or_province");
+    openapiFields.add("postal_code");
+    openapiFields.add("country");
+    openapiFields.add("taxes_total");
+    openapiFields.add("taxes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -222,6 +477,53 @@ public class UpdateCfarContractRequest {
       }
       if (jsonObj.get("email_address") != null && !jsonObj.get("email_address").isJsonPrimitive() && !jsonObj.get("email_address").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `email_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email_address").toString()));
+      }
+      if (jsonObj.get("phone_number") != null && !jsonObj.get("phone_number").isJsonPrimitive() && !jsonObj.get("phone_number").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `phone_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phone_number").toString()));
+      }
+      if (jsonObj.get("first_name") != null && !jsonObj.get("first_name").isJsonPrimitive() && !jsonObj.get("first_name").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `first_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("first_name").toString()));
+      }
+      if (jsonObj.get("last_name") != null && !jsonObj.get("last_name").isJsonPrimitive() && !jsonObj.get("last_name").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `last_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("last_name").toString()));
+      }
+      if (jsonObj.get("address_line1") != null && !jsonObj.get("address_line1").isJsonPrimitive() && !jsonObj.get("address_line1").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `address_line1` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address_line1").toString()));
+      }
+      if (jsonObj.get("address_line2") != null && !jsonObj.get("address_line2").isJsonPrimitive() && !jsonObj.get("address_line2").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `address_line2` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address_line2").toString()));
+      }
+      if (jsonObj.get("city") != null && !jsonObj.get("city").isJsonPrimitive() && !jsonObj.get("city").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("city").toString()));
+      }
+      if (jsonObj.get("state_or_province") != null && !jsonObj.get("state_or_province").isJsonPrimitive() && !jsonObj.get("state_or_province").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `state_or_province` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state_or_province").toString()));
+      }
+      if (jsonObj.get("postal_code") != null && !jsonObj.get("postal_code").isJsonPrimitive() && !jsonObj.get("postal_code").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `postal_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postal_code").toString()));
+      }
+      if (jsonObj.get("country") != null && !jsonObj.get("country").isJsonPrimitive() && !jsonObj.get("country").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("country").toString()));
+      }
+      if (jsonObj.get("taxes_total") != null && !jsonObj.get("taxes_total").isJsonPrimitive() && !jsonObj.get("taxes_total").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `taxes_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taxes_total").toString()));
+      }
+
+      // validate the optional list `taxes`
+      if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
+          JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
+          if (jsonArrayTaxes != null) {
+              // ensure the json data is an array
+              if (!jsonObj.get("taxes").isJsonArray()) {
+                  throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
+              }
+
+              // validate the optional field `taxes` (array)
+              for (int i = 0; i < jsonArrayTaxes.size(); i++) {
+                  CfarTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
+              }
+              ;
+          }
       }
   }
 

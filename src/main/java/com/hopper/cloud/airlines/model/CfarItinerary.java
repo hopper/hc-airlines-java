@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import com.hopper.cloud.airlines.model.Ancillary;
 import com.hopper.cloud.airlines.model.CfarItinerarySlice;
 import com.hopper.cloud.airlines.model.PassengerPricing;
+import com.hopper.cloud.airlines.model.CfarPassenger;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -43,9 +44,9 @@ import java.util.Set;
 import com.hopper.cloud.airlines.JSON;
 
 /**
- * An object detailing the fare used to create a CFAR offer
+ * An object detailing a CFAR itinerary
  */
-@ApiModel(description = "An object detailing the fare used to create a CFAR offer")
+@ApiModel(description = "An object detailing a CFAR itinerary")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
 @JsonInclude(JsonInclude.Include. NON_NULL)
 public class CfarItinerary {
@@ -68,6 +69,14 @@ public class CfarItinerary {
   public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
   private String totalPrice;
+
+  public static final String SERIALIZED_NAME_PASSENGERS = "passengers";
+  @SerializedName(SERIALIZED_NAME_PASSENGERS)
+  private List<CfarPassenger> passengers = null;
+
+  public static final String SERIALIZED_NAME_FARE_RULES = "fare_rules";
+  @SerializedName(SERIALIZED_NAME_FARE_RULES)
+  private List<FareRule> fareRules = null;
 
   public CfarItinerary() { 
   }
@@ -176,7 +185,6 @@ public class CfarItinerary {
     return ancillaries;
   }
 
-
   public void setAncillaries(List<Ancillary> ancillaries) {
     this.ancillaries = ancillaries;
   }
@@ -204,7 +212,61 @@ public class CfarItinerary {
     this.totalPrice = totalPrice;
   }
 
+  public CfarItinerary passengers(List<CfarPassenger> passengers) {
+      this.passengers = passengers;
+      return this;
+  }
 
+  public CfarItinerary addPassengersItem(CfarPassenger passengerItem) {
+      if (this.passengers == null) {
+          this.passengers = new ArrayList<>();
+      }
+      this.passengers.add(passengerItem);
+      return this;
+  }
+
+  /**
+   * Retrieve Passengers
+   * @return passengers
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Passengers associated with the itinerary")
+
+  public List<CfarPassenger> getPassengers() {
+    return passengers;
+  }
+
+  public void setPassengers(List<CfarPassenger> passengers) {
+    this.passengers = passengers;
+  }
+
+  public CfarItinerary fareRules(List<FareRule> fareRules) {
+      this.fareRules = fareRules;
+      return this;
+  }
+
+  public CfarItinerary addFareRulesItem(FareRule fareRuleItem) {
+      if (this.fareRules == null) {
+          this.fareRules = new ArrayList<>();
+      }
+      this.fareRules.add(fareRuleItem);
+      return this;
+  }
+
+ /**
+  * Retrieve fare rules associated to the itinerary
+  * @return fareRules
+  **/
+ @javax.annotation.Nullable
+ @ApiModelProperty(value = "The fare rules associated to the itinerary. If different fare rules apply to different slices in the itinerary, indicate the most restrictive")
+
+ public List<FareRule> getFareRules() {
+     return fareRules;
+ }
+
+ public void setFareRules(List<FareRule> fareRules) {
+     this.fareRules = fareRules;
+ }
 
   @Override
   public boolean equals(Object o) {
@@ -219,12 +281,13 @@ public class CfarItinerary {
         Objects.equals(this.currency, cfarItinerary.currency) &&
         Objects.equals(this.slices, cfarItinerary.slices) &&
         Objects.equals(this.ancillaries, cfarItinerary.ancillaries) &&
-        Objects.equals(this.totalPrice, cfarItinerary.totalPrice);
+        Objects.equals(this.passengers, cfarItinerary.passengers) &&
+        Objects.equals(this.fareRules, cfarItinerary.fareRules);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(passengerPricing, currency, slices, ancillaries, totalPrice);
+    return Objects.hash(passengerPricing, currency, slices, ancillaries, totalPrice, passengers, fareRules);
   }
 
   @Override
@@ -236,6 +299,8 @@ public class CfarItinerary {
     sb.append("    slices: ").append(toIndentedString(slices)).append("\n");
     sb.append("    ancillaries: ").append(toIndentedString(ancillaries)).append("\n");
     sb.append("    totalPrice: ").append(toIndentedString(totalPrice)).append("\n");
+    sb.append("    passengers: ").append(toIndentedString(passengers)).append("\n");
+    sb.append("    fareRules: ").append(toIndentedString(fareRules)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -263,6 +328,8 @@ public class CfarItinerary {
     openapiFields.add("slices");
     openapiFields.add("ancillaries");
     openapiFields.add("total_price");
+    openapiFields.add("passengers");
+    openapiFields.add("fare_rules");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -313,9 +380,11 @@ public class CfarItinerary {
           PassengerPricing.validateJsonObject(jsonArraypassengerPricing.get(i).getAsJsonObject());
         };
       }
+
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
+
       JsonArray jsonArrayslices = jsonObj.getAsJsonArray("slices");
       if (jsonArrayslices != null) {
         // ensure the json data is an array
@@ -328,6 +397,7 @@ public class CfarItinerary {
           CfarItinerarySlice.validateJsonObject(jsonArrayslices.get(i).getAsJsonObject());
         };
       }
+
       JsonArray jsonArrayancillaries = jsonObj.getAsJsonArray("ancillaries");
       if (jsonArrayancillaries != null) {
         // ensure the json data is an array
@@ -340,8 +410,41 @@ public class CfarItinerary {
           Ancillary.validateJsonObject(jsonArrayancillaries.get(i).getAsJsonObject());
         };
       }
+
       if (jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonPrimitive() && !jsonObj.get("total_price").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `total_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_price").toString()));
+      }
+
+      JsonArray jsonArraypassengers = jsonObj.getAsJsonArray("passengers");
+      if (jsonArraypassengers != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("passengers").isJsonArray()) {
+              throw new IllegalArgumentException(String.format("Expected the field `passengers` to be an array in the JSON string but got `%s`", jsonObj.get("passengers").toString()));
+          }
+
+          // validate the optional field `passengers` (array)
+          for (int i = 0; i < jsonArraypassengers.size(); i++) {
+              CfarPassenger.validateJsonObject(jsonArraypassengers.get(i).getAsJsonObject());
+          };
+      }
+
+      // validate the optional NonEmptyList `fareRules`
+      JsonArray jsonArrayfareRules = jsonObj.getAsJsonArray("fare_rules");
+      if (jsonArrayfareRules != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("fare_rules").isJsonArray()) {
+              throw new IllegalArgumentException(String.format("Expected the field `fare_rules` to be an array in the JSON string but got `%s`", jsonObj.get("fare_rules").toString()));
+          }
+
+          // ensure the json data is a non empty array
+          if (jsonArrayfareRules.isEmpty()) {
+              throw new IllegalArgumentException(String.format("Expected the field `fare_rules` to be a non empty array in the JSON string"));
+          }
+
+          // validate the optional field `fareRules` (array)
+          for (int i = 0; i < jsonArrayfareRules.size(); i++) {
+              FareRule.validateJsonObject(jsonArrayfareRules.get(i).getAsJsonObject());
+          };
       }
   }
 

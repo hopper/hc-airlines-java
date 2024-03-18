@@ -46,9 +46,17 @@ public class Ancillary {
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
   private String totalPrice;
 
+  public static final String SERIALIZED_NAME_PASSENGER_REFERENCE = "passenger_reference";
+  @SerializedName(SERIALIZED_NAME_PASSENGER_REFERENCE)
+  private String passengerReference;
+
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private AncillaryType type;
+
+  public static final String SERIALIZED_NAME_COVERED = "covered";
+  @SerializedName(SERIALIZED_NAME_COVERED)
+  private Boolean covered;
 
   public Ancillary() { 
   }
@@ -75,6 +83,19 @@ public class Ancillary {
     this.totalPrice = totalPrice;
   }
 
+  public Ancillary passengerReference(String passengerReference) {
+      this.passengerReference = passengerReference;
+      return this;
+  }
+
+  public String getPassengerReference() {
+        return passengerReference;
+    }
+
+  public void setPassengerReference(String passengerReference) {
+        this.passengerReference = passengerReference;
+    }
+
 
   public Ancillary type(AncillaryType type) {
     
@@ -99,6 +120,24 @@ public class Ancillary {
   }
 
 
+  public Ancillary covered(Boolean covered) {
+      this.covered = covered;
+      return this;
+  }
+
+  /**
+   * Is this ancillary covered by the product. By default true if not specified
+   * @return covered
+   **/
+  @ApiModelProperty(value = "Is this ancillary covered by the product. By default true if not specified")
+  public Boolean isCovered() {
+      return covered;
+  }
+
+  public void setCovered(Boolean covered) {
+      this.covered = covered;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -110,12 +149,14 @@ public class Ancillary {
     }
     Ancillary ancillary = (Ancillary) o;
     return Objects.equals(this.totalPrice, ancillary.totalPrice) &&
-        Objects.equals(this.type, ancillary.type);
+        Objects.equals(this.passengerReference, ancillary.passengerReference) &&
+        Objects.equals(this.type, ancillary.type) &&
+        Objects.equals(this.covered, ancillary.covered);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalPrice, type);
+    return Objects.hash(totalPrice, passengerReference, type, covered);
   }
 
   @Override
@@ -123,7 +164,9 @@ public class Ancillary {
     StringBuilder sb = new StringBuilder();
     sb.append("class Ancillary {\n");
     sb.append("    totalPrice: ").append(toIndentedString(totalPrice)).append("\n");
+    sb.append("    passengerReference: ").append(toIndentedString(passengerReference)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    covered: ").append(toIndentedString(covered)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -147,7 +190,9 @@ public class Ancillary {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("total_price");
+    openapiFields.add("passenger_reference");
     openapiFields.add("type");
+    openapiFields.add("covered");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -186,6 +231,9 @@ public class Ancillary {
       }
       if (jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonPrimitive() && !jsonObj.get("total_price").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `total_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_price").toString()));
+      }
+      if (jsonObj.get("passenger_reference") != null && !jsonObj.get("passenger_reference").isJsonPrimitive() && !jsonObj.get("passenger_reference").isJsonNull()) {
+          throw new IllegalArgumentException(String.format("Expected the field `passenger_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passenger_reference").toString()));
       }
   }
 

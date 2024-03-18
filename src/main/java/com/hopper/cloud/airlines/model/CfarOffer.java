@@ -49,6 +49,14 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_COVERAGE_PERCENTAGE)
   private String coveragePercentage;
 
+  public static final String SERIALIZED_NAME_COVERAGE_EXTENSION = "coverage_extension";
+  @SerializedName(SERIALIZED_NAME_COVERAGE_EXTENSION)
+  private String coverageExtension;
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  private String currency;
+
   public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
   @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
   private String taxesTotal;
@@ -57,17 +65,9 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_TAXES)
   private List<CfarTax> taxes = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CURRENCY = "currency";
-  @SerializedName(SERIALIZED_NAME_CURRENCY)
-  private String currency;
-
   public static final String SERIALIZED_NAME_REQUEST_TYPE = "request_type";
   @SerializedName(SERIALIZED_NAME_REQUEST_TYPE)
   private RequestType requestType;
-
-  public static final String SERIALIZED_NAME_TO_USD_EXCHANGE_RATE = "to_usd_exchange_rate";
-  @SerializedName(SERIALIZED_NAME_TO_USD_EXCHANGE_RATE)
-  private String toUsdExchangeRate;
 
   public static final String SERIALIZED_NAME_CONTRACT_EXPIRY_DATE_TIME = "contract_expiry_date_time";
   @SerializedName(SERIALIZED_NAME_CONTRACT_EXPIRY_DATE_TIME)
@@ -81,13 +81,17 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_ITINERARY)
   private CfarItinerary itinerary;
 
-  public static final String SERIALIZED_NAME_OFFER_DESCRIPTION = "offer_description";
-  @SerializedName(SERIALIZED_NAME_OFFER_DESCRIPTION)
-  private Map<String, List<String>> offerDescription = new HashMap<>();
+  public static final String SERIALIZED_NAME_CONTENTS = "contents";
+  @SerializedName(SERIALIZED_NAME_CONTENTS)
+  private Map<String, CfarContents> contents = new HashMap<>();
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   private Map<String, String> extAttributes = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_TERMS_CONDITIONS_URL= "terms_conditions_url";
+  @SerializedName(SERIALIZED_NAME_TERMS_CONDITIONS_URL)
+  private String termsConditionsUrl;
 
   public CfarOffer() {
   }
@@ -167,6 +171,40 @@ public class CfarOffer {
     return this;
   }
 
+  /**
+   * Percentage of the amount to be refunded to customer compared to flight tickets price
+   * @return coveragePercentage
+   **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "80.00", required = true, value = "Percentage of the amount to be refunded to customer compared to flight tickets price")
+
+  public String getCoveragePercentage() {
+    return coveragePercentage;
+  }
+
+
+  public void setCoveragePercentage(String coveragePercentage) {
+    this.coveragePercentage = coveragePercentage;
+  }
+
+  public CfarOffer coverageExtension(String coverageExtension) {
+    this.coverageExtension = coverageExtension;
+    return this;
+  }
+
+  /**
+   * Maximum amount added on top of the coverage to cover ancillaries
+   * @return coverageExtension
+   **/
+  @ApiModelProperty(example = "40.00", value = "Maximum amount added on top of the coverage to cover ancillaries")
+  public String getCoverageExtension() {
+    return coverageExtension;
+  }
+
+  public void setCoverageExtension(String coverageExtension) {
+    this.coverageExtension = coverageExtension;
+  }
+
   public String getTaxesTotal() {
     return taxesTotal;
   }
@@ -194,22 +232,6 @@ public class CfarOffer {
 
   public void setTaxes(List<CfarTax> taxes) {
     this.taxes = taxes;
-  }
-
-  /**
-   * Percentage of the amount to be refunded to customer compared to flight tickets price
-   * @return coveragePercentage
-   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "80.0", required = true, value = "Percentage of the amount to be refunded to customer compared to flight tickets price")
-
-  public String getCoveragePercentage() {
-    return coveragePercentage;
-  }
-
-
-  public void setCoveragePercentage(String coveragePercentage) {
-    this.coveragePercentage = coveragePercentage;
   }
 
 
@@ -256,29 +278,6 @@ public class CfarOffer {
 
   public void setRequestType(RequestType requestType) {
     this.requestType = requestType;
-  }
-
-
-  public CfarOffer toUsdExchangeRate(String toUsdExchangeRate) {
-
-    this.toUsdExchangeRate = toUsdExchangeRate;
-    return this;
-  }
-
-   /**
-   * USD Exchange rate for currency; amount * toUsdExchangeRate &#x3D;&#x3D; USD
-   * @return toUsdExchangeRate
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0.79", required = true, value = "USD Exchange rate for currency; amount * toUsdExchangeRate == USD")
-
-  public String getToUsdExchangeRate() {
-    return toUsdExchangeRate;
-  }
-
-
-  public void setToUsdExchangeRate(String toUsdExchangeRate) {
-    this.toUsdExchangeRate = toUsdExchangeRate;
   }
 
 
@@ -351,31 +350,31 @@ public class CfarOffer {
   }
 
 
-  public CfarOffer offerDescription(Map<String, List<String>> offerDescription) {
+  public CfarOffer contents(Map<String, CfarContents> contents) {
 
-    this.offerDescription = offerDescription;
+    this.contents = contents;
     return this;
   }
 
-  public CfarOffer putOfferDescriptionItem(String key, List<String> offerDescriptionItem) {
-    this.offerDescription.put(key, offerDescriptionItem);
+  public CfarOffer putContentItem(String key, CfarContents contentItem) {
+    this.contents.put(key, contentItem);
     return this;
   }
 
-   /**
-   * Get offerDescription
-   * @return offerDescription
-  **/
+  /**
+   * Get contents
+   * @return contents
+   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "contents")
 
-  public Map<String, List<String>> getOfferDescription() {
-    return offerDescription;
+  public Map<String, CfarContents> getContents() {
+    return contents;
   }
 
 
-  public void setOfferDescription(Map<String, List<String>> offerDescription) {
-    this.offerDescription = offerDescription;
+  public void setContents(Map<String, CfarContents> contents) {
+    this.contents = contents;
   }
 
 
@@ -407,6 +406,27 @@ public class CfarOffer {
   }
 
 
+  public CfarOffer termsConditionsUrl(String termsConditionsUrl) {
+
+    this.termsConditionsUrl = termsConditionsUrl;
+    return this;
+  }
+
+  /**
+   * The URL to the terms and conditions for this offer
+   * @return termsConditionsUrl
+   **/
+  @ApiModelProperty(example = "", value = "The URL to the terms and conditions for this offer")
+  public String getTermsConditionsUrl() {
+    return termsConditionsUrl;
+  }
+
+
+  public void setTermsConditionsUrl(String termsConditionsUrl) {
+    this.termsConditionsUrl = termsConditionsUrl;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -421,21 +441,22 @@ public class CfarOffer {
         Objects.equals(this.premium, cfarOffer.premium) &&
         Objects.equals(this.coverage, cfarOffer.coverage) &&
         Objects.equals(this.coveragePercentage, cfarOffer.coveragePercentage) &&
+        Objects.equals(this.coverageExtension, cfarOffer.coverageExtension) &&
         Objects.equals(this.currency, cfarOffer.currency) &&
         Objects.equals(this.taxesTotal, cfarOffer.taxesTotal) &&
         Objects.equals(this.taxes, cfarOffer.taxes) &&
         Objects.equals(this.requestType, cfarOffer.requestType) &&
-        Objects.equals(this.toUsdExchangeRate, cfarOffer.toUsdExchangeRate) &&
         Objects.equals(this.contractExpiryDateTime, cfarOffer.contractExpiryDateTime) &&
         Objects.equals(this.createdDateTime, cfarOffer.createdDateTime) &&
         Objects.equals(this.itinerary, cfarOffer.itinerary) &&
-        Objects.equals(this.offerDescription, cfarOffer.offerDescription) &&
-        Objects.equals(this.extAttributes, cfarOffer.extAttributes);
+        Objects.equals(this.contents, cfarOffer.contents) &&
+        Objects.equals(this.extAttributes, cfarOffer.extAttributes) &&
+        Objects.equals(this.termsConditionsUrl, cfarOffer.termsConditionsUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, currency, taxesTotal, taxes, requestType, toUsdExchangeRate, contractExpiryDateTime, createdDateTime, itinerary, offerDescription, extAttributes);
+    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, termsConditionsUrl);
   }
 
   @Override
@@ -445,17 +466,18 @@ public class CfarOffer {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
     sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
-    sb.append("    coverage_percentage: ").append(toIndentedString(coveragePercentage)).append("\n");
-    sb.append("    taxes_total: ").append(toIndentedString(taxesTotal)).append("\n");
+    sb.append("    coveragePercentage: ").append(toIndentedString(coveragePercentage)).append("\n");
+    sb.append("    coverageExtension: ").append(toIndentedString(coverageExtension)).append("\n");
+    sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    requestType: ").append(toIndentedString(requestType)).append("\n");
-    sb.append("    toUsdExchangeRate: ").append(toIndentedString(toUsdExchangeRate)).append("\n");
     sb.append("    contractExpiryDateTime: ").append(toIndentedString(contractExpiryDateTime)).append("\n");
     sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
-    sb.append("    offerDescription: ").append(toIndentedString(offerDescription)).append("\n");
+    sb.append("    contents: ").append(toIndentedString(contents)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
+    sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -482,16 +504,17 @@ public class CfarOffer {
     openapiFields.add("premium");
     openapiFields.add("coverage");
     openapiFields.add("coverage_percentage");
+    openapiFields.add("coverage_extension");
     openapiFields.add("taxes_total");
     openapiFields.add("taxes");
     openapiFields.add("currency");
     openapiFields.add("request_type");
-    openapiFields.add("to_usd_exchange_rate");
     openapiFields.add("contract_expiry_date_time");
     openapiFields.add("created_date_time");
     openapiFields.add("itinerary");
-    openapiFields.add("offer_description");
+    openapiFields.add("contents");
     openapiFields.add("ext_attributes");
+    openapiFields.add("terms_conditions_url");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -501,11 +524,10 @@ public class CfarOffer {
     openapiRequiredFields.add("coverage_percentage");
     openapiRequiredFields.add("currency");
     openapiRequiredFields.add("request_type");
-    openapiRequiredFields.add("to_usd_exchange_rate");
     openapiRequiredFields.add("contract_expiry_date_time");
     openapiRequiredFields.add("created_date_time");
     openapiRequiredFields.add("itinerary");
-    openapiRequiredFields.add("offer_description");
+    openapiRequiredFields.add("contents");
     openapiRequiredFields.add("ext_attributes");
   }
 
@@ -553,19 +575,22 @@ public class CfarOffer {
       if (jsonObj.get("coverage_percentage") != null && !jsonObj.get("coverage_percentage").isJsonPrimitive() && !jsonObj.get("coverage_percentage").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `coverage_percentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage_percentage").toString()));
       }
+      if (jsonObj.get("coverage_extension") != null && !jsonObj.get("coverage_extension").isJsonPrimitive() && !jsonObj.get("coverage_extension").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `coverage_extension` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage_extension").toString()));
+      }
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-      if (jsonObj.get("to_usd_exchange_rate") != null && !jsonObj.get("to_usd_exchange_rate").isJsonPrimitive() && !jsonObj.get("to_usd_exchange_rate").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `to_usd_exchange_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("to_usd_exchange_rate").toString()));
       }
       // validate the optional field `itinerary`
       if (jsonObj.getAsJsonObject("itinerary") != null) {
         CfarItinerary.validateJsonObject(jsonObj.getAsJsonObject("itinerary"));
       }
+      if (jsonObj.get("terms_conditions_url") != null && !jsonObj.get("terms_conditions_url").isJsonPrimitive() && !jsonObj.get("terms_conditions_url").isJsonNull()) {
+        throw new IllegalArgumentException(String.format("Expected the field `terms_conditions_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("terms_conditions_url").toString()));
+      }
 
       // validate the optional list `taxes`
-      if (!jsonObj.get("taxes").isJsonNull()) {
+      if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
         JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
         if (jsonArrayTaxes != null) {
           // ensure the json data is an array

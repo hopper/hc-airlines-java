@@ -3,8 +3,7 @@ package com.hopper.cloud.airlines;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
-import com.hopper.cloud.airlines.auth.OAuth;
-import com.hopper.cloud.airlines.auth.RetryingOAuth;
+import com.hopper.cloud.airlines.api.AnalyticsApi;
 import com.hopper.cloud.airlines.model.*;
 import com.hopper.cloud.airlines.model.tokenization.*;
 import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
@@ -16,13 +15,22 @@ import java.util.*;
 
 
 public class HopperClient {
-    private final CancelForAnyReasonCfarApi cfarApi;
-    private final SessionsApi sessionsApi;
-    private final String paymentUrl;
-    private final String paymentUsername;
-    private final String paymentPassword;
+    private CancelForAnyReasonCfarApi cfarApi;
+    private SessionsApi sessionsApi;
+    private AnalyticsApi analyticsApi;
+    private String paymentUrl;
+    private String paymentUsername;
+    private String paymentPassword;
+
+    public HopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
+        this.initHopperClient(url, clientId, clientSecret, null, null, null, debugging);
+    }
 
     public HopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
+        this.initHopperClient(url, clientId, clientSecret, paymentUrl, paymentUsername, paymentPassword, debugging);
+    }
+
+    private void initHopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
         this.paymentUrl = paymentUrl;
         this.paymentUsername = paymentUsername;
         this.paymentPassword = paymentPassword;
@@ -44,6 +52,12 @@ public class HopperClient {
         sessionsApi.getApiClient().setReadTimeout(60000);
         sessionsApi.getApiClient().setWriteTimeout(60000);
 
+        analyticsApi = new AnalyticsApi(apiClient);
+        analyticsApi.getApiClient().setDebugging(debugging);
+        analyticsApi.getApiClient().setBasePath(url);
+        analyticsApi.getApiClient().setConnectTimeout(60000);
+        analyticsApi.getApiClient().setReadTimeout(60000);
+        analyticsApi.getApiClient().setWriteTimeout(60000);
 
         Unirest.config().setObjectMapper(new ObjectMapper() {
             com.fasterxml.jackson.databind.ObjectMapper mapper
@@ -69,19 +83,6 @@ public class HopperClient {
     }
 
     /**
-     * It has to be called after the payment details have been transferred, to confirm the contract.
-     *
-     * @param sessionId                 The current session IO
-     * @param contractId                the contract ID
-     * @param updateCfarContractRequest The request with the update information
-     * @return The contract updated
-     * @throws ApiException
-     */
-    public CfarContract updateCfarContractStatus(String sessionId, String contractId, UpdateCfarContractRequest updateCfarContractRequest) throws ApiException {
-        return cfarApi.putCfarContractsIdUpdateStatus(contractId, updateCfarContractRequest, sessionId);
-    }
-
-    /**
      * It has to be called each time an end-customer begins shopping on the AC website.
      * The returned sessionId will then be required in all subsequent calls to the API from the backend
      *
@@ -99,6 +100,57 @@ public class HopperClient {
 
     public CfarContract createCfarContract(String sessionId, CreateCfarContractRequest createCfarContractRequest) throws ApiException {
         return cfarApi.postCfarContracts(createCfarContractRequest, sessionId);
+    }
+
+    public CreateSessionOffersContractsResponse createSessionOffersAndContracts(CreateAirlineSessionRequest createAirlineSessionRequest, CreateCfarOfferRequest createCfarOfferRequest) throws ApiException {
+        // Create Session
+        AirlineSession airlineSession = createSession(createAirlineSessionRequest);
+        String sessionId = airlineSession.getId();
+
+        // Create offers
+        List<CfarOffer> cfarOffers = createOffers(sessionId, createCfarOfferRequest);
+
+        // Create a contract for each offers created
+        List<CfarContract> cfarContracts = new ArrayList<>();
+        if (cfarOffers != null && !cfarOffers.isEmpty()) {
+            for (CfarOffer offer : cfarOffers) {
+                CreateCfarContractRequest createCfarContractRequest = new CreateCfarContractRequest();
+                createCfarContractRequest.setOfferIds(Collections.singletonList(offer.getId()));
+                createCfarContractRequest.setItinerary(offer.getItinerary());
+
+                CfarContract cfarContract = createCfarContract(sessionId, createCfarContractRequest);
+                cfarContracts.add(cfarContract);
+            }
+        }
+
+        CreateSessionOffersContractsResponse response = new CreateSessionOffersContractsResponse();
+        response.setAirlineSession(airlineSession);
+        response.setOffers(cfarOffers);
+        response.setContracts(cfarContracts);
+        return response;
+    }
+
+    /**
+     * It has to be called after the payment details have been transferred, to confirm the contract.
+     *
+     * @param sessionId                 The current session IO
+     * @param contractReference         The contract reference
+     * @param updateCfarContractRequest The request with the update information
+     * @return The updated contract
+     * @throws ApiException
+     */
+    public CfarContract updateCfarContractStatus(String sessionId, String contractReference, UpdateCfarContractRequest updateCfarContractRequest) throws ApiException {
+        return cfarApi.putCfarContractsIdUpdateStatus(contractReference, updateCfarContractRequest, sessionId);
+    }
+
+    /**
+     * Create an event
+     * @param sessionId     The current session IO
+     * @param event         The event with its type
+     * @throws ApiException
+     */
+    public void createEvent(String sessionId, Event event) throws ApiException {
+        analyticsApi.postEvents(event, sessionId);
     }
 
     /**
@@ -164,7 +216,10 @@ public class HopperClient {
         }
     }
 
-    private HttpResponse<TokenizationResponse> getTokenizedPaymentHttpResponse(TokenizationRequest tokenizationRequest) {
+    private HttpResponse<TokenizationResponse> getTokenizedPaymentHttpResponse(TokenizationRequest tokenizationRequest) throws ApiException {
+        if (StringUtil.isEmpty(paymentUrl) || StringUtil.isEmpty(paymentUsername) || StringUtil.isEmpty(paymentPassword)) {
+            throw new ApiException("Missing credentials for payment");
+        }
         return Unirest.post(paymentUrl)
                 .basicAuth(paymentUsername, paymentPassword)
                 .header("Content-Type", "application/json")
