@@ -11,6 +11,12 @@ public class ExampleMonoPurchaseOrchestration extends CommonExample {
             System.out.println("*************************** INIT PURCHASE ELEMENTS ******************");
             System.out.println("*********************************************************************");
             System.out.println(initPurchaseResponse);
+
+            CfarContract confirmedCfarContract = updateCfarContract(client, initPurchaseResponse.getContracts().get(0).getReference(), initPurchaseResponse.getAirlineSession().getId());
+            System.out.println("*********************************************************************");
+            System.out.println("*************************** UPDATE CFAR CONTRACT STATUS**************");
+            System.out.println("*********************************************************************");
+            System.out.println(confirmedCfarContract);
         } catch (ApiException e) {
             e.printStackTrace();
         }

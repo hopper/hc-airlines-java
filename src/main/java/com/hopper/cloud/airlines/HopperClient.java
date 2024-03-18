@@ -134,13 +134,13 @@ public class HopperClient {
      * It has to be called after the payment details have been transferred, to confirm the contract.
      *
      * @param sessionId                 The current session IO
-     * @param contractId                the contract ID
+     * @param contractReference         The contract reference
      * @param updateCfarContractRequest The request with the update information
-     * @return The contract updated
+     * @return The updated contract
      * @throws ApiException
      */
-    public CfarContract updateCfarContractStatus(String sessionId, String contractId, UpdateCfarContractRequest updateCfarContractRequest) throws ApiException {
-        return cfarApi.putCfarContractsIdUpdateStatus(contractId, updateCfarContractRequest, sessionId);
+    public CfarContract updateCfarContractStatus(String sessionId, String contractReference, UpdateCfarContractRequest updateCfarContractRequest) throws ApiException {
+        return cfarApi.putCfarContractsIdUpdateStatus(contractReference, updateCfarContractRequest, sessionId);
     }
 
     /**

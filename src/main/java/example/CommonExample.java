@@ -154,4 +154,12 @@ public class CommonExample {
     protected static CreateSessionOffersContractsResponse createSessionOffersAndContracts(HopperClient client) throws ApiException {
         return client.createSessionOffersAndContracts(prepareCreateAirlineSessionRequest(FlowType.PURCHASE), prepareCreateCfarOfferRequest());
     }
+
+    protected static CfarContract updateCfarContract(HopperClient client, String contractReference, String sessionId) throws ApiException {
+        UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
+        updateCfarContractRequest.setEmailAddress("test@test.com");
+        updateCfarContractRequest.setStatus(CfarStatus.CONFIRMED);
+        updateCfarContractRequest.setPnrReference("ABC123");
+        return client.updateCfarContractStatus(sessionId, contractReference, updateCfarContractRequest);
+    }
 }

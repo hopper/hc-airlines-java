@@ -218,12 +218,4 @@ public class Example extends CommonExample {
         createCfarContractExerciseRequest.setItinerary(itinerary);
         return client.createCfarContractExercise(sessionId, createCfarContractExerciseRequest);
     }
-
-    private static CfarContract updateCfarContract(HopperClient client, String contractId, String sessionId) throws ApiException {
-        UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
-        updateCfarContractRequest.setEmailAddress("test@test.com");
-        updateCfarContractRequest.setStatus(CfarStatus.CONFIRMED);
-        updateCfarContractRequest.setPnrReference("ABC123");
-        return client.updateCfarContractStatus(sessionId, contractId, updateCfarContractRequest);
-    }
 }

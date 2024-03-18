@@ -473,14 +473,14 @@ A unique identifier for a session
    </td>
   </tr>
   <tr>
-   <td>contractId
+   <td>contractReference
 <p style="color:red">required</p>
    </td>
    <td>String
 <p>
-Example: af585dfd-dddf-4726-9ef7-f1bb8909a79a
+Example: RNNPN5QAFKZ1TBHC
 <p>
-A unique identifier for a contract
+The reference of the contract
    </td>
   </tr>
   <tr>
@@ -666,7 +666,7 @@ updateCfarContractRequest.setCity("Quebec City");
 updateCfarContractRequest.setPostalCode("G1R 4S9");
 updateCfarContractRequest.setStateOrProvince("QC");
 updateCfarContractRequest.setCountry("CA");
-CfarContract contract = client.updateCfarContractStatus(sessionId,contractId, updateCfarContractRequest);
+CfarContract contract = client.updateCfarContractStatus(sessionId,contractReference, updateCfarContractRequest);
 
 ```
 #### CreateCfarContractExercise
