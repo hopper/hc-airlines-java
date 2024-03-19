@@ -119,8 +119,7 @@ public class HopperClient {
             for (CfarOffer offer : cfarOffers) {
                 CreateCfarContractRequest createCfarContractRequest = new CreateCfarContractRequest();
                 createCfarContractRequest.setOfferIds(Collections.singletonList(offer.getId()));
-                createCfarContractRequest.setItinerary(offer.getItinerary());
-
+                createCfarContractRequest.setItinerary(createCfarOfferRequest.getItinerary().get(0));
                 CfarContract cfarContract = createCfarContract(sessionId, createCfarContractRequest);
                 cfarContracts.add(cfarContract);
             }
