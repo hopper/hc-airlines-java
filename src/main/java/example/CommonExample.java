@@ -158,7 +158,7 @@ public class CommonExample {
     protected static CfarContract updateCfarContract(HopperClient client, String contractReference, String sessionId) throws ApiException {
         UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
         updateCfarContractRequest.setEmailAddress("test@test.com");
-        updateCfarContractRequest.setStatus(CfarStatus.CONFIRMED);
+        updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
         updateCfarContractRequest.setPnrReference("ABC123");
         return client.updateCfarContractStatus(sessionId, contractReference, updateCfarContractRequest);
     }

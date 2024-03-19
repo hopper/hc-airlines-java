@@ -26,8 +26,6 @@ import java.io.IOException;
 
 import com.google.gson.reflect.TypeToken;
 
-import java.util.Map.Entry;
-
 import com.hopper.cloud.airlines.JSON;
 
 /**
@@ -47,7 +45,7 @@ public class UpdateCfarContractRequest {
 
     public static final String SERIALIZED_NAME_STATUS = "status";
     @SerializedName(SERIALIZED_NAME_STATUS)
-    private CfarStatus status;
+    private CfarContractStatus status;
 
     public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
     @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
@@ -142,7 +140,7 @@ public class UpdateCfarContractRequest {
     }
 
 
-    public UpdateCfarContractRequest status(CfarStatus status) {
+    public UpdateCfarContractRequest status(CfarContractStatus status) {
 
         this.status = status;
         return this;
@@ -155,12 +153,12 @@ public class UpdateCfarContractRequest {
     @javax.annotation.Nonnull
     @ApiModelProperty(required = true, value = "")
 
-    public CfarStatus getStatus() {
+    public CfarContractStatus getStatus() {
         return status;
     }
 
 
-    public void setStatus(CfarStatus status) {
+    public void setStatus(CfarContractStatus status) {
         this.status = status;
     }
 

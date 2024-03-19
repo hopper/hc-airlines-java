@@ -19,10 +19,6 @@ import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.CfarContractExercise;
-import com.hopper.cloud.airlines.model.CfarStatus;
-import com.hopper.cloud.airlines.model.CfarItinerary;
-import com.hopper.cloud.airlines.model.CfarOffer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -34,10 +30,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
