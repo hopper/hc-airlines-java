@@ -283,16 +283,16 @@ public class ProcessCfarPaymentTokenRequest {
 
         ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest = (ProcessCfarPaymentTokenRequest) o;
         return Objects.equals(this.paymentMethodToken, processCfarPaymentTokenRequest.paymentMethodToken) &&
-            Objects.equals(this.pnrReference, processCfarPaymentTokenRequest.pnrReference) &&
-            Objects.equals(this.emailAddress, processCfarPaymentTokenRequest.emailAddress) &&
-            Objects.equals(this.firstName, processCfarPaymentTokenRequest.firstName) &&
-            Objects.equals(this.lastName, processCfarPaymentTokenRequest.lastName) &&
-            Objects.equals(this.addressLine1, processCfarPaymentTokenRequest.addressLine1) &&
-            Objects.equals(this.addressLine2, processCfarPaymentTokenRequest.addressLine2) &&
-            Objects.equals(this.city, processCfarPaymentTokenRequest.city) &&
-            Objects.equals(this.stateOrProvince, processCfarPaymentTokenRequest.stateOrProvince) &&
-            Objects.equals(this.postalCode, processCfarPaymentTokenRequest.postalCode) &&
-            Objects.equals(this.country, processCfarPaymentTokenRequest.country);
+                Objects.equals(this.pnrReference, processCfarPaymentTokenRequest.pnrReference) &&
+                Objects.equals(this.emailAddress, processCfarPaymentTokenRequest.emailAddress) &&
+                Objects.equals(this.firstName, processCfarPaymentTokenRequest.firstName) &&
+                Objects.equals(this.lastName, processCfarPaymentTokenRequest.lastName) &&
+                Objects.equals(this.addressLine1, processCfarPaymentTokenRequest.addressLine1) &&
+                Objects.equals(this.addressLine2, processCfarPaymentTokenRequest.addressLine2) &&
+                Objects.equals(this.city, processCfarPaymentTokenRequest.city) &&
+                Objects.equals(this.stateOrProvince, processCfarPaymentTokenRequest.stateOrProvince) &&
+                Objects.equals(this.postalCode, processCfarPaymentTokenRequest.postalCode) &&
+                Objects.equals(this.country, processCfarPaymentTokenRequest.country);
     }
 
     @Override
@@ -331,97 +331,6 @@ public class ProcessCfarPaymentTokenRequest {
         return o.toString().replace("\n", "\n    ");
     }
 
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("payment_method_token");
-        openapiFields.add("pnr_reference");
-        openapiFields.add("email_address");
-        openapiFields.add("first_name");
-        openapiFields.add("last_name");
-        openapiFields.add("address_line1");
-        openapiFields.add("address_line2");
-        openapiFields.add("city");
-        openapiFields.add("postal_code");
-        openapiFields.add("state_or_province");
-        openapiFields.add("country");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-        openapiFields.add("payment_method_token");
-        openapiFields.add("first_name");
-        openapiFields.add("last_name");
-        openapiFields.add("pnr_reference");
-        openapiFields.add("email_address");
-    }
-
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to ProcessCfarPaymentTokenRequest
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (ProcessCfarPaymentTokenRequest.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ProcessCfarPaymentTokenRequest is not found in the empty JSON string", ProcessCfarPaymentTokenRequest.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonObj.entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ProcessCfarPaymentTokenRequest.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProcessCfarPaymentTokenRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-            }
-        }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : ProcessCfarPaymentTokenRequest.openapiRequiredFields) {
-            if (jsonObj.get(requiredField) == null) {
-                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-            }
-        }
-        if (jsonObj.get("payment_method_token") != null && !jsonObj.get("payment_method_token").isJsonPrimitive() && !jsonObj.get("payment_method_token").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `payment_method_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_method_token").toString()));
-        }
-        if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive() && !jsonObj.get("pnr_reference").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
-        }
-        if (jsonObj.get("email_address") != null && !jsonObj.get("email_address").isJsonPrimitive() && !jsonObj.get("email_address").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `email_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email_address").toString()));
-        }
-        if (jsonObj.get("first_name") != null && !jsonObj.get("first_name").isJsonPrimitive() && !jsonObj.get("first_name").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `first_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("first_name").toString()));
-        }
-        if (jsonObj.get("last_name") != null && !jsonObj.get("last_name").isJsonPrimitive() && !jsonObj.get("last_name").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `last_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("last_name").toString()));
-        }
-        if (jsonObj.get("address_line1") != null && !jsonObj.get("address_line1").isJsonPrimitive() && !jsonObj.get("address_line1").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `address_line1` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address_line1").toString()));
-        }
-        if (jsonObj.get("address_line2") != null && !jsonObj.get("address_line2").isJsonPrimitive() && !jsonObj.get("address_line2").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `address_line2` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address_line2").toString()));
-        }
-        if (jsonObj.get("city") != null && !jsonObj.get("city").isJsonPrimitive() && !jsonObj.get("city").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("city").toString()));
-        }
-        if (jsonObj.get("state_or_province") != null && !jsonObj.get("state_or_province").isJsonPrimitive() && !jsonObj.get("state_or_province").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `state_or_province` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state_or_province").toString()));
-        }
-        if (jsonObj.get("postal_code") != null && !jsonObj.get("postal_code").isJsonPrimitive() && !jsonObj.get("postal_code").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `postal_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postal_code").toString()));
-        }
-        if (jsonObj.get("country") != null && !jsonObj.get("country").isJsonPrimitive() && !jsonObj.get("country").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("country").toString()));
-        }
-    }
-
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
@@ -443,7 +352,6 @@ public class ProcessCfarPaymentTokenRequest {
                 @Override
                 public ProcessCfarPaymentTokenRequest read(JsonReader in) throws IOException {
                     JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-                    validateJsonObject(jsonObj);
                     return thisAdapter.fromJsonTree(jsonObj);
                 }
 

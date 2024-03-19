@@ -27,7 +27,21 @@ public enum AncillaryType {
   
   TRAVEL_INSURANCE("travel_insurance"),
   
-  UNCLASSIFIED("unclassified");
+  CABIN_BAG("cabin_bag"),
+
+  CHECKED_BAG("checked_bag"),
+
+  SEAT("seat"),
+
+  LOUNGE("lounge"),
+
+  MEAL("meal"),
+
+  FAST_TRACK("fast_track"),
+
+  PET("pet"),
+
+  OTHER("other");
 
   private String value;
 

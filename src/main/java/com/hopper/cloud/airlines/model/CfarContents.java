@@ -34,193 +34,145 @@ import java.util.Map.Entry;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
 public class CfarContents {
 
-  public static final String SERIALIZED_NAME_BULLET_POINTS = "bullet_points";
-  @SerializedName(SERIALIZED_NAME_BULLET_POINTS)
-  private List<String> bulletPoints = new ArrayList<>();
+    public static final String SERIALIZED_NAME_BULLET_POINTS = "bullet_points";
+    @SerializedName(SERIALIZED_NAME_BULLET_POINTS)
+    private List<String> bulletPoints = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_LABELS = "labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+    public static final String SERIALIZED_NAME_LABELS = "labels";
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
 
-  public CfarContents bulletPoints(List<String> bulletPoints) {
-    this.bulletPoints = bulletPoints;
-    return this;
-  }
-
-  public CfarContents addBulletPointsItem(String bulletPointsItem) {
-    this.bulletPoints.add(bulletPointsItem);
-    return this;
-  }
-
-  /**
-   * An array containing the bullet points to be displayed
-   *
-   * @return bulletPoints
-   **/
-  @ApiModelProperty(required = true, value = "An array containing the bullet points to be displayed")
-  public List<String> getBulletPoints() {
-    return bulletPoints;
-  }
-
-  public void setBulletPoints(List<String> bulletPoints) {
-    this.bulletPoints = bulletPoints;
-  }
-
-  public CfarContents labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  /**
-   * Get labels
-   *
-   * @return labels
-   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "A map of key-value pairs for storing all labels to be displayed")
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    CfarContents cfarContents = (CfarContents) o;
-    return Objects.equals(this.bulletPoints, cfarContents.bulletPoints) &&
-            Objects.equals(this.labels, cfarContents.labels);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(bulletPoints, labels);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CfarContents {\n");
-
-    sb.append("    bulletPoints: ").append(toIndentedString(bulletPoints)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("bullet_points");
-    openapiFields.add("labels");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("bullet_points");
-    openapiRequiredFields.add("labels");
-  }
-
-  /**
-   * Validates the JSON Object and throws an exception if issues found
-   *
-   * @param jsonObj JSON Object
-   * @throws IOException if the JSON Object is invalid with respect to CfarContents
-   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-    if (jsonObj == null) {
-      if (CfarContents.openapiRequiredFields.isEmpty()) {
-        return;
-      } else { // has required fields
-        throw new IllegalArgumentException(String.format("The required field(s) %s in CfarContents is not found in the empty JSON string", CfarContents.openapiRequiredFields.toString()));
-      }
+    public CfarContents bulletPoints(List<String> bulletPoints) {
+        this.bulletPoints = bulletPoints;
+        return this;
     }
 
-    Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-    // check to see if the JSON string contains additional fields
-    for (Entry<String, JsonElement> entry : entries) {
-      if (!CfarContents.openapiFields.contains(entry.getKey())) {
-        throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarContents` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-      }
+    public CfarContents addBulletPointsItem(String bulletPointsItem) {
+        this.bulletPoints.add(bulletPointsItem);
+        return this;
     }
 
-    // check to make sure all required properties/fields are present in the JSON string
-    for (String requiredField : CfarContents.openapiRequiredFields) {
-      if (jsonObj.get(requiredField) == null) {
-        throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-      }
+    /**
+     * An array containing the bullet points to be displayed
+     *
+     * @return bulletPoints
+     **/
+    @ApiModelProperty(required = true, value = "An array containing the bullet points to be displayed")
+    public List<String> getBulletPoints() {
+        return bulletPoints;
     }
-  }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public void setBulletPoints(List<String> bulletPoints) {
+        this.bulletPoints = bulletPoints;
+    }
+
+    public CfarContents labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    /**
+     * Get labels
+     *
+     * @return labels
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "A map of key-value pairs for storing all labels to be displayed")
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-      if (!CfarContents.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'CfarContents' and its subtypes
-      }
-      final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-      final TypeAdapter<CfarContents> thisAdapter
-              = gson.getDelegateAdapter(this, TypeToken.get(CfarContents.class));
-
-      return (TypeAdapter<T>) new TypeAdapter<CfarContents>() {
-        @Override
-        public void write(JsonWriter out, CfarContents value) throws IOException {
-          JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-          elementAdapter.write(out, obj);
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
         }
-
-        @Override
-        public CfarContents read(JsonReader in) throws IOException {
-          JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-          validateJsonObject(jsonObj);
-          return thisAdapter.fromJsonTree(jsonObj);
+        if (o == null || getClass() != o.getClass()) {
+            return false;
         }
-
-      }.nullSafe();
+        CfarContents cfarContents = (CfarContents) o;
+        return Objects.equals(this.bulletPoints, cfarContents.bulletPoints) &&
+                Objects.equals(this.labels, cfarContents.labels);
     }
-  }
 
-  /**
-   * Create an instance of CfarContents given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of CfarContents
-   * @throws IOException if the JSON string is invalid with respect to CfarContents
-   */
-  public static CfarContents fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CfarContents.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(bulletPoints, labels);
+    }
 
-  /**
-   * Convert an instance of CfarContents to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class CfarContents {\n");
+
+        sb.append("    bulletPoints: ").append(toIndentedString(bulletPoints)).append("\n");
+        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!CfarContents.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'CfarContents' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<CfarContents> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(CfarContents.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<CfarContents>() {
+                @Override
+                public void write(JsonWriter out, CfarContents value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public CfarContents read(JsonReader in) throws IOException {
+                    JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+                    return thisAdapter.fromJsonTree(jsonObj);
+                }
+
+            }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of CfarContents given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of CfarContents
+     * @throws IOException if the JSON string is invalid with respect to CfarContents
+     */
+    public static CfarContents fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, CfarContents.class);
+    }
+
+    /**
+     * Convert an instance of CfarContents to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }

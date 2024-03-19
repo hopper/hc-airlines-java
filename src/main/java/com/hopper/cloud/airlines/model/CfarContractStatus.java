@@ -23,8 +23,8 @@ import java.io.IOException;
 /**
  * Gets or Sets cfar_status
  */
-@JsonAdapter(CfarStatus.Adapter.class)
-public enum CfarStatus {
+@JsonAdapter(CfarContractStatus.Adapter.class)
+public enum CfarContractStatus {
 
   CREATED("created"),
 
@@ -40,7 +40,7 @@ public enum CfarStatus {
 
   private String value;
 
-  CfarStatus(String value) {
+  CfarContractStatus(String value) {
     this.value = value;
   }
 
@@ -53,8 +53,8 @@ public enum CfarStatus {
     return String.valueOf(value);
   }
 
-  public static CfarStatus fromValue(String value) {
-    for (CfarStatus b : CfarStatus.values()) {
+  public static CfarContractStatus fromValue(String value) {
+    for (CfarContractStatus b : CfarContractStatus.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -62,16 +62,16 @@ public enum CfarStatus {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<CfarStatus> {
+  public static class Adapter extends TypeAdapter<CfarContractStatus> {
     @Override
-    public void write(final JsonWriter jsonWriter, final CfarStatus enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final CfarContractStatus enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public CfarStatus read(final JsonReader jsonReader) throws IOException {
+    public CfarContractStatus read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return CfarStatus.fromValue(value);
+      return CfarContractStatus.fromValue(value);
     }
   }
 }

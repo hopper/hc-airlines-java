@@ -91,6 +91,9 @@ public class HopperClient {
      * @throws ApiException
      */
     public AirlineSession createSession(CreateAirlineSessionRequest createAirlineSessionRequest) throws ApiException {
+        if (FlowType.EXERCISE.equals(createAirlineSessionRequest.getFlowType())) {
+            createAirlineSessionRequest.setProduct(Product.CFAR);
+        }
         return sessionsApi.postSessions(createAirlineSessionRequest);
     }
 

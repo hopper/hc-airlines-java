@@ -127,7 +127,16 @@ public class Example extends CommonExample {
         passengerCount.count(3);
         passengerCount.setType(PassengerType.ADULT);
 
-        passengerPricing.setPassengerCount(passengerCount);itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
+        passengerPricing.setPassengerCount(passengerCount);
+
+        CfarPassengerTax cfarPassengerTax = new CfarPassengerTax();
+        cfarPassengerTax.amount("15.50");
+        cfarPassengerTax.code("CF");
+        cfarPassengerTax.currency("USD");
+
+        passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
+
+        itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
 
         contractRequest.setItinerary(itinerary);
         return client.createCfarContract(sessionId, contractRequest);
@@ -150,72 +159,5 @@ public class Example extends CommonExample {
         processCfarPaymentRequest.setEmailAddress("john@doe.com");
         processCfarPaymentRequest.setPnrReference("ABC123");
         return client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);
-    }
-
-    private static CfarContractExercise completeCfarContractExercise(HopperClient client, String exerciseId, String sessionId) throws ApiException {
-        return client.completeCfarContractExercise(sessionId, new MarkCfarContractExerciseCompleteRequest(), exerciseId);
-    }
-
-    private static CfarContractExercise createCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException {
-        CreateCfarContractExerciseRequest createCfarContractExerciseRequest = new CreateCfarContractExerciseRequest();
-        createCfarContractExerciseRequest.setContractId(contractId);
-        createCfarContractExerciseRequest.setCurrency("CAD");
-        createCfarContractExerciseRequest.setPnrReference("ABC123");
-        Map<String, String> params = new HashMap<>();
-        params.put("property1", "test1");
-        params.put("property2", "test2");
-        createCfarContractExerciseRequest.setExtAttributes(params);
-        createCfarContractExerciseRequest.setAirlineRefundPenalty("146.64");
-        createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
-
-        CfarItinerary itinerary = new CfarItinerary();
-        itinerary.setCurrency("CAD");
-        itinerary.setTotalPrice("190.00");
-
-        Ancillary ancillary = new Ancillary();
-        ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
-        ancillary.setTotalPrice("10.00");
-
-        CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
-        cfarItinerarySlice.setFareBrand("flex");
-
-        CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
-        cfarItinerarySliceSegment.setOriginAirport("LGA");
-        cfarItinerarySliceSegment.setDestinationAirport("BOS");
-        cfarItinerarySliceSegment.setFlightNumber("JB776");
-        cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
-        cfarItinerarySliceSegment.setFareBrand("basic");
-        cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
-
-        CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
-        cfarItinerarySliceSegment2.setOriginAirport("LGA");
-        cfarItinerarySliceSegment2.setDestinationAirport("BOS");
-        cfarItinerarySliceSegment2.setFlightNumber("JB777");
-        cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
-        cfarItinerarySliceSegment2.setFareBrand("flex");
-        cfarItinerarySliceSegment2.setValidatingCarrierCode("B6");
-
-        List<CfarItinerarySliceSegment> segments = new ArrayList<>();
-        segments.add(cfarItinerarySliceSegment);
-        segments.add(cfarItinerarySliceSegment2);
-        cfarItinerarySlice.setSegments(segments);
-
-        PassengerPricing passengerPricing = new PassengerPricing();
-        passengerPricing.setIndividualPrice("60.00");
-        PassengerCount passengerCount = new PassengerCount();
-        passengerCount.count(3);
-        passengerCount.setType(PassengerType.ADULT);
-        passengerPricing.setPassengerCount(passengerCount);
-
-        itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
-        itinerary.setAncillaries(Collections.singletonList(ancillary));
-        itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
-
-        createCfarContractExerciseRequest.setItinerary(itinerary);
-        return client.createCfarContractExercise(sessionId, createCfarContractExerciseRequest);
     }
 }

@@ -35,4 +35,8 @@ public class CreateSessionOffersContractsResponse {
         this.contracts = contracts;
     }
 
+    public String toString() {
+        return airlineSession.toString() + offers.toString() + contracts.toString();
+    }
+
 }

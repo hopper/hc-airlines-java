@@ -220,69 +220,6 @@ public class CfarPassenger {
         return o.toString().replace("\n", "\n    ");
     }
 
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("passenger_reference");
-        openapiFields.add("passenger_type");
-        openapiFields.add("first_name");
-        openapiFields.add("last_name");
-        openapiFields.add("date_of_birth");
-        openapiFields.add("gender");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("passenger_reference");
-        openapiRequiredFields.add("passenger_type");
-    }
-
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to CfarPassenger
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (CfarPassenger.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in CfarPassenger is not found in the empty JSON string", CfarPassenger.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
-            if (!CfarPassenger.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarPassenger` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-            }
-        }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : CfarPassenger.openapiRequiredFields) {
-            if (jsonObj.get(requiredField) == null) {
-                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-            }
-        }
-        if (jsonObj.get("passenger_reference") != null && !jsonObj.get("passenger_reference").isJsonPrimitive() && !jsonObj.get("passenger_reference").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `passenger_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passenger_reference").toString()));
-        }
-        if (jsonObj.get("first_name") != null && !jsonObj.get("first_name").isJsonPrimitive() && !jsonObj.get("first_name").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `first_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("first_name").toString()));
-        }
-        if (jsonObj.get("last_name") != null && !jsonObj.get("last_name").isJsonPrimitive() && !jsonObj.get("last_name").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `last_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("last_name").toString()));
-        }
-        if (jsonObj.get("date_of_birth") != null && !jsonObj.get("date_of_birth").isJsonPrimitive() && !jsonObj.get("date_of_birth").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `date_of_birth` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_of_birth").toString()));
-        }
-    }
-
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
@@ -304,7 +241,6 @@ public class CfarPassenger {
                 @Override
                 public CfarPassenger read(JsonReader in) throws IOException {
                     JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-                    validateJsonObject(jsonObj);
                     return thisAdapter.fromJsonTree(jsonObj);
                 }
 

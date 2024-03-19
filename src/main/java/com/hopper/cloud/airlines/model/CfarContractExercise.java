@@ -89,10 +89,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Unique identifier for a CFAR exercise
    * @return id
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "8ef454c6-74a5-48cf-972e-fac72d05e59c", required = true, value = "Unique identifier for a CFAR exercise")
 
@@ -112,10 +112,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Unique identifier for a contract
    * @return contractId
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "9f4f2f2b-adfd-4f02-83ad-da336ed57ce0", required = true, value = "Unique identifier for a contract")
 
@@ -157,10 +157,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Refundable amount allowed in cash
    * @return cashRefundAllowance
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Refundable amount allowed in cash")
 
@@ -185,10 +185,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Get extAttributes
    * @return extAttributes
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
@@ -208,10 +208,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Get the refundable amount allowed in future travel credit
    * @return ftcRefundAllowance
-  **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Refundable amount allowed in future travel credit")
 
@@ -230,10 +230,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Get currency
    * @return currency
-  **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "CAD", value = "")
 
@@ -292,14 +292,14 @@ public class CfarContractExercise {
     }
     CfarContractExercise cfarContractExercise = (CfarContractExercise) o;
     return Objects.equals(this.id, cfarContractExercise.id) &&
-        Objects.equals(this.contractId, cfarContractExercise.contractId) &&
-        Objects.equals(this.exerciseInitiatedDateTime, cfarContractExercise.exerciseInitiatedDateTime) &&
-        Objects.equals(this.cashRefundAllowance, cfarContractExercise.cashRefundAllowance) &&
-        Objects.equals(this.extAttributes, cfarContractExercise.extAttributes) &&
-        Objects.equals(this.ftcRefundAllowance, cfarContractExercise.ftcRefundAllowance) &&
-        Objects.equals(this.redirectionToken, cfarContractExercise.redirectionToken)
-        && Objects.equals(this.redirectionUrl, cfarContractExercise.redirectionUrl) &&
-        Objects.equals(this.currency, cfarContractExercise.currency);
+            Objects.equals(this.contractId, cfarContractExercise.contractId) &&
+            Objects.equals(this.exerciseInitiatedDateTime, cfarContractExercise.exerciseInitiatedDateTime) &&
+            Objects.equals(this.cashRefundAllowance, cfarContractExercise.cashRefundAllowance) &&
+            Objects.equals(this.extAttributes, cfarContractExercise.extAttributes) &&
+            Objects.equals(this.ftcRefundAllowance, cfarContractExercise.ftcRefundAllowance) &&
+            Objects.equals(this.redirectionToken, cfarContractExercise.redirectionToken)
+            && Objects.equals(this.redirectionUrl, cfarContractExercise.redirectionUrl) &&
+            Objects.equals(this.currency, cfarContractExercise.currency);
   }
 
   @Override
@@ -335,127 +335,50 @@ public class CfarContractExercise {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("contract_id");
-    openapiFields.add("exercise_initiated_date_time");
-    openapiFields.add("cash_refund_allowance");
-    openapiFields.add("ext_attributes");
-    openapiFields.add("ftc_refund_allowance");
-    openapiFields.add("currency");
-    openapiFields.add("redirection_token");
-    openapiFields.add("redirection_url");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("id");
-    openapiRequiredFields.add("contract_id");
-    openapiRequiredFields.add("exercise_initiated_date_time");
-    openapiRequiredFields.add("cash_refund_allowance");
-    openapiRequiredFields.add("redirection_token");
-    openapiRequiredFields.add("ext_attributes");
-  }
-
- /**
-  * Validates the JSON Object and throws an exception if issues found
-  *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CfarContractExercise
-  */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (CfarContractExercise.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CfarContractExercise is not found in the empty JSON string", CfarContractExercise.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Entry<String, JsonElement> entry : entries) {
-        if (!CfarContractExercise.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarContractExercise` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CfarContractExercise.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-        }
-      }
-      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive() && !jsonObj.get("id").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if (jsonObj.get("contract_id") != null && !jsonObj.get("contract_id").isJsonPrimitive() && !jsonObj.get("contract_id").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `contract_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contract_id").toString()));
-      }
-      if (jsonObj.get("redirection_token") != null && !jsonObj.get("redirection_token").isJsonPrimitive() && !jsonObj.get("redirection_token").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `redirection_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirection_token").toString()));
-      }
-      if (jsonObj.get("redirection_url") != null && !jsonObj.get("redirection_url").isJsonPrimitive() && !jsonObj.get("redirection_url").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `redirection_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirection_url").toString()));
-      }
-      if (jsonObj.get("ftc_refund_allowance") != null && !jsonObj.get("ftc_refund_allowance").isJsonPrimitive() && !jsonObj.get("ftc_refund_allowance").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ftc_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ftc_refund_allowance").toString()));
-      }
-      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-  }
-
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CfarContractExercise.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CfarContractExercise' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CfarContractExercise> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CfarContractExercise.class));
+      if (!CfarContractExercise.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'CfarContractExercise' and its subtypes
+      }
+      final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+      final TypeAdapter<CfarContractExercise> thisAdapter
+              = gson.getDelegateAdapter(this, TypeToken.get(CfarContractExercise.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CfarContractExercise>() {
-           @Override
-           public void write(JsonWriter out, CfarContractExercise value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
+      return (TypeAdapter<T>) new TypeAdapter<CfarContractExercise>() {
+        @Override
+        public void write(JsonWriter out, CfarContractExercise value) throws IOException {
+          JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+          elementAdapter.write(out, obj);
+        }
 
-           @Override
-           public CfarContractExercise read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
-           }
+        @Override
+        public CfarContractExercise read(JsonReader in) throws IOException {
+          JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+          return thisAdapter.fromJsonTree(jsonObj);
+        }
 
-       }.nullSafe();
+      }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CfarContractExercise given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CfarContractExercise
-  * @throws IOException if the JSON string is invalid with respect to CfarContractExercise
-  */
+  /**
+   * Create an instance of CfarContractExercise given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CfarContractExercise
+   * @throws IOException if the JSON string is invalid with respect to CfarContractExercise
+   */
   public static CfarContractExercise fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CfarContractExercise.class);
   }
 
- /**
-  * Convert an instance of CfarContractExercise to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CfarContractExercise to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

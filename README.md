@@ -4,38 +4,38 @@ The Java SDK aims to help implement all API calls coming from the airline backen
 renew authentication tokens required to consume the Hopper Cloud Airlines API.
 
 * [Client initialization](#client-initialization)
-    + [Download](#download)
-    + [Parameters](#parameters)
+  + [Download](#download)
+  + [Parameters](#parameters)
 * [Client methods](#client-methods)
-    + [createSession](#createsession)
-    + [getCfarContract](#getcfarcontract)
-        - [Example](#--example--)
-    + [processCfarPayment](#processcfarpayment)
-        - [Example](#--example---1)
-    + [updateCfarContractStatus](#updatecfarcontractstatus)
-    + [createCfarContractExercise](#createCfarContractExercise)
-    + [completeCfarContractExercise](#completeCfarContractExercise)
-    + [createEvent](#createEvent)
+  + [createSession](#createsession)
+  + [getCfarContract](#getcfarcontract)
+    - [Example](#--example--)
+  + [processCfarPayment](#processcfarpayment)
+    - [Example](#--example---1)
+  + [updateCfarContractStatus](#updatecfarcontractstatus)
+  + [createCfarContractExercise](#createCfarContractExercise)
+  + [completeCfarContractExercise](#completeCfarContractExercise)
+  + [createEvent](#createEvent)
 * [Data structures](#data-structures)
-    + [Device](#device)
-    + [Platform](#platform)
-    + [OperatingSystem](#operatingsystem)
-    + [Browser](#browser)
-    + [CfarContract](#cfarcontract)
-    + [CfarOffer](#cfaroffer)
-    + [CfarItinerary](#cfaritinerary)
-    + [CfarPassenger](#cfarpassenger)
-    + [CfarPassengerTax](#cfarpassengertax)
-    + [CfarTax](#cfartax)
-    + [CfarPrice](#cfarprice)
-    + [PassengerPricing](#passengerpricing)
-    + [PassengerCount](#passengercount)
-    + [CfarItinerarySlice](#cfaritineraryslice)
-    + [CfarItinerarySliceSegment](#cfaritineraryslicesegment)
-    + [CfarContents](#cfarcontents)
-    + [Ancillary](#ancillary)
-    + [Fare](#fare)
-    + [FareRule](#farerule)
+  + [Device](#device)
+  + [Platform](#platform)
+  + [OperatingSystem](#operatingsystem)
+  + [Browser](#browser)
+  + [CfarContract](#cfarcontract)
+  + [CfarOffer](#cfaroffer)
+  + [CfarItinerary](#cfaritinerary)
+  + [CfarPassenger](#cfarpassenger)
+  + [CfarPassengerTax](#cfarpassengertax)
+  + [CfarTax](#cfartax)
+  + [CfarPrice](#cfarprice)
+  + [PassengerPricing](#passengerpricing)
+  + [PassengerCount](#passengercount)
+  + [CfarItinerarySlice](#cfaritineraryslice)
+  + [CfarItinerarySliceSegment](#cfaritineraryslicesegment)
+  + [CfarContents](#cfarcontents)
+  + [Ancillary](#ancillary)
+  + [Fare](#fare)
+  + [FareRule](#farerule)
 
 ## Client initialization
 
@@ -56,7 +56,7 @@ Maven:
 <dependency>
   <groupId>com.hopper.cloud</groupId>
   <artifactId>cloud-airlines-java</artifactId>
-  <version>0.8.7</version>
+  <version>1.1.3</version>
 </dependency>
 
 ```
@@ -691,7 +691,7 @@ A unique identifier for a CFAR contract
    </td>
    <td>
 
-  [CfarItinerary](#cfaritinerary)
+[CfarItinerary](#cfaritinerary)
 <p>
 Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
    </td>

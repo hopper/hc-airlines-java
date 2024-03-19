@@ -10,7 +10,7 @@ import java.util.*;
 
 public class CommonExample {
     protected static HopperClient client = new HopperClient("", "", "", "", "", "", true);
-    protected static String flightDate = "2024-03-19";
+    protected static String flightDate = "2024-12-31";
 
     private static CreateAirlineSessionRequest prepareCreateAirlineSessionRequest(FlowType flowType) {
         CreateAirlineSessionRequest sessionRequest = new CreateAirlineSessionRequest();
@@ -67,7 +67,7 @@ public class CommonExample {
 
         // First itinerary
         CfarItinerary itinerary = new CfarItinerary();
-        itinerary.setCurrency("CAD");
+        itinerary.setCurrency("USD");
         itinerary.setTotalPrice("100.00");
 
         //-- Slices
@@ -100,11 +100,19 @@ public class CommonExample {
         passengerCount.count(3);
         passengerCount.setType(PassengerType.ADULT);
         passengerPricing.setPassengerCount(passengerCount);
+
+        CfarPassengerTax cfarPassengerTax = new CfarPassengerTax();
+        cfarPassengerTax.amount("15.50");
+        cfarPassengerTax.code("CF");
+        cfarPassengerTax.currency("USD");
+
+        passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
+
         itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
 
         // Second itinerary
         CfarItinerary itinerary1 = new CfarItinerary();
-        itinerary1.setCurrency("CAD");
+        itinerary1.setCurrency("USD");
         itinerary1.setTotalPrice("120.00");
 
         //-- Slices
@@ -158,8 +166,86 @@ public class CommonExample {
     protected static CfarContract updateCfarContract(HopperClient client, String contractReference, String sessionId) throws ApiException {
         UpdateCfarContractRequest updateCfarContractRequest = new UpdateCfarContractRequest();
         updateCfarContractRequest.setEmailAddress("test@test.com");
-        updateCfarContractRequest.setStatus(CfarStatus.CONFIRMED);
+        updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
         updateCfarContractRequest.setPnrReference("ABC123");
         return client.updateCfarContractStatus(sessionId, contractReference, updateCfarContractRequest);
+    }
+
+
+    protected static CfarContractExercise completeCfarContractExercise(HopperClient client, String exerciseId, String sessionId) throws ApiException {
+        MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest = new MarkCfarContractExerciseCompleteRequest();
+        markCfarContractExerciseCompleteRequest.setRefundMethod(AirlineRefundMethod.CASH);
+        markCfarContractExerciseCompleteRequest.setRefundAmount("80.00");
+        return client.completeCfarContractExercise(sessionId, markCfarContractExerciseCompleteRequest, exerciseId);
+    }
+
+    protected static CfarContractExercise createCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException {
+        CreateCfarContractExerciseRequest createCfarContractExerciseRequest = new CreateCfarContractExerciseRequest();
+        createCfarContractExerciseRequest.setContractId(contractId);
+        createCfarContractExerciseRequest.setCurrency("USD");
+        createCfarContractExerciseRequest.setPnrReference("ABC123");
+        Map<String, String> params = new HashMap<>();
+        params.put("property1", "test1");
+        params.put("property2", "test2");
+        createCfarContractExerciseRequest.setExtAttributes(params);
+        createCfarContractExerciseRequest.setAirlineRefundPenalty("146.64");
+        createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
+
+        CfarItinerary itinerary = new CfarItinerary();
+        itinerary.setCurrency("USD");
+        itinerary.setTotalPrice("190.00");
+
+        Ancillary ancillary = new Ancillary();
+        ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
+        ancillary.setTotalPrice("10.00");
+
+        CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
+        cfarItinerarySlice.setFareBrand("flex");
+
+        CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
+        cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
+        cfarItinerarySliceSegment.setOriginAirport("LGA");
+        cfarItinerarySliceSegment.setDestinationAirport("BOS");
+        cfarItinerarySliceSegment.setFlightNumber("JB776");
+        cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
+        cfarItinerarySliceSegment.setFareBrand("basic");
+        cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
+
+        CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
+        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
+        cfarItinerarySliceSegment2.setOriginAirport("LGA");
+        cfarItinerarySliceSegment2.setDestinationAirport("BOS");
+        cfarItinerarySliceSegment2.setFlightNumber("JB777");
+        cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
+        cfarItinerarySliceSegment2.setFareBrand("flex");
+        cfarItinerarySliceSegment2.setValidatingCarrierCode("B6");
+
+        List<CfarItinerarySliceSegment> segments = new ArrayList<>();
+        segments.add(cfarItinerarySliceSegment);
+        segments.add(cfarItinerarySliceSegment2);
+        cfarItinerarySlice.setSegments(segments);
+
+        PassengerPricing passengerPricing = new PassengerPricing();
+        passengerPricing.setIndividualPrice("60.00");
+        PassengerCount passengerCount = new PassengerCount();
+        passengerCount.count(3);
+        passengerCount.setType(PassengerType.ADULT);
+        passengerPricing.setPassengerCount(passengerCount);
+
+        CfarPassengerTax cfarPassengerTax = new CfarPassengerTax();
+        cfarPassengerTax.amount("15.50");
+        cfarPassengerTax.code("CF");
+        cfarPassengerTax.currency("USD");
+
+        passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
+
+        itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
+        itinerary.setAncillaries(Collections.singletonList(ancillary));
+        itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
+
+        createCfarContractExerciseRequest.setItinerary(itinerary);
+        return client.createCfarContractExercise(sessionId, createCfarContractExerciseRequest);
     }
 }

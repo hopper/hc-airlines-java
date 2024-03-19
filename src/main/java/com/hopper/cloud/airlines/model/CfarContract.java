@@ -19,10 +19,6 @@ import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.CfarContractExercise;
-import com.hopper.cloud.airlines.model.CfarStatus;
-import com.hopper.cloud.airlines.model.CfarItinerary;
-import com.hopper.cloud.airlines.model.CfarOffer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -34,10 +30,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -86,11 +78,6 @@ public class CfarContract {
     public static final String SERIALIZED_NAME_TAXES = "taxes";
     @SerializedName(SERIALIZED_NAME_TAXES)
     private List<CfarTax> taxes = new ArrayList<>();
-
-    public static final String SERIALIZED_NAME_CFAR_PRICES = "cfarPrices";
-    @SerializedName(SERIALIZED_NAME_CFAR_PRICES)
-    private List<CfarPrice> cfarPrices = new ArrayList<>();
-
     public static final String SERIALIZED_NAME_CREATED_DATE_TIME = "created_date_time";
     @SerializedName(SERIALIZED_NAME_CREATED_DATE_TIME)
     private OffsetDateTime createdDateTime;
@@ -101,7 +88,7 @@ public class CfarContract {
 
     public static final String SERIALIZED_NAME_STATUS = "status";
     @SerializedName(SERIALIZED_NAME_STATUS)
-    private CfarStatus status;
+    private CfarContractStatus status;
 
     public static final String SERIALIZED_NAME_CONFIRMED_DATE_TIME = "confirmed_date_time";
     @SerializedName(SERIALIZED_NAME_CONFIRMED_DATE_TIME)
@@ -317,33 +304,6 @@ public class CfarContract {
         this.taxes = taxes;
     }
 
-
-    public CfarContract cfarPrices(List<CfarPrice> cfarPrices) {
-
-        this.cfarPrices = cfarPrices;
-        return this;
-    }
-
-    public CfarContract addSlicesItem(CfarPrice cfarPricesItem) {
-        this.cfarPrices.add(cfarPricesItem);
-        return this;
-    }
-
-    /**
-     * List of prices associated to the contract
-     * @return cfarPrices
-     **/
-    @javax.annotation.Nonnull
-    @ApiModelProperty(required = true, value = "List of prices associated to the contract")
-    public List<CfarPrice> getCfarPrices() {
-        return cfarPrices;
-    }
-
-
-    public void setCfarPrices(List<CfarPrice> cfarPrices) {
-        this.cfarPrices = cfarPrices;
-    }
-
     public CfarContract currency(String currency) {
 
         this.currency = currency;
@@ -416,7 +376,7 @@ public class CfarContract {
     }
 
 
-    public CfarContract status(CfarStatus status) {
+    public CfarContract status(CfarContractStatus status) {
 
         this.status = status;
         return this;
@@ -430,12 +390,12 @@ public class CfarContract {
     @javax.annotation.Nonnull
     @ApiModelProperty(required = true, value = "")
 
-    public CfarStatus getStatus() {
+    public CfarContractStatus getStatus() {
         return status;
     }
 
 
-    public void setStatus(CfarStatus status) {
+    public void setStatus(CfarContractStatus status) {
         this.status = status;
     }
 
@@ -528,7 +488,6 @@ public class CfarContract {
                 Objects.equals(this.premium, cfarContract.premium) &&
                 Objects.equals(this.taxesTotal, cfarContract.taxesTotal) &&
                 Objects.equals(this.taxes, cfarContract.taxes) &&
-                Objects.equals(this.cfarPrices, cfarContract.taxes) &&
                 Objects.equals(this.currency, cfarContract.currency) &&
                 Objects.equals(this.createdDateTime, cfarContract.createdDateTime) &&
                 Objects.equals(this.expiryDateTime, cfarContract.expiryDateTime) &&
@@ -540,7 +499,7 @@ public class CfarContract {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, taxesTotal, taxes, cfarPrices, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, pnrReference, extAttributes);
+        return Objects.hash(id, offers, reference, itinerary, coverage, coveragePercentage, premium, taxesTotal, taxes, currency, createdDateTime, expiryDateTime, status, confirmedDateTime, pnrReference, extAttributes);
     }
 
     @Override
@@ -556,7 +515,6 @@ public class CfarContract {
         sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
         sb.append("    taxes_total: ").append(toIndentedString(taxesTotal)).append("\n");
         sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
-        sb.append("    cfarPrices: ").append(toIndentedString(cfarPrices)).append("\n");
         sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
         sb.append("    expiryDateTime: ").append(toIndentedString(expiryDateTime)).append("\n");
@@ -577,159 +535,6 @@ public class CfarContract {
             return "null";
         }
         return o.toString().replace("\n", "\n    ");
-    }
-
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("id");
-        openapiFields.add("reference");
-        openapiFields.add("offers");
-        openapiFields.add("itinerary");
-        openapiFields.add("coverage");
-        openapiFields.add("coverage_percentage");
-        openapiFields.add("premium");
-        openapiFields.add("taxes_total");
-        openapiFields.add("taxes");
-        openapiFields.add("cfar_prices");
-        openapiFields.add("currency");
-        openapiFields.add("created_date_time");
-        openapiFields.add("expiry_date_time");
-        openapiFields.add("status");
-        openapiFields.add("confirmed_date_time");
-        openapiFields.add("voided_date_time");
-        openapiFields.add("charged_back_date_time");
-        openapiFields.add("pnr_reference");
-        openapiFields.add("ext_attributes");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("id");
-        openapiRequiredFields.add("reference");
-        openapiRequiredFields.add("offers");
-        openapiRequiredFields.add("itinerary");
-        openapiRequiredFields.add("coverage");
-        openapiRequiredFields.add("coverage_percentage");
-        openapiRequiredFields.add("premium");
-        openapiRequiredFields.add("currency");
-        openapiRequiredFields.add("cfar_prices");
-        openapiRequiredFields.add("created_date_time");
-        openapiRequiredFields.add("expiry_date_time");
-        openapiRequiredFields.add("status");
-        openapiRequiredFields.add("ext_attributes");
-    }
-
-    /**
-     * Validates the JSON Object and throws an exception if issues found
-     *
-     * @param jsonObj JSON Object
-     * @throws IOException if the JSON Object is invalid with respect to CfarContract
-     */
-    public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-        if (jsonObj == null) {
-            if (CfarContract.openapiRequiredFields.isEmpty()) {
-                return;
-            } else { // has required fields
-                throw new IllegalArgumentException(String.format("The required field(s) %s in CfarContract is not found in the empty JSON string", CfarContract.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Entry<String, JsonElement> entry : entries) {
-            if (!CfarContract.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarContract` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
-            }
-        }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : CfarContract.openapiRequiredFields) {
-            if (jsonObj.get(requiredField) == null) {
-                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
-            }
-        }
-        if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive() && !jsonObj.get("id").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-        }
-        if (jsonObj.get("reference") != null && !jsonObj.get("reference").isJsonPrimitive() && !jsonObj.get("reference").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reference").toString()));
-        }
-        JsonArray jsonArrayOffers = jsonObj.getAsJsonArray("offers");
-        if (jsonArrayOffers != null) {
-            // ensure the json data is an array
-            if (!jsonObj.get("offers").isJsonArray()) {
-                throw new IllegalArgumentException(String.format("Expected the field `offers` to be an array in the JSON string but got `%s`", jsonObj.get("offers").toString()));
-            }
-
-            // validate the optional field `offers` (array)
-            for (int i = 0; i < jsonArrayOffers.size(); i++) {
-                CfarOffer.validateJsonObject(jsonArrayOffers.get(i).getAsJsonObject());
-            }
-            ;
-        }
-        // validate the optional field `itinerary`
-        if (jsonObj.getAsJsonObject("itinerary") != null) {
-            CfarItinerary.validateJsonObject(jsonObj.getAsJsonObject("itinerary"));
-        }
-        if (jsonObj.get("coverage") != null && !jsonObj.get("coverage").isJsonPrimitive() && !jsonObj.get("coverage").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `coverage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage").toString()));
-        }
-        if (jsonObj.get("coverage_percentage") != null && !jsonObj.get("coverage_percentage").isJsonPrimitive() && !jsonObj.get("coverage_percentage").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `coverage_percentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage_percentage").toString()));
-        }
-        if (jsonObj.get("premium") != null && !jsonObj.get("premium").isJsonPrimitive() && !jsonObj.get("premium").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `premium` to be a primitive type in the JSON string but got `%s`", jsonObj.get("premium").toString()));
-        }
-        if (jsonObj.get("taxes_total") != null && !jsonObj.get("taxes_total").isJsonPrimitive() && !jsonObj.get("taxes_total").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `taxes_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taxes_total").toString()));
-        }
-        if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonPrimitive() && !jsonObj.get("currency").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-        }
-
-        if (jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonPrimitive() && !jsonObj.get("pnr_reference").isJsonNull()) {
-            throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
-        }
-
-        // validate the optional list `taxes`
-        if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
-            JsonArray jsonArrayTaxes = jsonObj.getAsJsonArray("taxes");
-            if (jsonArrayTaxes != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("taxes").isJsonArray()) {
-                    throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
-                }
-
-                // validate the optional field `taxes` (array)
-                for (int i = 0; i < jsonArrayTaxes.size(); i++) {
-                    CfarTax.validateJsonObject(jsonArrayTaxes.get(i).getAsJsonObject());
-                }
-                ;
-            }
-        }
-
-        // validate the optional NonEmptyList `cfarPrices`
-        JsonArray jsonArrayCfarPrices = jsonObj.getAsJsonArray("cfar_prices");
-        if (jsonArrayCfarPrices != null) {
-            // ensure the json data is an array
-            if (!jsonObj.get("cfar_prices").isJsonArray()) {
-                throw new IllegalArgumentException(String.format("Expected the field `cfar_prices` to be an array in the JSON string but got `%s`", jsonObj.get("cfar_prices").toString()));
-            }
-
-            // ensure the json data is a non empty array
-            if (jsonArrayCfarPrices.isEmpty()) {
-                throw new IllegalArgumentException(String.format("Expected the field `cfar_prices` to be a non empty array in the JSON string"));
-            }
-
-            // validate the optional field `cfar_prices` (array)
-            for (int i = 0; i < jsonArrayCfarPrices.size(); i++) {
-                CfarPrice.validateJsonObject(jsonArrayCfarPrices.get(i).getAsJsonObject());
-            };
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -753,7 +558,6 @@ public class CfarContract {
                 @Override
                 public CfarContract read(JsonReader in) throws IOException {
                     JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-                    validateJsonObject(jsonObj);
                     return thisAdapter.fromJsonTree(jsonObj);
                 }
 
