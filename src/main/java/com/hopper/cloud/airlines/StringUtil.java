@@ -38,6 +38,16 @@ public class StringUtil {
   }
 
   /**
+   * Check if a given string is null or empty
+   *
+   * @param value The value
+   * @return true if the string is null or empty
+   */
+  public static boolean isEmpty(String value) {
+    return value == null || value.isEmpty();
+  }
+
+  /**
    * Join an array of strings with the given separator.
    * <p>
    * Note: This might be replaced by utility method from commons-lang or guava someday

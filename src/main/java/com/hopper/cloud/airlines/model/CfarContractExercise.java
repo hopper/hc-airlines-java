@@ -13,6 +13,7 @@
 
 package com.hopper.cloud.airlines.model;
 
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 import com.google.gson.TypeAdapter;
@@ -51,17 +52,21 @@ public class CfarContractExercise {
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
   private String contractId;
 
+  public static final String SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME = "exercise_initiated_date_time";
+  @SerializedName(SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME)
+  private OffsetDateTime exerciseInitiatedDateTime;
+
   public static final String SERIALIZED_NAME_CASH_REFUND_ALLOWANCE = "cash_refund_allowance";
   @SerializedName(SERIALIZED_NAME_CASH_REFUND_ALLOWANCE)
   private String cashRefundAllowance;
 
-  public static final String SERIALIZED_NAME_FTC_REFUND_ALLOWANCE = "ftc_refund_allowance";
-  @SerializedName(SERIALIZED_NAME_FTC_REFUND_ALLOWANCE)
-  private String ftcRefundAllowance;
-
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   private Map<String, String> extAttributes = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_FTC_REFUND_ALLOWANCE = "ftc_refund_allowance";
+  @SerializedName(SERIALIZED_NAME_FTC_REFUND_ALLOWANCE)
+  private String ftcRefundAllowance;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -70,6 +75,10 @@ public class CfarContractExercise {
   public static final String SERIALIZED_REDIRECTION_TOKEN = "redirection_token";
   @SerializedName(SERIALIZED_REDIRECTION_TOKEN)
   private String redirectionToken;
+
+  public static final String SERIALIZED_NAME_REDIRECTION_URL = "redirection_url";
+  @SerializedName(SERIALIZED_NAME_REDIRECTION_URL)
+  private String redirectionUrl;
 
   public CfarContractExercise() {
   }
@@ -80,10 +89,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Unique identifier for a CFAR exercise
    * @return id
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "8ef454c6-74a5-48cf-972e-fac72d05e59c", required = true, value = "Unique identifier for a CFAR exercise")
 
@@ -103,10 +112,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Unique identifier for a contract
    * @return contractId
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "9f4f2f2b-adfd-4f02-83ad-da336ed57ce0", required = true, value = "Unique identifier for a contract")
 
@@ -120,18 +129,40 @@ public class CfarContractExercise {
   }
 
 
+  public CfarContractExercise exerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
+
+    this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
+    return this;
+  }
+
+  /**
+   * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated
+   * @return exerciseInitiatedDateTime
+   **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "2020-11-02T18:34:30Z", required = true, value = "A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated")
+
+  public OffsetDateTime getExerciseInitiatedDateTime() {
+    return exerciseInitiatedDateTime;
+  }
+
+
+  public void setExerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
+    this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
+  }
+
   public CfarContractExercise cashRefundAllowance(String cashRefundAllowance) {
 
     this.cashRefundAllowance = cashRefundAllowance;
     return this;
   }
 
-   /**
-   * The partner&#39;s share of the amount refunded to the customer to complete the CFAR contract exercise
+  /**
+   * Refundable amount allowed in cash
    * @return cashRefundAllowance
-  **/
+   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "123.45", required = true, value = "The partner's share of the amount refunded to the customer to complete the CFAR contract exercise")
+  @ApiModelProperty(required = true, value = "Refundable amount allowed in cash")
 
   public String getCashRefundAllowance() {
     return cashRefundAllowance;
@@ -154,10 +185,10 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
+  /**
    * Get extAttributes
    * @return extAttributes
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
@@ -177,12 +208,12 @@ public class CfarContractExercise {
     return this;
   }
 
-   /**
-   * Get ftcRefundAllowance
+  /**
+   * Get the refundable amount allowed in future travel credit
    * @return ftcRefundAllowance
-  **/
+   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Refundable amount allowed in future travel credit")
 
   public String getFtcRefundAllowance() {
     return ftcRefundAllowance;
@@ -193,17 +224,16 @@ public class CfarContractExercise {
     this.ftcRefundAllowance = ftcRefundAllowance;
   }
 
-
   public CfarContractExercise currency(String currency) {
 
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Get currency
    * @return currency
-  **/
+   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "CAD", value = "")
 
@@ -231,6 +261,27 @@ public class CfarContractExercise {
     this.redirectionToken = redirectionToken;
   }
 
+  public CfarContractExercise redirectionUrl(String redirectionUrl) {
+
+    this.redirectionUrl = redirectionUrl;
+    return this;
+  }
+
+  /**
+   * URL on which the customer should be redirected to exercise (if applicable)
+   * @return redirectionUrl
+   **/
+  @ApiModelProperty(value = "URL on which the customer should be redirected to exercise (if applicable)")
+  public String getRedirectionUrl() {
+    return redirectionUrl;
+  }
+
+
+  public void setRedirectionUrl(String redirectionUrl) {
+    this.redirectionUrl = redirectionUrl;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -241,17 +292,19 @@ public class CfarContractExercise {
     }
     CfarContractExercise cfarContractExercise = (CfarContractExercise) o;
     return Objects.equals(this.id, cfarContractExercise.id) &&
-        Objects.equals(this.contractId, cfarContractExercise.contractId) &&
-        Objects.equals(this.cashRefundAllowance, cfarContractExercise.cashRefundAllowance) &&
-        Objects.equals(this.extAttributes, cfarContractExercise.extAttributes) &&
-        Objects.equals(this.ftcRefundAllowance, cfarContractExercise.ftcRefundAllowance) &&
-        Objects.equals(this.redirectionToken, cfarContractExercise.redirectionToken) &&
-        Objects.equals(this.currency, cfarContractExercise.currency);
+            Objects.equals(this.contractId, cfarContractExercise.contractId) &&
+            Objects.equals(this.exerciseInitiatedDateTime, cfarContractExercise.exerciseInitiatedDateTime) &&
+            Objects.equals(this.cashRefundAllowance, cfarContractExercise.cashRefundAllowance) &&
+            Objects.equals(this.extAttributes, cfarContractExercise.extAttributes) &&
+            Objects.equals(this.ftcRefundAllowance, cfarContractExercise.ftcRefundAllowance) &&
+            Objects.equals(this.redirectionToken, cfarContractExercise.redirectionToken)
+            && Objects.equals(this.redirectionUrl, cfarContractExercise.redirectionUrl) &&
+            Objects.equals(this.currency, cfarContractExercise.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contractId, cashRefundAllowance, extAttributes, ftcRefundAllowance, redirectionToken,currency);
+    return Objects.hash(id, contractId, exerciseInitiatedDateTime, cashRefundAllowance, extAttributes, ftcRefundAllowance, redirectionToken, redirectionUrl, currency);
   }
 
   @Override
@@ -260,10 +313,12 @@ public class CfarContractExercise {
     sb.append("class CfarContractExercise {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    contractId: ").append(toIndentedString(contractId)).append("\n");
+    sb.append("    exerciseInitiatedDateTime: ").append(toIndentedString(exerciseInitiatedDateTime)).append("\n");
     sb.append("    cashRefundAllowance: ").append(toIndentedString(cashRefundAllowance)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
     sb.append("    ftcRefundAllowance: ").append(toIndentedString(ftcRefundAllowance)).append("\n");
     sb.append("    redirectionToken: ").append(toIndentedString(redirectionToken)).append("\n");
+    sb.append("    redirectionUrl: ").append(toIndentedString(redirectionUrl)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -284,46 +339,46 @@ public class CfarContractExercise {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CfarContractExercise.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CfarContractExercise' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CfarContractExercise> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CfarContractExercise.class));
+      if (!CfarContractExercise.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'CfarContractExercise' and its subtypes
+      }
+      final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+      final TypeAdapter<CfarContractExercise> thisAdapter
+              = gson.getDelegateAdapter(this, TypeToken.get(CfarContractExercise.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CfarContractExercise>() {
-           @Override
-           public void write(JsonWriter out, CfarContractExercise value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
+      return (TypeAdapter<T>) new TypeAdapter<CfarContractExercise>() {
+        @Override
+        public void write(JsonWriter out, CfarContractExercise value) throws IOException {
+          JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+          elementAdapter.write(out, obj);
+        }
 
-           @Override
-           public CfarContractExercise read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             return thisAdapter.fromJsonTree(jsonObj);
-           }
+        @Override
+        public CfarContractExercise read(JsonReader in) throws IOException {
+          JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+          return thisAdapter.fromJsonTree(jsonObj);
+        }
 
-       }.nullSafe();
+      }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CfarContractExercise given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CfarContractExercise
-  * @throws IOException if the JSON string is invalid with respect to CfarContractExercise
-  */
+  /**
+   * Create an instance of CfarContractExercise given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CfarContractExercise
+   * @throws IOException if the JSON string is invalid with respect to CfarContractExercise
+   */
   public static CfarContractExercise fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CfarContractExercise.class);
   }
 
- /**
-  * Convert an instance of CfarContractExercise to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CfarContractExercise to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

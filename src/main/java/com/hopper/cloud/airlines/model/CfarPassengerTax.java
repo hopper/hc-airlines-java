@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.hopper.cloud.airlines.JSON;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -29,17 +30,19 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * An object detailing a passenger tax
+ * An object detailing a tax associated with a passenger
  */
-@ApiModel(description = "An object detailing a passenger tax")
+@ApiModel(description = "An object detailing a tax associated with a passenger")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CfarPassengerTax {
     public static final String SERIALIZED_NAME_CODE = "code";
     @SerializedName(SERIALIZED_NAME_CODE)
     private String code;
+
     public static final String SERIALIZED_NAME_AMOUNT = "amount";
     @SerializedName(SERIALIZED_NAME_AMOUNT)
     private String amount;
+
     public static final String SERIALIZED_NAME_CURRENCY = "currency";
     @SerializedName(SERIALIZED_NAME_CURRENCY)
     private String currency;
@@ -52,6 +55,10 @@ public class CfarPassengerTax {
         return this;
     }
 
+    /**
+     * Code of the tax
+     * @return code
+     **/
     @javax.annotation.Nonnull
     public String getCode() {
         return code;
@@ -82,10 +89,12 @@ public class CfarPassengerTax {
     }
 
     /**
-     * The currency code
+     * Currency of the tax
      *
-     * @return currencyCode
+     * @return currency
      **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(example = "USD", required = true, value = "Currency of the tax")
     public String getCurrency() {
         return currency;
     }
@@ -103,10 +112,10 @@ public class CfarPassengerTax {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CfarPassengerTax passengerTax = (CfarPassengerTax) o;
-        return Objects.equals(this.code, passengerTax.code) &&
-                Objects.equals(this.amount, passengerTax.amount) &&
-                Objects.equals(this.currency, passengerTax.currency);
+        CfarPassengerTax cfarPassengerTax = (CfarPassengerTax) o;
+        return Objects.equals(this.code, cfarPassengerTax.code) &&
+                Objects.equals(this.amount, cfarPassengerTax.amount) &&
+                Objects.equals(this.currency, cfarPassengerTax.currency);
     }
 
     @Override
@@ -168,8 +177,8 @@ public class CfarPassengerTax {
      * Create an instance of CfarPassengerTax given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of CfarTax
-     * @throws IOException if the JSON string is invalid with respect to CfarTax
+     * @return An instance of CfarPassengerTax
+     * @throws IOException if the JSON string is invalid with respect to CfarPassengerTax
      */
     public static CfarPassengerTax fromJson(String jsonString) throws IOException {
         return JSON.getGson().fromJson(jsonString, CfarPassengerTax.class);

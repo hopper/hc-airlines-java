@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.hopper.cloud.airlines.model.CfarContractExercise;
-import com.hopper.cloud.airlines.model.CfarContractStatus;
+import com.hopper.cloud.airlines.model.CfarStatus;
 import com.hopper.cloud.airlines.model.CfarItinerary;
 import com.hopper.cloud.airlines.model.CfarOffer;
 import io.swagger.annotations.ApiModel;
@@ -75,6 +75,10 @@ public class CfarContract {
     @SerializedName(SERIALIZED_NAME_PREMIUM)
     private String premium;
 
+    public static final String SERIALIZED_NAME_CURRENCY = "currency";
+    @SerializedName(SERIALIZED_NAME_CURRENCY)
+    private String currency;
+
     public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
     @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
     private String taxesTotal;
@@ -82,11 +86,6 @@ public class CfarContract {
     public static final String SERIALIZED_NAME_TAXES = "taxes";
     @SerializedName(SERIALIZED_NAME_TAXES)
     private List<CfarTax> taxes = new ArrayList<>();
-
-    public static final String SERIALIZED_NAME_CURRENCY = "currency";
-    @SerializedName(SERIALIZED_NAME_CURRENCY)
-    private String currency;
-
     public static final String SERIALIZED_NAME_CREATED_DATE_TIME = "created_date_time";
     @SerializedName(SERIALIZED_NAME_CREATED_DATE_TIME)
     private OffsetDateTime createdDateTime;
@@ -320,12 +319,12 @@ public class CfarContract {
     }
 
     /**
-     * Currency of offer
+     * Currency of the contract
      *
      * @return currency
      **/
     @javax.annotation.Nonnull
-    @ApiModelProperty(example = "CAD", required = true, value = "Currency of offer")
+    @ApiModelProperty(example = "CAD", required = true, value = "Currency of the contract")
 
     public String getCurrency() {
         return currency;

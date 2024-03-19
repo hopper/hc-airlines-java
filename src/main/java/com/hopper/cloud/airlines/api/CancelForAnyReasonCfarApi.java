@@ -875,7 +875,7 @@ public class CancelForAnyReasonCfarApi {
     }
     /**
      * Build call for putCfarContractsIdUpdateStatus
-     * @param id A unique identifier for a CFAR contract (required)
+     * @param contractReference A unique reference for a CFAR contract (required)
      * @param updateCfarContractRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback Callback for upload/download progress
@@ -894,7 +894,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putCfarContractsIdUpdateStatusCall(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call putCfarContractsIdUpdateStatusCall(String contractReference, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -912,7 +912,7 @@ public class CancelForAnyReasonCfarApi {
 
         // create path and map variables
         String localVarPath = "/cfar_contracts/{id}/update_status"
-            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(id.toString()));
+            .replaceAll("\\{" + "id" + "\\}", localVarApiClient.escapeString(contractReference));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -945,11 +945,11 @@ public class CancelForAnyReasonCfarApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putCfarContractsIdUpdateStatusValidateBeforeCall(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putCfarContractsIdUpdateStatusValidateBeforeCall(String contractReference, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling putCfarContractsIdUpdateStatus(Async)");
+        // verify the required parameter 'contractReference' is set
+        if (contractReference == null) {
+            throw new ApiException("Missing the required parameter 'contractReference' when calling putCfarContractsIdUpdateStatus(Async)");
         }
         
         // verify the required parameter 'updateCfarContractRequest' is set
@@ -958,7 +958,7 @@ public class CancelForAnyReasonCfarApi {
         }
         
 
-        okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusCall(id, updateCfarContractRequest, hcSessionID, _callback);
+        okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusCall(contractReference, updateCfarContractRequest, hcSessionID, _callback);
         return localVarCall;
 
     }
@@ -966,7 +966,7 @@ public class CancelForAnyReasonCfarApi {
     /**
      * Update a CFAR Contract
      * Update the CFAR contract
-     * @param id A unique identifier for a CFAR contract (required)
+     * @param contractReference A unique reference for a CFAR contract (required)
      * @param updateCfarContractRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @return CfarContract
@@ -984,15 +984,15 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarContract putCfarContractsIdUpdateStatus(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID) throws ApiException {
-        ApiResponse<CfarContract> localVarResp = putCfarContractsIdUpdateStatusWithHttpInfo(id, updateCfarContractRequest, hcSessionID);
+    public CfarContract putCfarContractsIdUpdateStatus(String contractReference, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID) throws ApiException {
+        ApiResponse<CfarContract> localVarResp = putCfarContractsIdUpdateStatusWithHttpInfo(contractReference, updateCfarContractRequest, hcSessionID);
         return localVarResp.getData();
     }
 
     /**
      * Update a CFAR Contract
      * Update the CFAR contract
-     * @param id A unique identifier for a CFAR contract (required)
+     * @param contractReference A unique reference for a CFAR contract (required)
      * @param updateCfarContractRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @return ApiResponse&lt;CfarContract&gt;
@@ -1010,8 +1010,8 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarContract> putCfarContractsIdUpdateStatusWithHttpInfo(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusValidateBeforeCall(id, updateCfarContractRequest, hcSessionID, null);
+    public ApiResponse<CfarContract> putCfarContractsIdUpdateStatusWithHttpInfo(String contractReference, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusValidateBeforeCall(contractReference, updateCfarContractRequest, hcSessionID, null);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1019,7 +1019,7 @@ public class CancelForAnyReasonCfarApi {
     /**
      * Update a CFAR Contract (asynchronously)
      * Update the CFAR contract
-     * @param id A unique identifier for a CFAR contract (required)
+     * @param contractReference A unique reference for a CFAR contract (required)
      * @param updateCfarContractRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -1038,9 +1038,9 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putCfarContractsIdUpdateStatusAsync(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
+    public okhttp3.Call putCfarContractsIdUpdateStatusAsync(String contractReference, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusValidateBeforeCall(id, updateCfarContractRequest, hcSessionID, _callback);
+        okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusValidateBeforeCall(contractReference, updateCfarContractRequest, hcSessionID, _callback);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

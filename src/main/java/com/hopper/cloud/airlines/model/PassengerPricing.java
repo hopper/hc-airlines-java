@@ -20,6 +20,7 @@ import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.hopper.cloud.airlines.model.PassengerCount;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
@@ -35,174 +36,174 @@ import com.hopper.cloud.airlines.JSON;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-07-04T17:36:41.937885+02:00[Europe/Paris]")
 @JsonInclude(JsonInclude.Include. NON_NULL)
 public class PassengerPricing {
-  public static final String SERIALIZED_NAME_PASSENGER_COUNT = "passenger_count";
-  @SerializedName(SERIALIZED_NAME_PASSENGER_COUNT)
-  private PassengerCount passengerCount;
+    public static final String SERIALIZED_NAME_PASSENGER_COUNT = "passenger_count";
+    @SerializedName(SERIALIZED_NAME_PASSENGER_COUNT)
+    private PassengerCount passengerCount;
 
-  public static final String SERIALIZED_NAME_INDIVIDUAL_PRICE = "individual_price";
-  @SerializedName(SERIALIZED_NAME_INDIVIDUAL_PRICE)
-  private String individualPrice;
+    public static final String SERIALIZED_NAME_INDIVIDUAL_PRICE = "individual_price";
+    @SerializedName(SERIALIZED_NAME_INDIVIDUAL_PRICE)
+    private String individualPrice;
 
-  public static final String SERIALIZED_NAME_TAXES = "taxes";
-  @SerializedName(SERIALIZED_NAME_TAXES)
-  private List<CfarPassengerTax> taxes = new ArrayList<>();
+    public static final String SERIALIZED_NAME_TAXES = "taxes";
+    @SerializedName(SERIALIZED_NAME_TAXES)
+    private List<CfarPassengerTax> taxes = new ArrayList<>();
 
-  public PassengerPricing() {
-  }
-
-  public PassengerPricing passengerCount(PassengerCount passengerCount) {
-
-    this.passengerCount = passengerCount;
-    return this;
-  }
-
-   /**
-   * Get passengerCount
-   * @return passengerCount
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public PassengerCount getPassengerCount() {
-    return passengerCount;
-  }
-
-
-  public void setPassengerCount(PassengerCount passengerCount) {
-    this.passengerCount = passengerCount;
-  }
-
-
-  public PassengerPricing individualPrice(String individualPrice) {
-
-    this.individualPrice = individualPrice;
-    return this;
-  }
-
-   /**
-   * Price per passenger
-   * @return individualPrice
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "20.55", value = "Price per passenger")
-
-  public String getIndividualPrice() {
-    return individualPrice;
-  }
-
-
-  public void setIndividualPrice(String individualPrice) {
-    this.individualPrice = individualPrice;
-  }
-
-
-  public PassengerPricing taxes(List<CfarPassengerTax> taxes) {
-
-    this.taxes = taxes;
-    return this;
-  }
-
-  public PassengerPricing addCfarPassengerTaxItem(CfarPassengerTax cfarPassengerTaxItem) {
-    if (this.taxes != null) {
-      this.taxes.add(cfarPassengerTaxItem);
+    public PassengerPricing() {
     }
-    return this;
-  }
 
-  public List<CfarPassengerTax> getTaxes() {
+    public PassengerPricing passengerCount(PassengerCount passengerCount) {
+
+        this.passengerCount = passengerCount;
+        return this;
+    }
+
+    /**
+     * Get passengerCount
+     * @return passengerCount
+     **/
+    @javax.annotation.Nonnull
+    @ApiModelProperty(required = true, value = "")
+
+    public PassengerCount getPassengerCount() {
+        return passengerCount;
+    }
+
+
+    public void setPassengerCount(PassengerCount passengerCount) {
+        this.passengerCount = passengerCount;
+    }
+
+
+    public PassengerPricing individualPrice(String individualPrice) {
+
+        this.individualPrice = individualPrice;
+        return this;
+    }
+
+    /**
+     * Price per passenger
+     * @return individualPrice
+     **/
+    @javax.annotation.Nullable
+    @ApiModelProperty(example = "20.55", value = "Price per passenger")
+
+    public String getIndividualPrice() {
+        return individualPrice;
+    }
+
+
+    public void setIndividualPrice(String individualPrice) {
+        this.individualPrice = individualPrice;
+    }
+
+    public PassengerPricing taxes(List<CfarPassengerTax> taxes) {
+
+        this.taxes = taxes;
+        return this;
+    }
+
+    public PassengerPricing addCfarTaxItem(CfarPassengerTax cfarTaxItem) {
+        if (this.taxes != null) {
+            this.taxes.add(cfarTaxItem);
+        }
+        return this;
+    }
+
+    public List<CfarPassengerTax> getTaxes() {
         return taxes;
     }
-
-  public void setTaxes(List<CfarPassengerTax> taxes) {
+    public void setTaxes(List<CfarPassengerTax> taxes) {
         this.taxes = taxes;
     }
 
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    PassengerPricing passengerPricing = (PassengerPricing) o;
-    return Objects.equals(this.passengerCount, passengerPricing.passengerCount) &&
-        Objects.equals(this.individualPrice, passengerPricing.individualPrice);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(passengerCount, individualPrice);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PassengerPricing {\n");
-    sb.append("    passengerCount: ").append(toIndentedString(passengerCount)).append("\n");
-    sb.append("    individualPrice: ").append(toIndentedString(individualPrice)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PassengerPricing.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PassengerPricing' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PassengerPricing> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PassengerPricing.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PassengerPricing>() {
-           @Override
-           public void write(JsonWriter out, PassengerPricing value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PassengerPricing read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             return thisAdapter.fromJsonTree(jsonObj);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PassengerPricing passengerPricing = (PassengerPricing) o;
+        return Objects.equals(this.passengerCount, passengerPricing.passengerCount) &&
+                Objects.equals(this.individualPrice, passengerPricing.individualPrice) &&
+                Objects.equals(this.taxes, passengerPricing.taxes);
     }
-  }
 
- /**
-  * Create an instance of PassengerPricing given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PassengerPricing
-  * @throws IOException if the JSON string is invalid with respect to PassengerPricing
-  */
-  public static PassengerPricing fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PassengerPricing.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(passengerCount, individualPrice, taxes);
+    }
 
- /**
-  * Convert an instance of PassengerPricing to an JSON string
-  *
-  * @return JSON string
-  */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PassengerPricing {\n");
+        sb.append("    passengerCount: ").append(toIndentedString(passengerCount)).append("\n");
+        sb.append("    individualPrice: ").append(toIndentedString(individualPrice)).append("\n");
+        sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PassengerPricing.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PassengerPricing' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PassengerPricing> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(PassengerPricing.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<PassengerPricing>() {
+                @Override
+                public void write(JsonWriter out, PassengerPricing value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public PassengerPricing read(JsonReader in) throws IOException {
+                    JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+                    return thisAdapter.fromJsonTree(jsonObj);
+                }
+
+            }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of PassengerPricing given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PassengerPricing
+     * @throws IOException if the JSON string is invalid with respect to PassengerPricing
+     */
+    public static PassengerPricing fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PassengerPricing.class);
+    }
+
+    /**
+     * Convert an instance of PassengerPricing to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
 

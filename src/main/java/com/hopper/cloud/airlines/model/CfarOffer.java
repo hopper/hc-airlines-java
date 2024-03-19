@@ -53,6 +53,10 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_COVERAGE_EXTENSION)
   private String coverageExtension;
 
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  private String currency;
+
   public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
   @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
   private String taxesTotal;
@@ -60,10 +64,6 @@ public class CfarOffer {
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   @SerializedName(SERIALIZED_NAME_TAXES)
   private List<CfarTax> taxes = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_CURRENCY = "currency";
-  @SerializedName(SERIALIZED_NAME_CURRENCY)
-  private String currency;
 
   public static final String SERIALIZED_NAME_REQUEST_TYPE = "request_type";
   @SerializedName(SERIALIZED_NAME_REQUEST_TYPE)
@@ -81,13 +81,17 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_ITINERARY)
   private CfarItinerary itinerary;
 
-  public static final String SERIALIZED_NAME_OFFER_DESCRIPTION = "contents";
-  @SerializedName(SERIALIZED_NAME_OFFER_DESCRIPTION)
+  public static final String SERIALIZED_NAME_CONTENTS = "contents";
+  @SerializedName(SERIALIZED_NAME_CONTENTS)
   private Map<String, CfarContents> contents = new HashMap<>();
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   private Map<String, String> extAttributes = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_TERMS_CONDITIONS_URL= "terms_conditions_url";
+  @SerializedName(SERIALIZED_NAME_TERMS_CONDITIONS_URL)
+  private String termsConditionsUrl;
 
   public CfarOffer() {
   }
@@ -98,10 +102,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * Unique identifier for an offer
    * @return id
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "2e1006b3-aba6-4899-8682-b95bce693c27", required = true, value = "Unique identifier for an offer")
 
@@ -121,10 +125,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * Amount per passenger to be paid by user for CFAR
    * @return premium
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "20.80", required = true, value = "Amount per passenger to be paid by user for CFAR")
 
@@ -144,10 +148,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * Amount per passenger to be refunded to user upon CFAR exercise
    * @return coverage
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "180.60", required = true, value = "Amount per passenger to be refunded to user upon CFAR exercise")
 
@@ -165,6 +169,40 @@ public class CfarOffer {
 
     this.coveragePercentage = coveragePercentage;
     return this;
+  }
+
+  /**
+   * Percentage of the amount to be refunded to customer compared to flight tickets price
+   * @return coveragePercentage
+   **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "80.00", required = true, value = "Percentage of the amount to be refunded to customer compared to flight tickets price")
+
+  public String getCoveragePercentage() {
+    return coveragePercentage;
+  }
+
+
+  public void setCoveragePercentage(String coveragePercentage) {
+    this.coveragePercentage = coveragePercentage;
+  }
+
+  public CfarOffer coverageExtension(String coverageExtension) {
+    this.coverageExtension = coverageExtension;
+    return this;
+  }
+
+  /**
+   * Maximum amount added on top of the coverage to cover ancillaries
+   * @return coverageExtension
+   **/
+  @ApiModelProperty(example = "40.00", value = "Maximum amount added on top of the coverage to cover ancillaries")
+  public String getCoverageExtension() {
+    return coverageExtension;
+  }
+
+  public void setCoverageExtension(String coverageExtension) {
+    this.coverageExtension = coverageExtension;
   }
 
   public String getTaxesTotal() {
@@ -196,30 +234,6 @@ public class CfarOffer {
     this.taxes = taxes;
   }
 
-  /**
-   * Percentage of the amount to be refunded to customer compared to flight tickets price
-   * @return coveragePercentage
-   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "80.0", required = true, value = "Percentage of the amount to be refunded to customer compared to flight tickets price")
-
-  public String getCoveragePercentage() {
-    return coveragePercentage;
-  }
-
-
-  public void setCoveragePercentage(String coveragePercentage) {
-    this.coveragePercentage = coveragePercentage;
-  }
-
-  public String getCoverageExtension() {
-    return coverageExtension;
-  }
-
-
-  public void setCoverageExtension(String coverageExtension) {
-    this.coverageExtension = coverageExtension;
-  }
 
   public CfarOffer currency(String currency) {
 
@@ -227,10 +241,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * Currency of offer
    * @return currency
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "CAD", required = true, value = "Currency of offer")
 
@@ -250,10 +264,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * Get requestType
    * @return requestType
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
@@ -273,10 +287,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which the CFAR contract will expire once purchased
    * @return contractExpiryDateTime
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-12-20T12:15:48Z", required = true, value = "A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which the CFAR contract will expire once purchased")
 
@@ -296,10 +310,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a CFAR offer was created
    * @return createdDateTime
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(example = "2020-11-02T18:34:30Z", required = true, value = "A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a CFAR offer was created")
 
@@ -319,10 +333,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * Get itinerary
    * @return itinerary
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
@@ -336,23 +350,23 @@ public class CfarOffer {
   }
 
 
-  public CfarOffer contents(Map<String, CfarContents> cfarContents) {
+  public CfarOffer contents(Map<String, CfarContents> contents) {
 
-    this.contents = cfarContents;
+    this.contents = contents;
     return this;
   }
 
-  public CfarOffer putContentsItem(String key, CfarContents cfarContents) {
-    this.contents.put(key, cfarContents);
+  public CfarOffer putContentItem(String key, CfarContents contentItem) {
+    this.contents.put(key, contentItem);
     return this;
   }
 
-   /**
-   * Get offerDescription
-   * @return offerDescription
-  **/
+  /**
+   * Get contents
+   * @return contents
+   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "contents")
 
   public Map<String, CfarContents> getContents() {
     return contents;
@@ -375,10 +389,10 @@ public class CfarOffer {
     return this;
   }
 
-   /**
+  /**
    * Get extAttributes
    * @return extAttributes
-  **/
+   **/
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
@@ -389,6 +403,27 @@ public class CfarOffer {
 
   public void setExtAttributes(Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
+  }
+
+
+  public CfarOffer termsConditionsUrl(String termsConditionsUrl) {
+
+    this.termsConditionsUrl = termsConditionsUrl;
+    return this;
+  }
+
+  /**
+   * The URL to the terms and conditions for this offer
+   * @return termsConditionsUrl
+   **/
+  @ApiModelProperty(example = "", value = "The URL to the terms and conditions for this offer")
+  public String getTermsConditionsUrl() {
+    return termsConditionsUrl;
+  }
+
+
+  public void setTermsConditionsUrl(String termsConditionsUrl) {
+    this.termsConditionsUrl = termsConditionsUrl;
   }
 
 
@@ -403,24 +438,25 @@ public class CfarOffer {
     }
     CfarOffer cfarOffer = (CfarOffer) o;
     return Objects.equals(this.id, cfarOffer.id) &&
-        Objects.equals(this.premium, cfarOffer.premium) &&
-        Objects.equals(this.coverage, cfarOffer.coverage) &&
-        Objects.equals(this.coveragePercentage, cfarOffer.coveragePercentage) &&
-        Objects.equals(this.coverageExtension, cfarOffer.coverageExtension) &&
-        Objects.equals(this.currency, cfarOffer.currency) &&
-        Objects.equals(this.taxesTotal, cfarOffer.taxesTotal) &&
-        Objects.equals(this.taxes, cfarOffer.taxes) &&
-        Objects.equals(this.requestType, cfarOffer.requestType) &&
-        Objects.equals(this.contractExpiryDateTime, cfarOffer.contractExpiryDateTime) &&
-        Objects.equals(this.createdDateTime, cfarOffer.createdDateTime) &&
-        Objects.equals(this.itinerary, cfarOffer.itinerary) &&
-        Objects.equals(this.contents, cfarOffer.contents) &&
-        Objects.equals(this.extAttributes, cfarOffer.extAttributes);
+            Objects.equals(this.premium, cfarOffer.premium) &&
+            Objects.equals(this.coverage, cfarOffer.coverage) &&
+            Objects.equals(this.coveragePercentage, cfarOffer.coveragePercentage) &&
+            Objects.equals(this.coverageExtension, cfarOffer.coverageExtension) &&
+            Objects.equals(this.currency, cfarOffer.currency) &&
+            Objects.equals(this.taxesTotal, cfarOffer.taxesTotal) &&
+            Objects.equals(this.taxes, cfarOffer.taxes) &&
+            Objects.equals(this.requestType, cfarOffer.requestType) &&
+            Objects.equals(this.contractExpiryDateTime, cfarOffer.contractExpiryDateTime) &&
+            Objects.equals(this.createdDateTime, cfarOffer.createdDateTime) &&
+            Objects.equals(this.itinerary, cfarOffer.itinerary) &&
+            Objects.equals(this.contents, cfarOffer.contents) &&
+            Objects.equals(this.extAttributes, cfarOffer.extAttributes) &&
+            Objects.equals(this.termsConditionsUrl, cfarOffer.termsConditionsUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes);
+    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, termsConditionsUrl);
   }
 
   @Override
@@ -430,17 +466,18 @@ public class CfarOffer {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
     sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
-    sb.append("    coverage_percentage: ").append(toIndentedString(coveragePercentage)).append("\n");
-    sb.append("    coverage_extension: ").append(toIndentedString(coverageExtension)).append("\n");
-    sb.append("    taxes_total: ").append(toIndentedString(taxesTotal)).append("\n");
+    sb.append("    coveragePercentage: ").append(toIndentedString(coveragePercentage)).append("\n");
+    sb.append("    coverageExtension: ").append(toIndentedString(coverageExtension)).append("\n");
+    sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    requestType: ").append(toIndentedString(requestType)).append("\n");
     sb.append("    contractExpiryDateTime: ").append(toIndentedString(contractExpiryDateTime)).append("\n");
     sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
-    sb.append("    offerDescription: ").append(toIndentedString(contents)).append("\n");
+    sb.append("    contents: ").append(toIndentedString(contents)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
+    sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -460,46 +497,46 @@ public class CfarOffer {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CfarOffer.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CfarOffer' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CfarOffer> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CfarOffer.class));
+      if (!CfarOffer.class.isAssignableFrom(type.getRawType())) {
+        return null; // this class only serializes 'CfarOffer' and its subtypes
+      }
+      final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+      final TypeAdapter<CfarOffer> thisAdapter
+              = gson.getDelegateAdapter(this, TypeToken.get(CfarOffer.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CfarOffer>() {
-           @Override
-           public void write(JsonWriter out, CfarOffer value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
+      return (TypeAdapter<T>) new TypeAdapter<CfarOffer>() {
+        @Override
+        public void write(JsonWriter out, CfarOffer value) throws IOException {
+          JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+          elementAdapter.write(out, obj);
+        }
 
-           @Override
-           public CfarOffer read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             return thisAdapter.fromJsonTree(jsonObj);
-           }
+        @Override
+        public CfarOffer read(JsonReader in) throws IOException {
+          JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
+          return thisAdapter.fromJsonTree(jsonObj);
+        }
 
-       }.nullSafe();
+      }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CfarOffer given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CfarOffer
-  * @throws IOException if the JSON string is invalid with respect to CfarOffer
-  */
+  /**
+   * Create an instance of CfarOffer given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CfarOffer
+   * @throws IOException if the JSON string is invalid with respect to CfarOffer
+   */
   public static CfarOffer fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CfarOffer.class);
   }
 
- /**
-  * Convert an instance of CfarOffer to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CfarOffer to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
