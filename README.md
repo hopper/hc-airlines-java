@@ -872,7 +872,12 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
   Ancillary ancillary = new Ancillary();
   ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
   ancillary.setTotalPrice("30.55");
-
+  ancillary.setPassengerReference("1");
+  
+  CfarPassenger pax = new CfarPassenger();
+  pax.setPassengerReference("1");
+  pax.setPassengerType(PassengerType.ADULT);
+  
   CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
   CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
   cfarItinerarySliceSegment.setArrivalDateTime("2022-09-15T19:12:30");
@@ -907,7 +912,8 @@ An array of arbitrary key-value pairs for storing airline-specific entity metada
   itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
   itinerary.setAncillaries(Collections.singletonList(ancillary));
   itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
-
+  itinerary.setPassengers(Collections.singletonList(pax));
+  
   createCfarContractExerciseRequest.setItinerary(itinerary);
   CfarContractExercise cfarContractExercise = client.createfarContractExercise(sessionId, createCfarContractExerciseRequest);
 ```
