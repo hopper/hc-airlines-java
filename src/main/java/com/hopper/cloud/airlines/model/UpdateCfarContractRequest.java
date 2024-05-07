@@ -22,7 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.IOException;
 
 import com.google.gson.reflect.TypeToken;
@@ -34,7 +33,7 @@ import com.hopper.cloud.airlines.JSON;
  */
 @ApiModel(description = "Update CFAR contract request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include. NON_NULL)
 public class UpdateCfarContractRequest {
     public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
     @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
@@ -92,10 +91,6 @@ public class UpdateCfarContractRequest {
     @SerializedName(SERIALIZED_NAME_TAXES)
     private List<CfarTax> taxes = new ArrayList<>();
 
-    public static final String SERIALIZED_NAME_ITINERARY_PRICING = "itinerary_pricing";
-    @SerializedName(SERIALIZED_NAME_ITINERARY_PRICING)
-    private CfarItineraryPricing itineraryPricing;
-
     public UpdateCfarContractRequest() {
     }
 
@@ -107,7 +102,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Get pnrReference
-     *
      * @return pnrReference
      **/
     @javax.annotation.Nonnull
@@ -131,7 +125,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Get emailAddress
-     *
      * @return emailAddress
      **/
     @javax.annotation.Nonnull
@@ -155,7 +148,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Get status
-     *
      * @return status
      **/
     @javax.annotation.Nonnull
@@ -172,7 +164,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Phone number of the customer
-     *
      * @return phoneNumber
      **/
     @ApiModelProperty(example = "12345678900", value = "Phone number of the customer")
@@ -191,7 +182,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * First name of the cardholder
-     *
      * @return firstName
      **/
     @ApiModelProperty(example = "John", value = "First name of the cardholder")
@@ -210,7 +200,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Last name of the cardholder
-     *
      * @return lastName
      **/
     @ApiModelProperty(example = "Smith", value = "Last name of the cardholder")
@@ -229,7 +218,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Address of the cardholder (first line)
-     *
      * @return addressLine1
      **/
     @ApiModelProperty(example = "123 12th St", value = "Address of the cardholder (first line)")
@@ -248,7 +236,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Address of the cardholder (second line)
-     *
      * @return addressLine2
      **/
     @ApiModelProperty(example = "Building B", value = "Address of the cardholder (second line)")
@@ -267,7 +254,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * City of the cardholder
-     *
      * @return city
      **/
     @ApiModelProperty(example = "Quebec City", value = "City of the cardholder")
@@ -286,7 +272,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * State or province of the cardholder
-     *
      * @return stateOrProvince
      **/
     @ApiModelProperty(example = "QC", value = "State or province of the cardholder")
@@ -305,7 +290,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Postal code  of the cardholder
-     *
      * @return postalCode
      **/
     @ApiModelProperty(example = "G1R 4S9", value = "Postal code  of the cardholder")
@@ -324,7 +308,6 @@ public class UpdateCfarContractRequest {
 
     /**
      * Country of the cardholder
-     *
      * @return country
      **/
     @ApiModelProperty(example = "CA", value = "Country of the cardholder")
@@ -365,19 +348,6 @@ public class UpdateCfarContractRequest {
         this.taxes = taxes;
     }
 
-    public UpdateCfarContractRequest itineraryPricing(CfarItineraryPricing itineraryPricing) {
-        this.itineraryPricing = itineraryPricing;
-        return this;
-    }
-
-    public CfarItineraryPricing getItineraryPricing() {
-        return itineraryPricing;
-    }
-
-    public void setItineraryPricing(CfarItineraryPricing itineraryPricing) {
-        this.itineraryPricing = itineraryPricing;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -400,13 +370,12 @@ public class UpdateCfarContractRequest {
                 Objects.equals(this.postalCode, updateCfarContractRequest.postalCode) &&
                 Objects.equals(this.country, updateCfarContractRequest.country) &&
                 Objects.equals(this.taxesTotal, updateCfarContractRequest.taxesTotal) &&
-                Objects.equals(this.taxes, updateCfarContractRequest.taxes) &&
-                Objects.equals(this.itineraryPricing, updateCfarContractRequest.itineraryPricing);
+                Objects.equals(this.taxes, updateCfarContractRequest.taxes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes, itineraryPricing);
+        return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes);
     }
 
     @Override
@@ -428,7 +397,6 @@ public class UpdateCfarContractRequest {
         sb.append("    country: ").append(toIndentedString(country)).append("\n");
         sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
         sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
-        sb.append("    itineraryPricing: ").append(toIndentedString(itineraryPricing)).append("\n");
         sb.append("}");
         return sb.toString();
     }
