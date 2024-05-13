@@ -91,6 +91,11 @@ public class UpdateCfarContractRequest {
     @SerializedName(SERIALIZED_NAME_TAXES)
     private List<CfarTax> taxes = new ArrayList<>();
 
+    public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
+    @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
+    private String totalPrice;
+
+
     public UpdateCfarContractRequest() {
     }
 
@@ -348,6 +353,21 @@ public class UpdateCfarContractRequest {
         this.taxes = taxes;
     }
 
+    public UpdateCfarContractRequest totalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+        return this;
+    }
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -370,12 +390,13 @@ public class UpdateCfarContractRequest {
                 Objects.equals(this.postalCode, updateCfarContractRequest.postalCode) &&
                 Objects.equals(this.country, updateCfarContractRequest.country) &&
                 Objects.equals(this.taxesTotal, updateCfarContractRequest.taxesTotal) &&
-                Objects.equals(this.taxes, updateCfarContractRequest.taxes);
+                Objects.equals(this.taxes, updateCfarContractRequest.taxes) &&
+                Objects.equals(this.totalPrice, updateCfarContractRequest.totalPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes);
+        return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes,totalPrice);
     }
 
     @Override
@@ -397,6 +418,7 @@ public class UpdateCfarContractRequest {
         sb.append("    country: ").append(toIndentedString(country)).append("\n");
         sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
         sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
+        sb.append("    totalPrice: ").append(toIndentedString(taxes)).append("\n");
         sb.append("}");
         return sb.toString();
     }
