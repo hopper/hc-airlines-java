@@ -41,7 +41,15 @@ public enum AncillaryType {
 
   PET("pet"),
 
-  OTHER("other");
+  OTHER("other"),
+
+  BAG_INSURANCE("bag_insurance"),
+
+  CHANGE("change"),
+
+  BUNDLE("bundle"),
+
+  PAYMENT_FEE("payment_fee");
 
   private String value;
 
