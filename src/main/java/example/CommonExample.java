@@ -191,7 +191,7 @@ public class CommonExample {
         createCfarContractExerciseRequest.setAirlineRefundPenalty("146.64");
         createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
 
-        CfarItinerary itinerary = new CfarItinerary();
+        CfarCreateExerciseItinerary itinerary = new CfarCreateExerciseItinerary ();
         itinerary.setCurrency("USD");
         itinerary.setTotalPrice("190.00");
 

@@ -13,33 +13,20 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.gson.TypeAdapter;
+import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.AirlineRefundMethod;
-import com.hopper.cloud.airlines.model.CfarItinerary;
+import com.hopper.cloud.airlines.JSON;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import com.hopper.cloud.airlines.JSON;
+import java.util.Objects;
 
 /**
  * A create CFAR contract exercise request
@@ -54,7 +41,7 @@ public class CreateCfarContractExerciseRequest {
 
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
-  private CfarItinerary itinerary;
+  private CfarCreateExerciseItinerary itinerary;
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
@@ -102,7 +89,7 @@ public class CreateCfarContractExerciseRequest {
   }
 
 
-  public CreateCfarContractExerciseRequest itinerary(CfarItinerary itinerary) {
+  public CreateCfarContractExerciseRequest itinerary(CfarCreateExerciseItinerary itinerary) {
 
     this.itinerary = itinerary;
     return this;
@@ -115,12 +102,12 @@ public class CreateCfarContractExerciseRequest {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public CfarItinerary getItinerary() {
+  public CfarCreateExerciseItinerary getItinerary() {
     return itinerary;
   }
 
 
-  public void setItinerary(CfarItinerary itinerary) {
+  public void setItinerary(CfarCreateExerciseItinerary itinerary) {
     this.itinerary = itinerary;
   }
 
