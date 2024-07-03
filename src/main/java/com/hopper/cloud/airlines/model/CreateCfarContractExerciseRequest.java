@@ -47,6 +47,10 @@ public class CreateCfarContractExerciseRequest {
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
   private String pnrReference;
 
+  public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
+  @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
+  private String emailAddress;
+
   public static final String SERIALIZED_NAME_AIRLINE_REFUND_PENALTY = "airline_refund_penalty";
   @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_PENALTY)
   private String airlineRefundPenalty;
@@ -132,6 +136,29 @@ public class CreateCfarContractExerciseRequest {
 
   public void setPnrReference(String pnrReference) {
     this.pnrReference = pnrReference;
+  }
+
+
+  public CreateCfarContractExerciseRequest emailAddress(String emailAddress) {
+
+    this.emailAddress = emailAddress;
+    return this;
+  }
+
+  /**
+   * Get emailAddress
+   * @return emailAddress
+   **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = false, value = "")
+
+  public String getEmailAddress() {
+    return emailAddress;
+  }
+
+
+  public void setEmailAddress(String emailAddress) {
+    this.emailAddress = emailAddress;
   }
 
 
@@ -245,6 +272,7 @@ public class CreateCfarContractExerciseRequest {
     return Objects.equals(this.contractId, createCfarContractExerciseRequest.contractId) &&
             Objects.equals(this.itinerary, createCfarContractExerciseRequest.itinerary) &&
             Objects.equals(this.pnrReference, createCfarContractExerciseRequest.pnrReference) &&
+            Objects.equals(this.emailAddress, createCfarContractExerciseRequest.emailAddress) &&
             Objects.equals(this.airlineRefundPenalty, createCfarContractExerciseRequest.airlineRefundPenalty) &&
             Objects.equals(this.airlineRefundMethod, createCfarContractExerciseRequest.airlineRefundMethod) &&
             Objects.equals(this.currency, createCfarContractExerciseRequest.currency) &&
@@ -253,7 +281,7 @@ public class CreateCfarContractExerciseRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contractId, itinerary, pnrReference, airlineRefundPenalty, airlineRefundMethod, currency, extAttributes);
+    return Objects.hash(contractId, itinerary, pnrReference, emailAddress, airlineRefundPenalty, airlineRefundMethod, currency, extAttributes);
   }
 
   @Override
@@ -263,6 +291,7 @@ public class CreateCfarContractExerciseRequest {
     sb.append("    contractId: ").append(toIndentedString(contractId)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
     sb.append("    pnrReference: ").append(toIndentedString(pnrReference)).append("\n");
+    sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    airlineRefundPenalty: ").append(toIndentedString(airlineRefundPenalty)).append("\n");
     sb.append("    airlineRefundMethod: ").append(toIndentedString(airlineRefundMethod)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");

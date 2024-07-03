@@ -708,6 +708,15 @@ Reference of the PNR in the airline system
    </td>
   </tr>
   <tr>
+   <td>emailAddress</td>
+   <td>string
+<p>
+Example: john@doe.com
+<p>
+Contact email address of the booking at exercise time
+   </td>
+  </tr>
+  <tr>
    <td>airlineRefundPenalty
    </td>
    <td>string >= 0
