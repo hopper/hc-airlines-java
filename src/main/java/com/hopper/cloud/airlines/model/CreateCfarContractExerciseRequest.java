@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -66,6 +67,18 @@ public class CreateCfarContractExerciseRequest {
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   private Map<String, String> extAttributes = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_SESSION = "session";
+  @SerializedName(SERIALIZED_NAME_SESSION)
+  private CreateAirlineCfarSessionRequest session = null;
+
+  public static final String SERIALIZED_NAME_CALLBACK_URL = "callback_url";
+  @SerializedName(SERIALIZED_NAME_CALLBACK_URL)
+  private URL callbackUrl = null;
+
+  public static final String SERIALIZED_NAME_REDIRECTBACK_URL = "redirectback_url";
+  @SerializedName(SERIALIZED_NAME_REDIRECTBACK_URL)
+  private URL redirectbackUrl = null;
 
   public CreateCfarContractExerciseRequest() {
   }
@@ -258,7 +271,43 @@ public class CreateCfarContractExerciseRequest {
     this.extAttributes = extAttributes;
   }
 
+  public CreateAirlineCfarSessionRequest getSession() {
+    return session;
+  }
 
+  public void setSession(CreateAirlineCfarSessionRequest session) {
+    this.session = session;
+  }
+  public CreateCfarContractExerciseRequest session(CreateAirlineCfarSessionRequest session) {
+    this.session = session;
+    return this;
+  }
+
+  public URL getCallbackUrl() {
+    return callbackUrl;
+  }
+
+  public void setCallbackUrl(URL callbackUrl) {
+    this.callbackUrl = callbackUrl;
+  }
+
+  public CreateCfarContractExerciseRequest callbackUrl(URL callbackUrl) {
+    this.callbackUrl = callbackUrl;
+    return this;
+  }
+
+  public URL getRedirectbackUrl() {
+    return redirectbackUrl;
+  }
+
+  public void setRedirectbackUrl(URL redirectbackUrl) {
+    this.redirectbackUrl = redirectbackUrl;
+  }
+
+  public CreateCfarContractExerciseRequest redirectbackUrl(URL redirectbackUrl) {
+    this.redirectbackUrl = redirectbackUrl;
+    return this;
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -276,12 +325,15 @@ public class CreateCfarContractExerciseRequest {
             Objects.equals(this.airlineRefundPenalty, createCfarContractExerciseRequest.airlineRefundPenalty) &&
             Objects.equals(this.airlineRefundMethod, createCfarContractExerciseRequest.airlineRefundMethod) &&
             Objects.equals(this.currency, createCfarContractExerciseRequest.currency) &&
-            Objects.equals(this.extAttributes, createCfarContractExerciseRequest.extAttributes);
+            Objects.equals(this.extAttributes, createCfarContractExerciseRequest.extAttributes) &&
+            Objects.equals(this.session, createCfarContractExerciseRequest.session) &&
+            Objects.equals(this.callbackUrl, createCfarContractExerciseRequest.callbackUrl) &&
+            Objects.equals(this.redirectbackUrl, createCfarContractExerciseRequest.redirectbackUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contractId, itinerary, pnrReference, emailAddress, airlineRefundPenalty, airlineRefundMethod, currency, extAttributes);
+    return Objects.hash(contractId, itinerary, pnrReference, emailAddress, airlineRefundPenalty, airlineRefundMethod, currency, extAttributes,session, callbackUrl, redirectbackUrl);
   }
 
   @Override
@@ -296,6 +348,9 @@ public class CreateCfarContractExerciseRequest {
     sb.append("    airlineRefundMethod: ").append(toIndentedString(airlineRefundMethod)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
+    sb.append("    session: ").append(toIndentedString(session)).append("\n");
+    sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
+    sb.append("    redirectbackUrl: ").append(toIndentedString(redirectbackUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

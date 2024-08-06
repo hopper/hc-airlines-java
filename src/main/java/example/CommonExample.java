@@ -4,6 +4,8 @@ import com.hopper.cloud.airlines.ApiException;
 import com.hopper.cloud.airlines.HopperClient;
 import com.hopper.cloud.airlines.model.*;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
@@ -179,9 +181,11 @@ public class CommonExample {
         return client.completeCfarContractExercise(sessionId, markCfarContractExerciseCompleteRequest, exerciseId);
     }
 
-    protected static CfarContractExercise createCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException {
+    protected static CfarContractExercise createCfarContractExercise(HopperClient client, String contractId, String sessionId) throws ApiException, MalformedURLException {
         CreateCfarContractExerciseRequest createCfarContractExerciseRequest = new CreateCfarContractExerciseRequest();
         createCfarContractExerciseRequest.setContractId(contractId);
+        createCfarContractExerciseRequest.setCallbackUrl(new URL("https://www.volaris.com/callback?id=1234456790&session=1A530637289A03B07199A44E8D531427"));
+        createCfarContractExerciseRequest.setRedirectbackUrl(new URL("https://www.volaris.com/mmb?pnr=ABC123&session=1A530637289A03B07199A44E8D5"));
         createCfarContractExerciseRequest.setCurrency("USD");
         createCfarContractExerciseRequest.setPnrReference("ABC123");
         Map<String, String> params = new HashMap<>();

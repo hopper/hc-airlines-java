@@ -4,6 +4,7 @@ import com.hopper.cloud.airlines.ApiException;
 import com.hopper.cloud.airlines.HopperClient;
 import com.hopper.cloud.airlines.model.*;
 
+import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
@@ -41,7 +42,7 @@ public class Example extends CommonExample {
             System.out.println("*********************************************************************");
             System.out.println(getContract);
 
-            boolean isSucceeded = processCfarPayment(client, contractId, sessionId);
+            CfarContract isSucceeded = updateCfarContract(client, getContract.getReference(), sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** PROCESS PAYMENT *************************");
             System.out.println("*********************************************************************");
@@ -64,7 +65,7 @@ public class Example extends CommonExample {
             System.out.println("*************************** CREATE EXERCISE *************************");
             System.out.println("*********************************************************************");
             System.out.println(exercise);
-        } catch (ApiException e) {
+        } catch (ApiException | MalformedURLException e) {
             e.printStackTrace();
         }
     }
@@ -80,7 +81,7 @@ public class Example extends CommonExample {
         contractRequest.setExtAttributes(params);
 
         CfarItinerary itinerary = new CfarItinerary();
-        itinerary.setCurrency("CAD");
+        itinerary.setCurrency("USD");
         itinerary.setTotalPrice("190.00");
 
         //-- Slices

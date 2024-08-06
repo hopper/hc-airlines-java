@@ -3,6 +3,8 @@ package example;
 import com.hopper.cloud.airlines.ApiException;
 import com.hopper.cloud.airlines.model.*;
 
+import java.net.MalformedURLException;
+
 public class ExampleMonoPurchaseOrchestration extends CommonExample {
     public static void main(String[] args) {
         try {
@@ -36,7 +38,7 @@ public class ExampleMonoPurchaseOrchestration extends CommonExample {
             System.out.println("*************************** COMPLETE EXERCISE *************************");
             System.out.println("*********************************************************************");
             System.out.println(exercise);
-        } catch (ApiException e) {
+        } catch (ApiException | MalformedURLException e) {
             e.printStackTrace();
         }
     }
