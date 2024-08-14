@@ -54,7 +54,6 @@ public class OperatingSystem {
   }
 
   public OperatingSystem version(String version) {
-    
     this.version = version;
     return this;
   }

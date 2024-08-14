@@ -95,6 +95,9 @@ public class UpdateCfarContractRequest {
     @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
     private String totalPrice;
 
+    public static final String SERIALIZED_FORM_OF_PAYMENTS = "form_of_payments";
+    @SerializedName(SERIALIZED_FORM_OF_PAYMENTS)
+    private List<FormOfPayment> formOfPayments = new ArrayList<>();
 
     public UpdateCfarContractRequest() {
     }
@@ -367,6 +370,21 @@ public class UpdateCfarContractRequest {
         this.totalPrice = totalPrice;
     }
 
+    public UpdateCfarContractRequest setFormOfPayments(List<FormOfPayment> formOfPayments) {
+        this.formOfPayments = formOfPayments;
+        return this;
+    }
+
+    public List<FormOfPayment> getFormOfPayments() {
+        return formOfPayments;
+    }
+
+    public UpdateCfarContractRequest addFormOfPaymentItem(FormOfPayment formOfPaymentItem) {
+        if (this.formOfPayments != null) {
+            this.formOfPayments.add(formOfPaymentItem);
+        }
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {
