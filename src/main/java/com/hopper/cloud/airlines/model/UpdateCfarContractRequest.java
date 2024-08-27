@@ -97,7 +97,7 @@ public class UpdateCfarContractRequest {
 
     public static final String SERIALIZED_FORMS_OF_PAYMENT = "forms_of_payment";
     @SerializedName(SERIALIZED_FORMS_OF_PAYMENT)
-    private List<FormOfPayment> formsOfPayment = new ArrayList<>();
+    private List<FormOfPayment> formsOfPayment;
 
     public UpdateCfarContractRequest() {
     }
@@ -380,9 +380,10 @@ public class UpdateCfarContractRequest {
     }
 
     public UpdateCfarContractRequest addFormOfPaymentItem(FormOfPayment formOfPaymentItem) {
-        if (this.formsOfPayment != null) {
-            this.formsOfPayment.add(formOfPaymentItem);
+        if (this.formsOfPayment == null) {
+            this.formsOfPayment = new ArrayList<>();
         }
+        this.formsOfPayment.add(formOfPaymentItem);
         return this;
     }
 
