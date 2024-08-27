@@ -45,7 +45,7 @@ Gradle:
 
 ```gradle
 dependencies {
-  implementation group: 'com.hopper.cloud', name: 'cloud-airlines-java', version: '1.2.11'
+  implementation group: 'com.hopper.cloud', name: 'cloud-airlines-java', version: '1.2.12'
 }
 ```
 
@@ -56,7 +56,7 @@ Maven:
 <dependency>
   <groupId>com.hopper.cloud</groupId>
   <artifactId>cloud-airlines-java</artifactId>
-  <version>1.2.11</version>
+  <version>1.2.12</version>
 </dependency>
 
 ```
