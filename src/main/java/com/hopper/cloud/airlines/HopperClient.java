@@ -18,22 +18,19 @@ public class HopperClient {
     private CancelForAnyReasonCfarApi cfarApi;
     private SessionsApi sessionsApi;
     private AnalyticsApi analyticsApi;
-    private String paymentUrl;
-    private String paymentUsername;
-    private String paymentPassword;
+    private HopperPaymentClient hopperPaymentClient;
 
     public HopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
-        this.initHopperClient(url, clientId, clientSecret, null, null, null, debugging);
+        this.initHopperClient(url, clientId, clientSecret, debugging);
     }
 
     public HopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
-        this.initHopperClient(url, clientId, clientSecret, paymentUrl, paymentUsername, paymentPassword, debugging);
+        this(url, clientId, clientSecret, debugging);
+        hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword);
     }
 
-    private void initHopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
-        this.paymentUrl = paymentUrl;
-        this.paymentUsername = paymentUsername;
-        this.paymentPassword = paymentPassword;
+
+    private void initHopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
         Map<String, String> params = new HashMap<>();
         params.put("audience", String.join("/", Arrays.asList(url.split("/")).subList(0, 3)));
         params.put("grant_type", "client_credentials");
@@ -78,7 +75,7 @@ public class HopperClient {
                     throw new RuntimeException(e);
                 }
             }
-        }).connectTimeout(60000).socketTimeout(60000);
+        }).connectTimeout(60000);
 
     }
 
@@ -113,7 +110,7 @@ public class HopperClient {
         // Create offers
         List<CfarOffer> cfarOffers = createOffers(sessionId, createCfarOfferRequest);
 
-        // Create a contract for each offers created
+        // Create a contract for each offer created
         List<CfarContract> cfarContracts = new ArrayList<>();
         if (cfarOffers != null && !cfarOffers.isEmpty()) {
             for (CfarOffer offer : cfarOffers) {
@@ -170,6 +167,9 @@ public class HopperClient {
 
     public boolean processCfarPayment(String sessionId, String contractId, ProcessCfarPaymentRequest processCfarPaymentRequest) throws ApiException {
         try {
+            if (hopperPaymentClient == null) {
+                throw new ApiException("Missing credentials for payment");
+            }
             TokenizationRequest tokenizationRequest = new TokenizationRequest();
             tokenizationRequest.setPaymentMethod(new PaymentMethod());
             tokenizationRequest.getPaymentMethod().setCreditCard(new CreditCard());
@@ -193,7 +193,7 @@ public class HopperClient {
             tokenizationRequest.getPaymentMethod().getCreditCard().setZip(processCfarPaymentRequest.getPostalCode());
             tokenizationRequest.getPaymentMethod().getCreditCard().setCountry(processCfarPaymentRequest.getCountry());
             tokenizationRequest.getPaymentMethod().setEmail(processCfarPaymentRequest.getEmailAddress());
-            HttpResponse<TokenizationResponse> response = getTokenizedPaymentHttpResponse(tokenizationRequest);
+            HttpResponse<TokenizationResponse> response = hopperPaymentClient.getTokenizedPaymentHttpResponse(tokenizationRequest);
 
             if (response.getStatus() == 201) {
                 ProcessCfarPaymentTokenRequest processCfarPaymentTokenRequest = new ProcessCfarPaymentTokenRequest();
@@ -216,17 +216,6 @@ public class HopperClient {
         } catch (Exception e) {
             throw new ApiException(e);
         }
-    }
-
-    private HttpResponse<TokenizationResponse> getTokenizedPaymentHttpResponse(TokenizationRequest tokenizationRequest) throws ApiException {
-        if (StringUtil.isEmpty(paymentUrl) || StringUtil.isEmpty(paymentUsername) || StringUtil.isEmpty(paymentPassword)) {
-            throw new ApiException("Missing credentials for payment");
-        }
-        return Unirest.post(paymentUrl)
-                .basicAuth(paymentUsername, paymentPassword)
-                .header("Content-Type", "application/json")
-                .body(tokenizationRequest)
-                .asObject(TokenizationResponse.class);
     }
 
     public CfarContractExercise createCfarContractExercise(String sessionId, CreateCfarContractExerciseRequest createCfarContractExerciseRequest) throws ApiException {
