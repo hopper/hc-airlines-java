@@ -80,6 +80,14 @@ public class CreateCfarContractExerciseRequest {
   @SerializedName(SERIALIZED_NAME_REDIRECTBACK_URL)
   private URL redirectbackUrl = null;
 
+  public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
+  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  private String firstName;
+
+  public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
+  @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  private String lastName;
+
   public CreateCfarContractExerciseRequest() {
   }
 
@@ -309,6 +317,31 @@ public class CreateCfarContractExerciseRequest {
     return this;
   }
 
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public CreateCfarContractExerciseRequest firstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public CreateCfarContractExerciseRequest lastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -328,12 +361,14 @@ public class CreateCfarContractExerciseRequest {
             Objects.equals(this.extAttributes, createCfarContractExerciseRequest.extAttributes) &&
             Objects.equals(this.session, createCfarContractExerciseRequest.session) &&
             Objects.equals(this.callbackUrl, createCfarContractExerciseRequest.callbackUrl) &&
-            Objects.equals(this.redirectbackUrl, createCfarContractExerciseRequest.redirectbackUrl);
+            Objects.equals(this.callbackUrl, createCfarContractExerciseRequest.redirectbackUrl) &&
+            Objects.equals(this.firstName, createCfarContractExerciseRequest.firstName) &&
+            Objects.equals(this.lastName, createCfarContractExerciseRequest.lastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contractId, itinerary, pnrReference, emailAddress, airlineRefundPenalty, airlineRefundMethod, currency, extAttributes,session, callbackUrl, redirectbackUrl);
+    return Objects.hash(contractId, itinerary, pnrReference, emailAddress, airlineRefundPenalty, airlineRefundMethod, currency, extAttributes, session, callbackUrl, redirectbackUrl, firstName, lastName);
   }
 
   @Override
@@ -351,6 +386,8 @@ public class CreateCfarContractExerciseRequest {
     sb.append("    session: ").append(toIndentedString(session)).append("\n");
     sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("    redirectbackUrl: ").append(toIndentedString(redirectbackUrl)).append("\n");
+    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
