@@ -29,6 +29,10 @@ public class HopperClient {
         hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword);
     }
 
+    public HopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, String encryptionKeyId, String encryptionPublicKey, Boolean debugging) {
+        this(url, clientId, clientSecret, debugging);
+        hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword, encryptionKeyId, encryptionPublicKey);
+    }
 
     private void initHopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
         Map<String, String> params = new HashMap<>();

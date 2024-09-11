@@ -12,16 +12,24 @@ public class HopperPaymentClient {
     private String paymentUrl;
     private String paymentUsername;
     private String paymentPassword;
+    private String encryptionKeyId;
+    private String encryptionPublicKey;
 
     public HopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword) {
-        this.initHopperPaymentClient(paymentUrl, paymentUsername, paymentPassword);
+        this(paymentUrl, paymentUsername, paymentPassword, null, null);
+    }
+
+    public HopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword, String encryptionKeyId, String encryptionPublicKey) {
+        this.initHopperPaymentClient(paymentUrl, paymentUsername, paymentPassword, encryptionKeyId, encryptionPublicKey);
     }
 
 
-    private void initHopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword) {
+    private void initHopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword, String encryptionKeyId, String encryptionPublicKey) {
         this.paymentUrl = paymentUrl;
         this.paymentUsername = paymentUsername;
         this.paymentPassword = paymentPassword;
+        this.encryptionKeyId = encryptionKeyId;
+        this.encryptionPublicKey = encryptionPublicKey;
 
         Unirest.config().setObjectMapper(new ObjectMapper() {
             final com.fasterxml.jackson.databind.ObjectMapper mapper
