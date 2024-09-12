@@ -12,10 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CommonExample {
-    //protected static HopperClient client = new HopperClient("", "", "", "", "", "", true);
-    // Testing locally
-    protected static HopperClient client = new HopperClient("http://localhost:7071/airline/v1.1", "7lrxWCn9ZJOvhpeK03XzDXOsmrtWodIy",
-            "0gPGKrQeckjgElCRwlMLSvl9Nfzc_K_5ZNnVWpKuNZ8r3U0NiKSgBLC70D1QrzGP", "", "", "", true);
+    protected static HopperClient client = new HopperClient("", "", "", "", "", "", true);
     protected static String flightDate = "2024-09-30";
 
     private static CreateAirlineSessionRequest prepareCreateAirlineSessionRequest(FlowType flowType) {

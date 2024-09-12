@@ -2,8 +2,6 @@ package example;
 
 import com.hopper.cloud.airlines.ApiException;
 import com.hopper.cloud.airlines.HopperClient;
-import com.hopper.cloud.airlines.helper.Base64RsaKeyPair;
-import com.hopper.cloud.airlines.helper.RsaHelper;
 import com.hopper.cloud.airlines.model.*;
 import java.util.*;
 
@@ -32,17 +30,17 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
             System.out.println("*********************************************************************");
             System.out.println(contract);
 
-            CfarContract updatedContract = updateCfarFormsOfPaymentWithPreDefinedToken(client, contract.getReference(), sessionId);
-            System.out.println("*********************************************************************");
-            System.out.println("**************** UPDATE FORMS OF PAYMENT WITH TOKEN *****************");
-            System.out.println("*********************************************************************");
-            System.out.println(updatedContract);
+//            CfarContract updatedContract = updateCfarFormsOfPaymentWithPreDefinedToken(client, contract.getReference(), sessionId);
+//            System.out.println("*********************************************************************");
+//            System.out.println("**************** UPDATE FORMS OF PAYMENT WITH TOKEN *****************");
+//            System.out.println("*********************************************************************");
+//            System.out.println(updatedContract);
 
-            /*updatedContract = updateCfarFormsOfPaymentWithoutPreDefinedToken(client, contract.getReference(), sessionId);
+            CfarContract updatedContract = updateCfarFormsOfPaymentWithoutPreDefinedToken(client, contract.getReference(), sessionId);
             System.out.println("*********************************************************************");
             System.out.println("**************** UPDATE FORMS OF PAYMENT WITHOUT TOKEN **************");
             System.out.println("*********************************************************************");
-            System.out.println(updatedContract);*/
+            System.out.println(updatedContract);
         } catch (ApiException e) {
             e.printStackTrace();
         }
