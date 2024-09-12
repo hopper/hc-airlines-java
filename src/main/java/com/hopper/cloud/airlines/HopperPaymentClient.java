@@ -78,22 +78,32 @@ public class HopperPaymentClient {
         }
     }
 
-    public String tokenizePaymentCreditCardWithEncryption(CreditCardDetail creditCardDetail) throws ApiException {
+    /**
+     * Perform credit card tokenization by encrypting some fields
+     * @param creditCardDetail
+     * @return The token if it was successfully retrieved, else null
+     */
+    public String tokenizePaymentCreditCardWithEncryption(CreditCardDetail creditCardDetail) {
+        String token = null;
         if (StringUtil.isEmpty(encryptionKeyId) || StringUtil.isEmpty(encryptionPublicKey)) {
-            throw new ApiException("Missing Encryption parameters for payment");
+            // Log the error message
+            //logger.error("Missing Encryption parameters for payment");
         }
 
         HttpResponse<TokenizationResponse> response = null;
         try {
             response = getTokenizedPaymentHttpResponse(buildTokenizationRequestWithEncryption(creditCardDetail, encryptionKeyId, encryptionPublicKey));
         } catch (Exception e) {
-            throw new ApiException("Unable to initialize the request object for tokenization : " + e.getLocalizedMessage());
+            // Log the error message
+            //logger.error("Unable to initialize the request object for tokenization : " + e.getLocalizedMessage());
         }
         if (response != null && response.getStatus() == 201) {
-            return response.getBody().getTransaction().getPaymentMethod().getToken();
+            token = response.getBody().getTransaction().getPaymentMethod().getToken();
         } else {
-            throw new ApiException("Unable to create a token, response : " + response.getStatus());
+            // Log the error message
+            //logger.error("Unable to create a token, response : " + response.getStatus());
         }
+        return token;
     }
 
     private TokenizationRequest buildTokenizationRequestWithEncryption(CreditCardDetail paymentCardDetail, String encryptionKeyId, String encryptionPublicKey) throws Exception {
