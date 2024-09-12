@@ -203,15 +203,16 @@ public class HopperClient {
                 for (FormOfPayment formOfPaymentRequest : updateCfarFormOfPaymentRequest.getFormsOfPayment()) {
                     if (formOfPaymentRequest instanceof FormOfPayment.PaymentCard) {
                         FormOfPayment.PaymentCard creditCardRequest = (FormOfPayment.PaymentCard)formOfPaymentRequest;
-                        CreditCardDetail creditCardDetail = creditCardRequest.getCreditCardDetail();
-                        if (creditCardDetail == null) {
-                            throw new ApiException("Missing required details for a credit card");
+                        if (creditCardRequest.getToken() == null) {
+                            // Retrieve the required token from Spreedly
+                            CreditCardDetail creditCardDetail = creditCardRequest.getCreditCardDetail();
+                            if (creditCardDetail == null) {
+                                throw new ApiException("Missing required details for a credit card");
+                            }
+                            // Adjust the credit card number
+                            creditCardDetail.setNumber(prepareCreditCardNumberForSpreedly(creditCardDetail.getNumber()));
+                            creditCardRequest.setToken(hopperPaymentClient.tokenizePaymentCreditCard(creditCardDetail));
                         }
-                        // Adjust the credit card number
-                        creditCardDetail.setNumber(prepareCreditCardNumberForSpreedly(creditCardDetail.getNumber()));
-
-                        // Retrieve the required token from Spreedly
-                        creditCardRequest.setToken(hopperPaymentClient.tokenizePaymentCreditCard(creditCardDetail));
                     }
                 }
                 return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentRequest, sessionId);

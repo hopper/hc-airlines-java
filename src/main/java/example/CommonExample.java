@@ -9,6 +9,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CommonExample {
     protected static HopperClient client = new HopperClient("", "", "", "", "", "", true);
@@ -159,6 +160,78 @@ public class CommonExample {
 
     protected static List<CfarOffer> createCfarOffers(HopperClient client, String sessionId) throws ApiException {
         return client.createOffers(sessionId, prepareCreateCfarOfferRequest());
+    }
+
+    protected static CfarContract createCfarContract(HopperClient client, List<CfarOffer> offers, String sessionId) throws ApiException {
+        CreateCfarContractRequest contractRequest = new CreateCfarContractRequest();
+        Map<String, String> params = new HashMap<>();
+        params.put("property1", "test1");
+        params.put("property2", "test2");
+
+        contractRequest.setOfferIds(offers.stream().map(CfarOffer::getId).collect(Collectors.toList()));
+        contractRequest.setExtAttributes(params);
+
+        CfarItinerary itinerary = new CfarItinerary();
+        itinerary.setCurrency("USD");
+        itinerary.setTotalPrice("190.00");
+
+        //-- Slices
+        CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
+        cfarItinerarySlice.setFareBrand("flex");
+        CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
+        cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
+        cfarItinerarySliceSegment.setOriginAirport("LGA");
+        cfarItinerarySliceSegment.setDestinationAirport("BOS");
+        cfarItinerarySliceSegment.setFlightNumber("JB776");
+        cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
+        cfarItinerarySliceSegment.setFareBrand("basic");
+        cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
+
+        CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
+        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
+        cfarItinerarySliceSegment2.setOriginAirport("LGA");
+        cfarItinerarySliceSegment2.setDestinationAirport("BOS");
+        cfarItinerarySliceSegment2.setFlightNumber("JB777");
+        cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
+        cfarItinerarySliceSegment2.setFareBrand("flex");
+        cfarItinerarySliceSegment2.setValidatingCarrierCode("B6");
+
+        List<CfarItinerarySliceSegment> segments = new ArrayList<>();
+        segments.add(cfarItinerarySliceSegment);
+        segments.add(cfarItinerarySliceSegment2);
+        cfarItinerarySlice.setSegments(segments);
+
+        itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
+
+        //-- Ancillaries
+        Ancillary ancillary = new Ancillary();
+        ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
+        ancillary.setTotalPrice("10.00");
+
+        itinerary.setAncillaries(Collections.singletonList(ancillary));
+
+        //-- Passenger Pricings
+        PassengerPricing passengerPricing = new PassengerPricing();
+        passengerPricing.setIndividualPrice("60.00");
+        PassengerCount passengerCount = new PassengerCount();
+        passengerCount.count(3);
+        passengerCount.setType(PassengerType.ADULT);
+
+        passengerPricing.setPassengerCount(passengerCount);
+
+        CfarPassengerTax cfarPassengerTax = new CfarPassengerTax();
+        cfarPassengerTax.amount("15.50");
+        cfarPassengerTax.code("CF");
+        cfarPassengerTax.currency("USD");
+
+        passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
+
+        itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
+
+        contractRequest.setItinerary(itinerary);
+        return client.createCfarContract(sessionId, contractRequest);
     }
 
     protected static CreateSessionOffersContractsResponse createSessionOffersAndContracts(HopperClient client) throws ApiException {
