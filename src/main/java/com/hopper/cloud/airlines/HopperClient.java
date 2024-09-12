@@ -200,6 +200,7 @@ public class HopperClient {
                     throw new ApiException("Missing credentials for payment");
                 }
                 // Tokenize each credit card
+                List<FormOfPayment> updatedFormsOfPaymentRequest = new ArrayList<>();
                 for (FormOfPayment formOfPaymentRequest : updateCfarFormOfPaymentRequest.getFormsOfPayment()) {
                     if (formOfPaymentRequest instanceof FormOfPayment.PaymentCard) {
                         FormOfPayment.PaymentCard creditCardRequest = (FormOfPayment.PaymentCard)formOfPaymentRequest;
@@ -211,8 +212,17 @@ public class HopperClient {
                             }
                             // Adjust the credit card number
                             creditCardDetail.setNumber(prepareCreditCardNumberForSpreedly(creditCardDetail.getNumber()));
-                            creditCardRequest.setToken(hopperPaymentClient.tokenizePaymentCreditCard(creditCardDetail));
+                            String token = hopperPaymentClient.tokenizePaymentCreditCardWithEncryption(creditCardDetail);
+
+                            // Build a new instance only with the token
+                            FormOfPayment.PaymentCard updatedCreditCardRequest = new FormOfPayment.PaymentCard(creditCardRequest.getAmount(), creditCardRequest.getCurrency(), token);
+                            updatedFormsOfPaymentRequest.add(updatedCreditCardRequest);
+                        } else {
+                            creditCardRequest.setCreditCardDetail(null);  // Credt card details must not be passed to HTSFA API
+                            updatedFormsOfPaymentRequest.add(creditCardRequest);
                         }
+                    } else {
+                        updatedFormsOfPaymentRequest.add(formOfPaymentRequest);
                     }
                 }
                 return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentRequest, sessionId);

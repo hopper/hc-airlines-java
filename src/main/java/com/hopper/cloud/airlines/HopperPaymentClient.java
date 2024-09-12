@@ -1,7 +1,10 @@
 package com.hopper.cloud.airlines;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.hopper.cloud.airlines.helper.RsaHelper;
 import com.hopper.cloud.airlines.model.*;
+import com.hopper.cloud.airlines.model.tokenization.CreditCard;
+import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
 import com.hopper.cloud.airlines.model.tokenization.TokenizationRequest;
 import com.hopper.cloud.airlines.model.tokenization.TokenizationResponse;
 import kong.unirest.HttpResponse;
@@ -75,12 +78,38 @@ public class HopperPaymentClient {
         }
     }
 
-    public String tokenizePaymentCreditCard(CreditCardDetail creditCardDetail) throws ApiException {
-        HttpResponse<TokenizationResponse> response = getTokenizedPaymentHttpResponse(new TokenizationRequest(creditCardDetail));
-        if (response.getStatus() == 201) {
+    public String tokenizePaymentCreditCardWithEncryption(CreditCardDetail creditCardDetail) throws ApiException {
+        if (StringUtil.isEmpty(encryptionKeyId) || StringUtil.isEmpty(encryptionPublicKey)) {
+            throw new ApiException("Missing Encryption parameters for payment");
+        }
+
+        HttpResponse<TokenizationResponse> response = null;
+        try {
+            response = getTokenizedPaymentHttpResponse(buildTokenizationRequestWithEncryption(creditCardDetail, encryptionKeyId, encryptionPublicKey));
+        } catch (Exception e) {
+            throw new ApiException("Unable to initialize the request object for tokenization : " + e.getLocalizedMessage());
+        }
+        if (response != null && response.getStatus() == 201) {
             return response.getBody().getTransaction().getPaymentMethod().getToken();
         } else {
             throw new ApiException("Unable to create a token, response : " + response.getStatus());
         }
+    }
+
+    private TokenizationRequest buildTokenizationRequestWithEncryption(CreditCardDetail paymentCardDetail, String encryptionKeyId, String encryptionPublicKey) throws Exception {
+        TokenizationRequest tokenizationRequest = new TokenizationRequest();
+
+        com.hopper.cloud.airlines.model.tokenization.PaymentMethod paymentMethod = new PaymentMethod();
+        CreditCard creditCard = new CreditCard();
+        creditCard.setMonth(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getExpirationMonth(), encryptionPublicKey));
+        creditCard.setYear(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getExpirationYear(), encryptionPublicKey));
+        creditCard.setLastName(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getLastName(), encryptionPublicKey));
+        creditCard.setFirstName(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getFirstName(), encryptionPublicKey));
+        creditCard.setNumber(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getNumber(), encryptionPublicKey));
+        paymentMethod.setCreditCard(creditCard);
+        paymentMethod.setEncryptionCertificateToken(encryptionKeyId);
+        paymentMethod.setEncryptedFields("number,month,year,first_name,last_name");
+        tokenizationRequest.setPaymentMethod(paymentMethod);
+        return tokenizationRequest;
     }
 }

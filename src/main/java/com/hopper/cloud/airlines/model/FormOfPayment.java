@@ -18,8 +18,8 @@ public abstract class FormOfPayment {
 
     public static class PaymentCard extends FormOfPayment {
         private final Currency currency;
-        private String token;
-        private final CreditCardDetail creditCardDetail;
+        private final String token;
+        private CreditCardDetail creditCardDetail;
 
         public PaymentCard(String amount, Currency currency, String token) {
             super(amount, FormOfPaymentType.PAYMENT_CARD);
@@ -43,12 +43,12 @@ public abstract class FormOfPayment {
             return token;
         }
 
-        public void setToken(String token) {
-            this.token = token;
-        }
-
         public CreditCardDetail getCreditCardDetail() {
             return creditCardDetail;
+        }
+
+        public void setCreditCardDetail(CreditCardDetail creditCardDetail) {
+            this.creditCardDetail = creditCardDetail;
         }
 
         @Override

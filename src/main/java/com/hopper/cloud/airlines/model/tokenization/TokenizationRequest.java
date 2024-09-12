@@ -33,18 +33,6 @@ public class TokenizationRequest {
         this.setPaymentMethod(paymentMethod);
     }
 
-    public TokenizationRequest(CreditCardDetail paymentCardDetail) {
-        PaymentMethod paymentMethod = new PaymentMethod();
-        CreditCard creditCard = new CreditCard();
-        creditCard.setMonth(paymentCardDetail.getExpirationMonth());
-        creditCard.setYear(paymentCardDetail.getExpirationYear());
-        creditCard.setLastName(paymentCardDetail.getLastName());
-        creditCard.setFirstName(paymentCardDetail.getFirstName());
-        creditCard.setNumber(paymentCardDetail.getNumber());
-        paymentMethod.setCreditCard(creditCard);
-        this.setPaymentMethod(paymentMethod);
-    }
-
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }

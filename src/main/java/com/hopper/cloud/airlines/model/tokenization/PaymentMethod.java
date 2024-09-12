@@ -7,6 +7,10 @@ import java.util.Objects;
 public class PaymentMethod {
     @JsonProperty("credit_card")
     private CreditCard creditCard;
+    @JsonProperty("encryption_certificate_token")
+    private String encryptionCertificateToken;
+    @JsonProperty("encrypted_fields")
+    private String encryptedFields;
     private String email;
 
     public PaymentMethod() {
@@ -28,6 +32,22 @@ public class PaymentMethod {
         this.email = email;
     }
 
+    public String getEncryptionCertificateToken() {
+        return encryptionCertificateToken;
+    }
+
+    public void setEncryptionCertificateToken(String encryptionCertificateToken) {
+        this.encryptionCertificateToken = encryptionCertificateToken;
+    }
+
+    public String getEncryptedFields() {
+        return encryptedFields;
+    }
+
+    public void setEncryptedFields(String encryptedFields) {
+        this.encryptedFields = encryptedFields;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -38,7 +58,9 @@ public class PaymentMethod {
         }
         PaymentMethod paymentMethod = (PaymentMethod) o;
         return Objects.equals(this.creditCard, paymentMethod.creditCard) &&
-                Objects.equals(this.email, paymentMethod.email);
+                Objects.equals(this.email, paymentMethod.email) &&
+                Objects.equals(this.encryptionCertificateToken, paymentMethod.encryptionCertificateToken) &&
+                Objects.equals(this.encryptedFields, paymentMethod.encryptedFields);
     }
 
     @Override
@@ -52,6 +74,8 @@ public class PaymentMethod {
         sb.append("class PaymentMethod {\n");
         sb.append("    creditCard: ").append(toIndentedString(creditCard)).append("\n");
         sb.append("    email: ").append(toIndentedString(email)).append("\n");
+        sb.append("    encryptionCertificateToken: ").append(toIndentedString(encryptionCertificateToken)).append("\n");
+        sb.append("    encryptedFields: ").append(toIndentedString(encryptedFields)).append("\n");
         sb.append("}");
         return sb.toString();
     }
