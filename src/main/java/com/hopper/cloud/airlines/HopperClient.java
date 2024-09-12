@@ -218,13 +218,14 @@ public class HopperClient {
                             FormOfPayment.PaymentCard updatedCreditCardRequest = new FormOfPayment.PaymentCard(creditCardRequest.getAmount(), creditCardRequest.getCurrency(), token);
                             updatedFormsOfPaymentRequest.add(updatedCreditCardRequest);
                         } else {
-                            creditCardRequest.setCreditCardDetail(null);  // Credt card details must not be passed to HTSFA API
+                            creditCardRequest.setCreditCardDetail(null);  // Credit card details must not be passed to the HTSFA API
                             updatedFormsOfPaymentRequest.add(creditCardRequest);
                         }
                     } else {
                         updatedFormsOfPaymentRequest.add(formOfPaymentRequest);
                     }
                 }
+                updateCfarFormOfPaymentRequest.setFormsOfPayment(updatedFormsOfPaymentRequest);
                 return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentRequest, sessionId);
             }
         } catch (Exception e) {

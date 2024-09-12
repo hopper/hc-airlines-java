@@ -64,7 +64,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         FormOfPayment.Cash paymentCash = new FormOfPayment.Cash("12.00", Currency.getInstance("CAD"));
         updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentCash);
 
-        return client.updateCfarContractFormsOfPaymentWithoutTokenization(sessionId, contractReference, updateCfarFormOfPaymentRequest);
+        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarFormOfPaymentRequest);
     }
 
     private static CfarContract updateCfarFormsOfPaymentWithoutPreDefinedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
