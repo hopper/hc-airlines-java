@@ -178,19 +178,6 @@ public class HopperClient {
      * @return The updated contract
      * @throws ApiException
      */
-    public CfarContract updateCfarContractFormsOfPaymentWithoutTokenization(String sessionId, String contractReference, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest) throws ApiException {
-        return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentRequest, sessionId);
-    }
-
-    /**
-     * Called to update forms of payment that are linked with a contract.
-     *
-     * @param sessionId                         The current session IO
-     * @param contractReference                 The contract reference
-     * @param updateCfarFormOfPaymentRequest    The request with the update information
-     * @return The updated contract
-     * @throws ApiException
-     */
     public CfarContract updateCfarContractFormsOfPayment(String sessionId, String contractReference, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest) throws ApiException {
         try {
             if (ListUtil.isEmpty(updateCfarFormOfPaymentRequest.getFormsOfPayment())) {

@@ -49,12 +49,12 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
     }
 
     private static CfarContract updateCfarFormsOfPaymentWithPreDefinedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
-        Base64RsaKeyPair keyPair = null;
-        try {
-            keyPair = RsaHelper.buildBase64RsaKeys();
-        } catch (Exception e) {
-            throw new ApiException("generateRsaKeyPair ko");
-        }
+//        Base64RsaKeyPair keyPair = null;
+//        try {
+//            keyPair = RsaHelper.buildBase64RsaKeys();
+//        } catch (Exception e) {
+//            throw new ApiException("generateRsaKeyPair ko");
+//        }
 
         UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest = new UpdateCfarFormOfPaymentRequest();
 
