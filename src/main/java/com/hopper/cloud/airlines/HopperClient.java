@@ -194,7 +194,7 @@ public class HopperClient {
     public CfarContract updateCfarContractFormsOfPayment(String sessionId, String contractReference, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest) throws ApiException {
         try {
             if (ListUtil.isEmpty(updateCfarFormOfPaymentRequest.getFormsOfPayment())) {
-                return null; // return contract or throw an exception?
+                throw new ApiException("Missing forms of payment"); // must we return the contract instead?
             } else {
                 if (hopperPaymentClient == null) {
                     throw new ApiException("Missing credentials for payment");
