@@ -71,7 +71,16 @@ public class HopperPaymentClient {
         if (response.getStatus() == 201) {
             return response.getBody().getTransaction().getPaymentMethod().getToken();
         } else {
-            throw new ApiException("Unable to create this specific token, response : " + response.getStatus());
+            throw new ApiException("Unable to create a token, response : " + response.getStatus());
+        }
+    }
+
+    public String tokenizePaymentCreditCard(CreditCardDetail creditCardDetail) throws ApiException {
+        HttpResponse<TokenizationResponse> response = getTokenizedPaymentHttpResponse(new TokenizationRequest(creditCardDetail));
+        if (response.getStatus() == 201) {
+            return response.getBody().getTransaction().getPaymentMethod().getToken();
+        } else {
+            throw new ApiException("Unable to create a token, response : " + response.getStatus());
         }
     }
 }

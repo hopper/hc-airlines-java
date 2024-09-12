@@ -1,6 +1,7 @@
 package com.hopper.cloud.airlines.model.tokenization;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hopper.cloud.airlines.model.CreditCardDetail;
 import com.hopper.cloud.airlines.model.PaymentCardDetail;
 
 import java.util.Objects;
@@ -25,6 +26,18 @@ public class TokenizationRequest {
         creditCard.setState(paymentCardDetail.getStateOrProvince());
         creditCard.setZip(paymentCardDetail.getPostalCode());
         creditCard.setCountry(paymentCardDetail.getCountry());
+        creditCard.setLastName(paymentCardDetail.getLastName());
+        creditCard.setFirstName(paymentCardDetail.getFirstName());
+        creditCard.setNumber(paymentCardDetail.getNumber());
+        paymentMethod.setCreditCard(creditCard);
+        this.setPaymentMethod(paymentMethod);
+    }
+
+    public TokenizationRequest(CreditCardDetail paymentCardDetail) {
+        PaymentMethod paymentMethod = new PaymentMethod();
+        CreditCard creditCard = new CreditCard();
+        creditCard.setMonth(paymentCardDetail.getExpirationMonth());
+        creditCard.setYear(paymentCardDetail.getExpirationYear());
         creditCard.setLastName(paymentCardDetail.getLastName());
         creditCard.setFirstName(paymentCardDetail.getFirstName());
         creditCard.setNumber(paymentCardDetail.getNumber());

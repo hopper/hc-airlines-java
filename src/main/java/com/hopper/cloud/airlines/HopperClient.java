@@ -169,6 +169,58 @@ public class HopperClient {
         return cfarApi.getCfarContractsId(contractId, sessionId);
     }
 
+    /**
+     * Called to update forms of payment that are linked with a contract.
+     *
+     * @param sessionId                         The current session IO
+     * @param contractReference                 The contract reference
+     * @param updateCfarFormOfPaymentRequest    The request with the update information
+     * @return The updated contract
+     * @throws ApiException
+     */
+    public CfarContract updateCfarContractFormsOfPaymentSimple(String sessionId, String contractReference, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest) throws ApiException {
+        return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentRequest, sessionId);
+    }
+
+    /**
+     * Called to update forms of payment that are linked with a contract.
+     *
+     * @param sessionId                         The current session IO
+     * @param contractReference                 The contract reference
+     * @param updateCfarFormOfPaymentRequest    The request with the update information
+     * @return The updated contract
+     * @throws ApiException
+     */
+    public CfarContract updateCfarContractFormsOfPayment(String sessionId, String contractReference, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest) throws ApiException {
+        try {
+            if (ListUtil.isEmpty(updateCfarFormOfPaymentRequest.getFormsOfPayment())) {
+                return null; // return contract ?
+            } else {
+                if (hopperPaymentClient == null) {
+                    throw new ApiException("Missing credentials for payment");
+                }
+                // Tokenize each credit card
+                for (FormOfPayment formOfPaymentRequest : updateCfarFormOfPaymentRequest.getFormsOfPayment()) {
+                    if (formOfPaymentRequest instanceof FormOfPayment.PaymentCard) {
+                        FormOfPayment.PaymentCard creditCardRequest = (FormOfPayment.PaymentCard)formOfPaymentRequest;
+                        CreditCardDetail creditCardDetail = creditCardRequest.getCreditCardDetail();
+                        if (creditCardDetail == null) {
+                            throw new ApiException("Missing required details for a credit card");
+                        }
+                        // Adjust the credit card number
+                        creditCardDetail.setNumber(prepareCreditCardNumberForSpreedly(creditCardDetail.getNumber()));
+
+                        // Retrieve the required token from Spreedly
+                        creditCardRequest.setToken(hopperPaymentClient.tokenizePaymentCreditCard(creditCardDetail));
+                    }
+                }
+                return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentRequest, sessionId);
+            }
+        } catch (Exception e) {
+            throw new ApiException(e);
+        }
+    }
+
     public boolean processCfarPayment(String sessionId, String contractId, ProcessCfarPaymentRequest processCfarPaymentRequest) throws ApiException {
         try {
             if (hopperPaymentClient == null) {
@@ -179,14 +231,7 @@ public class HopperClient {
             tokenizationRequest.getPaymentMethod().setCreditCard(new CreditCard());
             tokenizationRequest.getPaymentMethod().getCreditCard().setFirstName(processCfarPaymentRequest.getFirstName());
             tokenizationRequest.getPaymentMethod().getCreditCard().setLastName(processCfarPaymentRequest.getLastName());
-
-            // Map test credit cards to an accepted one on staging environment
-            if (cfarApi.getApiClient().getBasePath().contains("staging") && Arrays.asList("371449635398431", "5454545454545454").contains(processCfarPaymentRequest.getNumber())) {
-                tokenizationRequest.getPaymentMethod().getCreditCard().setNumber("4111111111111111");
-            } else {
-                tokenizationRequest.getPaymentMethod().getCreditCard().setNumber(processCfarPaymentRequest.getNumber());
-            }
-
+            tokenizationRequest.getPaymentMethod().getCreditCard().setNumber(prepareCreditCardNumberForSpreedly(processCfarPaymentRequest.getNumber()));
             tokenizationRequest.getPaymentMethod().getCreditCard().setVerificationValue(processCfarPaymentRequest.getVerificationValue());
             tokenizationRequest.getPaymentMethod().getCreditCard().setMonth(processCfarPaymentRequest.getMonth());
             tokenizationRequest.getPaymentMethod().getCreditCard().setYear(processCfarPaymentRequest.getYear());
@@ -220,6 +265,20 @@ public class HopperClient {
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    /**
+     * Before calling Spreedly API in order to get a payment token, supply credit card number with the right one according to the environment
+     * @param inputCardNumber
+     * @return Accurate card number that will be used when calling Spreedly
+     */
+    private String prepareCreditCardNumberForSpreedly(String inputCardNumber) {
+        String spreedlyCardNumber = inputCardNumber;
+        // Map test credit cards to an accepted one on staging environment
+        if (cfarApi.getApiClient().getBasePath().contains("staging") && Arrays.asList("371449635398431", "5454545454545454").contains(inputCardNumber)) {
+            spreedlyCardNumber = "4111111111111111";
+        }
+        return spreedlyCardNumber;
     }
 
     public CfarContractExercise createCfarContractExercise(String sessionId, CreateCfarContractExerciseRequest createCfarContractExerciseRequest) throws ApiException {

@@ -18,12 +18,21 @@ public abstract class FormOfPayment {
 
     public static class PaymentCard extends FormOfPayment {
         private final Currency currency;
-        private final String token;
+        private String token;
+        private final CreditCardDetail creditCardDetail;
 
         public PaymentCard(String amount, Currency currency, String token) {
             super(amount, FormOfPaymentType.PAYMENT_CARD);
             this.currency = currency;
             this.token = token;
+            this.creditCardDetail = null;
+        }
+
+        public PaymentCard(String amount, Currency currency, CreditCardDetail creditCardDetail) {
+            super(amount, FormOfPaymentType.PAYMENT_CARD);
+            this.currency = currency;
+            this.token = null;
+            this.creditCardDetail = creditCardDetail;
         }
 
         public Currency getCurrency() {
@@ -32,6 +41,14 @@ public abstract class FormOfPayment {
 
         public String getToken() {
             return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
+        public CreditCardDetail getCreditCardDetail() {
+            return creditCardDetail;
         }
 
         @Override
@@ -46,12 +63,13 @@ public abstract class FormOfPayment {
             return Objects.equals(this.amount, fop.amount) &&
                     Objects.equals(this.type, fop.type) &&
                     Objects.equals(this.currency, fop.currency) &&
-                    Objects.equals(this.token, fop.token);
+                    Objects.equals(this.token, fop.token) &&
+                    Objects.equals(this.creditCardDetail, fop.creditCardDetail);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(amount, type, currency, token);
+            return Objects.hash(amount, type, currency, token, creditCardDetail);
         }
 
         @Override
@@ -62,6 +80,7 @@ public abstract class FormOfPayment {
             sb.append("    type: ").append(toIndentedString(type)).append("\n");
             sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
             sb.append("    token: ").append(toIndentedString(token)).append("\n");
+            sb.append("    creditCardDetail: ").append(toIndentedString(creditCardDetail)).append("\n");
             sb.append("}");
             return sb.toString();
         }
