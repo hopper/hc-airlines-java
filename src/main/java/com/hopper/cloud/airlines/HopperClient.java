@@ -178,7 +178,7 @@ public class HopperClient {
      * @return The updated contract
      * @throws ApiException
      */
-    public CfarContract updateCfarContractFormsOfPaymentSimple(String sessionId, String contractReference, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest) throws ApiException {
+    public CfarContract updateCfarContractFormsOfPaymentWithoutTokenization(String sessionId, String contractReference, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest) throws ApiException {
         return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentRequest, sessionId);
     }
 
@@ -194,7 +194,7 @@ public class HopperClient {
     public CfarContract updateCfarContractFormsOfPayment(String sessionId, String contractReference, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest) throws ApiException {
         try {
             if (ListUtil.isEmpty(updateCfarFormOfPaymentRequest.getFormsOfPayment())) {
-                return null; // return contract ?
+                return null; // return contract or throw an exception?
             } else {
                 if (hopperPaymentClient == null) {
                     throw new ApiException("Missing credentials for payment");
