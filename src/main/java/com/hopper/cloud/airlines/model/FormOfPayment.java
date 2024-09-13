@@ -69,20 +69,20 @@ public abstract class FormOfPayment {
 
     public static class PaymentCard extends FormOfPayment {
         private final Currency currency;
-        private final CreditCardDetail creditCardDetail;
+        private final PaymentCardDetails paymentCardDetails;
 
-        public PaymentCard(String amount, Currency currency, CreditCardDetail creditCardDetail) {
+        public PaymentCard(String amount, Currency currency, PaymentCardDetails paymentCardDetails) {
             super(amount, FormOfPaymentType.PAYMENT_CARD);
             this.currency = currency;
-            this.creditCardDetail = creditCardDetail;
+            this.paymentCardDetails = paymentCardDetails;
         }
 
         public Currency getCurrency() {
             return currency;
         }
 
-        public CreditCardDetail getCreditCardDetail() {
-            return creditCardDetail;
+        public PaymentCardDetails getCreditCardDetail() {
+            return paymentCardDetails;
         }
 
 
@@ -98,12 +98,12 @@ public abstract class FormOfPayment {
             return Objects.equals(this.amount, fop.amount) &&
                     Objects.equals(this.type, fop.type) &&
                     Objects.equals(this.currency, fop.currency) &&
-                    Objects.equals(this.creditCardDetail, fop.creditCardDetail);
+                    Objects.equals(this.paymentCardDetails, fop.paymentCardDetails);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(amount, type, currency, creditCardDetail);
+            return Objects.hash(amount, type, currency, paymentCardDetails);
         }
 
         @Override
@@ -113,7 +113,7 @@ public abstract class FormOfPayment {
             sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
             sb.append("    type: ").append(toIndentedString(type)).append("\n");
             sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-            sb.append("    creditCardDetail: ").append(toIndentedString(creditCardDetail)).append("\n");
+            sb.append("    creditCardDetail: ").append(toIndentedString(paymentCardDetails)).append("\n");
             sb.append("}");
             return sb.toString();
         }

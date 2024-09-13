@@ -27,11 +27,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * An object detailing a credit card used for a purchase
+ * An object giving details of a payment card"
  */
-@ApiModel(description = "An object detailing a credit card used for a purchase")
+@ApiModel(description = "An object giving details of a payment card")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CreditCardDetail {
+public class PaymentCardDetails {
     public static final String SERIALIZED_NAME_NUMBER = "number";
     @SerializedName(SERIALIZED_NAME_NUMBER)
     private String number = null;
@@ -52,11 +52,11 @@ public class CreditCardDetail {
     @SerializedName(SERIALIZED_NAME_LAST_NAME)
     private String lastName = null;
 
-    public CreditCardDetail() {
+    public PaymentCardDetails() {
     }
 
 
-    public CreditCardDetail number(String number) {
+    public PaymentCardDetails number(String number) {
         this.number = number;
         return this;
     }
@@ -75,7 +75,7 @@ public class CreditCardDetail {
     }
 
 
-    public CreditCardDetail expirationMonth(String expirationMonth) {
+    public PaymentCardDetails expirationMonth(String expirationMonth) {
         this.expirationMonth = expirationMonth;
         return this;
     }
@@ -94,7 +94,7 @@ public class CreditCardDetail {
     }
 
 
-    public CreditCardDetail expirationYear(String expirationYear) {
+    public PaymentCardDetails expirationYear(String expirationYear) {
         this.expirationYear = expirationYear;
         return this;
     }
@@ -113,7 +113,7 @@ public class CreditCardDetail {
     }
 
 
-    public CreditCardDetail firstName(String firstName) {
+    public PaymentCardDetails firstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -132,7 +132,7 @@ public class CreditCardDetail {
     }
 
 
-    public CreditCardDetail lastName(String lastName) {
+    public PaymentCardDetails lastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -158,12 +158,12 @@ public class CreditCardDetail {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreditCardDetail creditCardDetail = (CreditCardDetail) o;
-        return Objects.equals(this.number, creditCardDetail.number) &&
-                Objects.equals(this.expirationMonth, creditCardDetail.expirationMonth) &&
-                Objects.equals(this.expirationYear, creditCardDetail.expirationYear) &&
-                Objects.equals(this.firstName, creditCardDetail.firstName) &&
-                Objects.equals(this.lastName, creditCardDetail.lastName);
+        PaymentCardDetails paymentCardDetails = (PaymentCardDetails) o;
+        return Objects.equals(this.number, paymentCardDetails.number) &&
+                Objects.equals(this.expirationMonth, paymentCardDetails.expirationMonth) &&
+                Objects.equals(this.expirationYear, paymentCardDetails.expirationYear) &&
+                Objects.equals(this.firstName, paymentCardDetails.firstName) &&
+                Objects.equals(this.lastName, paymentCardDetails.lastName);
     }
 
     @Override
@@ -200,22 +200,22 @@ public class CreditCardDetail {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!CreditCardDetail.class.isAssignableFrom(type.getRawType())) {
+            if (!PaymentCardDetails.class.isAssignableFrom(type.getRawType())) {
                 return null; // this class only serializes 'CreditCardDetail' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<CreditCardDetail> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(CreditCardDetail.class));
+            final TypeAdapter<PaymentCardDetails> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(PaymentCardDetails.class));
 
-            return (TypeAdapter<T>) new TypeAdapter<CreditCardDetail>() {
+            return (TypeAdapter<T>) new TypeAdapter<PaymentCardDetails>() {
                 @Override
-                public void write(JsonWriter out, CreditCardDetail value) throws IOException {
+                public void write(JsonWriter out, PaymentCardDetails value) throws IOException {
                     JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                     elementAdapter.write(out, obj);
                 }
 
                 @Override
-                public CreditCardDetail read(JsonReader in) throws IOException {
+                public PaymentCardDetails read(JsonReader in) throws IOException {
                     JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
                     return thisAdapter.fromJsonTree(jsonObj);
                 }
@@ -231,8 +231,8 @@ public class CreditCardDetail {
      * @return An instance of CreditCardDetail
      * @throws IOException if the JSON string is invalid with respect to CreditCardDetail
      */
-    public static CreditCardDetail fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, CreditCardDetail.class);
+    public static PaymentCardDetails fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PaymentCardDetails.class);
     }
 
     /**

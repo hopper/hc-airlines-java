@@ -1,7 +1,6 @@
 package com.hopper.cloud.airlines.model.tokenization;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hopper.cloud.airlines.model.CreditCardDetail;
 import com.hopper.cloud.airlines.model.PaymentCardDetail;
 
 import java.util.Objects;

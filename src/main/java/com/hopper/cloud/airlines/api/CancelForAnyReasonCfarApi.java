@@ -19,8 +19,6 @@ import com.hopper.cloud.airlines.ApiException;
 import com.hopper.cloud.airlines.ApiResponse;
 import com.hopper.cloud.airlines.Configuration;
 import com.hopper.cloud.airlines.Pair;
-import com.hopper.cloud.airlines.ProgressRequestBody;
-import com.hopper.cloud.airlines.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -33,7 +31,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
 
 public class CancelForAnyReasonCfarApi {
     private ApiClient localVarApiClient;
@@ -1050,7 +1047,7 @@ public class CancelForAnyReasonCfarApi {
     /**
      * Build call for putCfarContractsIdFormsOfPayment
      * @param contractReference A unique reference for a CFAR contract (required)
-     * @param updateCfarFormOfPaymentApiRequest  (required)
+     * @param updateCfarContractFormOfPaymentApiRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1068,7 +1065,7 @@ public class CancelForAnyReasonCfarApi {
     <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
     </table>
      */
-    public okhttp3.Call putCfarContractsIdFormsOfPaymentCall(String contractReference, UpdateCfarFormOfPaymentApiRequest updateCfarFormOfPaymentApiRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call putCfarContractsIdFormsOfPaymentCall(String contractReference, UpdateCfarContractFormOfPaymentApiRequest updateCfarContractFormOfPaymentApiRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1082,7 +1079,7 @@ public class CancelForAnyReasonCfarApi {
             basePath = null;
         }
 
-        Object localVarPostBody = updateCfarFormOfPaymentApiRequest;
+        Object localVarPostBody = updateCfarContractFormOfPaymentApiRequest;
 
         // create path and map variables
         String localVarPath = "/cfar_contracts/{id}/forms_of_payment"
@@ -1119,7 +1116,7 @@ public class CancelForAnyReasonCfarApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putCfarContractsIdFormsOfPaymentValidateBeforeCall(String contractReference, UpdateCfarFormOfPaymentApiRequest updateCfarFormOfPaymentApiRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putCfarContractsIdFormsOfPaymentValidateBeforeCall(String contractReference, UpdateCfarContractFormOfPaymentApiRequest updateCfarContractFormOfPaymentApiRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
 
         // verify the required parameter 'contractReference' is set
         if (contractReference == null) {
@@ -1127,12 +1124,12 @@ public class CancelForAnyReasonCfarApi {
         }
 
         // verify the required parameter 'updateCfarFormOfPaymentApiRequest' is set
-        if (updateCfarFormOfPaymentApiRequest == null) {
+        if (updateCfarContractFormOfPaymentApiRequest == null) {
             throw new ApiException("Missing the required parameter 'updateCfarFormOfPaymentApiRequest' when calling putCfarContractsIdFormsOfPayment(Async)");
         }
 
 
-        okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentCall(contractReference, updateCfarFormOfPaymentApiRequest, hcSessionID, _callback);
+        okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentCall(contractReference, updateCfarContractFormOfPaymentApiRequest, hcSessionID, _callback);
         return localVarCall;
 
     }
@@ -1140,7 +1137,7 @@ public class CancelForAnyReasonCfarApi {
     /**
      * Update forms of payment in a CFAR Contract
      * @param contractReference A unique reference for a CFAR contract (required)
-     * @param updateCfarFormOfPaymentApiRequest  (required)
+     * @param updateCfarContractFormOfPaymentApiRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @return CfarContract
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1157,15 +1154,15 @@ public class CancelForAnyReasonCfarApi {
     <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
     </table>
      */
-    public CfarContract putCfarContractsIdFormsOfPayment(String contractReference, UpdateCfarFormOfPaymentApiRequest updateCfarFormOfPaymentApiRequest, String hcSessionID) throws ApiException {
-        ApiResponse<CfarContract> localVarResp = putCfarContractsIdFormsOfPaymentWithHttpInfo(contractReference, updateCfarFormOfPaymentApiRequest, hcSessionID);
+    public CfarContract putCfarContractsIdFormsOfPayment(String contractReference, UpdateCfarContractFormOfPaymentApiRequest updateCfarContractFormOfPaymentApiRequest, String hcSessionID) throws ApiException {
+        ApiResponse<CfarContract> localVarResp = putCfarContractsIdFormsOfPaymentWithHttpInfo(contractReference, updateCfarContractFormOfPaymentApiRequest, hcSessionID);
         return localVarResp.getData();
     }
 
     /**
      * Update forms of payment in a CFAR Contract
      * @param contractReference A unique reference for a CFAR contract (required)
-     * @param updateCfarFormOfPaymentApiRequest  (required)
+     * @param updateCfarContractFormOfPaymentApiRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @return ApiResponse&lt;CfarContract&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1182,8 +1179,8 @@ public class CancelForAnyReasonCfarApi {
     <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
     </table>
      */
-    public ApiResponse<CfarContract> putCfarContractsIdFormsOfPaymentWithHttpInfo(String contractReference, UpdateCfarFormOfPaymentApiRequest updateCfarFormOfPaymentApiRequest, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentValidateBeforeCall(contractReference, updateCfarFormOfPaymentApiRequest, hcSessionID, null);
+    public ApiResponse<CfarContract> putCfarContractsIdFormsOfPaymentWithHttpInfo(String contractReference, UpdateCfarContractFormOfPaymentApiRequest updateCfarContractFormOfPaymentApiRequest, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentValidateBeforeCall(contractReference, updateCfarContractFormOfPaymentApiRequest, hcSessionID, null);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1191,7 +1188,7 @@ public class CancelForAnyReasonCfarApi {
     /**
      * Update forms of payment in a CFAR Contract (asynchronously)
      * @param contractReference A unique reference for a CFAR contract (required)
-     * @param updateCfarFormOfPaymentApiRequest  (required)
+     * @param updateCfarContractFormOfPaymentApiRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1209,9 +1206,9 @@ public class CancelForAnyReasonCfarApi {
     <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
     </table>
      */
-    public okhttp3.Call putCfarContractsIdFormsOfPaymentAsync(String contractReference, UpdateCfarFormOfPaymentApiRequest updateCfarFormOfPaymentApiRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
+    public okhttp3.Call putCfarContractsIdFormsOfPaymentAsync(String contractReference, UpdateCfarContractFormOfPaymentApiRequest updateCfarContractFormOfPaymentApiRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentValidateBeforeCall(contractReference, updateCfarFormOfPaymentApiRequest, hcSessionID, _callback);
+        okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentValidateBeforeCall(contractReference, updateCfarContractFormOfPaymentApiRequest, hcSessionID, _callback);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

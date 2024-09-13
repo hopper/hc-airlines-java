@@ -83,17 +83,17 @@ public class HopperPaymentClient {
 
     /**
      * Perform credit card tokenization by encrypting some fields
-     * @param creditCardDetail
+     * @param paymentCardDetails
      * @return The token if it was successfully retrieved, else null
      */
-    public String tokenizePaymentCreditCardWithEncryption(CreditCardDetail creditCardDetail) {
+    public String tokenizePaymentCreditCardWithEncryption(PaymentCardDetails paymentCardDetails) {
         String token = null;
         if (StringUtil.isEmpty(encryptionKeyId) || StringUtil.isEmpty(encryptionPublicKey)) {
             logger.error("Missing Encryption parameters for payment");
         } else {
             HttpResponse<TokenizationResponse> response = null;
             try {
-                response = getTokenizedPaymentHttpResponse(buildTokenizationRequestWithEncryption(creditCardDetail, encryptionKeyId, encryptionPublicKey));
+                response = getTokenizedPaymentHttpResponse(buildTokenizationRequestWithEncryption(paymentCardDetails, encryptionKeyId, encryptionPublicKey));
             } catch (Exception e) {
                 logger.error("Unable to initialize the request object required for a tokenization of the payment card : " + e.getLocalizedMessage());
             }
@@ -106,7 +106,7 @@ public class HopperPaymentClient {
         return token;
     }
 
-    private TokenizationRequest buildTokenizationRequestWithEncryption(CreditCardDetail paymentCardDetail, String encryptionKeyId, String encryptionPublicKey) throws Exception {
+    private TokenizationRequest buildTokenizationRequestWithEncryption(PaymentCardDetails paymentCardDetail, String encryptionKeyId, String encryptionPublicKey) throws Exception {
         TokenizationRequest tokenizationRequest = new TokenizationRequest();
 
         com.hopper.cloud.airlines.model.tokenization.PaymentMethod paymentMethod = new PaymentMethod();
