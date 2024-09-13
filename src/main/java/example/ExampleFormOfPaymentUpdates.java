@@ -80,6 +80,15 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         FormOfPayment.Cash paymentCash = new FormOfPayment.Cash("46.00", Currency.getInstance("CAD"));
         updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentCash);
 
+        FormOfPayment.NonCash paymentNonCash = new FormOfPayment.NonCash("8.00", Currency.getInstance("CAD"));
+        updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentNonCash);
+
+        FormOfPayment.Points paymentPoints = new FormOfPayment.Points("74.00");
+        updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentPoints);
+
+        FormOfPayment.TokenizedPaymentCard paymentCardToken = new FormOfPayment.TokenizedPaymentCard("15.00", Currency.getInstance("CAD"), "RRREFFDFFDFDFF888");
+        updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentCardToken);
+
         return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarFormOfPaymentRequest);
     }
 }
