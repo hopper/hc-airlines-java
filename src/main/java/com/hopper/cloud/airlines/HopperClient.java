@@ -237,21 +237,24 @@ public class HopperClient {
                 throw new ApiException("Missing credentials for payment");
             }
             TokenizationRequest tokenizationRequest = new TokenizationRequest();
-            tokenizationRequest.setPaymentMethod(new PaymentMethod());
-            tokenizationRequest.getPaymentMethod().setCreditCard(new CreditCard());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setFirstName(processCfarPaymentRequest.getFirstName());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setLastName(processCfarPaymentRequest.getLastName());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setNumber(prepareCreditCardNumberForSpreedly(processCfarPaymentRequest.getNumber()));
-            tokenizationRequest.getPaymentMethod().getCreditCard().setVerificationValue(processCfarPaymentRequest.getVerificationValue());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setMonth(processCfarPaymentRequest.getMonth());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setYear(processCfarPaymentRequest.getYear());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setAddress1(processCfarPaymentRequest.getAddressLine1());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setAddress2(processCfarPaymentRequest.getAddressLine2());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setCity(processCfarPaymentRequest.getCity());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setState(processCfarPaymentRequest.getStateOrProvince());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setZip(processCfarPaymentRequest.getPostalCode());
-            tokenizationRequest.getPaymentMethod().getCreditCard().setCountry(processCfarPaymentRequest.getCountry());
-            tokenizationRequest.getPaymentMethod().setEmail(processCfarPaymentRequest.getEmailAddress());
+            PaymentMethod paymentMethod = new PaymentMethod();
+            CreditCard creditCard = new CreditCard();
+            creditCard.setFirstName(processCfarPaymentRequest.getFirstName());
+            creditCard.setLastName(processCfarPaymentRequest.getLastName());
+            creditCard.setNumber(prepareCreditCardNumberForSpreedly(processCfarPaymentRequest.getNumber()));
+            creditCard.setVerificationValue(processCfarPaymentRequest.getVerificationValue());
+            creditCard.setMonth(processCfarPaymentRequest.getMonth());
+            creditCard.setYear(processCfarPaymentRequest.getYear());
+            creditCard.setAddress1(processCfarPaymentRequest.getAddressLine1());
+            creditCard.setAddress2(processCfarPaymentRequest.getAddressLine2());
+            creditCard.setCity(processCfarPaymentRequest.getCity());
+            creditCard.setState(processCfarPaymentRequest.getStateOrProvince());
+            creditCard.setZip(processCfarPaymentRequest.getPostalCode());
+            creditCard.setCountry(processCfarPaymentRequest.getCountry());
+            paymentMethod.setCreditCard(creditCard);
+            paymentMethod.setEmail(processCfarPaymentRequest.getEmailAddress());
+            tokenizationRequest.setPaymentMethod(paymentMethod);
+
             HttpResponse<TokenizationResponse> response = hopperPaymentClient.getTokenizedPaymentHttpResponse(tokenizationRequest);
 
             if (response.getStatus() == 201) {
