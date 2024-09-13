@@ -30,15 +30,15 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
             System.out.println("*********************************************************************");
             System.out.println(contract);
 
-//            CfarContract updatedContract = updateCfarFormsOfPaymentWithPreDefinedToken(client, contract.getReference(), sessionId);
+//            CfarContract updatedContract = updateCfarFormsOfPaymentWithSuppliedToken(client, contract.getReference(), sessionId);
 //            System.out.println("*********************************************************************");
-//            System.out.println("**************** UPDATE FORMS OF PAYMENT WITH TOKEN *****************");
+//            System.out.println("************ UPDATE FORMS OF PAYMENT WHEN TOKEN IS SUPPLIED *********");
 //            System.out.println("*********************************************************************");
 //            System.out.println(updatedContract);
 
-            CfarContract updatedContract = updateCfarFormsOfPaymentWithoutPreDefinedToken(client, contract.getReference(), sessionId);
+            CfarContract updatedContract = updateCfarFormsOfPaymentWithoutSuppliedToken(client, contract.getReference(), sessionId);
             System.out.println("*********************************************************************");
-            System.out.println("**************** UPDATE FORMS OF PAYMENT WITHOUT TOKEN **************");
+            System.out.println("************* UPDATE FORMS OF PAYMENT WHEN NO TOKEN IS SUPPLIED *****");
             System.out.println("*********************************************************************");
             System.out.println(updatedContract);
         } catch (ApiException e) {
@@ -46,7 +46,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         }
     }
 
-    private static CfarContract updateCfarFormsOfPaymentWithPreDefinedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
+    private static CfarContract updateCfarFormsOfPaymentWithSuppliedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
 //        Base64RsaKeyPair keyPair = null;
 //        try {
 //            keyPair = RsaHelper.buildBase64RsaKeys();
@@ -65,7 +65,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarFormOfPaymentRequest);
     }
 
-    private static CfarContract updateCfarFormsOfPaymentWithoutPreDefinedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
+    private static CfarContract updateCfarFormsOfPaymentWithoutSuppliedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
         UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest = new UpdateCfarFormOfPaymentRequest();
 
         CreditCardDetail creditCardDetail = new CreditCardDetail();
@@ -74,7 +74,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         creditCardDetail.setExpirationMonth("09");
         creditCardDetail.setExpirationYear("2029");
         creditCardDetail.setNumber("4111111111111111");
-        FormOfPayment.PaymentCard paymentCard = new FormOfPayment.PaymentCard("50.00", Currency.getInstance("CAD"), creditCardDetail);
+        FormOfPayment.PaymentCardDetails paymentCard = new FormOfPayment.PaymentCardDetails("50.00", Currency.getInstance("CAD"), creditCardDetail);
         updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentCard);
 
         FormOfPayment.Cash paymentCash = new FormOfPayment.Cash("46.00", Currency.getInstance("CAD"));

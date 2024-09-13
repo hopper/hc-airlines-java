@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
 import com.hopper.cloud.airlines.api.AnalyticsApi;
+import com.hopper.cloud.airlines.api.model.UpdateCfarFormOfPaymentApiRequest;
+import com.hopper.cloud.airlines.api.model.*;
 import com.hopper.cloud.airlines.model.*;
 import com.hopper.cloud.airlines.model.tokenization.*;
 import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
@@ -186,34 +188,43 @@ public class HopperClient {
                 if (hopperPaymentClient == null) {
                     throw new ApiException("Missing credentials for payment");
                 }
-                // Tokenize each credit card
-                List<FormOfPayment> updatedFormsOfPaymentRequest = new ArrayList<>();
+
+                UpdateCfarFormOfPaymentApiRequest updateCfarFormOfPaymentApiRequest = new UpdateCfarFormOfPaymentApiRequest();
+                List<ApiFormOfPayment> apiFormsOfPayment = new ArrayList<>();
                 for (FormOfPayment formOfPaymentRequest : updateCfarFormOfPaymentRequest.getFormsOfPayment()) {
-                    if (formOfPaymentRequest instanceof FormOfPayment.PaymentCard) {
-                        FormOfPayment.PaymentCard creditCardRequest = (FormOfPayment.PaymentCard)formOfPaymentRequest;
-                        if (creditCardRequest.getToken() == null) {
-                            // Retrieve the required token from Spreedly
-                            CreditCardDetail creditCardDetail = creditCardRequest.getCreditCardDetail();
-                            if (creditCardDetail == null) {
-                                throw new ApiException("Missing required details for a credit card");
-                            }
+                    ApiFormOfPayment apiFormOfPayment = null;
+                    if (formOfPaymentRequest instanceof FormOfPayment.PaymentCardDetails) {
+                        FormOfPayment.PaymentCardDetails creditCardRequest = (FormOfPayment.PaymentCardDetails)formOfPaymentRequest;
+                        CreditCardDetail creditCardDetail = creditCardRequest.getCreditCardDetail();
+                        if (creditCardDetail != null) {
                             // Adjust the credit card number
                             creditCardDetail.setNumber(prepareCreditCardNumberForSpreedly(creditCardDetail.getNumber()));
+                            // Retrieve the required token from Spreedly
                             String token = hopperPaymentClient.tokenizePaymentCreditCardWithEncryption(creditCardDetail);
-
-                            // Build a new instance only with the token
-                            FormOfPayment.PaymentCard updatedCreditCardRequest = new FormOfPayment.PaymentCard(creditCardRequest.getAmount(), creditCardRequest.getCurrency(), token);
-                            updatedFormsOfPaymentRequest.add(updatedCreditCardRequest);
+                            apiFormOfPayment = new ApiFormOfPayment.PaymentCard(creditCardRequest.getAmount(), creditCardRequest.getCurrency(), token);
                         } else {
-                            creditCardRequest.setCreditCardDetail(null);  // Credit card details must not be passed to the HTSFA API
-                            updatedFormsOfPaymentRequest.add(creditCardRequest);
+                            apiFormOfPayment = new ApiFormOfPayment.PaymentCard(creditCardRequest.getAmount(), creditCardRequest.getCurrency(), null);
                         }
+                    } else if (formOfPaymentRequest instanceof FormOfPayment.PaymentCard) {
+                        FormOfPayment.PaymentCard fopRequest = (FormOfPayment.PaymentCard)formOfPaymentRequest;
+                        apiFormOfPayment = new ApiFormOfPayment.PaymentCard(fopRequest.getAmount(), fopRequest.getCurrency(), fopRequest.getToken());
+                    } else if (formOfPaymentRequest instanceof FormOfPayment.Cash) {
+                        FormOfPayment.Cash fopRequest = (FormOfPayment.Cash)formOfPaymentRequest;
+                        apiFormOfPayment = new ApiFormOfPayment.Cash(fopRequest.getAmount(), fopRequest.getCurrency());
+                    } else if (formOfPaymentRequest instanceof FormOfPayment.NonCash) {
+                        FormOfPayment.NonCash fopRequest = (FormOfPayment.NonCash)formOfPaymentRequest;
+                        apiFormOfPayment = new ApiFormOfPayment.NonCash(fopRequest.getAmount(), fopRequest.getCurrency());
+                    } else if (formOfPaymentRequest instanceof FormOfPayment.Points) {
+                        FormOfPayment.Points fopRequest = (FormOfPayment.Points)formOfPaymentRequest;
+                        apiFormOfPayment = new ApiFormOfPayment.Points(fopRequest.getAmount());
                     } else {
-                        updatedFormsOfPaymentRequest.add(formOfPaymentRequest);
+                        throw new ApiException("Unknown form of payment");
                     }
+                    apiFormsOfPayment.add(apiFormOfPayment);
                 }
-                updateCfarFormOfPaymentRequest.setFormsOfPayment(updatedFormsOfPaymentRequest);
-                return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentRequest, sessionId);
+
+                updateCfarFormOfPaymentApiRequest.setFormsOfPayment(apiFormsOfPayment);
+                return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarFormOfPaymentApiRequest, sessionId);
             }
         } catch (Exception e) {
             throw new ApiException(e);
