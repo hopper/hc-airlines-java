@@ -1,27 +1,41 @@
 package com.hopper.cloud.airlines;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.hopper.cloud.airlines.helper.RsaHelper;
 import com.hopper.cloud.airlines.model.*;
+import com.hopper.cloud.airlines.model.tokenization.CreditCard;
+import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
 import com.hopper.cloud.airlines.model.tokenization.TokenizationRequest;
 import com.hopper.cloud.airlines.model.tokenization.TokenizationResponse;
 import kong.unirest.HttpResponse;
 import kong.unirest.ObjectMapper;
 import kong.unirest.Unirest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HopperPaymentClient {
+    final Logger logger = LoggerFactory.getLogger(HopperPaymentClient.class);
     private String paymentUrl;
     private String paymentUsername;
     private String paymentPassword;
+    private String encryptionKeyId;
+    private String encryptionPublicKey;
 
     public HopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword) {
-        this.initHopperPaymentClient(paymentUrl, paymentUsername, paymentPassword);
+        this(paymentUrl, paymentUsername, paymentPassword, null, null);
+    }
+
+    public HopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword, String encryptionKeyId, String encryptionPublicKey) {
+        this.initHopperPaymentClient(paymentUrl, paymentUsername, paymentPassword, encryptionKeyId, encryptionPublicKey);
     }
 
 
-    private void initHopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword) {
+    private void initHopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword, String encryptionKeyId, String encryptionPublicKey) {
         this.paymentUrl = paymentUrl;
         this.paymentUsername = paymentUsername;
         this.paymentPassword = paymentPassword;
+        this.encryptionKeyId = encryptionKeyId;
+        this.encryptionPublicKey = encryptionPublicKey;
 
         Unirest.config().setObjectMapper(new ObjectMapper() {
             final com.fasterxml.jackson.databind.ObjectMapper mapper
@@ -63,7 +77,49 @@ public class HopperPaymentClient {
         if (response.getStatus() == 201) {
             return response.getBody().getTransaction().getPaymentMethod().getToken();
         } else {
-            throw new ApiException("Unable to create this specific token, response : " + response.getStatus());
+            throw new ApiException("Unable to create a token, response : " + response.getStatus());
         }
+    }
+
+    /**
+     * Perform credit card tokenization by encrypting some fields
+     * @param paymentCardDetails
+     * @return The token if it was successfully retrieved, else null
+     */
+    public String tokenizePaymentCreditCardWithEncryption(PaymentCardDetails paymentCardDetails) {
+        String token = null;
+        if (StringUtil.isEmpty(encryptionKeyId) || StringUtil.isEmpty(encryptionPublicKey)) {
+            logger.error("Missing Encryption parameters for payment");
+        } else {
+            HttpResponse<TokenizationResponse> response = null;
+            try {
+                response = getTokenizedPaymentHttpResponse(buildTokenizationRequestWithEncryption(paymentCardDetails, encryptionKeyId, encryptionPublicKey));
+            } catch (Exception e) {
+                logger.error("Unable to initialize the request object required for a tokenization of the payment card : " + e.getLocalizedMessage());
+            }
+            if (response != null && response.getStatus() == 201) {
+                token = response.getBody().getTransaction().getPaymentMethod().getToken();
+            } else {
+                logger.error("Unable to create a token for the payment card. Response : " + response.getStatus());
+            }
+        }
+        return token;
+    }
+
+    private TokenizationRequest buildTokenizationRequestWithEncryption(PaymentCardDetails paymentCardDetail, String encryptionKeyId, String encryptionPublicKey) throws Exception {
+        TokenizationRequest tokenizationRequest = new TokenizationRequest();
+
+        com.hopper.cloud.airlines.model.tokenization.PaymentMethod paymentMethod = new PaymentMethod();
+        CreditCard creditCard = new CreditCard();
+        creditCard.setMonth(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getExpirationMonth(), encryptionPublicKey));
+        creditCard.setYear(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getExpirationYear(), encryptionPublicKey));
+        creditCard.setLastName(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getLastName(), encryptionPublicKey));
+        creditCard.setFirstName(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getFirstName(), encryptionPublicKey));
+        creditCard.setNumber(RsaHelper.encryptDataUsingRSA(paymentCardDetail.getNumber(), encryptionPublicKey));
+        paymentMethod.setCreditCard(creditCard);
+        paymentMethod.setEncryptionCertificateToken(encryptionKeyId);
+        paymentMethod.setEncryptedFields("number,month,year,first_name,last_name");
+        tokenizationRequest.setPaymentMethod(paymentMethod);
+        return tokenizationRequest;
     }
 }

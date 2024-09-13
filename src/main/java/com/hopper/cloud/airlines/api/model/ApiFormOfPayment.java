@@ -1,13 +1,15 @@
-package com.hopper.cloud.airlines.model;
+package com.hopper.cloud.airlines.api.model;
+
+import com.hopper.cloud.airlines.model.FormOfPaymentType;
 
 import java.util.Currency;
 import java.util.Objects;
 
-public abstract class FormOfPayment {
+public abstract class ApiFormOfPayment {
     protected String amount;
     protected FormOfPaymentType type;
 
-    protected FormOfPayment(String amount, FormOfPaymentType type) {
+    protected ApiFormOfPayment(String amount, FormOfPaymentType type) {
         this.amount = amount;
         this.type = type;
     }
@@ -16,11 +18,11 @@ public abstract class FormOfPayment {
         return amount;
     }
 
-    public static class TokenizedPaymentCard extends FormOfPayment {
+    public static class PaymentCard extends ApiFormOfPayment {
         private final Currency currency;
         private final String token;
 
-        public TokenizedPaymentCard(String amount, Currency currency, String token) {
+        public PaymentCard(String amount, Currency currency, String token) {
             super(amount, FormOfPaymentType.PAYMENT_CARD);
             this.currency = currency;
             this.token = token;
@@ -42,7 +44,7 @@ public abstract class FormOfPayment {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            TokenizedPaymentCard fop = (TokenizedPaymentCard) o;
+            PaymentCard fop = (PaymentCard) o;
             return Objects.equals(this.amount, fop.amount) &&
                     Objects.equals(this.type, fop.type) &&
                     Objects.equals(this.currency, fop.currency) &&
@@ -67,59 +69,7 @@ public abstract class FormOfPayment {
         }
     }
 
-    public static class PaymentCard extends FormOfPayment {
-        private final Currency currency;
-        private final PaymentCardDetails paymentCardDetails;
-
-        public PaymentCard(String amount, Currency currency, PaymentCardDetails paymentCardDetails) {
-            super(amount, FormOfPaymentType.PAYMENT_CARD);
-            this.currency = currency;
-            this.paymentCardDetails = paymentCardDetails;
-        }
-
-        public Currency getCurrency() {
-            return currency;
-        }
-
-        public PaymentCardDetails getCreditCardDetail() {
-            return paymentCardDetails;
-        }
-
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            PaymentCard fop = (PaymentCard) o;
-            return Objects.equals(this.amount, fop.amount) &&
-                    Objects.equals(this.type, fop.type) &&
-                    Objects.equals(this.currency, fop.currency) &&
-                    Objects.equals(this.paymentCardDetails, fop.paymentCardDetails);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(amount, type, currency, paymentCardDetails);
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append("class PaymentCardDetails {\n");
-            sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-            sb.append("    type: ").append(toIndentedString(type)).append("\n");
-            sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-            sb.append("    creditCardDetail: ").append(toIndentedString(paymentCardDetails)).append("\n");
-            sb.append("}");
-            return sb.toString();
-        }
-    }
-
-    public static class Points extends FormOfPayment {
+    public static class Points extends ApiFormOfPayment {
         public Points(String amount) {
             super(amount, FormOfPaymentType.POINTS);
         }
@@ -153,7 +103,7 @@ public abstract class FormOfPayment {
         }
     }
 
-    public static class Cash extends FormOfPayment {
+    public static class Cash extends ApiFormOfPayment {
         private final Currency currency;
 
         public Cash(String amount, Currency currency) {
@@ -196,7 +146,7 @@ public abstract class FormOfPayment {
         }
     }
 
-    public static class NonCash extends FormOfPayment {
+    public static class NonCash extends ApiFormOfPayment {
         private final Currency currency;
 
         public NonCash(String amount, Currency currency) {
