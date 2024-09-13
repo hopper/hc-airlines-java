@@ -88,20 +88,20 @@ public class HopperPaymentClient {
         if (StringUtil.isEmpty(encryptionKeyId) || StringUtil.isEmpty(encryptionPublicKey)) {
             // Log the error message
             //logger.error("Missing Encryption parameters for payment");
-        }
-
-        HttpResponse<TokenizationResponse> response = null;
-        try {
-            response = getTokenizedPaymentHttpResponse(buildTokenizationRequestWithEncryption(creditCardDetail, encryptionKeyId, encryptionPublicKey));
-        } catch (Exception e) {
-            // Log the error message
-            //logger.error("Unable to initialize the request object for tokenization : " + e.getLocalizedMessage());
-        }
-        if (response != null && response.getStatus() == 201) {
-            token = response.getBody().getTransaction().getPaymentMethod().getToken();
         } else {
-            // Log the error message
-            //logger.error("Unable to create a token, response : " + response.getStatus());
+            HttpResponse<TokenizationResponse> response = null;
+            try {
+                response = getTokenizedPaymentHttpResponse(buildTokenizationRequestWithEncryption(creditCardDetail, encryptionKeyId, encryptionPublicKey));
+            } catch (Exception e) {
+                // Log the error message
+                //logger.error("Unable to initialize the request object for tokenization : " + e.getLocalizedMessage());
+            }
+            if (response != null && response.getStatus() == 201) {
+                token = response.getBody().getTransaction().getPaymentMethod().getToken();
+            } else {
+                // Log the error message
+                //logger.error("Unable to create a token, response : " + response.getStatus());
+            }
         }
         return token;
     }
