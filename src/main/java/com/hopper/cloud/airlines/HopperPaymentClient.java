@@ -10,8 +10,11 @@ import com.hopper.cloud.airlines.model.tokenization.TokenizationResponse;
 import kong.unirest.HttpResponse;
 import kong.unirest.ObjectMapper;
 import kong.unirest.Unirest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HopperPaymentClient {
+    final Logger logger = LoggerFactory.getLogger(HopperPaymentClient.class);
     private String paymentUrl;
     private String paymentUsername;
     private String paymentPassword;
@@ -86,21 +89,18 @@ public class HopperPaymentClient {
     public String tokenizePaymentCreditCardWithEncryption(CreditCardDetail creditCardDetail) {
         String token = null;
         if (StringUtil.isEmpty(encryptionKeyId) || StringUtil.isEmpty(encryptionPublicKey)) {
-            // Log the error message
-            //logger.error("Missing Encryption parameters for payment");
+            logger.error("Missing Encryption parameters for payment");
         } else {
             HttpResponse<TokenizationResponse> response = null;
             try {
                 response = getTokenizedPaymentHttpResponse(buildTokenizationRequestWithEncryption(creditCardDetail, encryptionKeyId, encryptionPublicKey));
             } catch (Exception e) {
-                // Log the error message
-                //logger.error("Unable to initialize the request object for tokenization : " + e.getLocalizedMessage());
+                logger.error("Unable to initialize the request object required for a tokenization of the payment card : " + e.getLocalizedMessage());
             }
             if (response != null && response.getStatus() == 201) {
                 token = response.getBody().getTransaction().getPaymentMethod().getToken();
             } else {
-                // Log the error message
-                //logger.error("Unable to create a token, response : " + response.getStatus());
+                logger.error("Unable to create a token for the payment card. Response : " + response.getStatus());
             }
         }
         return token;

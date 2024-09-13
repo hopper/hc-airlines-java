@@ -12,11 +12,14 @@ import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
 import kong.unirest.HttpResponse;
 import kong.unirest.ObjectMapper;
 import kong.unirest.Unirest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 
 public class HopperClient {
+    final Logger logger = LoggerFactory.getLogger(HopperClient.class);
     private CancelForAnyReasonCfarApi cfarApi;
     private SessionsApi sessionsApi;
     private AnalyticsApi analyticsApi;
