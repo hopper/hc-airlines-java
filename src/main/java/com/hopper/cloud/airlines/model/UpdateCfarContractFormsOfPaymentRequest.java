@@ -33,16 +33,16 @@ import com.hopper.cloud.airlines.JSON;
 @ApiModel(description = "Request object used to update the forms of payment associated with a CFAR contract")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
 @JsonInclude(JsonInclude.Include. NON_NULL)
-public class UpdateCfarContractFormOfPaymentRequest {
+public class UpdateCfarContractFormsOfPaymentRequest {
 
     public static final String SERIALIZED_FORMS_OF_PAYMENT = "forms_of_payment";
     @SerializedName(SERIALIZED_FORMS_OF_PAYMENT)
     private List<FormOfPayment> formsOfPayment;
 
-    public UpdateCfarContractFormOfPaymentRequest() {
+    public UpdateCfarContractFormsOfPaymentRequest() {
     }
 
-    public UpdateCfarContractFormOfPaymentRequest setFormsOfPayment(List<FormOfPayment> formsOfPayment) {
+    public UpdateCfarContractFormsOfPaymentRequest setFormsOfPayment(List<FormOfPayment> formsOfPayment) {
         this.formsOfPayment = formsOfPayment;
         return this;
     }
@@ -51,7 +51,7 @@ public class UpdateCfarContractFormOfPaymentRequest {
         return formsOfPayment;
     }
 
-    public UpdateCfarContractFormOfPaymentRequest addFormOfPaymentItem(FormOfPayment formOfPaymentItem) {
+    public UpdateCfarContractFormsOfPaymentRequest addFormOfPaymentItem(FormOfPayment formOfPaymentItem) {
         if (this.formsOfPayment == null) {
             this.formsOfPayment = new ArrayList<>();
         }
@@ -67,7 +67,7 @@ public class UpdateCfarContractFormOfPaymentRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        UpdateCfarContractFormOfPaymentRequest updateCfarContractRequest = (UpdateCfarContractFormOfPaymentRequest) o;
+        UpdateCfarContractFormsOfPaymentRequest updateCfarContractRequest = (UpdateCfarContractFormsOfPaymentRequest) o;
         return Objects.equals(this.formsOfPayment, updateCfarContractRequest.formsOfPayment);
     }
 
@@ -101,22 +101,22 @@ public class UpdateCfarContractFormOfPaymentRequest {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!UpdateCfarContractFormOfPaymentRequest.class.isAssignableFrom(type.getRawType())) {
+            if (!UpdateCfarContractFormsOfPaymentRequest.class.isAssignableFrom(type.getRawType())) {
                 return null; // this class only serializes 'UpdateCfarFormOfPaymentRequest' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<UpdateCfarContractFormOfPaymentRequest> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(UpdateCfarContractFormOfPaymentRequest.class));
+            final TypeAdapter<UpdateCfarContractFormsOfPaymentRequest> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(UpdateCfarContractFormsOfPaymentRequest.class));
 
-            return (TypeAdapter<T>) new TypeAdapter<UpdateCfarContractFormOfPaymentRequest>() {
+            return (TypeAdapter<T>) new TypeAdapter<UpdateCfarContractFormsOfPaymentRequest>() {
                 @Override
-                public void write(JsonWriter out, UpdateCfarContractFormOfPaymentRequest value) throws IOException {
+                public void write(JsonWriter out, UpdateCfarContractFormsOfPaymentRequest value) throws IOException {
                     JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                     elementAdapter.write(out, obj);
                 }
 
                 @Override
-                public UpdateCfarContractFormOfPaymentRequest read(JsonReader in) throws IOException {
+                public UpdateCfarContractFormsOfPaymentRequest read(JsonReader in) throws IOException {
                     JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
                     return thisAdapter.fromJsonTree(jsonObj);
                 }
@@ -132,8 +132,8 @@ public class UpdateCfarContractFormOfPaymentRequest {
      * @return An instance of UpdateCfarFormOfPaymentRequest
      * @throws IOException if the JSON string is invalid with respect to UpdateCfarFormOfPaymentRequest
      */
-    public static UpdateCfarContractFormOfPaymentRequest fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, UpdateCfarContractFormOfPaymentRequest.class);
+    public static UpdateCfarContractFormsOfPaymentRequest fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, UpdateCfarContractFormsOfPaymentRequest.class);
     }
 
     /**

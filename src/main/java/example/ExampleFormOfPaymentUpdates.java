@@ -54,19 +54,19 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
 //            throw new ApiException("generateRsaKeyPair ko");
 //        }
 
-        UpdateCfarContractFormOfPaymentRequest updateCfarContractFormOfPaymentRequest = new UpdateCfarContractFormOfPaymentRequest();
+        UpdateCfarContractFormsOfPaymentRequest updateCfarContractFormsOfPaymentRequest = new UpdateCfarContractFormsOfPaymentRequest();
 
         FormOfPayment.TokenizedPaymentCard tokenizedPaymentCard = new FormOfPayment.TokenizedPaymentCard("80.00", Currency.getInstance("CAD"), "FDDFDFDFDFDFFcc00028");
-        updateCfarContractFormOfPaymentRequest.addFormOfPaymentItem(tokenizedPaymentCard);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(tokenizedPaymentCard);
 
         FormOfPayment.Cash paymentCash = new FormOfPayment.Cash("12.00", Currency.getInstance("CAD"));
-        updateCfarContractFormOfPaymentRequest.addFormOfPaymentItem(paymentCash);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentCash);
 
-        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormOfPaymentRequest);
+        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormsOfPaymentRequest);
     }
 
     private static CfarContract updateCfarFormsOfPaymentWithoutSuppliedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
-        UpdateCfarContractFormOfPaymentRequest updateCfarContractFormOfPaymentRequest = new UpdateCfarContractFormOfPaymentRequest();
+        UpdateCfarContractFormsOfPaymentRequest updateCfarContractFormsOfPaymentRequest = new UpdateCfarContractFormsOfPaymentRequest();
 
         PaymentCardDetails paymentCardDetails = new PaymentCardDetails();
         paymentCardDetails.setFirstName("John");
@@ -75,20 +75,20 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         paymentCardDetails.setExpirationYear("2029");
         paymentCardDetails.setNumber("4111111111111111");
         FormOfPayment.PaymentCard paymentCard = new FormOfPayment.PaymentCard("50.00", Currency.getInstance("CAD"), paymentCardDetails);
-        updateCfarContractFormOfPaymentRequest.addFormOfPaymentItem(paymentCard);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentCard);
 
         FormOfPayment.Cash paymentCash = new FormOfPayment.Cash("46.00", Currency.getInstance("CAD"));
-        updateCfarContractFormOfPaymentRequest.addFormOfPaymentItem(paymentCash);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentCash);
 
         FormOfPayment.NonCash paymentNonCash = new FormOfPayment.NonCash("8.00", Currency.getInstance("CAD"));
-        updateCfarContractFormOfPaymentRequest.addFormOfPaymentItem(paymentNonCash);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentNonCash);
 
         FormOfPayment.Points paymentPoints = new FormOfPayment.Points("74.00");
-        updateCfarContractFormOfPaymentRequest.addFormOfPaymentItem(paymentPoints);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentPoints);
 
         FormOfPayment.TokenizedPaymentCard paymentCardToken = new FormOfPayment.TokenizedPaymentCard("15.00", Currency.getInstance("CAD"), "RRREFFDFFDFDFF888");
-        updateCfarContractFormOfPaymentRequest.addFormOfPaymentItem(paymentCardToken);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentCardToken);
 
-        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormOfPaymentRequest);
+        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormsOfPaymentRequest);
     }
 }

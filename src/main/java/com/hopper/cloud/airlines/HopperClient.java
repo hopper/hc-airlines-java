@@ -179,22 +179,22 @@ public class HopperClient {
      *
      * @param sessionId                         The current session IO
      * @param contractReference                 The contract reference
-     * @param updateCfarContractFormOfPaymentRequest    The request with the update information
+     * @param updateCfarContractFormsOfPaymentRequest    The request with the update information
      * @return The updated contract
      * @throws ApiException
      */
-    public CfarContract updateCfarContractFormsOfPayment(String sessionId, String contractReference, UpdateCfarContractFormOfPaymentRequest updateCfarContractFormOfPaymentRequest) throws ApiException {
+    public CfarContract updateCfarContractFormsOfPayment(String sessionId, String contractReference, UpdateCfarContractFormsOfPaymentRequest updateCfarContractFormsOfPaymentRequest) throws ApiException {
         try {
-            if (ListUtil.isEmpty(updateCfarContractFormOfPaymentRequest.getFormsOfPayment())) {
+            if (ListUtil.isEmpty(updateCfarContractFormsOfPaymentRequest.getFormsOfPayment())) {
                 throw new ApiException("Missing forms of payment"); // must we return the contract instead?
             } else {
                 if (hopperPaymentClient == null) {
                     throw new ApiException("Missing credentials for payment");
                 }
 
-                UpdateCfarContractFormOfPaymentApiRequest updateCfarContractFormOfPaymentApiRequest = new UpdateCfarContractFormOfPaymentApiRequest();
+                UpdateCfarContractFormOfPaymentApiRequest updateCfarContractFormsOfPaymentApiRequest = new UpdateCfarContractFormOfPaymentApiRequest();
                 List<ApiFormOfPayment> apiFormsOfPayment = new ArrayList<>();
-                for (FormOfPayment formOfPaymentRequest : updateCfarContractFormOfPaymentRequest.getFormsOfPayment()) {
+                for (FormOfPayment formOfPaymentRequest : updateCfarContractFormsOfPaymentRequest.getFormsOfPayment()) {
                     ApiFormOfPayment apiFormOfPayment = null;
                     if (formOfPaymentRequest instanceof FormOfPayment.PaymentCard) {
                         FormOfPayment.PaymentCard creditCardRequest = (FormOfPayment.PaymentCard)formOfPaymentRequest;
@@ -226,8 +226,8 @@ public class HopperClient {
                     apiFormsOfPayment.add(apiFormOfPayment);
                 }
 
-                updateCfarContractFormOfPaymentApiRequest.setFormsOfPayment(apiFormsOfPayment);
-                return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarContractFormOfPaymentApiRequest, sessionId);
+                updateCfarContractFormsOfPaymentApiRequest.setFormsOfPayment(apiFormsOfPayment);
+                return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarContractFormsOfPaymentApiRequest, sessionId);
             }
         } catch (Exception e) {
             throw new ApiException(e);
