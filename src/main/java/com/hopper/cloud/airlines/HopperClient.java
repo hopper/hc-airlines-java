@@ -193,8 +193,8 @@ public class HopperClient {
                 List<ApiFormOfPayment> apiFormsOfPayment = new ArrayList<>();
                 for (FormOfPayment formOfPaymentRequest : updateCfarFormOfPaymentRequest.getFormsOfPayment()) {
                     ApiFormOfPayment apiFormOfPayment = null;
-                    if (formOfPaymentRequest instanceof FormOfPayment.PaymentCardDetails) {
-                        FormOfPayment.PaymentCardDetails creditCardRequest = (FormOfPayment.PaymentCardDetails)formOfPaymentRequest;
+                    if (formOfPaymentRequest instanceof FormOfPayment.PaymentCard) {
+                        FormOfPayment.PaymentCard creditCardRequest = (FormOfPayment.PaymentCard)formOfPaymentRequest;
                         CreditCardDetail creditCardDetail = creditCardRequest.getCreditCardDetail();
                         if (creditCardDetail != null) {
                             // Adjust the credit card number
@@ -205,8 +205,8 @@ public class HopperClient {
                         } else {
                             apiFormOfPayment = new ApiFormOfPayment.PaymentCard(creditCardRequest.getAmount(), creditCardRequest.getCurrency(), null);
                         }
-                    } else if (formOfPaymentRequest instanceof FormOfPayment.PaymentCard) {
-                        FormOfPayment.PaymentCard fopRequest = (FormOfPayment.PaymentCard)formOfPaymentRequest;
+                    } else if (formOfPaymentRequest instanceof FormOfPayment.TokenizedPaymentCard) {
+                        FormOfPayment.TokenizedPaymentCard fopRequest = (FormOfPayment.TokenizedPaymentCard)formOfPaymentRequest;
                         apiFormOfPayment = new ApiFormOfPayment.PaymentCard(fopRequest.getAmount(), fopRequest.getCurrency(), fopRequest.getToken());
                     } else if (formOfPaymentRequest instanceof FormOfPayment.Cash) {
                         FormOfPayment.Cash fopRequest = (FormOfPayment.Cash)formOfPaymentRequest;

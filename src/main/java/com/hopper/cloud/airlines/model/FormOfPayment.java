@@ -16,11 +16,11 @@ public abstract class FormOfPayment {
         return amount;
     }
 
-    public static class PaymentCard extends FormOfPayment {
+    public static class TokenizedPaymentCard extends FormOfPayment {
         private final Currency currency;
         private final String token;
 
-        public PaymentCard(String amount, Currency currency, String token) {
+        public TokenizedPaymentCard(String amount, Currency currency, String token) {
             super(amount, FormOfPaymentType.PAYMENT_CARD);
             this.currency = currency;
             this.token = token;
@@ -42,7 +42,7 @@ public abstract class FormOfPayment {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            PaymentCard fop = (PaymentCard) o;
+            TokenizedPaymentCard fop = (TokenizedPaymentCard) o;
             return Objects.equals(this.amount, fop.amount) &&
                     Objects.equals(this.type, fop.type) &&
                     Objects.equals(this.currency, fop.currency) &&
@@ -67,11 +67,11 @@ public abstract class FormOfPayment {
         }
     }
 
-    public static class PaymentCardDetails extends FormOfPayment {
+    public static class PaymentCard extends FormOfPayment {
         private final Currency currency;
         private final CreditCardDetail creditCardDetail;
 
-        public PaymentCardDetails(String amount, Currency currency, CreditCardDetail creditCardDetail) {
+        public PaymentCard(String amount, Currency currency, CreditCardDetail creditCardDetail) {
             super(amount, FormOfPaymentType.PAYMENT_CARD);
             this.currency = currency;
             this.creditCardDetail = creditCardDetail;
@@ -94,7 +94,7 @@ public abstract class FormOfPayment {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            PaymentCardDetails fop = (PaymentCardDetails) o;
+            PaymentCard fop = (PaymentCard) o;
             return Objects.equals(this.amount, fop.amount) &&
                     Objects.equals(this.type, fop.type) &&
                     Objects.equals(this.currency, fop.currency) &&

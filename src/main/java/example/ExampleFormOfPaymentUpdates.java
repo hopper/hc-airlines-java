@@ -56,8 +56,8 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
 
         UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest = new UpdateCfarFormOfPaymentRequest();
 
-        FormOfPayment.PaymentCard paymentCard = new FormOfPayment.PaymentCard("80.00", Currency.getInstance("CAD"), "FDDFDFDFDFDFFcc00028");
-        updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentCard);
+        FormOfPayment.TokenizedPaymentCard tokenizedPaymentCard = new FormOfPayment.TokenizedPaymentCard("80.00", Currency.getInstance("CAD"), "FDDFDFDFDFDFFcc00028");
+        updateCfarFormOfPaymentRequest.addFormOfPaymentItem(tokenizedPaymentCard);
 
         FormOfPayment.Cash paymentCash = new FormOfPayment.Cash("12.00", Currency.getInstance("CAD"));
         updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentCash);
@@ -74,7 +74,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         creditCardDetail.setExpirationMonth("09");
         creditCardDetail.setExpirationYear("2029");
         creditCardDetail.setNumber("4111111111111111");
-        FormOfPayment.PaymentCardDetails paymentCard = new FormOfPayment.PaymentCardDetails("50.00", Currency.getInstance("CAD"), creditCardDetail);
+        FormOfPayment.PaymentCard paymentCard = new FormOfPayment.PaymentCard("50.00", Currency.getInstance("CAD"), creditCardDetail);
         updateCfarFormOfPaymentRequest.addFormOfPaymentItem(paymentCard);
 
         FormOfPayment.Cash paymentCash = new FormOfPayment.Cash("46.00", Currency.getInstance("CAD"));
