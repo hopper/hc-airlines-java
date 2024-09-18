@@ -24,6 +24,7 @@ public class HopperClient {
     private SessionsApi sessionsApi;
     private AnalyticsApi analyticsApi;
     private HopperPaymentClient hopperPaymentClient;
+    private int timeout = 60000;
 
     public HopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
         this.initHopperClient(url, clientId, clientSecret, debugging);
@@ -34,8 +35,9 @@ public class HopperClient {
         hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword);
     }
 
-    public HopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, String encryptionKeyId, String encryptionPublicKey, Boolean debugging) {
+    public HopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, String encryptionKeyId, String encryptionPublicKey, int timeout, Boolean debugging) {
         this(url, clientId, clientSecret, debugging);
+        this.timeout = timeout;
         hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword, encryptionKeyId, encryptionPublicKey);
     }
 
@@ -47,23 +49,23 @@ public class HopperClient {
         cfarApi = new CancelForAnyReasonCfarApi(apiClient);
         cfarApi.getApiClient().setDebugging(debugging);
         cfarApi.getApiClient().setBasePath(url);
-        cfarApi.getApiClient().setConnectTimeout(60000);
-        cfarApi.getApiClient().setReadTimeout(60000);
-        cfarApi.getApiClient().setWriteTimeout(60000);
+        cfarApi.getApiClient().setConnectTimeout(timeout);
+        cfarApi.getApiClient().setReadTimeout(timeout);
+        cfarApi.getApiClient().setWriteTimeout(timeout);
 
         sessionsApi = new SessionsApi(apiClient);
         sessionsApi.getApiClient().setDebugging(debugging);
         sessionsApi.getApiClient().setBasePath(url);
-        sessionsApi.getApiClient().setConnectTimeout(60000);
-        sessionsApi.getApiClient().setReadTimeout(60000);
-        sessionsApi.getApiClient().setWriteTimeout(60000);
+        sessionsApi.getApiClient().setConnectTimeout(timeout);
+        sessionsApi.getApiClient().setReadTimeout(timeout);
+        sessionsApi.getApiClient().setWriteTimeout(timeout);
 
         analyticsApi = new AnalyticsApi(apiClient);
         analyticsApi.getApiClient().setDebugging(debugging);
         analyticsApi.getApiClient().setBasePath(url);
-        analyticsApi.getApiClient().setConnectTimeout(60000);
-        analyticsApi.getApiClient().setReadTimeout(60000);
-        analyticsApi.getApiClient().setWriteTimeout(60000);
+        analyticsApi.getApiClient().setConnectTimeout(timeout);
+        analyticsApi.getApiClient().setReadTimeout(timeout);
+        analyticsApi.getApiClient().setWriteTimeout(timeout);
 
         Unirest.config().setObjectMapper(new ObjectMapper() {
             com.fasterxml.jackson.databind.ObjectMapper mapper

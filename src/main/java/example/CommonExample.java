@@ -46,6 +46,7 @@ public class CommonExample {
         device.setPlatform(platform);
         //sessionRequest.setDevice(device);
         //sessionRequest.setUserInfo(userInfo);
+
         return sessionRequest;
     }
 
