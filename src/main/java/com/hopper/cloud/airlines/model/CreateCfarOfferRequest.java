@@ -20,8 +20,6 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.CfarItinerary;
-import com.hopper.cloud.airlines.model.RequestType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -32,15 +30,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -53,7 +46,7 @@ import com.hopper.cloud.airlines.JSON;
 public class CreateCfarOfferRequest {
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
-  private List<CfarItinerary> itinerary = new ArrayList<>();
+  private List<CfarOfferItinerary> itinerary = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REQUEST_TYPE = "request_type";
   @SerializedName(SERIALIZED_NAME_REQUEST_TYPE)
@@ -70,13 +63,13 @@ public class CreateCfarOfferRequest {
   public CreateCfarOfferRequest() { 
   }
 
-  public CreateCfarOfferRequest itinerary(List<CfarItinerary> itinerary) {
+  public CreateCfarOfferRequest itinerary(List<CfarOfferItinerary> itinerary) {
     
     this.itinerary = itinerary;
     return this;
   }
 
-  public CreateCfarOfferRequest addItineraryItem(CfarItinerary itineraryItem) {
+  public CreateCfarOfferRequest addItineraryItem(CfarOfferItinerary itineraryItem) {
     this.itinerary.add(itineraryItem);
     return this;
   }
@@ -88,12 +81,12 @@ public class CreateCfarOfferRequest {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public List<CfarItinerary> getItinerary() {
+  public List<CfarOfferItinerary> getItinerary() {
     return itinerary;
   }
 
 
-  public void setItinerary(List<CfarItinerary> itinerary) {
+  public void setItinerary(List<CfarOfferItinerary> itinerary) {
     this.itinerary = itinerary;
   }
 

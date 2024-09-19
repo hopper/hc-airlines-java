@@ -70,9 +70,9 @@ public class CommonExample {
         createCfarOfferRequest.setExtAttributes(params);
 
         // First itinerary
-        CfarItinerary itinerary = new CfarItinerary();
-        itinerary.setCurrency("USD");
-        itinerary.setTotalPrice("100.00");
+        CfarOfferItinerary itinerary1 = new CfarOfferItinerary();
+        itinerary1.setCurrency("USD");
+        itinerary1.setTotalPrice("100.00");
 
         //-- Slices
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
@@ -88,14 +88,14 @@ public class CommonExample {
         cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
         cfarItinerarySlice.setSegments(Collections.singletonList(cfarItinerarySliceSegment));
 
-        itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
+        itinerary1.setSlices(Collections.singletonList(cfarItinerarySlice));
 
         //-- Ancillaries
         Ancillary ancillary = new Ancillary();
         ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
         ancillary.setTotalPrice("10.00");
 
-        itinerary.setAncillaries(Collections.singletonList(ancillary));
+        itinerary1.setAncillaries(Collections.singletonList(ancillary));
 
         //-- Passenger Pricings
         PassengerPricing passengerPricing = new PassengerPricing();
@@ -112,12 +112,20 @@ public class CommonExample {
 
         passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
 
-        itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
+        itinerary1.setPassengerPricing(Collections.singletonList(passengerPricing));
+
+
+        List<CfarOfferPassenger> passengersIti1 = new ArrayList<>();
+        CfarOfferPassenger passengerIti1 = new CfarOfferPassenger();
+        passengerIti1.setPassengerType(PassengerType.ADULT);
+        passengerIti1.setPassengerReference("PAX1");
+        passengersIti1.add(passengerIti1);
+        itinerary1.setPassengers(passengersIti1);
 
         // Second itinerary
-        CfarItinerary itinerary1 = new CfarItinerary();
-        itinerary1.setCurrency("USD");
-        itinerary1.setTotalPrice("120.00");
+        CfarOfferItinerary itinerary2 = new CfarOfferItinerary();
+        itinerary2.setCurrency("USD");
+        itinerary2.setTotalPrice("120.00");
 
         //-- Slices
         CfarItinerarySlice cfarItinerarySlice1 = new CfarItinerarySlice();
@@ -133,13 +141,13 @@ public class CommonExample {
         cfarItinerarySliceSegment1.setValidatingCarrierCode("B6");
         cfarItinerarySlice1.setSegments(Collections.singletonList(cfarItinerarySliceSegment1));
 
-        itinerary1.setSlices(Collections.singletonList(cfarItinerarySlice1));
+        itinerary2.setSlices(Collections.singletonList(cfarItinerarySlice1));
 
         //-- Ancillaries
         Ancillary ancillary1 = new Ancillary();
         ancillary1.setType(AncillaryType.TRAVEL_INSURANCE);
         ancillary1.setTotalPrice("30.00");
-        itinerary1.setAncillaries(Collections.singletonList(ancillary1));
+        itinerary2.setAncillaries(Collections.singletonList(ancillary1));
 
         //-- Passenger Pricings
         PassengerPricing passengerPricing1 = new PassengerPricing();
@@ -149,11 +157,11 @@ public class CommonExample {
         passengerCount1.setType(PassengerType.ADULT);
         passengerPricing1.setPassengerCount(passengerCount1);
 
-        itinerary1.setPassengerPricing(Collections.singletonList(passengerPricing1));
+        itinerary2.setPassengerPricing(Collections.singletonList(passengerPricing1));
 
-        List<CfarItinerary> itineraries = new ArrayList<>();
-        itineraries.add(itinerary);
+        List<CfarOfferItinerary> itineraries = new ArrayList<>();
         itineraries.add(itinerary1);
+        itineraries.add(itinerary2);
         createCfarOfferRequest.setItinerary(itineraries);
 
         return createCfarOfferRequest;
