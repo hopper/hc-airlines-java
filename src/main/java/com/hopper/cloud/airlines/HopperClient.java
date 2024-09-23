@@ -9,6 +9,7 @@ import com.hopper.cloud.airlines.api.model.*;
 import com.hopper.cloud.airlines.model.*;
 import com.hopper.cloud.airlines.model.tokenization.*;
 import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
+import com.hopper.cloud.airlines.transformer.CfarItineraryTransformer;
 import kong.unirest.HttpResponse;
 import kong.unirest.ObjectMapper;
 import kong.unirest.Unirest;
@@ -127,7 +128,7 @@ public class HopperClient {
             for (CfarOffer offer : cfarOffers) {
                 CreateCfarContractRequest createCfarContractRequest = new CreateCfarContractRequest();
                 createCfarContractRequest.setOfferIds(Collections.singletonList(offer.getId()));
-                createCfarContractRequest.setItinerary(createCfarOfferRequest.getItinerary().get(0));
+                createCfarContractRequest.setItinerary(CfarItineraryTransformer.toCfarItinerary(createCfarOfferRequest.getItinerary().get(0)));
                 CfarContract cfarContract = createCfarContract(sessionId, createCfarContractRequest);
                 cfarContracts.add(cfarContract);
             }

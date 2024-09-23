@@ -27,25 +27,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import com.hopper.cloud.airlines.JSON;
 
 /**
- * An object detailing a CFAR itinerary
+ * An object detailing a CFAR itinerary used for offers creation
  */
-@ApiModel(description = "An object detailing a CFAR itinerary")
+@ApiModel(description = "An object detailing a CFAR itinerary used for offers creation")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-06-28T12:18:49.517876+02:00[Europe/Paris]")
 @JsonInclude(JsonInclude.Include. NON_NULL)
-public class CfarItinerary {
+public class CfarOfferItinerary {
     public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
     @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
     private List<PassengerPricing> passengerPricing = new ArrayList<>();
@@ -68,22 +63,22 @@ public class CfarItinerary {
 
     public static final String SERIALIZED_NAME_PASSENGERS = "passengers";
     @SerializedName(SERIALIZED_NAME_PASSENGERS)
-    private List<CfarPassenger> passengers = null;
+    private List<CfarOfferPassenger> passengers = null;
 
     public static final String SERIALIZED_NAME_FARE_RULES = "fare_rules";
     @SerializedName(SERIALIZED_NAME_FARE_RULES)
     private List<FareRule> fareRules = null;
 
-    public CfarItinerary() {
+    public CfarOfferItinerary() {
     }
 
-    public CfarItinerary passengerPricing(List<PassengerPricing> passengerPricing) {
+    public CfarOfferItinerary passengerPricing(List<PassengerPricing> passengerPricing) {
 
         this.passengerPricing = passengerPricing;
         return this;
     }
 
-    public CfarItinerary addPassengerPricingItem(PassengerPricing passengerPricingItem) {
+    public CfarOfferItinerary addPassengerPricingItem(PassengerPricing passengerPricingItem) {
         this.passengerPricing.add(passengerPricingItem);
         return this;
     }
@@ -105,7 +100,7 @@ public class CfarItinerary {
     }
 
 
-    public CfarItinerary currency(String currency) {
+    public CfarOfferItinerary currency(String currency) {
 
         this.currency = currency;
         return this;
@@ -128,13 +123,13 @@ public class CfarItinerary {
     }
 
 
-    public CfarItinerary slices(List<CfarItinerarySlice> slices) {
+    public CfarOfferItinerary slices(List<CfarItinerarySlice> slices) {
 
         this.slices = slices;
         return this;
     }
 
-    public CfarItinerary addSlicesItem(CfarItinerarySlice slicesItem) {
+    public CfarOfferItinerary addSlicesItem(CfarItinerarySlice slicesItem) {
         this.slices.add(slicesItem);
         return this;
     }
@@ -156,13 +151,13 @@ public class CfarItinerary {
     }
 
 
-    public CfarItinerary ancillaries(List<Ancillary> ancillaries) {
+    public CfarOfferItinerary ancillaries(List<Ancillary> ancillaries) {
 
         this.ancillaries = ancillaries;
         return this;
     }
 
-    public CfarItinerary addAncillariesItem(Ancillary ancillariesItem) {
+    public CfarOfferItinerary addAncillariesItem(Ancillary ancillariesItem) {
         if (this.ancillaries == null) {
             this.ancillaries = new ArrayList<>();
         }
@@ -186,7 +181,7 @@ public class CfarItinerary {
     }
 
 
-    public CfarItinerary totalPrice(String totalPrice) {
+    public CfarOfferItinerary totalPrice(String totalPrice) {
 
         this.totalPrice = totalPrice;
         return this;
@@ -208,12 +203,12 @@ public class CfarItinerary {
         this.totalPrice = totalPrice;
     }
 
-    public CfarItinerary passengers(List<CfarPassenger> passengers) {
+    public CfarOfferItinerary passengers(List<CfarOfferPassenger> passengers) {
         this.passengers = passengers;
         return this;
     }
 
-    public CfarItinerary addPassengersItem(CfarPassenger passengerItem) {
+    public CfarOfferItinerary addPassengersItem(CfarOfferPassenger passengerItem) {
         if (this.passengers == null) {
             this.passengers = new ArrayList<>();
         }
@@ -228,20 +223,20 @@ public class CfarItinerary {
     @javax.annotation.Nullable
     @ApiModelProperty(value = "Passengers associated with the itinerary")
 
-    public List<CfarPassenger> getPassengers() {
+    public List<CfarOfferPassenger> getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(List<CfarPassenger> passengers) {
+    public void setPassengers(List<CfarOfferPassenger> passengers) {
         this.passengers = passengers;
     }
 
-    public CfarItinerary fareRules(List<FareRule> fareRules) {
+    public CfarOfferItinerary fareRules(List<FareRule> fareRules) {
         this.fareRules = fareRules;
         return this;
     }
 
-    public CfarItinerary addFareRulesItem(FareRule fareRuleItem) {
+    public CfarOfferItinerary addFareRulesItem(FareRule fareRuleItem) {
         if (this.fareRules == null) {
             this.fareRules = new ArrayList<>();
         }
@@ -272,7 +267,7 @@ public class CfarItinerary {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CfarItinerary cfarItinerary = (CfarItinerary) o;
+        CfarOfferItinerary cfarItinerary = (CfarOfferItinerary) o;
         return Objects.equals(this.passengerPricing, cfarItinerary.passengerPricing) &&
                 Objects.equals(this.currency, cfarItinerary.currency) &&
                 Objects.equals(this.slices, cfarItinerary.slices) &&
@@ -289,7 +284,7 @@ public class CfarItinerary {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class CfarItinerary {\n");
+        sb.append("class CfarOfferItinerary {\n");
         sb.append("    passengerPricing: ").append(toIndentedString(passengerPricing)).append("\n");
         sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
         sb.append("    slices: ").append(toIndentedString(slices)).append("\n");
@@ -316,22 +311,22 @@ public class CfarItinerary {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!CfarItinerary.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'CfarItinerary' and its subtypes
+            if (!CfarOfferItinerary.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'CfarOfferItinerary' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<CfarItinerary> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(CfarItinerary.class));
+            final TypeAdapter<CfarOfferItinerary> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(CfarOfferItinerary.class));
 
-            return (TypeAdapter<T>) new TypeAdapter<CfarItinerary>() {
+            return (TypeAdapter<T>) new TypeAdapter<CfarOfferItinerary>() {
                 @Override
-                public void write(JsonWriter out, CfarItinerary value) throws IOException {
+                public void write(JsonWriter out, CfarOfferItinerary value) throws IOException {
                     JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
                     elementAdapter.write(out, obj);
                 }
 
                 @Override
-                public CfarItinerary read(JsonReader in) throws IOException {
+                public CfarOfferItinerary read(JsonReader in) throws IOException {
                     JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
                     return thisAdapter.fromJsonTree(jsonObj);
                 }
@@ -341,18 +336,18 @@ public class CfarItinerary {
     }
 
     /**
-     * Create an instance of CfarItinerary given an JSON string
+     * Create an instance of CfarOfferItinerary given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of CfarItinerary
-     * @throws IOException if the JSON string is invalid with respect to CfarItinerary
+     * @return An instance of CfarOfferItinerary
+     * @throws IOException if the JSON string is invalid with respect to CfarOfferItinerary
      */
-    public static CfarItinerary fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, CfarItinerary.class);
+    public static CfarOfferItinerary fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, CfarOfferItinerary.class);
     }
 
     /**
-     * Convert an instance of CfarItinerary to an JSON string
+     * Convert an instance of CfarOfferItinerary to an JSON string
      *
      * @return JSON string
      */
