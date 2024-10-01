@@ -252,6 +252,8 @@ public class CommonExample {
         updateCfarContractRequest.setEmailAddress("test@test.com");
         updateCfarContractRequest.setStatus(CfarContractStatus.CONFIRMED);
         updateCfarContractRequest.setPnrReference("ABC123");
+        updateCfarContractRequest.setCurrency("EUR");
+        updateCfarContractRequest.setExchangeRate("0.90");
         return client.updateCfarContractStatus(sessionId, contractReference, updateCfarContractRequest);
     }
 
