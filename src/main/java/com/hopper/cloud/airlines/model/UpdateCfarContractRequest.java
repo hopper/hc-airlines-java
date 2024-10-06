@@ -99,6 +99,14 @@ public class UpdateCfarContractRequest {
     @SerializedName(SERIALIZED_FORMS_OF_PAYMENT)
     private List<FormOfPayment> formsOfPayment;
 
+    public static final String SERIALIZED_NAME_CURRENCY = "currency";
+    @SerializedName(SERIALIZED_NAME_CURRENCY)
+    private String currency;
+
+    public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchange_rate";
+    @SerializedName(SERIALIZED_NAME_EXCHANGE_RATE)
+    private String exchangeRate;
+
     public UpdateCfarContractRequest() {
     }
 
@@ -387,6 +395,42 @@ public class UpdateCfarContractRequest {
         return this;
     }
 
+    public UpdateCfarContractRequest currency(String currency) {
+        this.currency = currency;
+        return this;
+    }
+
+    /**
+     * Currency
+     * @return currency
+     **/
+    @ApiModelProperty(example = "CAD", value = "Updated currency in case it can change at payment time")
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public UpdateCfarContractRequest exchangeRate(String exchangeRate) {
+        this.exchangeRate = exchangeRate;
+        return this;
+    }
+
+    /**
+     * Exchange rate
+     * @return exchangeRate
+     **/
+    @ApiModelProperty(example = "1.10", value = "Exchange rate applied if currency has changed at payment time")
+    public String getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(String exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -410,12 +454,14 @@ public class UpdateCfarContractRequest {
                 Objects.equals(this.country, updateCfarContractRequest.country) &&
                 Objects.equals(this.taxesTotal, updateCfarContractRequest.taxesTotal) &&
                 Objects.equals(this.taxes, updateCfarContractRequest.taxes) &&
-                Objects.equals(this.totalPrice, updateCfarContractRequest.totalPrice);
+                Objects.equals(this.totalPrice, updateCfarContractRequest.totalPrice) &&
+                Objects.equals(this.currency, updateCfarContractRequest.currency) &&
+                Objects.equals(this.exchangeRate, updateCfarContractRequest.exchangeRate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes,totalPrice);
+        return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes,totalPrice, currency, exchangeRate);
     }
 
     @Override
@@ -438,6 +484,8 @@ public class UpdateCfarContractRequest {
         sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
         sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
         sb.append("    totalPrice: ").append(toIndentedString(taxes)).append("\n");
+        sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+        sb.append("    exchangeRate: ").append(toIndentedString(exchangeRate)).append("\n");
         sb.append("}");
         return sb.toString();
     }
