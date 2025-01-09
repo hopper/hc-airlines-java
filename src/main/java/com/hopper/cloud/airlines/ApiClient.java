@@ -159,8 +159,8 @@ public class ApiClient {
             this.basePath = basePath;
         }
 
-        String tokenUrl = "https://hopper-api.auth0.com/oauth/token";
-        if (!"".equals(tokenUrl) && !URI.create(tokenUrl).isAbsolute()) {
+        String tokenUrl = basePath + "/sdk/auth";
+        if (!URI.create(tokenUrl).isAbsolute()) {
             URI uri = URI.create(getBasePath());
             tokenUrl = uri.getScheme() + ":" +
                 (uri.getAuthority() != null ? "//" + uri.getAuthority() : "") +
