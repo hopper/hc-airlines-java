@@ -43,13 +43,9 @@ public class HopperClient {
     }
 
     private void initHopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
-        Map<String, String> params = new HashMap<>();
-        params.put("audience", String.join("/", Arrays.asList(url.split("/")).subList(0, 3)));
-        params.put("grant_type", "client_credentials");
-        ApiClient apiClient = new ApiClient(clientId, clientSecret, params);
+        ApiClient apiClient = new ApiClient(url, clientId, clientSecret, Collections.emptyMap());
         cfarApi = new CancelForAnyReasonCfarApi(apiClient);
         cfarApi.getApiClient().setDebugging(debugging);
-        cfarApi.getApiClient().setBasePath(url);
         cfarApi.getApiClient().setConnectTimeout(timeout);
         cfarApi.getApiClient().setReadTimeout(timeout);
         cfarApi.getApiClient().setWriteTimeout(timeout);
