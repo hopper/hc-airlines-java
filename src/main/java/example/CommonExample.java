@@ -1,6 +1,8 @@
 package example;
 
+import com.hopper.cloud.airlines.ApiClient;
 import com.hopper.cloud.airlines.ApiException;
+import com.hopper.cloud.airlines.Configuration;
 import com.hopper.cloud.airlines.api.AnalyticsApi;
 import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
@@ -45,6 +47,7 @@ import com.hopper.cloud.airlines.model.RequestType;
 import com.hopper.cloud.airlines.model.UpdateCfarContractRequest;
 import com.hopper.cloud.airlines.model.UserInfo;
 import com.hopper.cloud.airlines.model.Web;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.MalformedURLException;
 import java.time.LocalDate;
@@ -55,6 +58,17 @@ import java.util.stream.Collectors;
 
 public class CommonExample {
     protected static String flightDate = LocalDate.now().plusMonths(2).toString();
+
+    static ApiClient configureApiClient() {
+        ApiClient apiClient = Configuration.getDefaultApiClient();
+        apiClient.setBasePath("https://airlines-api.staging.hopper.com/airline/v1.1");
+        String bearerToken = System.getenv("CLOUD_AIRLINES_JAVA_SDK_BEARER_TOKEN");
+        if (bearerToken == null || bearerToken.isEmpty()) {
+            throw new IllegalArgumentException("BEARER_TOKEN environment variable is not set");
+        }
+        apiClient.setBearerToken(bearerToken);
+        return apiClient;
+    }
 
     private static CreateAirlineSessionRequest prepareCreateAirlineSessionRequest(FlowType flowType) {
         CreateAirlineSessionRequest sessionRequest = new CreateAirlineSessionRequest();
