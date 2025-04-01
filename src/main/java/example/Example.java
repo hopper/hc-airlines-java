@@ -46,7 +46,7 @@ public class Example extends CommonExample {
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE CONTRACT *************************");
             System.out.println("*********************************************************************");
-            CfarContract contract = createCfarContract(cfarApi, selectedOffer, selectedItinerary, sessionId);
+            CfarContract contract = createCfarContract(cfarApi, selectedOffer, sessionId);
             System.out.println(contract);
 
             System.out.println("*********************************************************************");

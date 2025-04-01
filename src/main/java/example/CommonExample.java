@@ -233,7 +233,7 @@ public class CommonExample {
         return client.postCfarOffers(cfarOfferReq, sessionId);
     }
 
-    protected static CfarContract createCfarContract(CancelForAnyReasonCfarApi client, List<CfarOffer> offers, List<CfarItinerary> offersItinerary,
+    protected static CfarContract createCfarContract(CancelForAnyReasonCfarApi client, List<CfarOffer> offers,
                                                      String sessionId)
             throws ApiException {
         CreateCfarContractRequest contractRequest = new CreateCfarContractRequest();
