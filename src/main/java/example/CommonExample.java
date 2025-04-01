@@ -64,7 +64,7 @@ public class CommonExample {
         apiClient.setBasePath("https://airlines-api.staging.hopper.com/airline/v1.1");
         String bearerToken = System.getenv("CLOUD_AIRLINES_JAVA_SDK_BEARER_TOKEN");
         if (bearerToken == null || bearerToken.isEmpty()) {
-            throw new IllegalArgumentException("BEARER_TOKEN environment variable is not set");
+            throw new IllegalArgumentException("CLOUD_AIRLINES_JAVA_SDK_BEARER_TOKEN environment variable is not set");
         }
         apiClient.setBearerToken(bearerToken);
         return apiClient;
