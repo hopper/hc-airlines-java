@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.hopper.cloud.airlines.model.AirlineSession;
+import com.hopper.cloud.airlines.model.AuthRequest;
+import com.hopper.cloud.airlines.model.AuthResponse;
 import com.hopper.cloud.airlines.model.BadRequest;
-import com.hopper.cloud.airlines.model.CreateAirlineSessionRequest;
 import com.hopper.cloud.airlines.model.UnprocessableEntity;
 
 import java.lang.reflect.Type;
@@ -38,16 +38,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SessionsApi {
+public class AuthenticationApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public SessionsApi() {
+    public AuthenticationApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SessionsApi(ApiClient apiClient) {
+    public AuthenticationApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -76,8 +76,8 @@ public class SessionsApi {
     }
 
     /**
-     * Build call for postSessions
-     * @param createAirlineSessionRequest  (required)
+     * Build call for postAuth
+     * @param authRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -85,17 +85,14 @@ public class SessionsApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created airline session </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The airline session creation request was not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The authentication response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postSessionsCall(CreateAirlineSessionRequest createAirlineSessionRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postAuthCall(AuthRequest authRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -109,10 +106,10 @@ public class SessionsApi {
             basePath = null;
         }
 
-        Object localVarPostBody = createAirlineSessionRequest;
+        Object localVarPostBody = authRequest;
 
         // create path and map variables
-        String localVarPath = "/sessions";
+        String localVarPath = "/auth";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -136,76 +133,70 @@ public class SessionsApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "PartnerAuth" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postSessionsValidateBeforeCall(CreateAirlineSessionRequest createAirlineSessionRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'createAirlineSessionRequest' is set
-        if (createAirlineSessionRequest == null) {
-            throw new ApiException("Missing the required parameter 'createAirlineSessionRequest' when calling postSessions(Async)");
+    private okhttp3.Call postAuthValidateBeforeCall(AuthRequest authRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'authRequest' is set
+        if (authRequest == null) {
+            throw new ApiException("Missing the required parameter 'authRequest' when calling postAuth(Async)");
         }
 
-        return postSessionsCall(createAirlineSessionRequest, _callback);
+        return postAuthCall(authRequest, _callback);
 
     }
 
     /**
-     * Create a Session
-     * Create a new session for which events will be collected.
-     * @param createAirlineSessionRequest  (required)
-     * @return AirlineSession
+     * Create an authentication token
+     * Get an authentication token
+     * @param authRequest  (required)
+     * @return AuthResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created airline session </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The airline session creation request was not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The authentication response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public AirlineSession postSessions(CreateAirlineSessionRequest createAirlineSessionRequest) throws ApiException {
-        ApiResponse<AirlineSession> localVarResp = postSessionsWithHttpInfo(createAirlineSessionRequest);
+    public AuthResponse postAuth(AuthRequest authRequest) throws ApiException {
+        ApiResponse<AuthResponse> localVarResp = postAuthWithHttpInfo(authRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Create a Session
-     * Create a new session for which events will be collected.
-     * @param createAirlineSessionRequest  (required)
-     * @return ApiResponse&lt;AirlineSession&gt;
+     * Create an authentication token
+     * Get an authentication token
+     * @param authRequest  (required)
+     * @return ApiResponse&lt;AuthResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created airline session </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The airline session creation request was not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The authentication response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AirlineSession> postSessionsWithHttpInfo(CreateAirlineSessionRequest createAirlineSessionRequest) throws ApiException {
-        okhttp3.Call localVarCall = postSessionsValidateBeforeCall(createAirlineSessionRequest, null);
-        Type localVarReturnType = new TypeToken<AirlineSession>(){}.getType();
+    public ApiResponse<AuthResponse> postAuthWithHttpInfo(AuthRequest authRequest) throws ApiException {
+        okhttp3.Call localVarCall = postAuthValidateBeforeCall(authRequest, null);
+        Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create a Session (asynchronously)
-     * Create a new session for which events will be collected.
-     * @param createAirlineSessionRequest  (required)
+     * Create an authentication token (asynchronously)
+     * Get an authentication token
+     * @param authRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -213,20 +204,17 @@ public class SessionsApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created airline session </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The airline session creation request was not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The authentication response </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postSessionsAsync(CreateAirlineSessionRequest createAirlineSessionRequest, final ApiCallback<AirlineSession> _callback) throws ApiException {
+    public okhttp3.Call postAuthAsync(AuthRequest authRequest, final ApiCallback<AuthResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postSessionsValidateBeforeCall(createAirlineSessionRequest, _callback);
-        Type localVarReturnType = new TypeToken<AirlineSession>(){}.getType();
+        okhttp3.Call localVarCall = postAuthValidateBeforeCall(authRequest, _callback);
+        Type localVarReturnType = new TypeToken<AuthResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

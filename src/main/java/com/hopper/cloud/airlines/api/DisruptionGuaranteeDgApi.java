@@ -28,18 +28,18 @@ import java.io.IOException;
 
 
 import com.hopper.cloud.airlines.model.BadRequest;
-import com.hopper.cloud.airlines.model.CfarContract;
-import com.hopper.cloud.airlines.model.CfarContractExercise;
-import com.hopper.cloud.airlines.model.CfarOffer;
-import com.hopper.cloud.airlines.model.CfarPayment;
-import com.hopper.cloud.airlines.model.CreateCfarContractExerciseRequest;
-import com.hopper.cloud.airlines.model.CreateCfarContractRequest;
-import com.hopper.cloud.airlines.model.CreateCfarOfferRequest;
-import com.hopper.cloud.airlines.model.MarkCfarContractExerciseCompleteRequest;
-import com.hopper.cloud.airlines.model.ProcessCfarPaymentRequest;
+import com.hopper.cloud.airlines.model.CreateDgContractExerciseRequest;
+import com.hopper.cloud.airlines.model.CreateDgContractExerciseResponse;
+import com.hopper.cloud.airlines.model.CreateDgContractRequest;
+import com.hopper.cloud.airlines.model.CreateDgOfferItemResponse;
+import com.hopper.cloud.airlines.model.CreateDgOffersRequest;
+import com.hopper.cloud.airlines.model.DgContract;
+import com.hopper.cloud.airlines.model.DgEvent;
+import com.hopper.cloud.airlines.model.DgItinerarySlice;
+import com.hopper.cloud.airlines.model.DgPayment;
+import com.hopper.cloud.airlines.model.ProcessDgPaymentRequest;
 import com.hopper.cloud.airlines.model.UnprocessableEntity;
-import com.hopper.cloud.airlines.model.UpdateCfarContractRequest;
-import com.hopper.cloud.airlines.model.UpdateCfarFormOfPaymentRequest;
+import com.hopper.cloud.airlines.model.UpdateDgContractStatusRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -47,16 +47,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CancelForAnyReasonCfarApi {
+public class DisruptionGuaranteeDgApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public CancelForAnyReasonCfarApi() {
+    public DisruptionGuaranteeDgApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public CancelForAnyReasonCfarApi(ApiClient apiClient) {
+    public DisruptionGuaranteeDgApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -85,9 +85,8 @@ public class CancelForAnyReasonCfarApi {
     }
 
     /**
-     * Build call for getCfarContractsId
+     * Build call for getDgContractsId
      * @param id A unique identifier for a contract (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -95,7 +94,7 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The requested CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The requested DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -104,7 +103,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCfarContractsIdCall(String id, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getDgContractsIdCall(String id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -121,7 +120,7 @@ public class CancelForAnyReasonCfarApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cfar_contracts/{id}"
+        String localVarPath = "/dg_contracts/{id}"
             .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -145,38 +144,32 @@ public class CancelForAnyReasonCfarApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (hcSessionID != null) {
-            localVarHeaderParams.put("HC-Session-ID", localVarApiClient.parameterToString(hcSessionID));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "PartnerAuth" };
+        String[] localVarAuthNames = new String[] { "SessionAuth", "PartnerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCfarContractsIdValidateBeforeCall(String id, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getDgContractsIdValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getCfarContractsId(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling getDgContractsId(Async)");
         }
 
-        return getCfarContractsIdCall(id, hcSessionID, _callback);
+        return getDgContractsIdCall(id, _callback);
 
     }
 
     /**
-     * Get a CFAR Contract
-     * Get a CFAR contract
+     * Get a DG contract
+     * Get a DG contract
      * @param id A unique identifier for a contract (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return CfarContract
+     * @return DgContract
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The requested CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The requested DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -185,23 +178,22 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarContract getCfarContractsId(String id, String hcSessionID) throws ApiException {
-        ApiResponse<CfarContract> localVarResp = getCfarContractsIdWithHttpInfo(id, hcSessionID);
+    public DgContract getDgContractsId(String id) throws ApiException {
+        ApiResponse<DgContract> localVarResp = getDgContractsIdWithHttpInfo(id);
         return localVarResp.getData();
     }
 
     /**
-     * Get a CFAR Contract
-     * Get a CFAR contract
+     * Get a DG contract
+     * Get a DG contract
      * @param id A unique identifier for a contract (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return ApiResponse&lt;CfarContract&gt;
+     * @return ApiResponse&lt;DgContract&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The requested CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The requested DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -210,17 +202,16 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarContract> getCfarContractsIdWithHttpInfo(String id, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = getCfarContractsIdValidateBeforeCall(id, hcSessionID, null);
-        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+    public ApiResponse<DgContract> getDgContractsIdWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = getDgContractsIdValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get a CFAR Contract (asynchronously)
-     * Get a CFAR contract
+     * Get a DG contract (asynchronously)
+     * Get a DG contract
      * @param id A unique identifier for a contract (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -228,7 +219,7 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The requested CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The requested DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -237,17 +228,16 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCfarContractsIdAsync(String id, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
+    public okhttp3.Call getDgContractsIdAsync(String id, final ApiCallback<DgContract> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getCfarContractsIdValidateBeforeCall(id, hcSessionID, _callback);
-        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+        okhttp3.Call localVarCall = getDgContractsIdValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for postCfarContractExercises
-     * @param createCfarContractExerciseRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * Build call for postCustomerDgEvents
+     * @param dgEvent  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -255,16 +245,15 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The event has been successfully created </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarContractExercisesCall(CreateCfarContractExerciseRequest createCfarContractExerciseRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postCustomerDgEventsCall(DgEvent dgEvent, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -278,10 +267,155 @@ public class CancelForAnyReasonCfarApi {
             basePath = null;
         }
 
-        Object localVarPostBody = createCfarContractExerciseRequest;
+        Object localVarPostBody = dgEvent;
 
         // create path and map variables
-        String localVarPath = "/cfar_contract_exercises";
+        String localVarPath = "/customer/dg/events";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "SessionAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call postCustomerDgEventsValidateBeforeCall(DgEvent dgEvent, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'dgEvent' is set
+        if (dgEvent == null) {
+            throw new ApiException("Missing the required parameter 'dgEvent' when calling postCustomerDgEvents(Async)");
+        }
+
+        return postCustomerDgEventsCall(dgEvent, _callback);
+
+    }
+
+    /**
+     * Create an Event
+     * Create a new event for analytics
+     * @param dgEvent  (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The event has been successfully created </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public void postCustomerDgEvents(DgEvent dgEvent) throws ApiException {
+        postCustomerDgEventsWithHttpInfo(dgEvent);
+    }
+
+    /**
+     * Create an Event
+     * Create a new event for analytics
+     * @param dgEvent  (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The event has been successfully created </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> postCustomerDgEventsWithHttpInfo(DgEvent dgEvent) throws ApiException {
+        okhttp3.Call localVarCall = postCustomerDgEventsValidateBeforeCall(dgEvent, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Create an Event (asynchronously)
+     * Create a new event for analytics
+     * @param dgEvent  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The event has been successfully created </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call postCustomerDgEventsAsync(DgEvent dgEvent, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = postCustomerDgEventsValidateBeforeCall(dgEvent, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for postDgContractExercises
+     * @param createDgContractExerciseRequest  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> The created DG contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call postDgContractExercisesCall(CreateDgContractExerciseRequest createDgContractExerciseRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = createDgContractExerciseRequest;
+
+        // create path and map variables
+        String localVarPath = "/dg_contract_exercises";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -315,28 +449,28 @@ public class CancelForAnyReasonCfarApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postCfarContractExercisesValidateBeforeCall(CreateCfarContractExerciseRequest createCfarContractExerciseRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'createCfarContractExerciseRequest' is set
-        if (createCfarContractExerciseRequest == null) {
-            throw new ApiException("Missing the required parameter 'createCfarContractExerciseRequest' when calling postCfarContractExercises(Async)");
+    private okhttp3.Call postDgContractExercisesValidateBeforeCall(CreateDgContractExerciseRequest createDgContractExerciseRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'createDgContractExerciseRequest' is set
+        if (createDgContractExerciseRequest == null) {
+            throw new ApiException("Missing the required parameter 'createDgContractExerciseRequest' when calling postDgContractExercises(Async)");
         }
 
-        return postCfarContractExercisesCall(createCfarContractExerciseRequest, hcSessionID, _callback);
+        return postDgContractExercisesCall(createDgContractExerciseRequest, hcSessionID, _callback);
 
     }
 
     /**
-     * Create CFAR Exercise
-     * Record that a request to exercise a CFAR contract has occurred.
-     * @param createCfarContractExerciseRequest  (required)
+     * Create DG Exercise
+     * Record that a request to exercise a DG contract has occurred.
+     * @param createDgContractExerciseRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return CfarContractExercise
+     * @return CreateDgContractExerciseResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -345,23 +479,23 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarContractExercise postCfarContractExercises(CreateCfarContractExerciseRequest createCfarContractExerciseRequest, String hcSessionID) throws ApiException {
-        ApiResponse<CfarContractExercise> localVarResp = postCfarContractExercisesWithHttpInfo(createCfarContractExerciseRequest, hcSessionID);
+    public CreateDgContractExerciseResponse postDgContractExercises(CreateDgContractExerciseRequest createDgContractExerciseRequest, String hcSessionID) throws ApiException {
+        ApiResponse<CreateDgContractExerciseResponse> localVarResp = postDgContractExercisesWithHttpInfo(createDgContractExerciseRequest, hcSessionID);
         return localVarResp.getData();
     }
 
     /**
-     * Create CFAR Exercise
-     * Record that a request to exercise a CFAR contract has occurred.
-     * @param createCfarContractExerciseRequest  (required)
+     * Create DG Exercise
+     * Record that a request to exercise a DG contract has occurred.
+     * @param createDgContractExerciseRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return ApiResponse&lt;CfarContractExercise&gt;
+     * @return ApiResponse&lt;CreateDgContractExerciseResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -370,16 +504,16 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarContractExercise> postCfarContractExercisesWithHttpInfo(CreateCfarContractExerciseRequest createCfarContractExerciseRequest, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = postCfarContractExercisesValidateBeforeCall(createCfarContractExerciseRequest, hcSessionID, null);
-        Type localVarReturnType = new TypeToken<CfarContractExercise>(){}.getType();
+    public ApiResponse<CreateDgContractExerciseResponse> postDgContractExercisesWithHttpInfo(CreateDgContractExerciseRequest createDgContractExerciseRequest, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = postDgContractExercisesValidateBeforeCall(createDgContractExerciseRequest, hcSessionID, null);
+        Type localVarReturnType = new TypeToken<CreateDgContractExerciseResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create CFAR Exercise (asynchronously)
-     * Record that a request to exercise a CFAR contract has occurred.
-     * @param createCfarContractExerciseRequest  (required)
+     * Create DG Exercise (asynchronously)
+     * Record that a request to exercise a DG contract has occurred.
+     * @param createDgContractExerciseRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -388,7 +522,7 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -397,16 +531,16 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarContractExercisesAsync(CreateCfarContractExerciseRequest createCfarContractExerciseRequest, String hcSessionID, final ApiCallback<CfarContractExercise> _callback) throws ApiException {
+    public okhttp3.Call postDgContractExercisesAsync(CreateDgContractExerciseRequest createDgContractExerciseRequest, String hcSessionID, final ApiCallback<CreateDgContractExerciseResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postCfarContractExercisesValidateBeforeCall(createCfarContractExerciseRequest, hcSessionID, _callback);
-        Type localVarReturnType = new TypeToken<CfarContractExercise>(){}.getType();
+        okhttp3.Call localVarCall = postDgContractExercisesValidateBeforeCall(createDgContractExerciseRequest, hcSessionID, _callback);
+        Type localVarReturnType = new TypeToken<CreateDgContractExerciseResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for postCfarContracts
-     * @param createCfarContractRequest  (required)
+     * Build call for postDgContracts
+     * @param createDgContractRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -414,8 +548,8 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The CFAR contract creation request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG contract creation request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -424,7 +558,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarContractsCall(CreateCfarContractRequest createCfarContractRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postDgContractsCall(CreateDgContractRequest createDgContractRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -438,10 +572,10 @@ public class CancelForAnyReasonCfarApi {
             basePath = null;
         }
 
-        Object localVarPostBody = createCfarContractRequest;
+        Object localVarPostBody = createDgContractRequest;
 
         // create path and map variables
-        String localVarPath = "/cfar_contracts";
+        String localVarPath = "/dg_contracts";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -470,28 +604,28 @@ public class CancelForAnyReasonCfarApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postCfarContractsValidateBeforeCall(CreateCfarContractRequest createCfarContractRequest, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'createCfarContractRequest' is set
-        if (createCfarContractRequest == null) {
-            throw new ApiException("Missing the required parameter 'createCfarContractRequest' when calling postCfarContracts(Async)");
+    private okhttp3.Call postDgContractsValidateBeforeCall(CreateDgContractRequest createDgContractRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'createDgContractRequest' is set
+        if (createDgContractRequest == null) {
+            throw new ApiException("Missing the required parameter 'createDgContractRequest' when calling postDgContracts(Async)");
         }
 
-        return postCfarContractsCall(createCfarContractRequest, _callback);
+        return postDgContractsCall(createDgContractRequest, _callback);
 
     }
 
     /**
-     * Create a CFAR Contract
-     * Create a CFAR contract from selected CFAR offer(s).
-     * @param createCfarContractRequest  (required)
-     * @return CfarContract
+     * Create a DG Contract
+     * Create a DG contract from selected DG offer(s).
+     * @param createDgContractRequest  (required)
+     * @return DgContract
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The CFAR contract creation request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG contract creation request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -500,23 +634,23 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarContract postCfarContracts(CreateCfarContractRequest createCfarContractRequest) throws ApiException {
-        ApiResponse<CfarContract> localVarResp = postCfarContractsWithHttpInfo(createCfarContractRequest);
+    public DgContract postDgContracts(CreateDgContractRequest createDgContractRequest) throws ApiException {
+        ApiResponse<DgContract> localVarResp = postDgContractsWithHttpInfo(createDgContractRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Create a CFAR Contract
-     * Create a CFAR contract from selected CFAR offer(s).
-     * @param createCfarContractRequest  (required)
-     * @return ApiResponse&lt;CfarContract&gt;
+     * Create a DG Contract
+     * Create a DG contract from selected DG offer(s).
+     * @param createDgContractRequest  (required)
+     * @return ApiResponse&lt;DgContract&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The CFAR contract creation request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG contract creation request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -525,16 +659,16 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarContract> postCfarContractsWithHttpInfo(CreateCfarContractRequest createCfarContractRequest) throws ApiException {
-        okhttp3.Call localVarCall = postCfarContractsValidateBeforeCall(createCfarContractRequest, null);
-        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+    public ApiResponse<DgContract> postDgContractsWithHttpInfo(CreateDgContractRequest createDgContractRequest) throws ApiException {
+        okhttp3.Call localVarCall = postDgContractsValidateBeforeCall(createDgContractRequest, null);
+        Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create a CFAR Contract (asynchronously)
-     * Create a CFAR contract from selected CFAR offer(s).
-     * @param createCfarContractRequest  (required)
+     * Create a DG Contract (asynchronously)
+     * Create a DG contract from selected DG offer(s).
+     * @param createDgContractRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -542,8 +676,8 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The CFAR contract creation request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG contract creation request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -552,18 +686,17 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarContractsAsync(CreateCfarContractRequest createCfarContractRequest, final ApiCallback<CfarContract> _callback) throws ApiException {
+    public okhttp3.Call postDgContractsAsync(CreateDgContractRequest createDgContractRequest, final ApiCallback<DgContract> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postCfarContractsValidateBeforeCall(createCfarContractRequest, _callback);
-        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+        okhttp3.Call localVarCall = postDgContractsValidateBeforeCall(createDgContractRequest, _callback);
+        Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for postCfarContractsIdPayment
+     * Build call for postDgContractsIdPayment
      * @param id A unique identifier for a contract (required)
-     * @param processCfarPaymentRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param processDgPaymentRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -571,7 +704,7 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The result of the transaction </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The contract has been paid </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -580,7 +713,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarContractsIdPaymentCall(String id, ProcessCfarPaymentRequest processCfarPaymentRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postDgContractsIdPaymentCall(String id, ProcessDgPaymentRequest processDgPaymentRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -594,10 +727,10 @@ public class CancelForAnyReasonCfarApi {
             basePath = null;
         }
 
-        Object localVarPostBody = processCfarPaymentRequest;
+        Object localVarPostBody = processDgPaymentRequest;
 
         // create path and map variables
-        String localVarPath = "/cfar_contracts/{id}/payment"
+        String localVarPath = "/dg_contracts/{id}/payment"
             .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -622,44 +755,38 @@ public class CancelForAnyReasonCfarApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (hcSessionID != null) {
-            localVarHeaderParams.put("HC-Session-ID", localVarApiClient.parameterToString(hcSessionID));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "PartnerAuth" };
+        String[] localVarAuthNames = new String[] { "SessionAuth", "PartnerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postCfarContractsIdPaymentValidateBeforeCall(String id, ProcessCfarPaymentRequest processCfarPaymentRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call postDgContractsIdPaymentValidateBeforeCall(String id, ProcessDgPaymentRequest processDgPaymentRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling postCfarContractsIdPayment(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling postDgContractsIdPayment(Async)");
         }
 
-        // verify the required parameter 'processCfarPaymentRequest' is set
-        if (processCfarPaymentRequest == null) {
-            throw new ApiException("Missing the required parameter 'processCfarPaymentRequest' when calling postCfarContractsIdPayment(Async)");
+        // verify the required parameter 'processDgPaymentRequest' is set
+        if (processDgPaymentRequest == null) {
+            throw new ApiException("Missing the required parameter 'processDgPaymentRequest' when calling postDgContractsIdPayment(Async)");
         }
 
-        return postCfarContractsIdPaymentCall(id, processCfarPaymentRequest, hcSessionID, _callback);
+        return postDgContractsIdPaymentCall(id, processDgPaymentRequest, _callback);
 
     }
 
     /**
-     * Process CFAR Payment
-     * When HTS is the Merchant of Record (MoR), the customer&#39;s credit card is charged by HTS for the CFAR fee.  HTS is relying on an external payment gateway to process the payments, it allows the partner airline to tokenize the customer&#39;s credit card details and then pass the generated token in HTS Ancillaries for Airlines API payment endpoints in order to process the payment and confirm the contract related to the purchased product.  **Token URL**: https://core.spreedly.com/v1/payment_methods.json    **Example Token Request**:      &#x60;&#x60;&#x60;   curl --request POST --url https://core.spreedly.com/v1/payment_methods.json --header &#39;content-type: application/json&#39; -u  \&quot;login:password\&quot; --data &#39;{  \&quot;payment_method\&quot;: {   \&quot;email\&quot;: \&quot;aaa@bbb.ccc\&quot;,   \&quot;credit_card\&quot;: {    \&quot;number\&quot;: \&quot;4111111111111111\&quot;,    \&quot;month\&quot;: \&quot;09\&quot;,    \&quot;year\&quot;: \&quot;2029\&quot;,    \&quot;first_name\&quot;: \&quot;John\&quot;,    \&quot;last_name\&quot;: \&quot;Smith\&quot;,    \&quot;address1\&quot;: \&quot;123 12th St\&quot;,    \&quot;address2\&quot;: \&quot;Building B\&quot;,    \&quot;city\&quot;: \&quot;Quebec City\&quot;,    \&quot;state\&quot;: \&quot;QC\&quot;,    \&quot;zip\&quot;: \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;: \&quot;CA\&quot;,    \&quot;verification_value\&quot;: \&quot;123\&quot;   }  } }&#39; &#x60;&#x60;&#x60; **Example Token Response**:   &#x60;&#x60;&#x60;   {  \&quot;transaction\&quot;:  {   \&quot;token\&quot;:  \&quot;KtToV20m9qT1Yi8pbTeLNz0Ypns\&quot;,   \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;succeeded\&quot;:  true,   \&quot;transaction_type\&quot;:  \&quot;AddPaymentMethod\&quot;,   \&quot;retained\&quot;:  false,   \&quot;state\&quot;:  \&quot;succeeded\&quot;,   \&quot;message_key\&quot;:  \&quot;messages.transaction_succeeded\&quot;,   \&quot;message\&quot;:  \&quot;Succeeded!\&quot;,   \&quot;payment_method\&quot;:  {    \&quot;token\&quot;:  \&quot;MxyYEhDK12CUAA18bJDkAq0ab3y\&quot;,    \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;email\&quot;:  \&quot;aaa@bbb.ccc\&quot;,    \&quot;data\&quot;:  null,    \&quot;storage_state\&quot;:  \&quot;cached\&quot;,    \&quot;test\&quot;:  true,    \&quot;metadata\&quot;:  null,    \&quot;callback_url\&quot;:  null,    \&quot;last_four_digits\&quot;:  \&quot;1111\&quot;,    \&quot;first_six_digits\&quot;:  \&quot;411111\&quot;,    \&quot;card_type\&quot;:  \&quot;visa\&quot;,    \&quot;first_name\&quot;:  \&quot;John\&quot;,    \&quot;last_name\&quot;:  \&quot;Smith\&quot;,    \&quot;month\&quot;:  9,    \&quot;year\&quot;:  2029,    \&quot;address1\&quot;:  \&quot;123 12th St\&quot;,    \&quot;address2\&quot;:  \&quot;Building B\&quot;,    \&quot;city\&quot;:  \&quot;Quebec City\&quot;,    \&quot;state\&quot;:  \&quot;QC\&quot;,    \&quot;zip\&quot;:  \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;:  \&quot;CA\&quot;,    \&quot;phone_number\&quot;:  null,    \&quot;company\&quot;:  null,    \&quot;full_name\&quot;:  \&quot;John Smith\&quot;,    \&quot;eligible_for_card_updater\&quot;:  true,    \&quot;shipping_address1\&quot;:  null,    \&quot;shipping_address2\&quot;:  null,    \&quot;shipping_city\&quot;:  null,    \&quot;shipping_state\&quot;:  null,    \&quot;shipping_zip\&quot;:  null,    \&quot;shipping_country\&quot;:  null,    \&quot;shipping_phone_number\&quot;:  null,    \&quot;issuer_identification_number\&quot;:  \&quot;41111111\&quot;,    \&quot;click_to_pay\&quot;:  false,    \&quot;managed\&quot;:  true,    \&quot;payment_method_type\&quot;:  \&quot;credit_card\&quot;,    \&quot;errors\&quot;:  [],    \&quot;bin_metadata\&quot;:  {     \&quot;message\&quot;:  \&quot;BIN Metadata is available only to Advanced Vault enrolled customers and payment methods. Reach out to your account representative for more details.\&quot;    },    \&quot;fingerprint\&quot;:  \&quot;7ccffcf38900f224fc946cf2a9c8e260072b\&quot;,    \&quot;verification_value\&quot;:  \&quot;XXX\&quot;,    \&quot;number\&quot;:  \&quot;XXXX-XXXX-XXXX-1111\&quot;   }  } } &#x60;&#x60;&#x60; Here the returned payment method token **MxyYEhDK12CUAA18bJDkAq0ab3y** has to be used in the Process CFAR Payment request below.
+     * Process DG payment
+     * When HTS is the Merchant of Record (MoR), the customer&#39;s credit card is charged by HTS for the DG fee.  HTS is relying on an external payment gateway to process the payments, it allows the partner airline to tokenize the customer&#39;s credit card details and then pass the generated token in HTS Ancillaries for Airlines API payment endpoints in order to process the payment and confirm the contract related to the purchased product.  **Token URL**: https://core.spreedly.com/v1/payment_methods.json    **Example Token Request**:      &#x60;&#x60;&#x60;   curl --request POST --url https://core.spreedly.com/v1/payment_methods.json --header &#39;content-type: application/json&#39; -u  \&quot;login:password\&quot; --data &#39;{  \&quot;payment_method\&quot;: {   \&quot;email\&quot;: \&quot;aaa@bbb.ccc\&quot;,   \&quot;credit_card\&quot;: {    \&quot;number\&quot;: \&quot;4111111111111111\&quot;,    \&quot;month\&quot;: \&quot;09\&quot;,    \&quot;year\&quot;: \&quot;2029\&quot;,    \&quot;first_name\&quot;: \&quot;John\&quot;,    \&quot;last_name\&quot;: \&quot;Smith\&quot;,    \&quot;address1\&quot;: \&quot;123 12th St\&quot;,    \&quot;address2\&quot;: \&quot;Building B\&quot;,    \&quot;city\&quot;: \&quot;Quebec City\&quot;,    \&quot;state\&quot;: \&quot;QC\&quot;,    \&quot;zip\&quot;: \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;: \&quot;CA\&quot;,    \&quot;verification_value\&quot;: \&quot;123\&quot;   }  } }&#39; &#x60;&#x60;&#x60; **Example Token Response**:   &#x60;&#x60;&#x60;   {  \&quot;transaction\&quot;:  {   \&quot;token\&quot;:  \&quot;KtToV20m9qT1Yi8pbTeLNz0Ypns\&quot;,   \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;succeeded\&quot;:  true,   \&quot;transaction_type\&quot;:  \&quot;AddPaymentMethod\&quot;,   \&quot;retained\&quot;:  false,   \&quot;state\&quot;:  \&quot;succeeded\&quot;,   \&quot;message_key\&quot;:  \&quot;messages.transaction_succeeded\&quot;,   \&quot;message\&quot;:  \&quot;Succeeded!\&quot;,   \&quot;payment_method\&quot;:  {    \&quot;token\&quot;:  \&quot;MxyYEhDK12CUAA18bJDkAq0ab3y\&quot;,    \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;email\&quot;:  \&quot;aaa@bbb.ccc\&quot;,    \&quot;data\&quot;:  null,    \&quot;storage_state\&quot;:  \&quot;cached\&quot;,    \&quot;test\&quot;:  true,    \&quot;metadata\&quot;:  null,    \&quot;callback_url\&quot;:  null,    \&quot;last_four_digits\&quot;:  \&quot;1111\&quot;,    \&quot;first_six_digits\&quot;:  \&quot;411111\&quot;,    \&quot;card_type\&quot;:  \&quot;visa\&quot;,    \&quot;first_name\&quot;:  \&quot;John\&quot;,    \&quot;last_name\&quot;:  \&quot;Smith\&quot;,    \&quot;month\&quot;:  9,    \&quot;year\&quot;:  2029,    \&quot;address1\&quot;:  \&quot;123 12th St\&quot;,    \&quot;address2\&quot;:  \&quot;Building B\&quot;,    \&quot;city\&quot;:  \&quot;Quebec City\&quot;,    \&quot;state\&quot;:  \&quot;QC\&quot;,    \&quot;zip\&quot;:  \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;:  \&quot;CA\&quot;,    \&quot;phone_number\&quot;:  null,    \&quot;company\&quot;:  null,    \&quot;full_name\&quot;:  \&quot;John Smith\&quot;,    \&quot;eligible_for_card_updater\&quot;:  true,    \&quot;shipping_address1\&quot;:  null,    \&quot;shipping_address2\&quot;:  null,    \&quot;shipping_city\&quot;:  null,    \&quot;shipping_state\&quot;:  null,    \&quot;shipping_zip\&quot;:  null,    \&quot;shipping_country\&quot;:  null,    \&quot;shipping_phone_number\&quot;:  null,    \&quot;issuer_identification_number\&quot;:  \&quot;41111111\&quot;,    \&quot;click_to_pay\&quot;:  false,    \&quot;managed\&quot;:  true,    \&quot;payment_method_type\&quot;:  \&quot;credit_card\&quot;,    \&quot;errors\&quot;:  [],    \&quot;bin_metadata\&quot;:  {     \&quot;message\&quot;:  \&quot;BIN Metadata is available only to Advanced Vault enrolled customers and payment methods. Reach out to your account representative for more details.\&quot;    },    \&quot;fingerprint\&quot;:  \&quot;7ccffcf38900f224fc946cf2a9c8e260072b\&quot;,    \&quot;verification_value\&quot;:  \&quot;XXX\&quot;,    \&quot;number\&quot;:  \&quot;XXXX-XXXX-XXXX-1111\&quot;   }  } } &#x60;&#x60;&#x60; Here the returned payment method token **MxyYEhDK12CUAA18bJDkAq0ab3y** has to be used in the Process DG Payment request below.
      * @param id A unique identifier for a contract (required)
-     * @param processCfarPaymentRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return CfarPayment
+     * @param processDgPaymentRequest  (required)
+     * @return DgPayment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The result of the transaction </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The contract has been paid </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -668,24 +795,23 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarPayment postCfarContractsIdPayment(String id, ProcessCfarPaymentRequest processCfarPaymentRequest, String hcSessionID) throws ApiException {
-        ApiResponse<CfarPayment> localVarResp = postCfarContractsIdPaymentWithHttpInfo(id, processCfarPaymentRequest, hcSessionID);
+    public DgPayment postDgContractsIdPayment(String id, ProcessDgPaymentRequest processDgPaymentRequest) throws ApiException {
+        ApiResponse<DgPayment> localVarResp = postDgContractsIdPaymentWithHttpInfo(id, processDgPaymentRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Process CFAR Payment
-     * When HTS is the Merchant of Record (MoR), the customer&#39;s credit card is charged by HTS for the CFAR fee.  HTS is relying on an external payment gateway to process the payments, it allows the partner airline to tokenize the customer&#39;s credit card details and then pass the generated token in HTS Ancillaries for Airlines API payment endpoints in order to process the payment and confirm the contract related to the purchased product.  **Token URL**: https://core.spreedly.com/v1/payment_methods.json    **Example Token Request**:      &#x60;&#x60;&#x60;   curl --request POST --url https://core.spreedly.com/v1/payment_methods.json --header &#39;content-type: application/json&#39; -u  \&quot;login:password\&quot; --data &#39;{  \&quot;payment_method\&quot;: {   \&quot;email\&quot;: \&quot;aaa@bbb.ccc\&quot;,   \&quot;credit_card\&quot;: {    \&quot;number\&quot;: \&quot;4111111111111111\&quot;,    \&quot;month\&quot;: \&quot;09\&quot;,    \&quot;year\&quot;: \&quot;2029\&quot;,    \&quot;first_name\&quot;: \&quot;John\&quot;,    \&quot;last_name\&quot;: \&quot;Smith\&quot;,    \&quot;address1\&quot;: \&quot;123 12th St\&quot;,    \&quot;address2\&quot;: \&quot;Building B\&quot;,    \&quot;city\&quot;: \&quot;Quebec City\&quot;,    \&quot;state\&quot;: \&quot;QC\&quot;,    \&quot;zip\&quot;: \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;: \&quot;CA\&quot;,    \&quot;verification_value\&quot;: \&quot;123\&quot;   }  } }&#39; &#x60;&#x60;&#x60; **Example Token Response**:   &#x60;&#x60;&#x60;   {  \&quot;transaction\&quot;:  {   \&quot;token\&quot;:  \&quot;KtToV20m9qT1Yi8pbTeLNz0Ypns\&quot;,   \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;succeeded\&quot;:  true,   \&quot;transaction_type\&quot;:  \&quot;AddPaymentMethod\&quot;,   \&quot;retained\&quot;:  false,   \&quot;state\&quot;:  \&quot;succeeded\&quot;,   \&quot;message_key\&quot;:  \&quot;messages.transaction_succeeded\&quot;,   \&quot;message\&quot;:  \&quot;Succeeded!\&quot;,   \&quot;payment_method\&quot;:  {    \&quot;token\&quot;:  \&quot;MxyYEhDK12CUAA18bJDkAq0ab3y\&quot;,    \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;email\&quot;:  \&quot;aaa@bbb.ccc\&quot;,    \&quot;data\&quot;:  null,    \&quot;storage_state\&quot;:  \&quot;cached\&quot;,    \&quot;test\&quot;:  true,    \&quot;metadata\&quot;:  null,    \&quot;callback_url\&quot;:  null,    \&quot;last_four_digits\&quot;:  \&quot;1111\&quot;,    \&quot;first_six_digits\&quot;:  \&quot;411111\&quot;,    \&quot;card_type\&quot;:  \&quot;visa\&quot;,    \&quot;first_name\&quot;:  \&quot;John\&quot;,    \&quot;last_name\&quot;:  \&quot;Smith\&quot;,    \&quot;month\&quot;:  9,    \&quot;year\&quot;:  2029,    \&quot;address1\&quot;:  \&quot;123 12th St\&quot;,    \&quot;address2\&quot;:  \&quot;Building B\&quot;,    \&quot;city\&quot;:  \&quot;Quebec City\&quot;,    \&quot;state\&quot;:  \&quot;QC\&quot;,    \&quot;zip\&quot;:  \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;:  \&quot;CA\&quot;,    \&quot;phone_number\&quot;:  null,    \&quot;company\&quot;:  null,    \&quot;full_name\&quot;:  \&quot;John Smith\&quot;,    \&quot;eligible_for_card_updater\&quot;:  true,    \&quot;shipping_address1\&quot;:  null,    \&quot;shipping_address2\&quot;:  null,    \&quot;shipping_city\&quot;:  null,    \&quot;shipping_state\&quot;:  null,    \&quot;shipping_zip\&quot;:  null,    \&quot;shipping_country\&quot;:  null,    \&quot;shipping_phone_number\&quot;:  null,    \&quot;issuer_identification_number\&quot;:  \&quot;41111111\&quot;,    \&quot;click_to_pay\&quot;:  false,    \&quot;managed\&quot;:  true,    \&quot;payment_method_type\&quot;:  \&quot;credit_card\&quot;,    \&quot;errors\&quot;:  [],    \&quot;bin_metadata\&quot;:  {     \&quot;message\&quot;:  \&quot;BIN Metadata is available only to Advanced Vault enrolled customers and payment methods. Reach out to your account representative for more details.\&quot;    },    \&quot;fingerprint\&quot;:  \&quot;7ccffcf38900f224fc946cf2a9c8e260072b\&quot;,    \&quot;verification_value\&quot;:  \&quot;XXX\&quot;,    \&quot;number\&quot;:  \&quot;XXXX-XXXX-XXXX-1111\&quot;   }  } } &#x60;&#x60;&#x60; Here the returned payment method token **MxyYEhDK12CUAA18bJDkAq0ab3y** has to be used in the Process CFAR Payment request below.
+     * Process DG payment
+     * When HTS is the Merchant of Record (MoR), the customer&#39;s credit card is charged by HTS for the DG fee.  HTS is relying on an external payment gateway to process the payments, it allows the partner airline to tokenize the customer&#39;s credit card details and then pass the generated token in HTS Ancillaries for Airlines API payment endpoints in order to process the payment and confirm the contract related to the purchased product.  **Token URL**: https://core.spreedly.com/v1/payment_methods.json    **Example Token Request**:      &#x60;&#x60;&#x60;   curl --request POST --url https://core.spreedly.com/v1/payment_methods.json --header &#39;content-type: application/json&#39; -u  \&quot;login:password\&quot; --data &#39;{  \&quot;payment_method\&quot;: {   \&quot;email\&quot;: \&quot;aaa@bbb.ccc\&quot;,   \&quot;credit_card\&quot;: {    \&quot;number\&quot;: \&quot;4111111111111111\&quot;,    \&quot;month\&quot;: \&quot;09\&quot;,    \&quot;year\&quot;: \&quot;2029\&quot;,    \&quot;first_name\&quot;: \&quot;John\&quot;,    \&quot;last_name\&quot;: \&quot;Smith\&quot;,    \&quot;address1\&quot;: \&quot;123 12th St\&quot;,    \&quot;address2\&quot;: \&quot;Building B\&quot;,    \&quot;city\&quot;: \&quot;Quebec City\&quot;,    \&quot;state\&quot;: \&quot;QC\&quot;,    \&quot;zip\&quot;: \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;: \&quot;CA\&quot;,    \&quot;verification_value\&quot;: \&quot;123\&quot;   }  } }&#39; &#x60;&#x60;&#x60; **Example Token Response**:   &#x60;&#x60;&#x60;   {  \&quot;transaction\&quot;:  {   \&quot;token\&quot;:  \&quot;KtToV20m9qT1Yi8pbTeLNz0Ypns\&quot;,   \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;succeeded\&quot;:  true,   \&quot;transaction_type\&quot;:  \&quot;AddPaymentMethod\&quot;,   \&quot;retained\&quot;:  false,   \&quot;state\&quot;:  \&quot;succeeded\&quot;,   \&quot;message_key\&quot;:  \&quot;messages.transaction_succeeded\&quot;,   \&quot;message\&quot;:  \&quot;Succeeded!\&quot;,   \&quot;payment_method\&quot;:  {    \&quot;token\&quot;:  \&quot;MxyYEhDK12CUAA18bJDkAq0ab3y\&quot;,    \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;email\&quot;:  \&quot;aaa@bbb.ccc\&quot;,    \&quot;data\&quot;:  null,    \&quot;storage_state\&quot;:  \&quot;cached\&quot;,    \&quot;test\&quot;:  true,    \&quot;metadata\&quot;:  null,    \&quot;callback_url\&quot;:  null,    \&quot;last_four_digits\&quot;:  \&quot;1111\&quot;,    \&quot;first_six_digits\&quot;:  \&quot;411111\&quot;,    \&quot;card_type\&quot;:  \&quot;visa\&quot;,    \&quot;first_name\&quot;:  \&quot;John\&quot;,    \&quot;last_name\&quot;:  \&quot;Smith\&quot;,    \&quot;month\&quot;:  9,    \&quot;year\&quot;:  2029,    \&quot;address1\&quot;:  \&quot;123 12th St\&quot;,    \&quot;address2\&quot;:  \&quot;Building B\&quot;,    \&quot;city\&quot;:  \&quot;Quebec City\&quot;,    \&quot;state\&quot;:  \&quot;QC\&quot;,    \&quot;zip\&quot;:  \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;:  \&quot;CA\&quot;,    \&quot;phone_number\&quot;:  null,    \&quot;company\&quot;:  null,    \&quot;full_name\&quot;:  \&quot;John Smith\&quot;,    \&quot;eligible_for_card_updater\&quot;:  true,    \&quot;shipping_address1\&quot;:  null,    \&quot;shipping_address2\&quot;:  null,    \&quot;shipping_city\&quot;:  null,    \&quot;shipping_state\&quot;:  null,    \&quot;shipping_zip\&quot;:  null,    \&quot;shipping_country\&quot;:  null,    \&quot;shipping_phone_number\&quot;:  null,    \&quot;issuer_identification_number\&quot;:  \&quot;41111111\&quot;,    \&quot;click_to_pay\&quot;:  false,    \&quot;managed\&quot;:  true,    \&quot;payment_method_type\&quot;:  \&quot;credit_card\&quot;,    \&quot;errors\&quot;:  [],    \&quot;bin_metadata\&quot;:  {     \&quot;message\&quot;:  \&quot;BIN Metadata is available only to Advanced Vault enrolled customers and payment methods. Reach out to your account representative for more details.\&quot;    },    \&quot;fingerprint\&quot;:  \&quot;7ccffcf38900f224fc946cf2a9c8e260072b\&quot;,    \&quot;verification_value\&quot;:  \&quot;XXX\&quot;,    \&quot;number\&quot;:  \&quot;XXXX-XXXX-XXXX-1111\&quot;   }  } } &#x60;&#x60;&#x60; Here the returned payment method token **MxyYEhDK12CUAA18bJDkAq0ab3y** has to be used in the Process DG Payment request below.
      * @param id A unique identifier for a contract (required)
-     * @param processCfarPaymentRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return ApiResponse&lt;CfarPayment&gt;
+     * @param processDgPaymentRequest  (required)
+     * @return ApiResponse&lt;DgPayment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The result of the transaction </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The contract has been paid </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -694,18 +820,17 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarPayment> postCfarContractsIdPaymentWithHttpInfo(String id, ProcessCfarPaymentRequest processCfarPaymentRequest, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = postCfarContractsIdPaymentValidateBeforeCall(id, processCfarPaymentRequest, hcSessionID, null);
-        Type localVarReturnType = new TypeToken<CfarPayment>(){}.getType();
+    public ApiResponse<DgPayment> postDgContractsIdPaymentWithHttpInfo(String id, ProcessDgPaymentRequest processDgPaymentRequest) throws ApiException {
+        okhttp3.Call localVarCall = postDgContractsIdPaymentValidateBeforeCall(id, processDgPaymentRequest, null);
+        Type localVarReturnType = new TypeToken<DgPayment>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Process CFAR Payment (asynchronously)
-     * When HTS is the Merchant of Record (MoR), the customer&#39;s credit card is charged by HTS for the CFAR fee.  HTS is relying on an external payment gateway to process the payments, it allows the partner airline to tokenize the customer&#39;s credit card details and then pass the generated token in HTS Ancillaries for Airlines API payment endpoints in order to process the payment and confirm the contract related to the purchased product.  **Token URL**: https://core.spreedly.com/v1/payment_methods.json    **Example Token Request**:      &#x60;&#x60;&#x60;   curl --request POST --url https://core.spreedly.com/v1/payment_methods.json --header &#39;content-type: application/json&#39; -u  \&quot;login:password\&quot; --data &#39;{  \&quot;payment_method\&quot;: {   \&quot;email\&quot;: \&quot;aaa@bbb.ccc\&quot;,   \&quot;credit_card\&quot;: {    \&quot;number\&quot;: \&quot;4111111111111111\&quot;,    \&quot;month\&quot;: \&quot;09\&quot;,    \&quot;year\&quot;: \&quot;2029\&quot;,    \&quot;first_name\&quot;: \&quot;John\&quot;,    \&quot;last_name\&quot;: \&quot;Smith\&quot;,    \&quot;address1\&quot;: \&quot;123 12th St\&quot;,    \&quot;address2\&quot;: \&quot;Building B\&quot;,    \&quot;city\&quot;: \&quot;Quebec City\&quot;,    \&quot;state\&quot;: \&quot;QC\&quot;,    \&quot;zip\&quot;: \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;: \&quot;CA\&quot;,    \&quot;verification_value\&quot;: \&quot;123\&quot;   }  } }&#39; &#x60;&#x60;&#x60; **Example Token Response**:   &#x60;&#x60;&#x60;   {  \&quot;transaction\&quot;:  {   \&quot;token\&quot;:  \&quot;KtToV20m9qT1Yi8pbTeLNz0Ypns\&quot;,   \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;succeeded\&quot;:  true,   \&quot;transaction_type\&quot;:  \&quot;AddPaymentMethod\&quot;,   \&quot;retained\&quot;:  false,   \&quot;state\&quot;:  \&quot;succeeded\&quot;,   \&quot;message_key\&quot;:  \&quot;messages.transaction_succeeded\&quot;,   \&quot;message\&quot;:  \&quot;Succeeded!\&quot;,   \&quot;payment_method\&quot;:  {    \&quot;token\&quot;:  \&quot;MxyYEhDK12CUAA18bJDkAq0ab3y\&quot;,    \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;email\&quot;:  \&quot;aaa@bbb.ccc\&quot;,    \&quot;data\&quot;:  null,    \&quot;storage_state\&quot;:  \&quot;cached\&quot;,    \&quot;test\&quot;:  true,    \&quot;metadata\&quot;:  null,    \&quot;callback_url\&quot;:  null,    \&quot;last_four_digits\&quot;:  \&quot;1111\&quot;,    \&quot;first_six_digits\&quot;:  \&quot;411111\&quot;,    \&quot;card_type\&quot;:  \&quot;visa\&quot;,    \&quot;first_name\&quot;:  \&quot;John\&quot;,    \&quot;last_name\&quot;:  \&quot;Smith\&quot;,    \&quot;month\&quot;:  9,    \&quot;year\&quot;:  2029,    \&quot;address1\&quot;:  \&quot;123 12th St\&quot;,    \&quot;address2\&quot;:  \&quot;Building B\&quot;,    \&quot;city\&quot;:  \&quot;Quebec City\&quot;,    \&quot;state\&quot;:  \&quot;QC\&quot;,    \&quot;zip\&quot;:  \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;:  \&quot;CA\&quot;,    \&quot;phone_number\&quot;:  null,    \&quot;company\&quot;:  null,    \&quot;full_name\&quot;:  \&quot;John Smith\&quot;,    \&quot;eligible_for_card_updater\&quot;:  true,    \&quot;shipping_address1\&quot;:  null,    \&quot;shipping_address2\&quot;:  null,    \&quot;shipping_city\&quot;:  null,    \&quot;shipping_state\&quot;:  null,    \&quot;shipping_zip\&quot;:  null,    \&quot;shipping_country\&quot;:  null,    \&quot;shipping_phone_number\&quot;:  null,    \&quot;issuer_identification_number\&quot;:  \&quot;41111111\&quot;,    \&quot;click_to_pay\&quot;:  false,    \&quot;managed\&quot;:  true,    \&quot;payment_method_type\&quot;:  \&quot;credit_card\&quot;,    \&quot;errors\&quot;:  [],    \&quot;bin_metadata\&quot;:  {     \&quot;message\&quot;:  \&quot;BIN Metadata is available only to Advanced Vault enrolled customers and payment methods. Reach out to your account representative for more details.\&quot;    },    \&quot;fingerprint\&quot;:  \&quot;7ccffcf38900f224fc946cf2a9c8e260072b\&quot;,    \&quot;verification_value\&quot;:  \&quot;XXX\&quot;,    \&quot;number\&quot;:  \&quot;XXXX-XXXX-XXXX-1111\&quot;   }  } } &#x60;&#x60;&#x60; Here the returned payment method token **MxyYEhDK12CUAA18bJDkAq0ab3y** has to be used in the Process CFAR Payment request below.
+     * Process DG payment (asynchronously)
+     * When HTS is the Merchant of Record (MoR), the customer&#39;s credit card is charged by HTS for the DG fee.  HTS is relying on an external payment gateway to process the payments, it allows the partner airline to tokenize the customer&#39;s credit card details and then pass the generated token in HTS Ancillaries for Airlines API payment endpoints in order to process the payment and confirm the contract related to the purchased product.  **Token URL**: https://core.spreedly.com/v1/payment_methods.json    **Example Token Request**:      &#x60;&#x60;&#x60;   curl --request POST --url https://core.spreedly.com/v1/payment_methods.json --header &#39;content-type: application/json&#39; -u  \&quot;login:password\&quot; --data &#39;{  \&quot;payment_method\&quot;: {   \&quot;email\&quot;: \&quot;aaa@bbb.ccc\&quot;,   \&quot;credit_card\&quot;: {    \&quot;number\&quot;: \&quot;4111111111111111\&quot;,    \&quot;month\&quot;: \&quot;09\&quot;,    \&quot;year\&quot;: \&quot;2029\&quot;,    \&quot;first_name\&quot;: \&quot;John\&quot;,    \&quot;last_name\&quot;: \&quot;Smith\&quot;,    \&quot;address1\&quot;: \&quot;123 12th St\&quot;,    \&quot;address2\&quot;: \&quot;Building B\&quot;,    \&quot;city\&quot;: \&quot;Quebec City\&quot;,    \&quot;state\&quot;: \&quot;QC\&quot;,    \&quot;zip\&quot;: \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;: \&quot;CA\&quot;,    \&quot;verification_value\&quot;: \&quot;123\&quot;   }  } }&#39; &#x60;&#x60;&#x60; **Example Token Response**:   &#x60;&#x60;&#x60;   {  \&quot;transaction\&quot;:  {   \&quot;token\&quot;:  \&quot;KtToV20m9qT1Yi8pbTeLNz0Ypns\&quot;,   \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,   \&quot;succeeded\&quot;:  true,   \&quot;transaction_type\&quot;:  \&quot;AddPaymentMethod\&quot;,   \&quot;retained\&quot;:  false,   \&quot;state\&quot;:  \&quot;succeeded\&quot;,   \&quot;message_key\&quot;:  \&quot;messages.transaction_succeeded\&quot;,   \&quot;message\&quot;:  \&quot;Succeeded!\&quot;,   \&quot;payment_method\&quot;:  {    \&quot;token\&quot;:  \&quot;MxyYEhDK12CUAA18bJDkAq0ab3y\&quot;,    \&quot;created_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;updated_at\&quot;:  \&quot;2023-11-29T13:31:56Z\&quot;,    \&quot;email\&quot;:  \&quot;aaa@bbb.ccc\&quot;,    \&quot;data\&quot;:  null,    \&quot;storage_state\&quot;:  \&quot;cached\&quot;,    \&quot;test\&quot;:  true,    \&quot;metadata\&quot;:  null,    \&quot;callback_url\&quot;:  null,    \&quot;last_four_digits\&quot;:  \&quot;1111\&quot;,    \&quot;first_six_digits\&quot;:  \&quot;411111\&quot;,    \&quot;card_type\&quot;:  \&quot;visa\&quot;,    \&quot;first_name\&quot;:  \&quot;John\&quot;,    \&quot;last_name\&quot;:  \&quot;Smith\&quot;,    \&quot;month\&quot;:  9,    \&quot;year\&quot;:  2029,    \&quot;address1\&quot;:  \&quot;123 12th St\&quot;,    \&quot;address2\&quot;:  \&quot;Building B\&quot;,    \&quot;city\&quot;:  \&quot;Quebec City\&quot;,    \&quot;state\&quot;:  \&quot;QC\&quot;,    \&quot;zip\&quot;:  \&quot;G1R 4S9\&quot;,    \&quot;country\&quot;:  \&quot;CA\&quot;,    \&quot;phone_number\&quot;:  null,    \&quot;company\&quot;:  null,    \&quot;full_name\&quot;:  \&quot;John Smith\&quot;,    \&quot;eligible_for_card_updater\&quot;:  true,    \&quot;shipping_address1\&quot;:  null,    \&quot;shipping_address2\&quot;:  null,    \&quot;shipping_city\&quot;:  null,    \&quot;shipping_state\&quot;:  null,    \&quot;shipping_zip\&quot;:  null,    \&quot;shipping_country\&quot;:  null,    \&quot;shipping_phone_number\&quot;:  null,    \&quot;issuer_identification_number\&quot;:  \&quot;41111111\&quot;,    \&quot;click_to_pay\&quot;:  false,    \&quot;managed\&quot;:  true,    \&quot;payment_method_type\&quot;:  \&quot;credit_card\&quot;,    \&quot;errors\&quot;:  [],    \&quot;bin_metadata\&quot;:  {     \&quot;message\&quot;:  \&quot;BIN Metadata is available only to Advanced Vault enrolled customers and payment methods. Reach out to your account representative for more details.\&quot;    },    \&quot;fingerprint\&quot;:  \&quot;7ccffcf38900f224fc946cf2a9c8e260072b\&quot;,    \&quot;verification_value\&quot;:  \&quot;XXX\&quot;,    \&quot;number\&quot;:  \&quot;XXXX-XXXX-XXXX-1111\&quot;   }  } } &#x60;&#x60;&#x60; Here the returned payment method token **MxyYEhDK12CUAA18bJDkAq0ab3y** has to be used in the Process DG Payment request below.
      * @param id A unique identifier for a contract (required)
-     * @param processCfarPaymentRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param processDgPaymentRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -713,7 +838,7 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The result of the transaction </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The contract has been paid </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -722,16 +847,16 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarContractsIdPaymentAsync(String id, ProcessCfarPaymentRequest processCfarPaymentRequest, String hcSessionID, final ApiCallback<CfarPayment> _callback) throws ApiException {
+    public okhttp3.Call postDgContractsIdPaymentAsync(String id, ProcessDgPaymentRequest processDgPaymentRequest, final ApiCallback<DgPayment> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postCfarContractsIdPaymentValidateBeforeCall(id, processCfarPaymentRequest, hcSessionID, _callback);
-        Type localVarReturnType = new TypeToken<CfarPayment>(){}.getType();
+        okhttp3.Call localVarCall = postDgContractsIdPaymentValidateBeforeCall(id, processDgPaymentRequest, _callback);
+        Type localVarReturnType = new TypeToken<DgPayment>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for postCfarOffers
-     * @param createCfarOfferRequest  (required)
+     * Build call for postDgOffers
+     * @param createDgOffersRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -740,7 +865,7 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR offers </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG offers </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -749,7 +874,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarOffersCall(CreateCfarOfferRequest createCfarOfferRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postDgOffersCall(CreateDgOffersRequest createDgOffersRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -763,10 +888,10 @@ public class CancelForAnyReasonCfarApi {
             basePath = null;
         }
 
-        Object localVarPostBody = createCfarOfferRequest;
+        Object localVarPostBody = createDgOffersRequest;
 
         // create path and map variables
-        String localVarPath = "/cfar_offers";
+        String localVarPath = "/dg_offers";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -800,28 +925,28 @@ public class CancelForAnyReasonCfarApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postCfarOffersValidateBeforeCall(CreateCfarOfferRequest createCfarOfferRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'createCfarOfferRequest' is set
-        if (createCfarOfferRequest == null) {
-            throw new ApiException("Missing the required parameter 'createCfarOfferRequest' when calling postCfarOffers(Async)");
+    private okhttp3.Call postDgOffersValidateBeforeCall(CreateDgOffersRequest createDgOffersRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'createDgOffersRequest' is set
+        if (createDgOffersRequest == null) {
+            throw new ApiException("Missing the required parameter 'createDgOffersRequest' when calling postDgOffers(Async)");
         }
 
-        return postCfarOffersCall(createCfarOfferRequest, hcSessionID, _callback);
+        return postDgOffersCall(createDgOffersRequest, hcSessionID, _callback);
 
     }
 
     /**
-     * Create CFAR Offers
-     * Create CFAR offers for a user&#39;s trip
-     * @param createCfarOfferRequest  (required)
+     * Create DG Offers
+     * Create DG offers for a user&#39;s trip
+     * @param createDgOffersRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return List&lt;CfarOffer&gt;
+     * @return List&lt;CreateDgOfferItemResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR offers </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG offers </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -830,23 +955,23 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public List<CfarOffer> postCfarOffers(CreateCfarOfferRequest createCfarOfferRequest, String hcSessionID) throws ApiException {
-        ApiResponse<List<CfarOffer>> localVarResp = postCfarOffersWithHttpInfo(createCfarOfferRequest, hcSessionID);
+    public List<CreateDgOfferItemResponse> postDgOffers(CreateDgOffersRequest createDgOffersRequest, String hcSessionID) throws ApiException {
+        ApiResponse<List<CreateDgOfferItemResponse>> localVarResp = postDgOffersWithHttpInfo(createDgOffersRequest, hcSessionID);
         return localVarResp.getData();
     }
 
     /**
-     * Create CFAR Offers
-     * Create CFAR offers for a user&#39;s trip
-     * @param createCfarOfferRequest  (required)
+     * Create DG Offers
+     * Create DG offers for a user&#39;s trip
+     * @param createDgOffersRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return ApiResponse&lt;List&lt;CfarOffer&gt;&gt;
+     * @return ApiResponse&lt;List&lt;CreateDgOfferItemResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR offers </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG offers </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -855,16 +980,16 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<CfarOffer>> postCfarOffersWithHttpInfo(CreateCfarOfferRequest createCfarOfferRequest, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = postCfarOffersValidateBeforeCall(createCfarOfferRequest, hcSessionID, null);
-        Type localVarReturnType = new TypeToken<List<CfarOffer>>(){}.getType();
+    public ApiResponse<List<CreateDgOfferItemResponse>> postDgOffersWithHttpInfo(CreateDgOffersRequest createDgOffersRequest, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = postDgOffersValidateBeforeCall(createDgOffersRequest, hcSessionID, null);
+        Type localVarReturnType = new TypeToken<List<CreateDgOfferItemResponse>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create CFAR Offers (asynchronously)
-     * Create CFAR offers for a user&#39;s trip
-     * @param createCfarOfferRequest  (required)
+     * Create DG Offers (asynchronously)
+     * Create DG offers for a user&#39;s trip
+     * @param createDgOffersRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -873,7 +998,7 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The created CFAR offers </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
+        <tr><td> 201 </td><td> The created DG offers </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -882,18 +1007,17 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postCfarOffersAsync(CreateCfarOfferRequest createCfarOfferRequest, String hcSessionID, final ApiCallback<List<CfarOffer>> _callback) throws ApiException {
+    public okhttp3.Call postDgOffersAsync(CreateDgOffersRequest createDgOffersRequest, String hcSessionID, final ApiCallback<List<CreateDgOfferItemResponse>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postCfarOffersValidateBeforeCall(createCfarOfferRequest, hcSessionID, _callback);
-        Type localVarReturnType = new TypeToken<List<CfarOffer>>(){}.getType();
+        okhttp3.Call localVarCall = postDgOffersValidateBeforeCall(createDgOffersRequest, hcSessionID, _callback);
+        Type localVarReturnType = new TypeToken<List<CreateDgOfferItemResponse>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for putCfarContractExercisesIdMarkCompleted
-     * @param id A unique identifier for a exercise (required)
-     * @param markCfarContractExerciseCompleteRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * Build call for putDgContractsIdItinerarySlices
+     * @param id A unique identifier for a contract (required)
+     * @param dgItinerarySlice  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -901,7 +1025,8 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The Updated DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG Contract Itinerary Slices update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -910,7 +1035,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putCfarContractExercisesIdMarkCompletedCall(String id, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call putDgContractsIdItinerarySlicesCall(String id, List<DgItinerarySlice> dgItinerarySlice, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -924,10 +1049,10 @@ public class CancelForAnyReasonCfarApi {
             basePath = null;
         }
 
-        Object localVarPostBody = markCfarContractExerciseCompleteRequest;
+        Object localVarPostBody = dgItinerarySlice;
 
         // create path and map variables
-        String localVarPath = "/cfar_contract_exercises/{id}/mark_completed"
+        String localVarPath = "/dg_contracts/{id}/itinerary_slices"
             .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -951,45 +1076,40 @@ public class CancelForAnyReasonCfarApi {
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-
-        if (hcSessionID != null) {
-            localVarHeaderParams.put("HC-Session-ID", localVarApiClient.parameterToString(hcSessionID));
-        }
-
 
         String[] localVarAuthNames = new String[] { "PartnerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putCfarContractExercisesIdMarkCompletedValidateBeforeCall(String id, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putDgContractsIdItinerarySlicesValidateBeforeCall(String id, List<DgItinerarySlice> dgItinerarySlice, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling putCfarContractExercisesIdMarkCompleted(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling putDgContractsIdItinerarySlices(Async)");
         }
 
-        // verify the required parameter 'markCfarContractExerciseCompleteRequest' is set
-        if (markCfarContractExerciseCompleteRequest == null) {
-            throw new ApiException("Missing the required parameter 'markCfarContractExerciseCompleteRequest' when calling putCfarContractExercisesIdMarkCompleted(Async)");
+        // verify the required parameter 'dgItinerarySlice' is set
+        if (dgItinerarySlice == null) {
+            throw new ApiException("Missing the required parameter 'dgItinerarySlice' when calling putDgContractsIdItinerarySlices(Async)");
         }
 
-        return putCfarContractExercisesIdMarkCompletedCall(id, markCfarContractExerciseCompleteRequest, hcSessionID, _callback);
+        return putDgContractsIdItinerarySlicesCall(id, dgItinerarySlice, _callback);
 
     }
 
     /**
-     * Complete CFAR Exercise
-     * Record that a request to exercise a CFAR contract has been completed
-     * @param id A unique identifier for a exercise (required)
-     * @param markCfarContractExerciseCompleteRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return CfarContractExercise
+     * Update DG Contract Itinerary Slices
+     * Update itinerary slices of a DG contract.
+     * @param id A unique identifier for a contract (required)
+     * @param dgItinerarySlice  (required)
+     * @return DgContract
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The Updated DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG Contract Itinerary Slices update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -998,24 +1118,24 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarContractExercise putCfarContractExercisesIdMarkCompleted(String id, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String hcSessionID) throws ApiException {
-        ApiResponse<CfarContractExercise> localVarResp = putCfarContractExercisesIdMarkCompletedWithHttpInfo(id, markCfarContractExerciseCompleteRequest, hcSessionID);
+    public DgContract putDgContractsIdItinerarySlices(String id, List<DgItinerarySlice> dgItinerarySlice) throws ApiException {
+        ApiResponse<DgContract> localVarResp = putDgContractsIdItinerarySlicesWithHttpInfo(id, dgItinerarySlice);
         return localVarResp.getData();
     }
 
     /**
-     * Complete CFAR Exercise
-     * Record that a request to exercise a CFAR contract has been completed
-     * @param id A unique identifier for a exercise (required)
-     * @param markCfarContractExerciseCompleteRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return ApiResponse&lt;CfarContractExercise&gt;
+     * Update DG Contract Itinerary Slices
+     * Update itinerary slices of a DG contract.
+     * @param id A unique identifier for a contract (required)
+     * @param dgItinerarySlice  (required)
+     * @return ApiResponse&lt;DgContract&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The Updated DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG Contract Itinerary Slices update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -1024,18 +1144,17 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarContractExercise> putCfarContractExercisesIdMarkCompletedWithHttpInfo(String id, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = putCfarContractExercisesIdMarkCompletedValidateBeforeCall(id, markCfarContractExerciseCompleteRequest, hcSessionID, null);
-        Type localVarReturnType = new TypeToken<CfarContractExercise>(){}.getType();
+    public ApiResponse<DgContract> putDgContractsIdItinerarySlicesWithHttpInfo(String id, List<DgItinerarySlice> dgItinerarySlice) throws ApiException {
+        okhttp3.Call localVarCall = putDgContractsIdItinerarySlicesValidateBeforeCall(id, dgItinerarySlice, null);
+        Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Complete CFAR Exercise (asynchronously)
-     * Record that a request to exercise a CFAR contract has been completed
-     * @param id A unique identifier for a exercise (required)
-     * @param markCfarContractExerciseCompleteRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * Update DG Contract Itinerary Slices (asynchronously)
+     * Update itinerary slices of a DG contract.
+     * @param id A unique identifier for a contract (required)
+     * @param dgItinerarySlice  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1043,7 +1162,8 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract exercise </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The Updated DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG Contract Itinerary Slices update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -1052,18 +1172,17 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putCfarContractExercisesIdMarkCompletedAsync(String id, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String hcSessionID, final ApiCallback<CfarContractExercise> _callback) throws ApiException {
+    public okhttp3.Call putDgContractsIdItinerarySlicesAsync(String id, List<DgItinerarySlice> dgItinerarySlice, final ApiCallback<DgContract> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putCfarContractExercisesIdMarkCompletedValidateBeforeCall(id, markCfarContractExerciseCompleteRequest, hcSessionID, _callback);
-        Type localVarReturnType = new TypeToken<CfarContractExercise>(){}.getType();
+        okhttp3.Call localVarCall = putDgContractsIdItinerarySlicesValidateBeforeCall(id, dgItinerarySlice, _callback);
+        Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for putCfarContractsIdFormsOfPayment
+     * Build call for putDgContractsIdUpdateStatus
      * @param id A unique identifier for a contract (required)
-     * @param updateCfarFormOfPaymentRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param updateDgContractStatusRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1071,8 +1190,8 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> Forms of payment update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The Updated DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG contract status update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -1081,7 +1200,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putCfarContractsIdFormsOfPaymentCall(String id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call putDgContractsIdUpdateStatusCall(String id, UpdateDgContractStatusRequest updateDgContractStatusRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1095,10 +1214,10 @@ public class CancelForAnyReasonCfarApi {
             basePath = null;
         }
 
-        Object localVarPostBody = updateCfarFormOfPaymentRequest;
+        Object localVarPostBody = updateDgContractStatusRequest;
 
         // create path and map variables
-        String localVarPath = "/cfar_contracts/{id}/forms_of_payment"
+        String localVarPath = "/dg_contracts/{id}/update_status"
             .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1123,45 +1242,39 @@ public class CancelForAnyReasonCfarApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (hcSessionID != null) {
-            localVarHeaderParams.put("HC-Session-ID", localVarApiClient.parameterToString(hcSessionID));
-        }
-
-
         String[] localVarAuthNames = new String[] { "PartnerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putCfarContractsIdFormsOfPaymentValidateBeforeCall(String id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putDgContractsIdUpdateStatusValidateBeforeCall(String id, UpdateDgContractStatusRequest updateDgContractStatusRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling putCfarContractsIdFormsOfPayment(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling putDgContractsIdUpdateStatus(Async)");
         }
 
-        // verify the required parameter 'updateCfarFormOfPaymentRequest' is set
-        if (updateCfarFormOfPaymentRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateCfarFormOfPaymentRequest' when calling putCfarContractsIdFormsOfPayment(Async)");
+        // verify the required parameter 'updateDgContractStatusRequest' is set
+        if (updateDgContractStatusRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateDgContractStatusRequest' when calling putDgContractsIdUpdateStatus(Async)");
         }
 
-        return putCfarContractsIdFormsOfPaymentCall(id, updateCfarFormOfPaymentRequest, hcSessionID, _callback);
+        return putDgContractsIdUpdateStatusCall(id, updateDgContractStatusRequest, _callback);
 
     }
 
     /**
-     * Update forms of payment of a CFAR Contract
-     * Update forms of payment linked with a CFAR contract
+     * Update DG Contract Status
+     * Update DG Contract Status
      * @param id A unique identifier for a contract (required)
-     * @param updateCfarFormOfPaymentRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return CfarContract
+     * @param updateDgContractStatusRequest  (required)
+     * @return DgContract
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> Forms of payment update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The Updated DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG contract status update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -1170,25 +1283,24 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarContract putCfarContractsIdFormsOfPayment(String id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, String hcSessionID) throws ApiException {
-        ApiResponse<CfarContract> localVarResp = putCfarContractsIdFormsOfPaymentWithHttpInfo(id, updateCfarFormOfPaymentRequest, hcSessionID);
+    public DgContract putDgContractsIdUpdateStatus(String id, UpdateDgContractStatusRequest updateDgContractStatusRequest) throws ApiException {
+        ApiResponse<DgContract> localVarResp = putDgContractsIdUpdateStatusWithHttpInfo(id, updateDgContractStatusRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Update forms of payment of a CFAR Contract
-     * Update forms of payment linked with a CFAR contract
+     * Update DG Contract Status
+     * Update DG Contract Status
      * @param id A unique identifier for a contract (required)
-     * @param updateCfarFormOfPaymentRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return ApiResponse&lt;CfarContract&gt;
+     * @param updateDgContractStatusRequest  (required)
+     * @return ApiResponse&lt;DgContract&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> Forms of payment update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The Updated DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG contract status update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -1197,18 +1309,17 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarContract> putCfarContractsIdFormsOfPaymentWithHttpInfo(String id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentValidateBeforeCall(id, updateCfarFormOfPaymentRequest, hcSessionID, null);
-        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+    public ApiResponse<DgContract> putDgContractsIdUpdateStatusWithHttpInfo(String id, UpdateDgContractStatusRequest updateDgContractStatusRequest) throws ApiException {
+        okhttp3.Call localVarCall = putDgContractsIdUpdateStatusValidateBeforeCall(id, updateDgContractStatusRequest, null);
+        Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Update forms of payment of a CFAR Contract (asynchronously)
-     * Update forms of payment linked with a CFAR contract
+     * Update DG Contract Status (asynchronously)
+     * Update DG Contract Status
      * @param id A unique identifier for a contract (required)
-     * @param updateCfarFormOfPaymentRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param updateDgContractStatusRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1216,8 +1327,8 @@ public class CancelForAnyReasonCfarApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> Forms of payment update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 200 </td><td> The Updated DG contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The DG contract status update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
         <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
@@ -1226,184 +1337,10 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putCfarContractsIdFormsOfPaymentAsync(String id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
+    public okhttp3.Call putDgContractsIdUpdateStatusAsync(String id, UpdateDgContractStatusRequest updateDgContractStatusRequest, final ApiCallback<DgContract> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentValidateBeforeCall(id, updateCfarFormOfPaymentRequest, hcSessionID, _callback);
-        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for putCfarContractsIdUpdateStatus
-     * @param id A unique identifier for a contract (required)
-     * @param updateCfarContractRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The CFAR contract status update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call putCfarContractsIdUpdateStatusCall(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = updateCfarContractRequest;
-
-        // create path and map variables
-        String localVarPath = "/cfar_contracts/{id}/update_status"
-            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        if (hcSessionID != null) {
-            localVarHeaderParams.put("HC-Session-ID", localVarApiClient.parameterToString(hcSessionID));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "PartnerAuth" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call putCfarContractsIdUpdateStatusValidateBeforeCall(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling putCfarContractsIdUpdateStatus(Async)");
-        }
-
-        // verify the required parameter 'updateCfarContractRequest' is set
-        if (updateCfarContractRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateCfarContractRequest' when calling putCfarContractsIdUpdateStatus(Async)");
-        }
-
-        return putCfarContractsIdUpdateStatusCall(id, updateCfarContractRequest, hcSessionID, _callback);
-
-    }
-
-    /**
-     * Update CFAR Contract Status
-     * Update the CFAR contract
-     * @param id A unique identifier for a contract (required)
-     * @param updateCfarContractRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return CfarContract
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The CFAR contract status update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
-     </table>
-     */
-    public CfarContract putCfarContractsIdUpdateStatus(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID) throws ApiException {
-        ApiResponse<CfarContract> localVarResp = putCfarContractsIdUpdateStatusWithHttpInfo(id, updateCfarContractRequest, hcSessionID);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Update CFAR Contract Status
-     * Update the CFAR contract
-     * @param id A unique identifier for a contract (required)
-     * @param updateCfarContractRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @return ApiResponse&lt;CfarContract&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The CFAR contract status update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<CfarContract> putCfarContractsIdUpdateStatusWithHttpInfo(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusValidateBeforeCall(id, updateCfarContractRequest, hcSessionID, null);
-        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Update CFAR Contract Status (asynchronously)
-     * Update the CFAR contract
-     * @param id A unique identifier for a contract (required)
-     * @param updateCfarContractRequest  (required)
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 204 </td><td> The CFAR contract status update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call putCfarContractsIdUpdateStatusAsync(String id, UpdateCfarContractRequest updateCfarContractRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = putCfarContractsIdUpdateStatusValidateBeforeCall(id, updateCfarContractRequest, hcSessionID, _callback);
-        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+        okhttp3.Call localVarCall = putDgContractsIdUpdateStatusValidateBeforeCall(id, updateDgContractStatusRequest, _callback);
+        Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
