@@ -29,7 +29,8 @@ def process_java_files_in_directory(directory_path):
                 remove_nonnull_from_file(file_path)
 
 # Specify the directory to process
-directory_path = '/Users/mmerali/test-java-sdk/src/main/java/com/hopper/cloud/airlines/model'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+directory_path = os.path.join(script_dir, 'src/main/java/com/hopper/cloud/airlines/model')
 
 # Call the function
 process_java_files_in_directory(directory_path)
