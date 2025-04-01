@@ -59,8 +59,7 @@ public class PaymentMethod {
    * Get type
    * @return type
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+    @ApiModelProperty(required = true, value = "")
 
   public PaymentMethodType getType() {
     return type;

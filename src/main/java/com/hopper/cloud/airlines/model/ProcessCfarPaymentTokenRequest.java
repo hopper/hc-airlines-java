@@ -74,8 +74,7 @@ public class ProcessCfarPaymentTokenRequest {
      * The Token of the Form of Payment used to pay for the CFAR fee
      * @return paymentMethodToken
      **/
-    @javax.annotation.Nonnull
-    @ApiModelProperty(required = true, value = "The Token of the Form of Payment used to pay for the CFAR fee")
+        @ApiModelProperty(required = true, value = "The Token of the Form of Payment used to pay for the CFAR fee")
 
     public String getPaymentMethodToken() {
         return paymentMethodToken;
@@ -96,8 +95,7 @@ public class ProcessCfarPaymentTokenRequest {
      * Get pnrReference
      * @return pnrReference
      **/
-    @javax.annotation.Nonnull
-    @ApiModelProperty(required = true, value = "")
+        @ApiModelProperty(required = true, value = "")
 
     public String getPnrReference() {
         return pnrReference;
@@ -119,8 +117,7 @@ public class ProcessCfarPaymentTokenRequest {
      * Get emailAddress
      * @return emailAddress
      **/
-    @javax.annotation.Nonnull
-    @ApiModelProperty(required = true, value = "")
+        @ApiModelProperty(required = true, value = "")
 
     public String getEmailAddress() {
         return emailAddress;
