@@ -53,22 +53,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgExerciseItinerary {
   public static final String SERIALIZED_NAME_PASSENGER_COUNT = "passenger_count";
   @SerializedName(SERIALIZED_NAME_PASSENGER_COUNT)
   @javax.annotation.Nonnull
-  private List<DgPassengerCount> passengerCount = new ArrayList<>();
+  private List<DgPassengerCount> passengerCount;
 
   public static final String SERIALIZED_NAME_SLICES = "slices";
   @SerializedName(SERIALIZED_NAME_SLICES)
   @javax.annotation.Nonnull
-  private List<DgExerciseItinerarySlice> slices = new ArrayList<>();
+  private List<DgExerciseItinerarySlice> slices;
 
   public static final String SERIALIZED_NAME_PASSENGERS = "passengers";
   @SerializedName(SERIALIZED_NAME_PASSENGERS)
   @javax.annotation.Nullable
-  private List<DgPassenger> passengers = new ArrayList<>();
+  private List<DgPassenger> passengers;
 
   public DgExerciseItinerary() {
   }

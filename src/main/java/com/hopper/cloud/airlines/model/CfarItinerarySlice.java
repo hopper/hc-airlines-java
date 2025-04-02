@@ -54,17 +54,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing the list of flight segments for a fare slice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarItinerarySlice {
   public static final String SERIALIZED_NAME_SEGMENTS = "segments";
   @SerializedName(SERIALIZED_NAME_SEGMENTS)
   @javax.annotation.Nonnull
-  private List<CfarItinerarySliceSegment> segments = new ArrayList<>();
+  private List<CfarItinerarySliceSegment> segments;
 
   public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
   @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
   @javax.annotation.Nullable
-  private List<PassengerPricing> passengerPricing = new ArrayList<>();
+  private List<PassengerPricing> passengerPricing;
 
   public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
@@ -84,12 +84,12 @@ public class CfarItinerarySlice {
   public static final String SERIALIZED_NAME_FARE_RULES = "fare_rules";
   @SerializedName(SERIALIZED_NAME_FARE_RULES)
   @javax.annotation.Nullable
-  private List<FareRule> fareRules = new ArrayList<>();
+  private List<FareRule> fareRules;
 
   public static final String SERIALIZED_NAME_OTHER_FARES = "other_fares";
   @SerializedName(SERIALIZED_NAME_OTHER_FARES)
   @javax.annotation.Nullable
-  private List<Fare> otherFares = new ArrayList<>();
+  private List<Fare> otherFares;
 
   public CfarItinerarySlice() {
   }

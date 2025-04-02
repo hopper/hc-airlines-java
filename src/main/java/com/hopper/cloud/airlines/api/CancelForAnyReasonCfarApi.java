@@ -1134,18 +1134,7 @@ public class CancelForAnyReasonCfarApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call putCfarContractsIdFormsOfPaymentValidateBeforeCall(String id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling putCfarContractsIdFormsOfPayment(Async)");
-        }
-
-        // verify the required parameter 'updateCfarFormOfPaymentRequest' is set
-        if (updateCfarFormOfPaymentRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateCfarFormOfPaymentRequest' when calling putCfarContractsIdFormsOfPayment(Async)");
-        }
-
         return putCfarContractsIdFormsOfPaymentCall(id, updateCfarFormOfPaymentRequest, hcSessionID, _callback);
-
     }
 
     /**

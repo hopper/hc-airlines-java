@@ -51,12 +51,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Request object related to the update of forms of payment for CFAR contract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UpdateCfarFormOfPaymentRequest {
   public static final String SERIALIZED_NAME_FORMS_OF_PAYMENT = "forms_of_payment";
   @SerializedName(SERIALIZED_NAME_FORMS_OF_PAYMENT)
   @javax.annotation.Nonnull
-  private List<FormOfPayment> formsOfPayment = new ArrayList<>();
+  private List<FormOfPayment> formsOfPayment;
 
   public UpdateCfarFormOfPaymentRequest() {
   }

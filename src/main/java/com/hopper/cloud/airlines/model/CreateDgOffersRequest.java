@@ -56,12 +56,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A create DG offers request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateDgOffersRequest {
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
   @javax.annotation.Nonnull
-  private List<DgItinerary> itinerary = new ArrayList<>();
+  private List<DgItinerary> itinerary;
 
   public static final String SERIALIZED_NAME_REQUEST_TYPE = "request_type";
   @SerializedName(SERIALIZED_NAME_REQUEST_TYPE)
@@ -81,7 +81,7 @@ public class CreateDgOffersRequest {
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   @javax.annotation.Nonnull
-  private Map<String, String> extAttributes = new HashMap<>();
+  private Map<String, String> extAttributes;
 
   public CreateDgOffersRequest() {
   }

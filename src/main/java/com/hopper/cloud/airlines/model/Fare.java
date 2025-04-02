@@ -51,7 +51,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Fare
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class Fare {
   public static final String SERIALIZED_NAME_PRICE = "price";
   @SerializedName(SERIALIZED_NAME_PRICE)
@@ -71,7 +71,7 @@ public class Fare {
   public static final String SERIALIZED_NAME_FARE_RULES = "fare_rules";
   @SerializedName(SERIALIZED_NAME_FARE_RULES)
   @javax.annotation.Nullable
-  private List<FareRule> fareRules = new ArrayList<>();
+  private List<FareRule> fareRules;
 
   public Fare() {
   }

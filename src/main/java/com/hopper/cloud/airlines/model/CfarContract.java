@@ -57,7 +57,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A CFAR contract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarContract {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -72,7 +72,7 @@ public class CfarContract {
   public static final String SERIALIZED_NAME_OFFERS = "offers";
   @SerializedName(SERIALIZED_NAME_OFFERS)
   @javax.annotation.Nonnull
-  private List<CfarOffer> offers = new ArrayList<>();
+  private List<CfarOffer> offers;
 
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
@@ -107,7 +107,7 @@ public class CfarContract {
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   @SerializedName(SERIALIZED_NAME_TAXES)
   @javax.annotation.Nullable
-  private List<CfarTax> taxes = new ArrayList<>();
+  private List<CfarTax> taxes;
 
   public static final String SERIALIZED_NAME_CREATED_DATE_TIME = "created_date_time";
   @SerializedName(SERIALIZED_NAME_CREATED_DATE_TIME)
@@ -132,7 +132,7 @@ public class CfarContract {
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   @javax.annotation.Nonnull
-  private Map<String, String> extAttributes = new HashMap<>();
+  private Map<String, String> extAttributes;
 
   public static final String SERIALIZED_NAME_EXERCISE_URL = "exercise_url";
   @SerializedName(SERIALIZED_NAME_EXERCISE_URL)

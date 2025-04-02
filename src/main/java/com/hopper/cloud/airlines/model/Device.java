@@ -61,7 +61,7 @@ import com.google.gson.JsonParseException;
 
 import com.hopper.cloud.airlines.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class Device extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(Device.class.getName());
 

@@ -52,17 +52,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * DgContents
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgContents {
   public static final String SERIALIZED_NAME_BULLET_POINTS = "bullet_points";
   @SerializedName(SERIALIZED_NAME_BULLET_POINTS)
   @javax.annotation.Nonnull
-  private List<String> bulletPoints = new ArrayList<>();
+  private List<String> bulletPoints;
 
   public static final String SERIALIZED_NAME_LABELS = "labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
   @javax.annotation.Nonnull
-  private Map<String, String> labels = new HashMap<>();
+  private Map<String, String> labels;
 
   public DgContents() {
   }

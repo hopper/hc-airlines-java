@@ -54,12 +54,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * DgItinerary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgItinerary {
   public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
   @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
   @javax.annotation.Nonnull
-  private List<DgPassengerPricing> passengerPricing = new ArrayList<>();
+  private List<DgPassengerPricing> passengerPricing;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -69,12 +69,12 @@ public class DgItinerary {
   public static final String SERIALIZED_NAME_SLICES = "slices";
   @SerializedName(SERIALIZED_NAME_SLICES)
   @javax.annotation.Nonnull
-  private List<DgItinerarySlice> slices = new ArrayList<>();
+  private List<DgItinerarySlice> slices;
 
   public static final String SERIALIZED_NAME_ANCILLARIES = "ancillaries";
   @SerializedName(SERIALIZED_NAME_ANCILLARIES)
   @javax.annotation.Nullable
-  private List<DgAncillary> ancillaries = new ArrayList<>();
+  private List<DgAncillary> ancillaries;
 
   public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
@@ -84,7 +84,7 @@ public class DgItinerary {
   public static final String SERIALIZED_NAME_PASSENGERS = "passengers";
   @SerializedName(SERIALIZED_NAME_PASSENGERS)
   @javax.annotation.Nullable
-  private List<DgPassenger> passengers = new ArrayList<>();
+  private List<DgPassenger> passengers;
 
   public DgItinerary() {
   }

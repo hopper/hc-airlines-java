@@ -52,12 +52,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing the list of flight segments for a fare slice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgItinerarySlice {
   public static final String SERIALIZED_NAME_SEGMENTS = "segments";
   @SerializedName(SERIALIZED_NAME_SEGMENTS)
   @javax.annotation.Nonnull
-  private List<DgItinerarySliceSegment> segments = new ArrayList<>();
+  private List<DgItinerarySliceSegment> segments;
 
   public static final String SERIALIZED_NAME_FARE_BRAND = "fare_brand";
   @SerializedName(SERIALIZED_NAME_FARE_BRAND)
@@ -67,7 +67,7 @@ public class DgItinerarySlice {
   public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
   @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
   @javax.annotation.Nullable
-  private List<DgPassengerPricing> passengerPricing = new ArrayList<>();
+  private List<DgPassengerPricing> passengerPricing;
 
   public DgItinerarySlice() {
   }

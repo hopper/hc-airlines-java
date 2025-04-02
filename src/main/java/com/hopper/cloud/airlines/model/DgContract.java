@@ -56,7 +56,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A DG contract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgContract {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -76,7 +76,7 @@ public class DgContract {
   public static final String SERIALIZED_NAME_OFFERS = "offers";
   @SerializedName(SERIALIZED_NAME_OFFERS)
   @javax.annotation.Nonnull
-  private List<DgOffer> offers = new ArrayList<>();
+  private List<DgOffer> offers;
 
   public static final String SERIALIZED_NAME_COVERAGE_PERCENTAGE = "coverage_percentage";
   @SerializedName(SERIALIZED_NAME_COVERAGE_PERCENTAGE)
@@ -111,7 +111,7 @@ public class DgContract {
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   @SerializedName(SERIALIZED_NAME_TAXES)
   @javax.annotation.Nullable
-  private List<DgTax> taxes = new ArrayList<>();
+  private List<DgTax> taxes;
 
   public static final String SERIALIZED_NAME_MAX_HOURS_BEFORE_DEPARTURE = "max_hours_before_departure";
   @SerializedName(SERIALIZED_NAME_MAX_HOURS_BEFORE_DEPARTURE)
@@ -146,7 +146,7 @@ public class DgContract {
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   @javax.annotation.Nonnull
-  private Map<String, String> extAttributes = new HashMap<>();
+  private Map<String, String> extAttributes;
 
   public DgContract() {
   }

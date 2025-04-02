@@ -52,7 +52,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * PassengerPricing
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class PassengerPricing {
   public static final String SERIALIZED_NAME_PASSENGER_COUNT = "passenger_count";
   @SerializedName(SERIALIZED_NAME_PASSENGER_COUNT)
@@ -67,7 +67,7 @@ public class PassengerPricing {
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   @SerializedName(SERIALIZED_NAME_TAXES)
   @javax.annotation.Nullable
-  private List<CfarPassengerTax> taxes = new ArrayList<>();
+  private List<CfarPassengerTax> taxes;
 
   public PassengerPricing() {
   }

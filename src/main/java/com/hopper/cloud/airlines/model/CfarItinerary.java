@@ -56,12 +56,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CfarItinerary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarItinerary {
   public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
   @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
   @javax.annotation.Nonnull
-  private List<PassengerPricing> passengerPricing = new ArrayList<>();
+  private List<PassengerPricing> passengerPricing;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -71,12 +71,12 @@ public class CfarItinerary {
   public static final String SERIALIZED_NAME_SLICES = "slices";
   @SerializedName(SERIALIZED_NAME_SLICES)
   @javax.annotation.Nonnull
-  private List<CfarItinerarySlice> slices = new ArrayList<>();
+  private List<CfarItinerarySlice> slices;
 
   public static final String SERIALIZED_NAME_ANCILLARIES = "ancillaries";
   @SerializedName(SERIALIZED_NAME_ANCILLARIES)
   @javax.annotation.Nullable
-  private List<Ancillary> ancillaries = new ArrayList<>();
+  private List<Ancillary> ancillaries;
 
   public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
@@ -86,17 +86,17 @@ public class CfarItinerary {
   public static final String SERIALIZED_NAME_PASSENGERS = "passengers";
   @SerializedName(SERIALIZED_NAME_PASSENGERS)
   @javax.annotation.Nullable
-  private List<CfarPassenger> passengers = new ArrayList<>();
+  private List<CfarPassenger> passengers;
 
   public static final String SERIALIZED_NAME_FARE_RULES = "fare_rules";
   @SerializedName(SERIALIZED_NAME_FARE_RULES)
   @javax.annotation.Nullable
-  private List<FareRule> fareRules = new ArrayList<>();
+  private List<FareRule> fareRules;
 
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   @SerializedName(SERIALIZED_NAME_TAXES)
   @javax.annotation.Nullable
-  private List<CfarPassengerTax> taxes = new ArrayList<>();
+  private List<CfarPassengerTax> taxes;
 
   public CfarItinerary() {
   }

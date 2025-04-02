@@ -50,7 +50,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing information related to the user&#39;s session
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateAirlineDgSessionRequest {
   public static final String SERIALIZED_NAME_USER_INFO = "user_info";
   @SerializedName(SERIALIZED_NAME_USER_INFO)

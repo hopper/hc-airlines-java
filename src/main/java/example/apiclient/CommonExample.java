@@ -133,14 +133,10 @@ public class CommonExample {
         CfarOfferItinerary itinerary1 = new CfarOfferItinerary();
         itinerary1.setCurrency("USD");
         itinerary1.setTotalPrice("100.00");
-        itinerary1.setFareRules(null);
 
         // -- Slices
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         cfarItinerarySlice.setFareBrand("basic");
-        cfarItinerarySlice.setPassengerPricing(null);
-        cfarItinerarySlice.setFareRules(null);
-        cfarItinerarySlice.setOtherFares(null);
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
         cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
@@ -190,14 +186,10 @@ public class CommonExample {
         CfarOfferItinerary itinerary2 = new CfarOfferItinerary();
         itinerary2.setCurrency("USD");
         itinerary2.setTotalPrice("120.00");
-        itinerary2.setFareRules(null);
 
         // -- Slices
         CfarItinerarySlice cfarItinerarySlice1 = new CfarItinerarySlice();
         cfarItinerarySlice1.setFareBrand("flex");
-        cfarItinerarySlice1.setPassengerPricing(null);
-        cfarItinerarySlice1.setFareRules(null);
-        cfarItinerarySlice1.setOtherFares(null);
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment1 = new CfarItinerarySliceSegment();
         cfarItinerarySliceSegment1.setArrivalDateTime(flightDate + "T19:12:30");
@@ -256,15 +248,10 @@ public class CommonExample {
         CfarItinerary itinerary = new CfarItinerary();
         itinerary.setCurrency("USD");
         itinerary.setTotalPrice("190.00");
-        itinerary.setFareRules(null);
-
 
         // -- Slices
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         cfarItinerarySlice.setFareBrand("flex");
-        cfarItinerarySlice.setFareRules(null);
-        cfarItinerarySlice.setPassengerPricing(null);
-        cfarItinerarySlice.setOtherFares(null);
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
         cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
@@ -338,7 +325,6 @@ public class CommonExample {
         updateCfarContractRequest.setPnrReference("ABC123");
         updateCfarContractRequest.setCurrency("EUR");
         updateCfarContractRequest.setExchangeRate("0.90");
-        updateCfarContractRequest.setFormsOfPayment(null);
 
         System.out.print(updateCfarContractRequest.toJson());
         return client.putCfarContractsIdUpdateStatus(contractReference, updateCfarContractRequest, sessionId);
@@ -375,7 +361,6 @@ public class CommonExample {
         CfarCreateExerciseItinerary itinerary = new CfarCreateExerciseItinerary();
         itinerary.setCurrency("USD");
         itinerary.setTotalPrice("190.00");
-        itinerary.setFareRules(null);
 
         Ancillary ancillary = new Ancillary();
         ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
@@ -383,9 +368,6 @@ public class CommonExample {
 
         CfarCreateExerciseItinerarySlice cfarItinerarySlice = new CfarCreateExerciseItinerarySlice();
         cfarItinerarySlice.setFareBrand("flex");
-        cfarItinerarySlice.setFareRules(null);
-        cfarItinerarySlice.setOtherFares(null);
-        cfarItinerarySlice.setPassengerPricing(null);
 
         CfarCreateExerciseSliceSegment cfarItinerarySliceSegment = new CfarCreateExerciseSliceSegment();
         cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
