@@ -55,7 +55,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarCreateExerciseItinerary {
   public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
   @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
@@ -69,7 +69,8 @@ public class CfarCreateExerciseItinerary {
 
   public static final String SERIALIZED_NAME_SLICES = "slices";
   @SerializedName(SERIALIZED_NAME_SLICES)
-    private List<CfarCreateExerciseItinerarySlice> slices = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<CfarCreateExerciseItinerarySlice> slices = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ANCILLARIES = "ancillaries";
   @SerializedName(SERIALIZED_NAME_ANCILLARIES)
@@ -140,7 +141,7 @@ public class CfarCreateExerciseItinerary {
   }
 
 
-  public CfarCreateExerciseItinerary slices(List<CfarCreateExerciseItinerarySlice> slices) {
+  public CfarCreateExerciseItinerary slices(@javax.annotation.Nonnull List<CfarCreateExerciseItinerarySlice> slices) {
     this.slices = slices;
     return this;
   }
@@ -157,11 +158,12 @@ public class CfarCreateExerciseItinerary {
    * List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed
    * @return slices
    */
-    public List<CfarCreateExerciseItinerarySlice> getSlices() {
+  @javax.annotation.Nonnull
+  public List<CfarCreateExerciseItinerarySlice> getSlices() {
     return slices;
   }
 
-  public void setSlices(List<CfarCreateExerciseItinerarySlice> slices) {
+  public void setSlices(@javax.annotation.Nonnull List<CfarCreateExerciseItinerarySlice> slices) {
     this.slices = slices;
   }
 

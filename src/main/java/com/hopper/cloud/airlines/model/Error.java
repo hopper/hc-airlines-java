@@ -50,11 +50,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Error
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class Error {
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
-    private String message;
+  @javax.annotation.Nonnull
+  private String message;
 
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -69,7 +70,7 @@ public class Error {
   public Error() {
   }
 
-  public Error message(String message) {
+  public Error message(@javax.annotation.Nonnull String message) {
     this.message = message;
     return this;
   }
@@ -78,11 +79,12 @@ public class Error {
    * Get message
    * @return message
    */
-    public String getMessage() {
+  @javax.annotation.Nonnull
+  public String getMessage() {
     return message;
   }
 
-  public void setMessage(String message) {
+  public void setMessage(@javax.annotation.Nonnull String message) {
     this.message = message;
   }
 

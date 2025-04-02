@@ -49,15 +49,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object detailing the Passenger Information
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarPassenger {
   public static final String SERIALIZED_NAME_PASSENGER_REFERENCE = "passenger_reference";
   @SerializedName(SERIALIZED_NAME_PASSENGER_REFERENCE)
-    private String passengerReference;
+  @javax.annotation.Nonnull
+  private String passengerReference;
 
   public static final String SERIALIZED_NAME_PASSENGER_TYPE = "passenger_type";
   @SerializedName(SERIALIZED_NAME_PASSENGER_TYPE)
-    private PassengerType passengerType;
+  @javax.annotation.Nonnull
+  private PassengerType passengerType;
 
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
@@ -72,7 +74,7 @@ public class CfarPassenger {
   public CfarPassenger() {
   }
 
-  public CfarPassenger passengerReference(String passengerReference) {
+  public CfarPassenger passengerReference(@javax.annotation.Nonnull String passengerReference) {
     this.passengerReference = passengerReference;
     return this;
   }
@@ -81,16 +83,17 @@ public class CfarPassenger {
    * Unique reference of the passenger
    * @return passengerReference
    */
-    public String getPassengerReference() {
+  @javax.annotation.Nonnull
+  public String getPassengerReference() {
     return passengerReference;
   }
 
-  public void setPassengerReference(String passengerReference) {
+  public void setPassengerReference(@javax.annotation.Nonnull String passengerReference) {
     this.passengerReference = passengerReference;
   }
 
 
-  public CfarPassenger passengerType(PassengerType passengerType) {
+  public CfarPassenger passengerType(@javax.annotation.Nonnull PassengerType passengerType) {
     this.passengerType = passengerType;
     return this;
   }
@@ -99,11 +102,12 @@ public class CfarPassenger {
    * Get passengerType
    * @return passengerType
    */
-    public PassengerType getPassengerType() {
+  @javax.annotation.Nonnull
+  public PassengerType getPassengerType() {
     return passengerType;
   }
 
-  public void setPassengerType(PassengerType passengerType) {
+  public void setPassengerType(@javax.annotation.Nonnull PassengerType passengerType) {
     this.passengerType = passengerType;
   }
 

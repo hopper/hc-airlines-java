@@ -56,15 +56,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CreateCfarOfferRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateCfarOfferRequest {
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
-    private List<CfarOfferItinerary> itinerary = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<CfarOfferItinerary> itinerary = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REQUEST_TYPE = "request_type";
   @SerializedName(SERIALIZED_NAME_REQUEST_TYPE)
-    private RequestType requestType;
+  @javax.annotation.Nonnull
+  private RequestType requestType;
 
   public static final String SERIALIZED_NAME_BOOKING_DATE_TIME = "booking_date_time";
   @SerializedName(SERIALIZED_NAME_BOOKING_DATE_TIME)
@@ -73,7 +75,8 @@ public class CreateCfarOfferRequest {
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
-    private Map<String, String> extAttributes = new HashMap<>();
+  @javax.annotation.Nonnull
+  private Map<String, String> extAttributes = new HashMap<>();
 
   public static final String SERIALIZED_NAME_SESSION = "session";
   @SerializedName(SERIALIZED_NAME_SESSION)
@@ -83,7 +86,7 @@ public class CreateCfarOfferRequest {
   public CreateCfarOfferRequest() {
   }
 
-  public CreateCfarOfferRequest itinerary(List<CfarOfferItinerary> itinerary) {
+  public CreateCfarOfferRequest itinerary(@javax.annotation.Nonnull List<CfarOfferItinerary> itinerary) {
     this.itinerary = itinerary;
     return this;
   }
@@ -100,16 +103,17 @@ public class CreateCfarOfferRequest {
    * An object detailing the itinerary and fare used to create a CFAR offer
    * @return itinerary
    */
-    public List<CfarOfferItinerary> getItinerary() {
+  @javax.annotation.Nonnull
+  public List<CfarOfferItinerary> getItinerary() {
     return itinerary;
   }
 
-  public void setItinerary(List<CfarOfferItinerary> itinerary) {
+  public void setItinerary(@javax.annotation.Nonnull List<CfarOfferItinerary> itinerary) {
     this.itinerary = itinerary;
   }
 
 
-  public CreateCfarOfferRequest requestType(RequestType requestType) {
+  public CreateCfarOfferRequest requestType(@javax.annotation.Nonnull RequestType requestType) {
     this.requestType = requestType;
     return this;
   }
@@ -118,11 +122,12 @@ public class CreateCfarOfferRequest {
    * Get requestType
    * @return requestType
    */
-    public RequestType getRequestType() {
+  @javax.annotation.Nonnull
+  public RequestType getRequestType() {
     return requestType;
   }
 
-  public void setRequestType(RequestType requestType) {
+  public void setRequestType(@javax.annotation.Nonnull RequestType requestType) {
     this.requestType = requestType;
   }
 
@@ -146,7 +151,7 @@ public class CreateCfarOfferRequest {
   }
 
 
-  public CreateCfarOfferRequest extAttributes(Map<String, String> extAttributes) {
+  public CreateCfarOfferRequest extAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
     return this;
   }
@@ -163,11 +168,12 @@ public class CreateCfarOfferRequest {
    * Get extAttributes
    * @return extAttributes
    */
-    public Map<String, String> getExtAttributes() {
+  @javax.annotation.Nonnull
+  public Map<String, String> getExtAttributes() {
     return extAttributes;
   }
 
-  public void setExtAttributes(Map<String, String> extAttributes) {
+  public void setExtAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
   }
 

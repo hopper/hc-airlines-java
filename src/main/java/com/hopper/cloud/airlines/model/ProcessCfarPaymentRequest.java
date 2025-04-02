@@ -48,19 +48,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A process CFAR payment request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class ProcessCfarPaymentRequest {
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKEN = "payment_method_token";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKEN)
-    private String paymentMethodToken;
+  @javax.annotation.Nonnull
+  private String paymentMethodToken;
 
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
-    private String firstName;
+  @javax.annotation.Nonnull
+  private String firstName;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
-    private String lastName;
+  @javax.annotation.Nonnull
+  private String lastName;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE1 = "address_line1";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE1)
@@ -94,16 +97,18 @@ public class ProcessCfarPaymentRequest {
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
-    private String pnrReference;
+  @javax.annotation.Nonnull
+  private String pnrReference;
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
-    private String emailAddress;
+  @javax.annotation.Nonnull
+  private String emailAddress;
 
   public ProcessCfarPaymentRequest() {
   }
 
-  public ProcessCfarPaymentRequest paymentMethodToken(String paymentMethodToken) {
+  public ProcessCfarPaymentRequest paymentMethodToken(@javax.annotation.Nonnull String paymentMethodToken) {
     this.paymentMethodToken = paymentMethodToken;
     return this;
   }
@@ -112,16 +117,17 @@ public class ProcessCfarPaymentRequest {
    * The Token of the Form of Payment used to pay for the CFAR fee. 
    * @return paymentMethodToken
    */
-    public String getPaymentMethodToken() {
+  @javax.annotation.Nonnull
+  public String getPaymentMethodToken() {
     return paymentMethodToken;
   }
 
-  public void setPaymentMethodToken(String paymentMethodToken) {
+  public void setPaymentMethodToken(@javax.annotation.Nonnull String paymentMethodToken) {
     this.paymentMethodToken = paymentMethodToken;
   }
 
 
-  public ProcessCfarPaymentRequest firstName(String firstName) {
+  public ProcessCfarPaymentRequest firstName(@javax.annotation.Nonnull String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -130,16 +136,17 @@ public class ProcessCfarPaymentRequest {
    * First name of the cardholder
    * @return firstName
    */
-    public String getFirstName() {
+  @javax.annotation.Nonnull
+  public String getFirstName() {
     return firstName;
   }
 
-  public void setFirstName(String firstName) {
+  public void setFirstName(@javax.annotation.Nonnull String firstName) {
     this.firstName = firstName;
   }
 
 
-  public ProcessCfarPaymentRequest lastName(String lastName) {
+  public ProcessCfarPaymentRequest lastName(@javax.annotation.Nonnull String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -148,11 +155,12 @@ public class ProcessCfarPaymentRequest {
    * Last name of the cardholder
    * @return lastName
    */
-    public String getLastName() {
+  @javax.annotation.Nonnull
+  public String getLastName() {
     return lastName;
   }
 
-  public void setLastName(String lastName) {
+  public void setLastName(@javax.annotation.Nonnull String lastName) {
     this.lastName = lastName;
   }
 
@@ -271,7 +279,7 @@ public class ProcessCfarPaymentRequest {
   }
 
 
-  public ProcessCfarPaymentRequest pnrReference(String pnrReference) {
+  public ProcessCfarPaymentRequest pnrReference(@javax.annotation.Nonnull String pnrReference) {
     this.pnrReference = pnrReference;
     return this;
   }
@@ -280,16 +288,17 @@ public class ProcessCfarPaymentRequest {
    * Reference of the PNR in the airline system
    * @return pnrReference
    */
-    public String getPnrReference() {
+  @javax.annotation.Nonnull
+  public String getPnrReference() {
     return pnrReference;
   }
 
-  public void setPnrReference(String pnrReference) {
+  public void setPnrReference(@javax.annotation.Nonnull String pnrReference) {
     this.pnrReference = pnrReference;
   }
 
 
-  public ProcessCfarPaymentRequest emailAddress(String emailAddress) {
+  public ProcessCfarPaymentRequest emailAddress(@javax.annotation.Nonnull String emailAddress) {
     this.emailAddress = emailAddress;
     return this;
   }
@@ -298,11 +307,12 @@ public class ProcessCfarPaymentRequest {
    * Email address of the user
    * @return emailAddress
    */
-    public String getEmailAddress() {
+  @javax.annotation.Nonnull
+  public String getEmailAddress() {
     return emailAddress;
   }
 
-  public void setEmailAddress(String emailAddress) {
+  public void setEmailAddress(@javax.annotation.Nonnull String emailAddress) {
     this.emailAddress = emailAddress;
   }
 

@@ -48,16 +48,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * DgPayment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgPayment {
   public static final String SERIALIZED_NAME_SUCCEEDED = "succeeded";
   @SerializedName(SERIALIZED_NAME_SUCCEEDED)
-    private Boolean succeeded;
+  @javax.annotation.Nonnull
+  private Boolean succeeded;
 
   public DgPayment() {
   }
 
-  public DgPayment succeeded(Boolean succeeded) {
+  public DgPayment succeeded(@javax.annotation.Nonnull Boolean succeeded) {
     this.succeeded = succeeded;
     return this;
   }
@@ -66,11 +67,12 @@ public class DgPayment {
    * Indicates if the transaction is successful
    * @return succeeded
    */
-    public Boolean getSucceeded() {
+  @javax.annotation.Nonnull
+  public Boolean getSucceeded() {
     return succeeded;
   }
 
-  public void setSucceeded(Boolean succeeded) {
+  public void setSucceeded(@javax.annotation.Nonnull Boolean succeeded) {
     this.succeeded = succeeded;
   }
 

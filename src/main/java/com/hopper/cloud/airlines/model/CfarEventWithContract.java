@@ -50,28 +50,32 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CfarEventWithContract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarEventWithContract {
   public static final String SERIALIZED_NAME_OCCURRED_DATE_TIME = "occurred_date_time";
   @SerializedName(SERIALIZED_NAME_OCCURRED_DATE_TIME)
-    private OffsetDateTime occurredDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime occurredDateTime;
 
   public static final String SERIALIZED_NAME_CFAR_CONTRACT_ID = "cfar_contract_id";
   @SerializedName(SERIALIZED_NAME_CFAR_CONTRACT_ID)
-    private String cfarContractId;
+  @javax.annotation.Nonnull
+  private String cfarContractId;
 
   public static final String SERIALIZED_NAME_UI_VARIANT = "ui_variant";
   @SerializedName(SERIALIZED_NAME_UI_VARIANT)
-    private UiVariant uiVariant;
+  @javax.annotation.Nonnull
+  private UiVariant uiVariant;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private String type;
+  @javax.annotation.Nonnull
+  private String type;
 
   public CfarEventWithContract() {
   }
 
-  public CfarEventWithContract occurredDateTime(OffsetDateTime occurredDateTime) {
+  public CfarEventWithContract occurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
     return this;
   }
@@ -80,16 +84,17 @@ public class CfarEventWithContract {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device
    * @return occurredDateTime
    */
-    public OffsetDateTime getOccurredDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getOccurredDateTime() {
     return occurredDateTime;
   }
 
-  public void setOccurredDateTime(OffsetDateTime occurredDateTime) {
+  public void setOccurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
   }
 
 
-  public CfarEventWithContract cfarContractId(String cfarContractId) {
+  public CfarEventWithContract cfarContractId(@javax.annotation.Nonnull String cfarContractId) {
     this.cfarContractId = cfarContractId;
     return this;
   }
@@ -98,16 +103,17 @@ public class CfarEventWithContract {
    * Get cfarContractId
    * @return cfarContractId
    */
-    public String getCfarContractId() {
+  @javax.annotation.Nonnull
+  public String getCfarContractId() {
     return cfarContractId;
   }
 
-  public void setCfarContractId(String cfarContractId) {
+  public void setCfarContractId(@javax.annotation.Nonnull String cfarContractId) {
     this.cfarContractId = cfarContractId;
   }
 
 
-  public CfarEventWithContract uiVariant(UiVariant uiVariant) {
+  public CfarEventWithContract uiVariant(@javax.annotation.Nonnull UiVariant uiVariant) {
     this.uiVariant = uiVariant;
     return this;
   }
@@ -116,16 +122,17 @@ public class CfarEventWithContract {
    * Get uiVariant
    * @return uiVariant
    */
-    public UiVariant getUiVariant() {
+  @javax.annotation.Nonnull
+  public UiVariant getUiVariant() {
     return uiVariant;
   }
 
-  public void setUiVariant(UiVariant uiVariant) {
+  public void setUiVariant(@javax.annotation.Nonnull UiVariant uiVariant) {
     this.uiVariant = uiVariant;
   }
 
 
-  public CfarEventWithContract type(String type) {
+  public CfarEventWithContract type(@javax.annotation.Nonnull String type) {
     this.type = type;
     return this;
   }
@@ -134,11 +141,12 @@ public class CfarEventWithContract {
    * Get type
    * @return type
    */
-    public String getType() {
+  @javax.annotation.Nonnull
+  public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
   }
 

@@ -48,11 +48,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing exercise information for a contract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateDgContractExerciseResponse {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-    private String id;
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String SERIALIZED_NAME_REDIRECTION_URL = "redirection_url";
   @SerializedName(SERIALIZED_NAME_REDIRECTION_URL)
@@ -62,7 +63,7 @@ public class CreateDgContractExerciseResponse {
   public CreateDgContractExerciseResponse() {
   }
 
-  public CreateDgContractExerciseResponse id(String id) {
+  public CreateDgContractExerciseResponse id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -71,11 +72,12 @@ public class CreateDgContractExerciseResponse {
    * Unique identifier for a DG exercise
    * @return id
    */
-    public String getId() {
+  @javax.annotation.Nonnull
+  public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 

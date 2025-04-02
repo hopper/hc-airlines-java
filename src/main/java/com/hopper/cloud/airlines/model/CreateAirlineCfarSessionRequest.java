@@ -50,7 +50,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing information related to the user&#39;s session
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateAirlineCfarSessionRequest {
   public static final String SERIALIZED_NAME_USER_INFO = "user_info";
   @SerializedName(SERIALIZED_NAME_USER_INFO)
@@ -64,11 +64,13 @@ public class CreateAirlineCfarSessionRequest {
 
   public static final String SERIALIZED_NAME_POINT_OF_SALE = "point_of_sale";
   @SerializedName(SERIALIZED_NAME_POINT_OF_SALE)
-    private String pointOfSale;
+  @javax.annotation.Nonnull
+  private String pointOfSale;
 
   public static final String SERIALIZED_NAME_LANGUAGE = "language";
   @SerializedName(SERIALIZED_NAME_LANGUAGE)
-    private String language;
+  @javax.annotation.Nonnull
+  private String language;
 
   public CreateAirlineCfarSessionRequest() {
   }
@@ -111,7 +113,7 @@ public class CreateAirlineCfarSessionRequest {
   }
 
 
-  public CreateAirlineCfarSessionRequest pointOfSale(String pointOfSale) {
+  public CreateAirlineCfarSessionRequest pointOfSale(@javax.annotation.Nonnull String pointOfSale) {
     this.pointOfSale = pointOfSale;
     return this;
   }
@@ -120,16 +122,17 @@ public class CreateAirlineCfarSessionRequest {
    * An ISO 3166-1-alpha-2 country code; the point of sale of the user
    * @return pointOfSale
    */
-    public String getPointOfSale() {
+  @javax.annotation.Nonnull
+  public String getPointOfSale() {
     return pointOfSale;
   }
 
-  public void setPointOfSale(String pointOfSale) {
+  public void setPointOfSale(@javax.annotation.Nonnull String pointOfSale) {
     this.pointOfSale = pointOfSale;
   }
 
 
-  public CreateAirlineCfarSessionRequest language(String language) {
+  public CreateAirlineCfarSessionRequest language(@javax.annotation.Nonnull String language) {
     this.language = language;
     return this;
   }
@@ -138,11 +141,12 @@ public class CreateAirlineCfarSessionRequest {
    * A ISO_639-1 country code; the language associated with the user
    * @return language
    */
-    public String getLanguage() {
+  @javax.annotation.Nonnull
+  public String getLanguage() {
     return language;
   }
 
-  public void setLanguage(String language) {
+  public void setLanguage(@javax.annotation.Nonnull String language) {
     this.language = language;
   }
 

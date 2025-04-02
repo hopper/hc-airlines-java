@@ -49,20 +49,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Type and number of passengers
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class PassengerCount {
   public static final String SERIALIZED_NAME_COUNT = "count";
   @SerializedName(SERIALIZED_NAME_COUNT)
-    private Integer count;
+  @javax.annotation.Nonnull
+  private Integer count;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private PassengerType type;
+  @javax.annotation.Nonnull
+  private PassengerType type;
 
   public PassengerCount() {
   }
 
-  public PassengerCount count(Integer count) {
+  public PassengerCount count(@javax.annotation.Nonnull Integer count) {
     this.count = count;
     return this;
   }
@@ -72,16 +74,17 @@ public class PassengerCount {
    * minimum: 0
    * @return count
    */
-    public Integer getCount() {
+  @javax.annotation.Nonnull
+  public Integer getCount() {
     return count;
   }
 
-  public void setCount(Integer count) {
+  public void setCount(@javax.annotation.Nonnull Integer count) {
     this.count = count;
   }
 
 
-  public PassengerCount type(PassengerType type) {
+  public PassengerCount type(@javax.annotation.Nonnull PassengerType type) {
     this.type = type;
     return this;
   }
@@ -90,11 +93,12 @@ public class PassengerCount {
    * Get type
    * @return type
    */
-    public PassengerType getType() {
+  @javax.annotation.Nonnull
+  public PassengerType getType() {
     return type;
   }
 
-  public void setType(PassengerType type) {
+  public void setType(@javax.annotation.Nonnull PassengerType type) {
     this.type = type;
   }
 

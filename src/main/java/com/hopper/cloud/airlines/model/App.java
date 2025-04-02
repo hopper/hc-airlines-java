@@ -49,7 +49,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * App
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class App {
   public static final String SERIALIZED_NAME_OPERATING_SYSTEM = "operating_system";
   @SerializedName(SERIALIZED_NAME_OPERATING_SYSTEM)
@@ -58,7 +58,8 @@ public class App {
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private String type;
+  @javax.annotation.Nonnull
+  private String type;
 
   public App() {
   }
@@ -82,7 +83,7 @@ public class App {
   }
 
 
-  public App type(String type) {
+  public App type(@javax.annotation.Nonnull String type) {
     this.type = type;
     return this;
   }
@@ -91,11 +92,12 @@ public class App {
    * Get type
    * @return type
    */
-    public String getType() {
+  @javax.annotation.Nonnull
+  public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
   }
 

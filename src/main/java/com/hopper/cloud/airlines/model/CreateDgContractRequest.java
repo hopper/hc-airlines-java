@@ -53,19 +53,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A create DG contract request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateDgContractRequest {
   public static final String SERIALIZED_NAME_OFFER_IDS = "offer_ids";
   @SerializedName(SERIALIZED_NAME_OFFER_IDS)
-    private List<String> offerIds = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<String> offerIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
-    private DgItinerary itinerary;
+  @javax.annotation.Nonnull
+  private DgItinerary itinerary;
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
-    private Map<String, String> extAttributes = new HashMap<>();
+  @javax.annotation.Nonnull
+  private Map<String, String> extAttributes = new HashMap<>();
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
@@ -75,7 +78,7 @@ public class CreateDgContractRequest {
   public CreateDgContractRequest() {
   }
 
-  public CreateDgContractRequest offerIds(List<String> offerIds) {
+  public CreateDgContractRequest offerIds(@javax.annotation.Nonnull List<String> offerIds) {
     this.offerIds = offerIds;
     return this;
   }
@@ -92,16 +95,17 @@ public class CreateDgContractRequest {
    * Identifier of the offer(s) for which the contract is created
    * @return offerIds
    */
-    public List<String> getOfferIds() {
+  @javax.annotation.Nonnull
+  public List<String> getOfferIds() {
     return offerIds;
   }
 
-  public void setOfferIds(List<String> offerIds) {
+  public void setOfferIds(@javax.annotation.Nonnull List<String> offerIds) {
     this.offerIds = offerIds;
   }
 
 
-  public CreateDgContractRequest itinerary(DgItinerary itinerary) {
+  public CreateDgContractRequest itinerary(@javax.annotation.Nonnull DgItinerary itinerary) {
     this.itinerary = itinerary;
     return this;
   }
@@ -110,16 +114,17 @@ public class CreateDgContractRequest {
    * Get itinerary
    * @return itinerary
    */
-    public DgItinerary getItinerary() {
+  @javax.annotation.Nonnull
+  public DgItinerary getItinerary() {
     return itinerary;
   }
 
-  public void setItinerary(DgItinerary itinerary) {
+  public void setItinerary(@javax.annotation.Nonnull DgItinerary itinerary) {
     this.itinerary = itinerary;
   }
 
 
-  public CreateDgContractRequest extAttributes(Map<String, String> extAttributes) {
+  public CreateDgContractRequest extAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
     return this;
   }
@@ -136,11 +141,12 @@ public class CreateDgContractRequest {
    * Get extAttributes
    * @return extAttributes
    */
-    public Map<String, String> getExtAttributes() {
+  @javax.annotation.Nonnull
+  public Map<String, String> getExtAttributes() {
     return extAttributes;
   }
 
-  public void setExtAttributes(Map<String, String> extAttributes) {
+  public void setExtAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
   }
 

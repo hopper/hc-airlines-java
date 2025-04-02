@@ -49,20 +49,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * DgPassengerCount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgPassengerCount {
   public static final String SERIALIZED_NAME_COUNT = "count";
   @SerializedName(SERIALIZED_NAME_COUNT)
-    private Integer count;
+  @javax.annotation.Nonnull
+  private Integer count;
 
   public static final String SERIALIZED_NAME_PASSENGER_TYPE = "passenger_type";
   @SerializedName(SERIALIZED_NAME_PASSENGER_TYPE)
-    private DgPassengerType passengerType;
+  @javax.annotation.Nonnull
+  private DgPassengerType passengerType;
 
   public DgPassengerCount() {
   }
 
-  public DgPassengerCount count(Integer count) {
+  public DgPassengerCount count(@javax.annotation.Nonnull Integer count) {
     this.count = count;
     return this;
   }
@@ -72,16 +74,17 @@ public class DgPassengerCount {
    * minimum: 0
    * @return count
    */
-    public Integer getCount() {
+  @javax.annotation.Nonnull
+  public Integer getCount() {
     return count;
   }
 
-  public void setCount(Integer count) {
+  public void setCount(@javax.annotation.Nonnull Integer count) {
     this.count = count;
   }
 
 
-  public DgPassengerCount passengerType(DgPassengerType passengerType) {
+  public DgPassengerCount passengerType(@javax.annotation.Nonnull DgPassengerType passengerType) {
     this.passengerType = passengerType;
     return this;
   }
@@ -90,11 +93,12 @@ public class DgPassengerCount {
    * Get passengerType
    * @return passengerType
    */
-    public DgPassengerType getPassengerType() {
+  @javax.annotation.Nonnull
+  public DgPassengerType getPassengerType() {
     return passengerType;
   }
 
-  public void setPassengerType(DgPassengerType passengerType) {
+  public void setPassengerType(@javax.annotation.Nonnull DgPassengerType passengerType) {
     this.passengerType = passengerType;
   }
 

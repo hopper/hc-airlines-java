@@ -48,19 +48,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * DgTax
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgTax {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-    private String name;
+  @javax.annotation.Nonnull
+  private String name;
 
   public static final String SERIALIZED_NAME_RATE = "rate";
   @SerializedName(SERIALIZED_NAME_RATE)
-    private String rate;
+  @javax.annotation.Nonnull
+  private String rate;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
-    private String amount;
+  @javax.annotation.Nonnull
+  private String amount;
 
   public static final String SERIALIZED_NAME_REGISTRATION_NUMBER = "registration_number";
   @SerializedName(SERIALIZED_NAME_REGISTRATION_NUMBER)
@@ -70,7 +73,7 @@ public class DgTax {
   public DgTax() {
   }
 
-  public DgTax name(String name) {
+  public DgTax name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -79,16 +82,17 @@ public class DgTax {
    * Name of the tax
    * @return name
    */
-    public String getName() {
+  @javax.annotation.Nonnull
+  public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public DgTax rate(String rate) {
+  public DgTax rate(@javax.annotation.Nonnull String rate) {
     this.rate = rate;
     return this;
   }
@@ -97,16 +101,17 @@ public class DgTax {
    * The rate of the tax
    * @return rate
    */
-    public String getRate() {
+  @javax.annotation.Nonnull
+  public String getRate() {
     return rate;
   }
 
-  public void setRate(String rate) {
+  public void setRate(@javax.annotation.Nonnull String rate) {
     this.rate = rate;
   }
 
 
-  public DgTax amount(String amount) {
+  public DgTax amount(@javax.annotation.Nonnull String amount) {
     this.amount = amount;
     return this;
   }
@@ -115,11 +120,12 @@ public class DgTax {
    * The amount of the tax
    * @return amount
    */
-    public String getAmount() {
+  @javax.annotation.Nonnull
+  public String getAmount() {
     return amount;
   }
 
-  public void setAmount(String amount) {
+  public void setAmount(@javax.annotation.Nonnull String amount) {
     this.amount = amount;
   }
 

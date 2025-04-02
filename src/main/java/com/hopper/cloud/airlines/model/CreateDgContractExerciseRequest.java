@@ -50,19 +50,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A create DG contract exercise request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateDgContractExerciseRequest {
   public static final String SERIALIZED_NAME_CONTRACT_ID = "contract_id";
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
-    private String contractId;
+  @javax.annotation.Nonnull
+  private String contractId;
 
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
-    private DgExerciseItinerary itinerary;
+  @javax.annotation.Nonnull
+  private DgExerciseItinerary itinerary;
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
-    private String pnrReference;
+  @javax.annotation.Nonnull
+  private String pnrReference;
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
@@ -87,7 +90,7 @@ public class CreateDgContractExerciseRequest {
   public CreateDgContractExerciseRequest() {
   }
 
-  public CreateDgContractExerciseRequest contractId(String contractId) {
+  public CreateDgContractExerciseRequest contractId(@javax.annotation.Nonnull String contractId) {
     this.contractId = contractId;
     return this;
   }
@@ -96,16 +99,17 @@ public class CreateDgContractExerciseRequest {
    * A unique identifier for a DG contract
    * @return contractId
    */
-    public String getContractId() {
+  @javax.annotation.Nonnull
+  public String getContractId() {
     return contractId;
   }
 
-  public void setContractId(String contractId) {
+  public void setContractId(@javax.annotation.Nonnull String contractId) {
     this.contractId = contractId;
   }
 
 
-  public CreateDgContractExerciseRequest itinerary(DgExerciseItinerary itinerary) {
+  public CreateDgContractExerciseRequest itinerary(@javax.annotation.Nonnull DgExerciseItinerary itinerary) {
     this.itinerary = itinerary;
     return this;
   }
@@ -114,16 +118,17 @@ public class CreateDgContractExerciseRequest {
    * Get itinerary
    * @return itinerary
    */
-    public DgExerciseItinerary getItinerary() {
+  @javax.annotation.Nonnull
+  public DgExerciseItinerary getItinerary() {
     return itinerary;
   }
 
-  public void setItinerary(DgExerciseItinerary itinerary) {
+  public void setItinerary(@javax.annotation.Nonnull DgExerciseItinerary itinerary) {
     this.itinerary = itinerary;
   }
 
 
-  public CreateDgContractExerciseRequest pnrReference(String pnrReference) {
+  public CreateDgContractExerciseRequest pnrReference(@javax.annotation.Nonnull String pnrReference) {
     this.pnrReference = pnrReference;
     return this;
   }
@@ -132,11 +137,12 @@ public class CreateDgContractExerciseRequest {
    * Reference of the PNR in the airline system. In case of a PNR created subsequently to a split, fill requesting PNR / parent PNR (e.g. DEF456/ABC123) 
    * @return pnrReference
    */
-    public String getPnrReference() {
+  @javax.annotation.Nonnull
+  public String getPnrReference() {
     return pnrReference;
   }
 
-  public void setPnrReference(String pnrReference) {
+  public void setPnrReference(@javax.annotation.Nonnull String pnrReference) {
     this.pnrReference = pnrReference;
   }
 

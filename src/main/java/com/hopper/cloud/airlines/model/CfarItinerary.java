@@ -56,19 +56,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CfarItinerary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarItinerary {
   public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
   @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
-    private List<PassengerPricing> passengerPricing = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<PassengerPricing> passengerPricing = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
-    private String currency;
+  @javax.annotation.Nonnull
+  private String currency;
 
   public static final String SERIALIZED_NAME_SLICES = "slices";
   @SerializedName(SERIALIZED_NAME_SLICES)
-    private List<CfarItinerarySlice> slices = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<CfarItinerarySlice> slices = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ANCILLARIES = "ancillaries";
   @SerializedName(SERIALIZED_NAME_ANCILLARIES)
@@ -98,7 +101,7 @@ public class CfarItinerary {
   public CfarItinerary() {
   }
 
-  public CfarItinerary passengerPricing(List<PassengerPricing> passengerPricing) {
+  public CfarItinerary passengerPricing(@javax.annotation.Nonnull List<PassengerPricing> passengerPricing) {
     this.passengerPricing = passengerPricing;
     return this;
   }
@@ -115,16 +118,17 @@ public class CfarItinerary {
    * List of passengers type, count and pricing for the itinerary
    * @return passengerPricing
    */
-    public List<PassengerPricing> getPassengerPricing() {
+  @javax.annotation.Nonnull
+  public List<PassengerPricing> getPassengerPricing() {
     return passengerPricing;
   }
 
-  public void setPassengerPricing(List<PassengerPricing> passengerPricing) {
+  public void setPassengerPricing(@javax.annotation.Nonnull List<PassengerPricing> passengerPricing) {
     this.passengerPricing = passengerPricing;
   }
 
 
-  public CfarItinerary currency(String currency) {
+  public CfarItinerary currency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
     return this;
   }
@@ -133,16 +137,17 @@ public class CfarItinerary {
    * Currency of pricing fields
    * @return currency
    */
-    public String getCurrency() {
+  @javax.annotation.Nonnull
+  public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
   }
 
 
-  public CfarItinerary slices(List<CfarItinerarySlice> slices) {
+  public CfarItinerary slices(@javax.annotation.Nonnull List<CfarItinerarySlice> slices) {
     this.slices = slices;
     return this;
   }
@@ -159,11 +164,12 @@ public class CfarItinerary {
    * List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed
    * @return slices
    */
-    public List<CfarItinerarySlice> getSlices() {
+  @javax.annotation.Nonnull
+  public List<CfarItinerarySlice> getSlices() {
     return slices;
   }
 
-  public void setSlices(List<CfarItinerarySlice> slices) {
+  public void setSlices(@javax.annotation.Nonnull List<CfarItinerarySlice> slices) {
     this.slices = slices;
   }
 

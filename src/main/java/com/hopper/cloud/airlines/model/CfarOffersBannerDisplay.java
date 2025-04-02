@@ -52,28 +52,32 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CfarOffersBannerDisplay
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarOffersBannerDisplay {
   public static final String SERIALIZED_NAME_OCCURRED_DATE_TIME = "occurred_date_time";
   @SerializedName(SERIALIZED_NAME_OCCURRED_DATE_TIME)
-    private OffsetDateTime occurredDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime occurredDateTime;
 
   public static final String SERIALIZED_NAME_CFAR_OFFERS_IDS = "cfar_offers_ids";
   @SerializedName(SERIALIZED_NAME_CFAR_OFFERS_IDS)
-    private List<String> cfarOffersIds = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<String> cfarOffersIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UI_VARIANT = "ui_variant";
   @SerializedName(SERIALIZED_NAME_UI_VARIANT)
-    private UiVariant uiVariant;
+  @javax.annotation.Nonnull
+  private UiVariant uiVariant;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private String type;
+  @javax.annotation.Nonnull
+  private String type;
 
   public CfarOffersBannerDisplay() {
   }
 
-  public CfarOffersBannerDisplay occurredDateTime(OffsetDateTime occurredDateTime) {
+  public CfarOffersBannerDisplay occurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
     return this;
   }
@@ -82,16 +86,17 @@ public class CfarOffersBannerDisplay {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device
    * @return occurredDateTime
    */
-    public OffsetDateTime getOccurredDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getOccurredDateTime() {
     return occurredDateTime;
   }
 
-  public void setOccurredDateTime(OffsetDateTime occurredDateTime) {
+  public void setOccurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
   }
 
 
-  public CfarOffersBannerDisplay cfarOffersIds(List<String> cfarOffersIds) {
+  public CfarOffersBannerDisplay cfarOffersIds(@javax.annotation.Nonnull List<String> cfarOffersIds) {
     this.cfarOffersIds = cfarOffersIds;
     return this;
   }
@@ -108,16 +113,17 @@ public class CfarOffersBannerDisplay {
    * Get cfarOffersIds
    * @return cfarOffersIds
    */
-    public List<String> getCfarOffersIds() {
+  @javax.annotation.Nonnull
+  public List<String> getCfarOffersIds() {
     return cfarOffersIds;
   }
 
-  public void setCfarOffersIds(List<String> cfarOffersIds) {
+  public void setCfarOffersIds(@javax.annotation.Nonnull List<String> cfarOffersIds) {
     this.cfarOffersIds = cfarOffersIds;
   }
 
 
-  public CfarOffersBannerDisplay uiVariant(UiVariant uiVariant) {
+  public CfarOffersBannerDisplay uiVariant(@javax.annotation.Nonnull UiVariant uiVariant) {
     this.uiVariant = uiVariant;
     return this;
   }
@@ -126,16 +132,17 @@ public class CfarOffersBannerDisplay {
    * Get uiVariant
    * @return uiVariant
    */
-    public UiVariant getUiVariant() {
+  @javax.annotation.Nonnull
+  public UiVariant getUiVariant() {
     return uiVariant;
   }
 
-  public void setUiVariant(UiVariant uiVariant) {
+  public void setUiVariant(@javax.annotation.Nonnull UiVariant uiVariant) {
     this.uiVariant = uiVariant;
   }
 
 
-  public CfarOffersBannerDisplay type(String type) {
+  public CfarOffersBannerDisplay type(@javax.annotation.Nonnull String type) {
     this.type = type;
     return this;
   }
@@ -144,11 +151,12 @@ public class CfarOffersBannerDisplay {
    * Get type
    * @return type
    */
-    public String getType() {
+  @javax.annotation.Nonnull
+  public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
   }
 

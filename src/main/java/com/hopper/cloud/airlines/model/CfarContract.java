@@ -57,43 +57,52 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A CFAR contract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarContract {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-    private String id;
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String SERIALIZED_NAME_REFERENCE = "reference";
   @SerializedName(SERIALIZED_NAME_REFERENCE)
-    private String reference;
+  @javax.annotation.Nonnull
+  private String reference;
 
   public static final String SERIALIZED_NAME_OFFERS = "offers";
   @SerializedName(SERIALIZED_NAME_OFFERS)
-    private List<CfarOffer> offers = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<CfarOffer> offers = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
-    private CfarItinerary itinerary;
+  @javax.annotation.Nonnull
+  private CfarItinerary itinerary;
 
   public static final String SERIALIZED_NAME_COVERAGE_PERCENTAGE = "coverage_percentage";
   @SerializedName(SERIALIZED_NAME_COVERAGE_PERCENTAGE)
-    private String coveragePercentage;
+  @javax.annotation.Nonnull
+  private String coveragePercentage;
 
   public static final String SERIALIZED_NAME_COVERAGE = "coverage";
   @SerializedName(SERIALIZED_NAME_COVERAGE)
-    private String coverage;
+  @javax.annotation.Nonnull
+  private String coverage;
 
   public static final String SERIALIZED_NAME_PREMIUM = "premium";
   @SerializedName(SERIALIZED_NAME_PREMIUM)
-    private String premium;
+  @javax.annotation.Nonnull
+  private String premium;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
-    private String currency;
+  @javax.annotation.Nonnull
+  private String currency;
 
   public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
   @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
-    private String taxesTotal;
+  @javax.annotation.Nonnull
+  private String taxesTotal;
 
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   @SerializedName(SERIALIZED_NAME_TAXES)
@@ -102,15 +111,18 @@ public class CfarContract {
 
   public static final String SERIALIZED_NAME_CREATED_DATE_TIME = "created_date_time";
   @SerializedName(SERIALIZED_NAME_CREATED_DATE_TIME)
-    private OffsetDateTime createdDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime createdDateTime;
 
   public static final String SERIALIZED_NAME_EXPIRY_DATE_TIME = "expiry_date_time";
   @SerializedName(SERIALIZED_NAME_EXPIRY_DATE_TIME)
-    private OffsetDateTime expiryDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime expiryDateTime;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-    private CfarStatus status;
+  @javax.annotation.Nonnull
+  private CfarStatus status;
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
@@ -119,7 +131,8 @@ public class CfarContract {
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
-    private Map<String, String> extAttributes = new HashMap<>();
+  @javax.annotation.Nonnull
+  private Map<String, String> extAttributes = new HashMap<>();
 
   public static final String SERIALIZED_NAME_EXERCISE_URL = "exercise_url";
   @SerializedName(SERIALIZED_NAME_EXERCISE_URL)
@@ -129,7 +142,7 @@ public class CfarContract {
   public CfarContract() {
   }
 
-  public CfarContract id(String id) {
+  public CfarContract id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -138,16 +151,17 @@ public class CfarContract {
    * Unique identifier for a contract
    * @return id
    */
-    public String getId() {
+  @javax.annotation.Nonnull
+  public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public CfarContract reference(String reference) {
+  public CfarContract reference(@javax.annotation.Nonnull String reference) {
     this.reference = reference;
     return this;
   }
@@ -156,16 +170,17 @@ public class CfarContract {
    * Unique reference for a contract
    * @return reference
    */
-    public String getReference() {
+  @javax.annotation.Nonnull
+  public String getReference() {
     return reference;
   }
 
-  public void setReference(String reference) {
+  public void setReference(@javax.annotation.Nonnull String reference) {
     this.reference = reference;
   }
 
 
-  public CfarContract offers(List<CfarOffer> offers) {
+  public CfarContract offers(@javax.annotation.Nonnull List<CfarOffer> offers) {
     this.offers = offers;
     return this;
   }
@@ -182,16 +197,17 @@ public class CfarContract {
    * CFAR Offer(s) used to create the contract
    * @return offers
    */
-    public List<CfarOffer> getOffers() {
+  @javax.annotation.Nonnull
+  public List<CfarOffer> getOffers() {
     return offers;
   }
 
-  public void setOffers(List<CfarOffer> offers) {
+  public void setOffers(@javax.annotation.Nonnull List<CfarOffer> offers) {
     this.offers = offers;
   }
 
 
-  public CfarContract itinerary(CfarItinerary itinerary) {
+  public CfarContract itinerary(@javax.annotation.Nonnull CfarItinerary itinerary) {
     this.itinerary = itinerary;
     return this;
   }
@@ -200,16 +216,17 @@ public class CfarContract {
    * Get itinerary
    * @return itinerary
    */
-    public CfarItinerary getItinerary() {
+  @javax.annotation.Nonnull
+  public CfarItinerary getItinerary() {
     return itinerary;
   }
 
-  public void setItinerary(CfarItinerary itinerary) {
+  public void setItinerary(@javax.annotation.Nonnull CfarItinerary itinerary) {
     this.itinerary = itinerary;
   }
 
 
-  public CfarContract coveragePercentage(String coveragePercentage) {
+  public CfarContract coveragePercentage(@javax.annotation.Nonnull String coveragePercentage) {
     this.coveragePercentage = coveragePercentage;
     return this;
   }
@@ -218,16 +235,17 @@ public class CfarContract {
    * Percentage of the amount to be refunded to customer compared to flight tickets price
    * @return coveragePercentage
    */
-    public String getCoveragePercentage() {
+  @javax.annotation.Nonnull
+  public String getCoveragePercentage() {
     return coveragePercentage;
   }
 
-  public void setCoveragePercentage(String coveragePercentage) {
+  public void setCoveragePercentage(@javax.annotation.Nonnull String coveragePercentage) {
     this.coveragePercentage = coveragePercentage;
   }
 
 
-  public CfarContract coverage(String coverage) {
+  public CfarContract coverage(@javax.annotation.Nonnull String coverage) {
     this.coverage = coverage;
     return this;
   }
@@ -236,16 +254,17 @@ public class CfarContract {
    * Total amount to be refunded upon CFAR exercise
    * @return coverage
    */
-    public String getCoverage() {
+  @javax.annotation.Nonnull
+  public String getCoverage() {
     return coverage;
   }
 
-  public void setCoverage(String coverage) {
+  public void setCoverage(@javax.annotation.Nonnull String coverage) {
     this.coverage = coverage;
   }
 
 
-  public CfarContract premium(String premium) {
+  public CfarContract premium(@javax.annotation.Nonnull String premium) {
     this.premium = premium;
     return this;
   }
@@ -254,16 +273,17 @@ public class CfarContract {
    * Total amount to be paid for CFAR
    * @return premium
    */
-    public String getPremium() {
+  @javax.annotation.Nonnull
+  public String getPremium() {
     return premium;
   }
 
-  public void setPremium(String premium) {
+  public void setPremium(@javax.annotation.Nonnull String premium) {
     this.premium = premium;
   }
 
 
-  public CfarContract currency(String currency) {
+  public CfarContract currency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
     return this;
   }
@@ -272,16 +292,17 @@ public class CfarContract {
    * Currency of contract
    * @return currency
    */
-    public String getCurrency() {
+  @javax.annotation.Nonnull
+  public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
   }
 
 
-  public CfarContract taxesTotal(String taxesTotal) {
+  public CfarContract taxesTotal(@javax.annotation.Nonnull String taxesTotal) {
     this.taxesTotal = taxesTotal;
     return this;
   }
@@ -290,11 +311,12 @@ public class CfarContract {
    * Part of the premium which are taxes
    * @return taxesTotal
    */
-    public String getTaxesTotal() {
+  @javax.annotation.Nonnull
+  public String getTaxesTotal() {
     return taxesTotal;
   }
 
-  public void setTaxesTotal(String taxesTotal) {
+  public void setTaxesTotal(@javax.annotation.Nonnull String taxesTotal) {
     this.taxesTotal = taxesTotal;
   }
 
@@ -326,7 +348,7 @@ public class CfarContract {
   }
 
 
-  public CfarContract createdDateTime(OffsetDateTime createdDateTime) {
+  public CfarContract createdDateTime(@javax.annotation.Nonnull OffsetDateTime createdDateTime) {
     this.createdDateTime = createdDateTime;
     return this;
   }
@@ -335,16 +357,17 @@ public class CfarContract {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a CFAR contract was created
    * @return createdDateTime
    */
-    public OffsetDateTime getCreatedDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getCreatedDateTime() {
     return createdDateTime;
   }
 
-  public void setCreatedDateTime(OffsetDateTime createdDateTime) {
+  public void setCreatedDateTime(@javax.annotation.Nonnull OffsetDateTime createdDateTime) {
     this.createdDateTime = createdDateTime;
   }
 
 
-  public CfarContract expiryDateTime(OffsetDateTime expiryDateTime) {
+  public CfarContract expiryDateTime(@javax.annotation.Nonnull OffsetDateTime expiryDateTime) {
     this.expiryDateTime = expiryDateTime;
     return this;
   }
@@ -353,16 +376,17 @@ public class CfarContract {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) A UTC RFC3339 datetime; the date and time at which the CFAR contract will expire once purchased
    * @return expiryDateTime
    */
-    public OffsetDateTime getExpiryDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getExpiryDateTime() {
     return expiryDateTime;
   }
 
-  public void setExpiryDateTime(OffsetDateTime expiryDateTime) {
+  public void setExpiryDateTime(@javax.annotation.Nonnull OffsetDateTime expiryDateTime) {
     this.expiryDateTime = expiryDateTime;
   }
 
 
-  public CfarContract status(CfarStatus status) {
+  public CfarContract status(@javax.annotation.Nonnull CfarStatus status) {
     this.status = status;
     return this;
   }
@@ -371,11 +395,12 @@ public class CfarContract {
    * Get status
    * @return status
    */
-    public CfarStatus getStatus() {
+  @javax.annotation.Nonnull
+  public CfarStatus getStatus() {
     return status;
   }
 
-  public void setStatus(CfarStatus status) {
+  public void setStatus(@javax.annotation.Nonnull CfarStatus status) {
     this.status = status;
   }
 
@@ -399,7 +424,7 @@ public class CfarContract {
   }
 
 
-  public CfarContract extAttributes(Map<String, String> extAttributes) {
+  public CfarContract extAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
     return this;
   }
@@ -416,11 +441,12 @@ public class CfarContract {
    * Get extAttributes
    * @return extAttributes
    */
-    public Map<String, String> getExtAttributes() {
+  @javax.annotation.Nonnull
+  public Map<String, String> getExtAttributes() {
     return extAttributes;
   }
 
-  public void setExtAttributes(Map<String, String> extAttributes) {
+  public void setExtAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
   }
 

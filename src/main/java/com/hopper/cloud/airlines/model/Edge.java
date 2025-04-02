@@ -48,7 +48,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Edge
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class Edge {
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)
@@ -57,7 +57,8 @@ public class Edge {
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private String type;
+  @javax.annotation.Nonnull
+  private String type;
 
   public Edge() {
   }
@@ -81,7 +82,7 @@ public class Edge {
   }
 
 
-  public Edge type(String type) {
+  public Edge type(@javax.annotation.Nonnull String type) {
     this.type = type;
     return this;
   }
@@ -90,11 +91,12 @@ public class Edge {
    * Get type
    * @return type
    */
-    public String getType() {
+  @javax.annotation.Nonnull
+  public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
   }
 

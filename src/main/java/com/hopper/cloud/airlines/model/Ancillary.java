@@ -49,11 +49,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Ancillary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class Ancillary {
   public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
-    private String totalPrice;
+  @javax.annotation.Nonnull
+  private String totalPrice;
 
   public static final String SERIALIZED_NAME_PASSENGER_REFERENCE = "passenger_reference";
   @SerializedName(SERIALIZED_NAME_PASSENGER_REFERENCE)
@@ -62,7 +63,8 @@ public class Ancillary {
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private AncillaryType type;
+  @javax.annotation.Nonnull
+  private AncillaryType type;
 
   public static final String SERIALIZED_NAME_COVERED = "covered";
   @SerializedName(SERIALIZED_NAME_COVERED)
@@ -72,7 +74,7 @@ public class Ancillary {
   public Ancillary() {
   }
 
-  public Ancillary totalPrice(String totalPrice) {
+  public Ancillary totalPrice(@javax.annotation.Nonnull String totalPrice) {
     this.totalPrice = totalPrice;
     return this;
   }
@@ -81,11 +83,12 @@ public class Ancillary {
    * Total price of ancillaries of this type
    * @return totalPrice
    */
-    public String getTotalPrice() {
+  @javax.annotation.Nonnull
+  public String getTotalPrice() {
     return totalPrice;
   }
 
-  public void setTotalPrice(String totalPrice) {
+  public void setTotalPrice(@javax.annotation.Nonnull String totalPrice) {
     this.totalPrice = totalPrice;
   }
 
@@ -109,7 +112,7 @@ public class Ancillary {
   }
 
 
-  public Ancillary type(AncillaryType type) {
+  public Ancillary type(@javax.annotation.Nonnull AncillaryType type) {
     this.type = type;
     return this;
   }
@@ -118,11 +121,12 @@ public class Ancillary {
    * Get type
    * @return type
    */
-    public AncillaryType getType() {
+  @javax.annotation.Nonnull
+  public AncillaryType getType() {
     return type;
   }
 
-  public void setType(AncillaryType type) {
+  public void setType(@javax.annotation.Nonnull AncillaryType type) {
     this.type = type;
   }
 

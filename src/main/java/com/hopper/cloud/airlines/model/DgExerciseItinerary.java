@@ -53,15 +53,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgExerciseItinerary {
   public static final String SERIALIZED_NAME_PASSENGER_COUNT = "passenger_count";
   @SerializedName(SERIALIZED_NAME_PASSENGER_COUNT)
-    private List<DgPassengerCount> passengerCount = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<DgPassengerCount> passengerCount = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SLICES = "slices";
   @SerializedName(SERIALIZED_NAME_SLICES)
-    private List<DgExerciseItinerarySlice> slices = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<DgExerciseItinerarySlice> slices = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PASSENGERS = "passengers";
   @SerializedName(SERIALIZED_NAME_PASSENGERS)
@@ -71,7 +73,7 @@ public class DgExerciseItinerary {
   public DgExerciseItinerary() {
   }
 
-  public DgExerciseItinerary passengerCount(List<DgPassengerCount> passengerCount) {
+  public DgExerciseItinerary passengerCount(@javax.annotation.Nonnull List<DgPassengerCount> passengerCount) {
     this.passengerCount = passengerCount;
     return this;
   }
@@ -88,16 +90,17 @@ public class DgExerciseItinerary {
    * List of passengers type and count for the itinerary
    * @return passengerCount
    */
-    public List<DgPassengerCount> getPassengerCount() {
+  @javax.annotation.Nonnull
+  public List<DgPassengerCount> getPassengerCount() {
     return passengerCount;
   }
 
-  public void setPassengerCount(List<DgPassengerCount> passengerCount) {
+  public void setPassengerCount(@javax.annotation.Nonnull List<DgPassengerCount> passengerCount) {
     this.passengerCount = passengerCount;
   }
 
 
-  public DgExerciseItinerary slices(List<DgExerciseItinerarySlice> slices) {
+  public DgExerciseItinerary slices(@javax.annotation.Nonnull List<DgExerciseItinerarySlice> slices) {
     this.slices = slices;
     return this;
   }
@@ -114,11 +117,12 @@ public class DgExerciseItinerary {
    * List of slices of the itinerary; 1 (one way),  2 (round trip) or up to 10 (multi-destination) slices are allowed
    * @return slices
    */
-    public List<DgExerciseItinerarySlice> getSlices() {
+  @javax.annotation.Nonnull
+  public List<DgExerciseItinerarySlice> getSlices() {
     return slices;
   }
 
-  public void setSlices(List<DgExerciseItinerarySlice> slices) {
+  public void setSlices(@javax.annotation.Nonnull List<DgExerciseItinerarySlice> slices) {
     this.slices = slices;
   }
 

@@ -48,24 +48,27 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CfarPassengerTax
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarPassengerTax {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
-    private String code;
+  @javax.annotation.Nonnull
+  private String code;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
-    private String amount;
+  @javax.annotation.Nonnull
+  private String amount;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
-    private String currency;
+  @javax.annotation.Nonnull
+  private String currency;
 
   public CfarPassengerTax() {
   }
 
-  public CfarPassengerTax code(String code) {
+  public CfarPassengerTax code(@javax.annotation.Nonnull String code) {
     this.code = code;
     return this;
   }
@@ -74,16 +77,17 @@ public class CfarPassengerTax {
    * Code of the tax
    * @return code
    */
-    public String getCode() {
+  @javax.annotation.Nonnull
+  public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nonnull String code) {
     this.code = code;
   }
 
 
-  public CfarPassengerTax amount(String amount) {
+  public CfarPassengerTax amount(@javax.annotation.Nonnull String amount) {
     this.amount = amount;
     return this;
   }
@@ -92,16 +96,17 @@ public class CfarPassengerTax {
    * The amount of the tax
    * @return amount
    */
-    public String getAmount() {
+  @javax.annotation.Nonnull
+  public String getAmount() {
     return amount;
   }
 
-  public void setAmount(String amount) {
+  public void setAmount(@javax.annotation.Nonnull String amount) {
     this.amount = amount;
   }
 
 
-  public CfarPassengerTax currency(String currency) {
+  public CfarPassengerTax currency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
     return this;
   }
@@ -110,11 +115,12 @@ public class CfarPassengerTax {
    * The currency of the tax
    * @return currency
    */
-    public String getCurrency() {
+  @javax.annotation.Nonnull
+  public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
   }
 

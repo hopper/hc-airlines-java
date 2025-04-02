@@ -50,28 +50,32 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * DgExerciseVerificationComplete
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgExerciseVerificationComplete {
   public static final String SERIALIZED_NAME_OCCURRED_DATE_TIME = "occurred_date_time";
   @SerializedName(SERIALIZED_NAME_OCCURRED_DATE_TIME)
-    private OffsetDateTime occurredDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime occurredDateTime;
 
   public static final String SERIALIZED_NAME_DG_EXERCISE_ID = "dg_exercise_id";
   @SerializedName(SERIALIZED_NAME_DG_EXERCISE_ID)
-    private String dgExerciseId;
+  @javax.annotation.Nonnull
+  private String dgExerciseId;
 
   public static final String SERIALIZED_NAME_RESULT = "result";
   @SerializedName(SERIALIZED_NAME_RESULT)
-    private ExerciseStepResult result;
+  @javax.annotation.Nonnull
+  private ExerciseStepResult result;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private String type;
+  @javax.annotation.Nonnull
+  private String type;
 
   public DgExerciseVerificationComplete() {
   }
 
-  public DgExerciseVerificationComplete occurredDateTime(OffsetDateTime occurredDateTime) {
+  public DgExerciseVerificationComplete occurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
     return this;
   }
@@ -80,16 +84,17 @@ public class DgExerciseVerificationComplete {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device
    * @return occurredDateTime
    */
-    public OffsetDateTime getOccurredDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getOccurredDateTime() {
     return occurredDateTime;
   }
 
-  public void setOccurredDateTime(OffsetDateTime occurredDateTime) {
+  public void setOccurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
   }
 
 
-  public DgExerciseVerificationComplete dgExerciseId(String dgExerciseId) {
+  public DgExerciseVerificationComplete dgExerciseId(@javax.annotation.Nonnull String dgExerciseId) {
     this.dgExerciseId = dgExerciseId;
     return this;
   }
@@ -98,16 +103,17 @@ public class DgExerciseVerificationComplete {
    * Unique identifier for a DG exercise
    * @return dgExerciseId
    */
-    public String getDgExerciseId() {
+  @javax.annotation.Nonnull
+  public String getDgExerciseId() {
     return dgExerciseId;
   }
 
-  public void setDgExerciseId(String dgExerciseId) {
+  public void setDgExerciseId(@javax.annotation.Nonnull String dgExerciseId) {
     this.dgExerciseId = dgExerciseId;
   }
 
 
-  public DgExerciseVerificationComplete result(ExerciseStepResult result) {
+  public DgExerciseVerificationComplete result(@javax.annotation.Nonnull ExerciseStepResult result) {
     this.result = result;
     return this;
   }
@@ -116,16 +122,17 @@ public class DgExerciseVerificationComplete {
    * Get result
    * @return result
    */
-    public ExerciseStepResult getResult() {
+  @javax.annotation.Nonnull
+  public ExerciseStepResult getResult() {
     return result;
   }
 
-  public void setResult(ExerciseStepResult result) {
+  public void setResult(@javax.annotation.Nonnull ExerciseStepResult result) {
     this.result = result;
   }
 
 
-  public DgExerciseVerificationComplete type(String type) {
+  public DgExerciseVerificationComplete type(@javax.annotation.Nonnull String type) {
     this.type = type;
     return this;
   }
@@ -134,11 +141,12 @@ public class DgExerciseVerificationComplete {
    * Get type
    * @return type
    */
-    public String getType() {
+  @javax.annotation.Nonnull
+  public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
   }
 

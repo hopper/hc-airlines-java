@@ -49,11 +49,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing information related to the airline&#39;s user. Should be included if known, but not if the user is anonymous.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UserInfo {
   public static final String SERIALIZED_NAME_AIRLINE_USER_ID = "airline_user_id";
   @SerializedName(SERIALIZED_NAME_AIRLINE_USER_ID)
-    private String airlineUserId;
+  @javax.annotation.Nonnull
+  private String airlineUserId;
 
   public static final String SERIALIZED_NAME_CREATED_DATE_TIME = "created_date_time";
   @SerializedName(SERIALIZED_NAME_CREATED_DATE_TIME)
@@ -68,7 +69,7 @@ public class UserInfo {
   public UserInfo() {
   }
 
-  public UserInfo airlineUserId(String airlineUserId) {
+  public UserInfo airlineUserId(@javax.annotation.Nonnull String airlineUserId) {
     this.airlineUserId = airlineUserId;
     return this;
   }
@@ -77,11 +78,12 @@ public class UserInfo {
    * The airline&#39;s unique identifier for a user; can be an arbitrary string
    * @return airlineUserId
    */
-    public String getAirlineUserId() {
+  @javax.annotation.Nonnull
+  public String getAirlineUserId() {
     return airlineUserId;
   }
 
-  public void setAirlineUserId(String airlineUserId) {
+  public void setAirlineUserId(@javax.annotation.Nonnull String airlineUserId) {
     this.airlineUserId = airlineUserId;
   }
 

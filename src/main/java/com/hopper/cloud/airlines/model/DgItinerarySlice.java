@@ -52,11 +52,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing the list of flight segments for a fare slice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgItinerarySlice {
   public static final String SERIALIZED_NAME_SEGMENTS = "segments";
   @SerializedName(SERIALIZED_NAME_SEGMENTS)
-    private List<DgItinerarySliceSegment> segments = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<DgItinerarySliceSegment> segments = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FARE_BRAND = "fare_brand";
   @SerializedName(SERIALIZED_NAME_FARE_BRAND)
@@ -71,7 +72,7 @@ public class DgItinerarySlice {
   public DgItinerarySlice() {
   }
 
-  public DgItinerarySlice segments(List<DgItinerarySliceSegment> segments) {
+  public DgItinerarySlice segments(@javax.annotation.Nonnull List<DgItinerarySliceSegment> segments) {
     this.segments = segments;
     return this;
   }
@@ -88,11 +89,12 @@ public class DgItinerarySlice {
    * A list of segments which make up the slice
    * @return segments
    */
-    public List<DgItinerarySliceSegment> getSegments() {
+  @javax.annotation.Nonnull
+  public List<DgItinerarySliceSegment> getSegments() {
     return segments;
   }
 
-  public void setSegments(List<DgItinerarySliceSegment> segments) {
+  public void setSegments(@javax.annotation.Nonnull List<DgItinerarySliceSegment> segments) {
     this.segments = segments;
   }
 

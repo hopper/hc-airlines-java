@@ -49,35 +49,42 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object detailing a segment of a fare slice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarItinerarySliceSegment {
   public static final String SERIALIZED_NAME_ORIGIN_AIRPORT = "origin_airport";
   @SerializedName(SERIALIZED_NAME_ORIGIN_AIRPORT)
-    private String originAirport;
+  @javax.annotation.Nonnull
+  private String originAirport;
 
   public static final String SERIALIZED_NAME_DESTINATION_AIRPORT = "destination_airport";
   @SerializedName(SERIALIZED_NAME_DESTINATION_AIRPORT)
-    private String destinationAirport;
+  @javax.annotation.Nonnull
+  private String destinationAirport;
 
   public static final String SERIALIZED_NAME_DEPARTURE_DATE_TIME = "departure_date_time";
   @SerializedName(SERIALIZED_NAME_DEPARTURE_DATE_TIME)
-    private String departureDateTime;
+  @javax.annotation.Nonnull
+  private String departureDateTime;
 
   public static final String SERIALIZED_NAME_ARRIVAL_DATE_TIME = "arrival_date_time";
   @SerializedName(SERIALIZED_NAME_ARRIVAL_DATE_TIME)
-    private String arrivalDateTime;
+  @javax.annotation.Nonnull
+  private String arrivalDateTime;
 
   public static final String SERIALIZED_NAME_FLIGHT_NUMBER = "flight_number";
   @SerializedName(SERIALIZED_NAME_FLIGHT_NUMBER)
-    private String flightNumber;
+  @javax.annotation.Nonnull
+  private String flightNumber;
 
   public static final String SERIALIZED_NAME_VALIDATING_CARRIER_CODE = "validating_carrier_code";
   @SerializedName(SERIALIZED_NAME_VALIDATING_CARRIER_CODE)
-    private String validatingCarrierCode;
+  @javax.annotation.Nonnull
+  private String validatingCarrierCode;
 
   public static final String SERIALIZED_NAME_FARE_CLASS = "fare_class";
   @SerializedName(SERIALIZED_NAME_FARE_CLASS)
-    private FareClass fareClass;
+  @javax.annotation.Nonnull
+  private FareClass fareClass;
 
   public static final String SERIALIZED_NAME_FARE_BRAND = "fare_brand";
   @SerializedName(SERIALIZED_NAME_FARE_BRAND)
@@ -87,7 +94,7 @@ public class CfarItinerarySliceSegment {
   public CfarItinerarySliceSegment() {
   }
 
-  public CfarItinerarySliceSegment originAirport(String originAirport) {
+  public CfarItinerarySliceSegment originAirport(@javax.annotation.Nonnull String originAirport) {
     this.originAirport = originAirport;
     return this;
   }
@@ -96,16 +103,17 @@ public class CfarItinerarySliceSegment {
    * IATA airport code of origin
    * @return originAirport
    */
-    public String getOriginAirport() {
+  @javax.annotation.Nonnull
+  public String getOriginAirport() {
     return originAirport;
   }
 
-  public void setOriginAirport(String originAirport) {
+  public void setOriginAirport(@javax.annotation.Nonnull String originAirport) {
     this.originAirport = originAirport;
   }
 
 
-  public CfarItinerarySliceSegment destinationAirport(String destinationAirport) {
+  public CfarItinerarySliceSegment destinationAirport(@javax.annotation.Nonnull String destinationAirport) {
     this.destinationAirport = destinationAirport;
     return this;
   }
@@ -114,16 +122,17 @@ public class CfarItinerarySliceSegment {
    * IATA airport code of destination
    * @return destinationAirport
    */
-    public String getDestinationAirport() {
+  @javax.annotation.Nonnull
+  public String getDestinationAirport() {
     return destinationAirport;
   }
 
-  public void setDestinationAirport(String destinationAirport) {
+  public void setDestinationAirport(@javax.annotation.Nonnull String destinationAirport) {
     this.destinationAirport = destinationAirport;
   }
 
 
-  public CfarItinerarySliceSegment departureDateTime(String departureDateTime) {
+  public CfarItinerarySliceSegment departureDateTime(@javax.annotation.Nonnull String departureDateTime) {
     this.departureDateTime = departureDateTime;
     return this;
   }
@@ -132,16 +141,17 @@ public class CfarItinerarySliceSegment {
    * The local date and time of departure in ISO Local Date Time format
    * @return departureDateTime
    */
-    public String getDepartureDateTime() {
+  @javax.annotation.Nonnull
+  public String getDepartureDateTime() {
     return departureDateTime;
   }
 
-  public void setDepartureDateTime(String departureDateTime) {
+  public void setDepartureDateTime(@javax.annotation.Nonnull String departureDateTime) {
     this.departureDateTime = departureDateTime;
   }
 
 
-  public CfarItinerarySliceSegment arrivalDateTime(String arrivalDateTime) {
+  public CfarItinerarySliceSegment arrivalDateTime(@javax.annotation.Nonnull String arrivalDateTime) {
     this.arrivalDateTime = arrivalDateTime;
     return this;
   }
@@ -150,16 +160,17 @@ public class CfarItinerarySliceSegment {
    * The local date and time of arrival in ISO Local Date Time format
    * @return arrivalDateTime
    */
-    public String getArrivalDateTime() {
+  @javax.annotation.Nonnull
+  public String getArrivalDateTime() {
     return arrivalDateTime;
   }
 
-  public void setArrivalDateTime(String arrivalDateTime) {
+  public void setArrivalDateTime(@javax.annotation.Nonnull String arrivalDateTime) {
     this.arrivalDateTime = arrivalDateTime;
   }
 
 
-  public CfarItinerarySliceSegment flightNumber(String flightNumber) {
+  public CfarItinerarySliceSegment flightNumber(@javax.annotation.Nonnull String flightNumber) {
     this.flightNumber = flightNumber;
     return this;
   }
@@ -168,16 +179,17 @@ public class CfarItinerarySliceSegment {
    * The number of the flight
    * @return flightNumber
    */
-    public String getFlightNumber() {
+  @javax.annotation.Nonnull
+  public String getFlightNumber() {
     return flightNumber;
   }
 
-  public void setFlightNumber(String flightNumber) {
+  public void setFlightNumber(@javax.annotation.Nonnull String flightNumber) {
     this.flightNumber = flightNumber;
   }
 
 
-  public CfarItinerarySliceSegment validatingCarrierCode(String validatingCarrierCode) {
+  public CfarItinerarySliceSegment validatingCarrierCode(@javax.annotation.Nonnull String validatingCarrierCode) {
     this.validatingCarrierCode = validatingCarrierCode;
     return this;
   }
@@ -186,16 +198,17 @@ public class CfarItinerarySliceSegment {
    * The IATA airline code of the validating carrier for this segment
    * @return validatingCarrierCode
    */
-    public String getValidatingCarrierCode() {
+  @javax.annotation.Nonnull
+  public String getValidatingCarrierCode() {
     return validatingCarrierCode;
   }
 
-  public void setValidatingCarrierCode(String validatingCarrierCode) {
+  public void setValidatingCarrierCode(@javax.annotation.Nonnull String validatingCarrierCode) {
     this.validatingCarrierCode = validatingCarrierCode;
   }
 
 
-  public CfarItinerarySliceSegment fareClass(FareClass fareClass) {
+  public CfarItinerarySliceSegment fareClass(@javax.annotation.Nonnull FareClass fareClass) {
     this.fareClass = fareClass;
     return this;
   }
@@ -204,11 +217,12 @@ public class CfarItinerarySliceSegment {
    * Get fareClass
    * @return fareClass
    */
-    public FareClass getFareClass() {
+  @javax.annotation.Nonnull
+  public FareClass getFareClass() {
     return fareClass;
   }
 
-  public void setFareClass(FareClass fareClass) {
+  public void setFareClass(@javax.annotation.Nonnull FareClass fareClass) {
     this.fareClass = fareClass;
   }
 

@@ -54,11 +54,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing the list of flight segments for a fare slice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarCreateExerciseItinerarySlice {
   public static final String SERIALIZED_NAME_SEGMENTS = "segments";
   @SerializedName(SERIALIZED_NAME_SEGMENTS)
-    private List<CfarCreateExerciseSliceSegment> segments = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<CfarCreateExerciseSliceSegment> segments = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PASSENGER_PRICING = "passenger_pricing";
   @SerializedName(SERIALIZED_NAME_PASSENGER_PRICING)
@@ -93,7 +94,7 @@ public class CfarCreateExerciseItinerarySlice {
   public CfarCreateExerciseItinerarySlice() {
   }
 
-  public CfarCreateExerciseItinerarySlice segments(List<CfarCreateExerciseSliceSegment> segments) {
+  public CfarCreateExerciseItinerarySlice segments(@javax.annotation.Nonnull List<CfarCreateExerciseSliceSegment> segments) {
     this.segments = segments;
     return this;
   }
@@ -110,11 +111,12 @@ public class CfarCreateExerciseItinerarySlice {
    * A list of segments which make up the slice
    * @return segments
    */
-    public List<CfarCreateExerciseSliceSegment> getSegments() {
+  @javax.annotation.Nonnull
+  public List<CfarCreateExerciseSliceSegment> getSegments() {
     return segments;
   }
 
-  public void setSegments(List<CfarCreateExerciseSliceSegment> segments) {
+  public void setSegments(@javax.annotation.Nonnull List<CfarCreateExerciseSliceSegment> segments) {
     this.segments = segments;
   }
 

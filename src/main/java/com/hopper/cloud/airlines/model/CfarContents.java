@@ -52,20 +52,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CfarContents
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarContents {
   public static final String SERIALIZED_NAME_BULLET_POINTS = "bullet_points";
   @SerializedName(SERIALIZED_NAME_BULLET_POINTS)
-    private List<String> bulletPoints = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<String> bulletPoints = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LABELS = "labels";
   @SerializedName(SERIALIZED_NAME_LABELS)
-    private Map<String, String> labels = new HashMap<>();
+  @javax.annotation.Nonnull
+  private Map<String, String> labels = new HashMap<>();
 
   public CfarContents() {
   }
 
-  public CfarContents bulletPoints(List<String> bulletPoints) {
+  public CfarContents bulletPoints(@javax.annotation.Nonnull List<String> bulletPoints) {
     this.bulletPoints = bulletPoints;
     return this;
   }
@@ -82,16 +84,17 @@ public class CfarContents {
    * An array containing the bullet points to be displayed
    * @return bulletPoints
    */
-    public List<String> getBulletPoints() {
+  @javax.annotation.Nonnull
+  public List<String> getBulletPoints() {
     return bulletPoints;
   }
 
-  public void setBulletPoints(List<String> bulletPoints) {
+  public void setBulletPoints(@javax.annotation.Nonnull List<String> bulletPoints) {
     this.bulletPoints = bulletPoints;
   }
 
 
-  public CfarContents labels(Map<String, String> labels) {
+  public CfarContents labels(@javax.annotation.Nonnull Map<String, String> labels) {
     this.labels = labels;
     return this;
   }
@@ -108,11 +111,12 @@ public class CfarContents {
    * Get labels
    * @return labels
    */
-    public Map<String, String> getLabels() {
+  @javax.annotation.Nonnull
+  public Map<String, String> getLabels() {
     return labels;
   }
 
-  public void setLabels(Map<String, String> labels) {
+  public void setLabels(@javax.annotation.Nonnull Map<String, String> labels) {
     this.labels = labels;
   }
 

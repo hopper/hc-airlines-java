@@ -51,19 +51,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * FareRule
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class FareRule {
   public static final String SERIALIZED_NAME_MODIFICATION_TYPE = "modification_type";
   @SerializedName(SERIALIZED_NAME_MODIFICATION_TYPE)
-    private ModificationType modificationType;
+  @javax.annotation.Nonnull
+  private ModificationType modificationType;
 
   public static final String SERIALIZED_NAME_MODIFICATION_TIME = "modification_time";
   @SerializedName(SERIALIZED_NAME_MODIFICATION_TIME)
-    private ModificationTime modificationTime;
+  @javax.annotation.Nonnull
+  private ModificationTime modificationTime;
 
   public static final String SERIALIZED_NAME_ALLOWED = "allowed";
   @SerializedName(SERIALIZED_NAME_ALLOWED)
-    private Boolean allowed;
+  @javax.annotation.Nonnull
+  private Boolean allowed;
 
   public static final String SERIALIZED_NAME_FEE = "fee";
   @SerializedName(SERIALIZED_NAME_FEE)
@@ -83,7 +86,7 @@ public class FareRule {
   public FareRule() {
   }
 
-  public FareRule modificationType(ModificationType modificationType) {
+  public FareRule modificationType(@javax.annotation.Nonnull ModificationType modificationType) {
     this.modificationType = modificationType;
     return this;
   }
@@ -92,16 +95,17 @@ public class FareRule {
    * Get modificationType
    * @return modificationType
    */
-    public ModificationType getModificationType() {
+  @javax.annotation.Nonnull
+  public ModificationType getModificationType() {
     return modificationType;
   }
 
-  public void setModificationType(ModificationType modificationType) {
+  public void setModificationType(@javax.annotation.Nonnull ModificationType modificationType) {
     this.modificationType = modificationType;
   }
 
 
-  public FareRule modificationTime(ModificationTime modificationTime) {
+  public FareRule modificationTime(@javax.annotation.Nonnull ModificationTime modificationTime) {
     this.modificationTime = modificationTime;
     return this;
   }
@@ -110,16 +114,17 @@ public class FareRule {
    * Get modificationTime
    * @return modificationTime
    */
-    public ModificationTime getModificationTime() {
+  @javax.annotation.Nonnull
+  public ModificationTime getModificationTime() {
     return modificationTime;
   }
 
-  public void setModificationTime(ModificationTime modificationTime) {
+  public void setModificationTime(@javax.annotation.Nonnull ModificationTime modificationTime) {
     this.modificationTime = modificationTime;
   }
 
 
-  public FareRule allowed(Boolean allowed) {
+  public FareRule allowed(@javax.annotation.Nonnull Boolean allowed) {
     this.allowed = allowed;
     return this;
   }
@@ -128,11 +133,12 @@ public class FareRule {
    * Determines if that type of modifications at this time is allowed
    * @return allowed
    */
-    public Boolean getAllowed() {
+  @javax.annotation.Nonnull
+  public Boolean getAllowed() {
     return allowed;
   }
 
-  public void setAllowed(Boolean allowed) {
+  public void setAllowed(@javax.annotation.Nonnull Boolean allowed) {
     this.allowed = allowed;
   }
 

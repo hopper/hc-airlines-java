@@ -53,7 +53,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A create CFAR contract exercise request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateCfarContractExerciseRequest {
   public static final String SERIALIZED_NAME_CONTRACT_ID = "contract_id";
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
@@ -62,7 +62,8 @@ public class CreateCfarContractExerciseRequest {
 
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
-    private CfarCreateExerciseItinerary itinerary;
+  @javax.annotation.Nonnull
+  private CfarCreateExerciseItinerary itinerary;
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
@@ -71,7 +72,8 @@ public class CreateCfarContractExerciseRequest {
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
-    private String pnrReference;
+  @javax.annotation.Nonnull
+  private String pnrReference;
 
   public static final String SERIALIZED_NAME_AIRLINE_REFUND_PENALTY = "airline_refund_penalty";
   @SerializedName(SERIALIZED_NAME_AIRLINE_REFUND_PENALTY)
@@ -90,7 +92,8 @@ public class CreateCfarContractExerciseRequest {
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
-    private Map<String, String> extAttributes = new HashMap<>();
+  @javax.annotation.Nonnull
+  private Map<String, String> extAttributes = new HashMap<>();
 
   public static final String SERIALIZED_NAME_SESSION = "session";
   @SerializedName(SERIALIZED_NAME_SESSION)
@@ -139,7 +142,7 @@ public class CreateCfarContractExerciseRequest {
   }
 
 
-  public CreateCfarContractExerciseRequest itinerary(CfarCreateExerciseItinerary itinerary) {
+  public CreateCfarContractExerciseRequest itinerary(@javax.annotation.Nonnull CfarCreateExerciseItinerary itinerary) {
     this.itinerary = itinerary;
     return this;
   }
@@ -148,11 +151,12 @@ public class CreateCfarContractExerciseRequest {
    * Get itinerary
    * @return itinerary
    */
-    public CfarCreateExerciseItinerary getItinerary() {
+  @javax.annotation.Nonnull
+  public CfarCreateExerciseItinerary getItinerary() {
     return itinerary;
   }
 
-  public void setItinerary(CfarCreateExerciseItinerary itinerary) {
+  public void setItinerary(@javax.annotation.Nonnull CfarCreateExerciseItinerary itinerary) {
     this.itinerary = itinerary;
   }
 
@@ -176,7 +180,7 @@ public class CreateCfarContractExerciseRequest {
   }
 
 
-  public CreateCfarContractExerciseRequest pnrReference(String pnrReference) {
+  public CreateCfarContractExerciseRequest pnrReference(@javax.annotation.Nonnull String pnrReference) {
     this.pnrReference = pnrReference;
     return this;
   }
@@ -185,11 +189,12 @@ public class CreateCfarContractExerciseRequest {
    * Get pnrReference
    * @return pnrReference
    */
-    public String getPnrReference() {
+  @javax.annotation.Nonnull
+  public String getPnrReference() {
     return pnrReference;
   }
 
-  public void setPnrReference(String pnrReference) {
+  public void setPnrReference(@javax.annotation.Nonnull String pnrReference) {
     this.pnrReference = pnrReference;
   }
 
@@ -251,7 +256,7 @@ public class CreateCfarContractExerciseRequest {
   }
 
 
-  public CreateCfarContractExerciseRequest extAttributes(Map<String, String> extAttributes) {
+  public CreateCfarContractExerciseRequest extAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
     return this;
   }
@@ -268,11 +273,12 @@ public class CreateCfarContractExerciseRequest {
    * Get extAttributes
    * @return extAttributes
    */
-    public Map<String, String> getExtAttributes() {
+  @javax.annotation.Nonnull
+  public Map<String, String> getExtAttributes() {
     return extAttributes;
   }
 
-  public void setExtAttributes(Map<String, String> extAttributes) {
+  public void setExtAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
   }
 

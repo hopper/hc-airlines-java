@@ -53,11 +53,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Update CFAR contract request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UpdateCfarContractRequest {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-    private CfarStatus status;
+  @javax.annotation.Nonnull
+  private CfarStatus status;
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
@@ -147,7 +148,7 @@ public class UpdateCfarContractRequest {
   public UpdateCfarContractRequest() {
   }
 
-  public UpdateCfarContractRequest status(CfarStatus status) {
+  public UpdateCfarContractRequest status(@javax.annotation.Nonnull CfarStatus status) {
     this.status = status;
     return this;
   }
@@ -156,11 +157,12 @@ public class UpdateCfarContractRequest {
    * Get status
    * @return status
    */
-    public CfarStatus getStatus() {
+  @javax.annotation.Nonnull
+  public CfarStatus getStatus() {
     return status;
   }
 
-  public void setStatus(CfarStatus status) {
+  public void setStatus(@javax.annotation.Nonnull CfarStatus status) {
     this.status = status;
   }
 

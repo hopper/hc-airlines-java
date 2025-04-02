@@ -48,20 +48,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * AuthRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class AuthRequest {
   public static final String SERIALIZED_NAME_CLIENT_ID = "client_id";
   @SerializedName(SERIALIZED_NAME_CLIENT_ID)
-    private String clientId;
+  @javax.annotation.Nonnull
+  private String clientId;
 
   public static final String SERIALIZED_NAME_CLIENT_SECRET = "client_secret";
   @SerializedName(SERIALIZED_NAME_CLIENT_SECRET)
-    private String clientSecret;
+  @javax.annotation.Nonnull
+  private String clientSecret;
 
   public AuthRequest() {
   }
 
-  public AuthRequest clientId(String clientId) {
+  public AuthRequest clientId(@javax.annotation.Nonnull String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -70,16 +72,17 @@ public class AuthRequest {
    * Get clientId
    * @return clientId
    */
-    public String getClientId() {
+  @javax.annotation.Nonnull
+  public String getClientId() {
     return clientId;
   }
 
-  public void setClientId(String clientId) {
+  public void setClientId(@javax.annotation.Nonnull String clientId) {
     this.clientId = clientId;
   }
 
 
-  public AuthRequest clientSecret(String clientSecret) {
+  public AuthRequest clientSecret(@javax.annotation.Nonnull String clientSecret) {
     this.clientSecret = clientSecret;
     return this;
   }
@@ -88,11 +91,12 @@ public class AuthRequest {
    * Get clientSecret
    * @return clientSecret
    */
-    public String getClientSecret() {
+  @javax.annotation.Nonnull
+  public String getClientSecret() {
     return clientSecret;
   }
 
-  public void setClientSecret(String clientSecret) {
+  public void setClientSecret(@javax.annotation.Nonnull String clientSecret) {
     this.clientSecret = clientSecret;
   }
 

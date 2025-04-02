@@ -51,16 +51,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Request object related to the update of forms of payment for CFAR contract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UpdateCfarFormOfPaymentRequest {
   public static final String SERIALIZED_NAME_FORMS_OF_PAYMENT = "forms_of_payment";
   @SerializedName(SERIALIZED_NAME_FORMS_OF_PAYMENT)
-    private List<FormOfPayment> formsOfPayment = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<FormOfPayment> formsOfPayment = new ArrayList<>();
 
   public UpdateCfarFormOfPaymentRequest() {
   }
 
-  public UpdateCfarFormOfPaymentRequest formsOfPayment(List<FormOfPayment> formsOfPayment) {
+  public UpdateCfarFormOfPaymentRequest formsOfPayment(@javax.annotation.Nonnull List<FormOfPayment> formsOfPayment) {
     this.formsOfPayment = formsOfPayment;
     return this;
   }
@@ -77,11 +78,12 @@ public class UpdateCfarFormOfPaymentRequest {
    * List of the forms of payment used to purchase the booking
    * @return formsOfPayment
    */
-    public List<FormOfPayment> getFormsOfPayment() {
+  @javax.annotation.Nonnull
+  public List<FormOfPayment> getFormsOfPayment() {
     return formsOfPayment;
   }
 
-  public void setFormsOfPayment(List<FormOfPayment> formsOfPayment) {
+  public void setFormsOfPayment(@javax.annotation.Nonnull List<FormOfPayment> formsOfPayment) {
     this.formsOfPayment = formsOfPayment;
   }
 

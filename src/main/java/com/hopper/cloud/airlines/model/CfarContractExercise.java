@@ -52,27 +52,32 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing exercise information for a contract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarContractExercise {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-    private String id;
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String SERIALIZED_NAME_CONTRACT_ID = "contract_id";
   @SerializedName(SERIALIZED_NAME_CONTRACT_ID)
-    private String contractId;
+  @javax.annotation.Nonnull
+  private String contractId;
 
   public static final String SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME = "exercise_initiated_date_time";
   @SerializedName(SERIALIZED_NAME_EXERCISE_INITIATED_DATE_TIME)
-    private OffsetDateTime exerciseInitiatedDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime exerciseInitiatedDateTime;
 
   public static final String SERIALIZED_NAME_CASH_REFUND_ALLOWANCE = "cash_refund_allowance";
   @SerializedName(SERIALIZED_NAME_CASH_REFUND_ALLOWANCE)
-    private String cashRefundAllowance;
+  @javax.annotation.Nonnull
+  private String cashRefundAllowance;
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
-    private Map<String, String> extAttributes = new HashMap<>();
+  @javax.annotation.Nonnull
+  private Map<String, String> extAttributes = new HashMap<>();
 
   public static final String SERIALIZED_NAME_FTC_REFUND_ALLOWANCE = "ftc_refund_allowance";
   @SerializedName(SERIALIZED_NAME_FTC_REFUND_ALLOWANCE)
@@ -86,7 +91,8 @@ public class CfarContractExercise {
 
   public static final String SERIALIZED_NAME_REDIRECTION_TOKEN = "redirection_token";
   @SerializedName(SERIALIZED_NAME_REDIRECTION_TOKEN)
-    private UUID redirectionToken;
+  @javax.annotation.Nonnull
+  private UUID redirectionToken;
 
   public static final String SERIALIZED_NAME_REDIRECTION_URL = "redirection_url";
   @SerializedName(SERIALIZED_NAME_REDIRECTION_URL)
@@ -96,7 +102,7 @@ public class CfarContractExercise {
   public CfarContractExercise() {
   }
 
-  public CfarContractExercise id(String id) {
+  public CfarContractExercise id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -105,16 +111,17 @@ public class CfarContractExercise {
    * Unique identifier for a CFAR exercise
    * @return id
    */
-    public String getId() {
+  @javax.annotation.Nonnull
+  public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public CfarContractExercise contractId(String contractId) {
+  public CfarContractExercise contractId(@javax.annotation.Nonnull String contractId) {
     this.contractId = contractId;
     return this;
   }
@@ -123,16 +130,17 @@ public class CfarContractExercise {
    * Unique identifier for a contract
    * @return contractId
    */
-    public String getContractId() {
+  @javax.annotation.Nonnull
+  public String getContractId() {
     return contractId;
   }
 
-  public void setContractId(String contractId) {
+  public void setContractId(@javax.annotation.Nonnull String contractId) {
     this.contractId = contractId;
   }
 
 
-  public CfarContractExercise exerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
+  public CfarContractExercise exerciseInitiatedDateTime(@javax.annotation.Nonnull OffsetDateTime exerciseInitiatedDateTime) {
     this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
     return this;
   }
@@ -141,16 +149,17 @@ public class CfarContractExercise {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a contract exercise was initiated
    * @return exerciseInitiatedDateTime
    */
-    public OffsetDateTime getExerciseInitiatedDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getExerciseInitiatedDateTime() {
     return exerciseInitiatedDateTime;
   }
 
-  public void setExerciseInitiatedDateTime(OffsetDateTime exerciseInitiatedDateTime) {
+  public void setExerciseInitiatedDateTime(@javax.annotation.Nonnull OffsetDateTime exerciseInitiatedDateTime) {
     this.exerciseInitiatedDateTime = exerciseInitiatedDateTime;
   }
 
 
-  public CfarContractExercise cashRefundAllowance(String cashRefundAllowance) {
+  public CfarContractExercise cashRefundAllowance(@javax.annotation.Nonnull String cashRefundAllowance) {
     this.cashRefundAllowance = cashRefundAllowance;
     return this;
   }
@@ -159,16 +168,17 @@ public class CfarContractExercise {
    * Refundable amount allowed in cash
    * @return cashRefundAllowance
    */
-    public String getCashRefundAllowance() {
+  @javax.annotation.Nonnull
+  public String getCashRefundAllowance() {
     return cashRefundAllowance;
   }
 
-  public void setCashRefundAllowance(String cashRefundAllowance) {
+  public void setCashRefundAllowance(@javax.annotation.Nonnull String cashRefundAllowance) {
     this.cashRefundAllowance = cashRefundAllowance;
   }
 
 
-  public CfarContractExercise extAttributes(Map<String, String> extAttributes) {
+  public CfarContractExercise extAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
     return this;
   }
@@ -185,11 +195,12 @@ public class CfarContractExercise {
    * Get extAttributes
    * @return extAttributes
    */
-    public Map<String, String> getExtAttributes() {
+  @javax.annotation.Nonnull
+  public Map<String, String> getExtAttributes() {
     return extAttributes;
   }
 
-  public void setExtAttributes(Map<String, String> extAttributes) {
+  public void setExtAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
   }
 
@@ -232,7 +243,7 @@ public class CfarContractExercise {
   }
 
 
-  public CfarContractExercise redirectionToken(UUID redirectionToken) {
+  public CfarContractExercise redirectionToken(@javax.annotation.Nonnull UUID redirectionToken) {
     this.redirectionToken = redirectionToken;
     return this;
   }
@@ -241,11 +252,12 @@ public class CfarContractExercise {
    * Token used to authenticate the redirection after filling refund information in claims portal
    * @return redirectionToken
    */
-    public UUID getRedirectionToken() {
+  @javax.annotation.Nonnull
+  public UUID getRedirectionToken() {
     return redirectionToken;
   }
 
-  public void setRedirectionToken(UUID redirectionToken) {
+  public void setRedirectionToken(@javax.annotation.Nonnull UUID redirectionToken) {
     this.redirectionToken = redirectionToken;
   }
 

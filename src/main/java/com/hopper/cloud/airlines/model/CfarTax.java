@@ -48,23 +48,27 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CfarTax
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarTax {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-    private String name;
+  @javax.annotation.Nonnull
+  private String name;
 
   public static final String SERIALIZED_NAME_RATE = "rate";
   @SerializedName(SERIALIZED_NAME_RATE)
-    private String rate;
+  @javax.annotation.Nonnull
+  private String rate;
 
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
-    private String amount;
+  @javax.annotation.Nonnull
+  private String amount;
 
   public static final String SERIALIZED_NAME_ESTIMATED = "estimated";
   @SerializedName(SERIALIZED_NAME_ESTIMATED)
-    private Boolean estimated;
+  @javax.annotation.Nonnull
+  private Boolean estimated;
 
   public static final String SERIALIZED_NAME_REGISTRATION_NUMBER = "registration_number";
   @SerializedName(SERIALIZED_NAME_REGISTRATION_NUMBER)
@@ -74,7 +78,7 @@ public class CfarTax {
   public CfarTax() {
   }
 
-  public CfarTax name(String name) {
+  public CfarTax name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -83,16 +87,17 @@ public class CfarTax {
    * Name of the tax
    * @return name
    */
-    public String getName() {
+  @javax.annotation.Nonnull
+  public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public CfarTax rate(String rate) {
+  public CfarTax rate(@javax.annotation.Nonnull String rate) {
     this.rate = rate;
     return this;
   }
@@ -101,16 +106,17 @@ public class CfarTax {
    * The rate of the tax
    * @return rate
    */
-    public String getRate() {
+  @javax.annotation.Nonnull
+  public String getRate() {
     return rate;
   }
 
-  public void setRate(String rate) {
+  public void setRate(@javax.annotation.Nonnull String rate) {
     this.rate = rate;
   }
 
 
-  public CfarTax amount(String amount) {
+  public CfarTax amount(@javax.annotation.Nonnull String amount) {
     this.amount = amount;
     return this;
   }
@@ -119,16 +125,17 @@ public class CfarTax {
    * The amount of the tax
    * @return amount
    */
-    public String getAmount() {
+  @javax.annotation.Nonnull
+  public String getAmount() {
     return amount;
   }
 
-  public void setAmount(String amount) {
+  public void setAmount(@javax.annotation.Nonnull String amount) {
     this.amount = amount;
   }
 
 
-  public CfarTax estimated(Boolean estimated) {
+  public CfarTax estimated(@javax.annotation.Nonnull Boolean estimated) {
     this.estimated = estimated;
     return this;
   }
@@ -137,11 +144,12 @@ public class CfarTax {
    * True if the tax amount is estimated, the real amount will be known only at contract confirmation
    * @return estimated
    */
-    public Boolean getEstimated() {
+  @javax.annotation.Nonnull
+  public Boolean getEstimated() {
     return estimated;
   }
 
-  public void setEstimated(Boolean estimated) {
+  public void setEstimated(@javax.annotation.Nonnull Boolean estimated) {
     this.estimated = estimated;
   }
 

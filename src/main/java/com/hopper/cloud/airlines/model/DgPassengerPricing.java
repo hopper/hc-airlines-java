@@ -52,15 +52,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * DgPassengerPricing
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgPassengerPricing {
   public static final String SERIALIZED_NAME_PASSENGER_COUNT = "passenger_count";
   @SerializedName(SERIALIZED_NAME_PASSENGER_COUNT)
-    private PassengerCount passengerCount;
+  @javax.annotation.Nonnull
+  private PassengerCount passengerCount;
 
   public static final String SERIALIZED_NAME_INDIVIDUAL_PRICE = "individual_price";
   @SerializedName(SERIALIZED_NAME_INDIVIDUAL_PRICE)
-    private String individualPrice;
+  @javax.annotation.Nonnull
+  private String individualPrice;
 
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   @SerializedName(SERIALIZED_NAME_TAXES)
@@ -70,7 +72,7 @@ public class DgPassengerPricing {
   public DgPassengerPricing() {
   }
 
-  public DgPassengerPricing passengerCount(PassengerCount passengerCount) {
+  public DgPassengerPricing passengerCount(@javax.annotation.Nonnull PassengerCount passengerCount) {
     this.passengerCount = passengerCount;
     return this;
   }
@@ -79,16 +81,17 @@ public class DgPassengerPricing {
    * Get passengerCount
    * @return passengerCount
    */
-    public PassengerCount getPassengerCount() {
+  @javax.annotation.Nonnull
+  public PassengerCount getPassengerCount() {
     return passengerCount;
   }
 
-  public void setPassengerCount(PassengerCount passengerCount) {
+  public void setPassengerCount(@javax.annotation.Nonnull PassengerCount passengerCount) {
     this.passengerCount = passengerCount;
   }
 
 
-  public DgPassengerPricing individualPrice(String individualPrice) {
+  public DgPassengerPricing individualPrice(@javax.annotation.Nonnull String individualPrice) {
     this.individualPrice = individualPrice;
     return this;
   }
@@ -97,11 +100,12 @@ public class DgPassengerPricing {
    * Price per passenger
    * @return individualPrice
    */
-    public String getIndividualPrice() {
+  @javax.annotation.Nonnull
+  public String getIndividualPrice() {
     return individualPrice;
   }
 
-  public void setIndividualPrice(String individualPrice) {
+  public void setIndividualPrice(@javax.annotation.Nonnull String individualPrice) {
     this.individualPrice = individualPrice;
   }
 

@@ -49,20 +49,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * BookingConfirmed2
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class BookingConfirmed2 {
   public static final String SERIALIZED_NAME_OCCURRED_DATE_TIME = "occurred_date_time";
   @SerializedName(SERIALIZED_NAME_OCCURRED_DATE_TIME)
-    private OffsetDateTime occurredDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime occurredDateTime;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private String type;
+  @javax.annotation.Nonnull
+  private String type;
 
   public BookingConfirmed2() {
   }
 
-  public BookingConfirmed2 occurredDateTime(OffsetDateTime occurredDateTime) {
+  public BookingConfirmed2 occurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
     return this;
   }
@@ -71,16 +73,17 @@ public class BookingConfirmed2 {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime;  the date and time at which an event occurred on a client device
    * @return occurredDateTime
    */
-    public OffsetDateTime getOccurredDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getOccurredDateTime() {
     return occurredDateTime;
   }
 
-  public void setOccurredDateTime(OffsetDateTime occurredDateTime) {
+  public void setOccurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
   }
 
 
-  public BookingConfirmed2 type(String type) {
+  public BookingConfirmed2 type(@javax.annotation.Nonnull String type) {
     this.type = type;
     return this;
   }
@@ -89,11 +92,12 @@ public class BookingConfirmed2 {
    * Get type
    * @return type
    */
-    public String getType() {
+  @javax.annotation.Nonnull
+  public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
   }
 

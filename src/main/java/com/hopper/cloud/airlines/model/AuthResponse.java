@@ -49,28 +49,32 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * AuthResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class AuthResponse {
   public static final String SERIALIZED_NAME_ACCESS_TOKEN = "access_token";
   @SerializedName(SERIALIZED_NAME_ACCESS_TOKEN)
-    private String accessToken;
+  @javax.annotation.Nonnull
+  private String accessToken;
 
   public static final String SERIALIZED_NAME_SCOPE = "scope";
   @SerializedName(SERIALIZED_NAME_SCOPE)
-    private String scope;
+  @javax.annotation.Nonnull
+  private String scope;
 
   public static final String SERIALIZED_NAME_EXPIRES_IN = "expires_in";
   @SerializedName(SERIALIZED_NAME_EXPIRES_IN)
-    private Integer expiresIn;
+  @javax.annotation.Nonnull
+  private Integer expiresIn;
 
   public static final String SERIALIZED_NAME_TOKEN_TYPE = "token_type";
   @SerializedName(SERIALIZED_NAME_TOKEN_TYPE)
-    private TokenType tokenType;
+  @javax.annotation.Nonnull
+  private TokenType tokenType;
 
   public AuthResponse() {
   }
 
-  public AuthResponse accessToken(String accessToken) {
+  public AuthResponse accessToken(@javax.annotation.Nonnull String accessToken) {
     this.accessToken = accessToken;
     return this;
   }
@@ -79,16 +83,17 @@ public class AuthResponse {
    * The authentication token
    * @return accessToken
    */
-    public String getAccessToken() {
+  @javax.annotation.Nonnull
+  public String getAccessToken() {
     return accessToken;
   }
 
-  public void setAccessToken(String accessToken) {
+  public void setAccessToken(@javax.annotation.Nonnull String accessToken) {
     this.accessToken = accessToken;
   }
 
 
-  public AuthResponse scope(String scope) {
+  public AuthResponse scope(@javax.annotation.Nonnull String scope) {
     this.scope = scope;
     return this;
   }
@@ -97,16 +102,17 @@ public class AuthResponse {
    * Token&#39;s scope
    * @return scope
    */
-    public String getScope() {
+  @javax.annotation.Nonnull
+  public String getScope() {
     return scope;
   }
 
-  public void setScope(String scope) {
+  public void setScope(@javax.annotation.Nonnull String scope) {
     this.scope = scope;
   }
 
 
-  public AuthResponse expiresIn(Integer expiresIn) {
+  public AuthResponse expiresIn(@javax.annotation.Nonnull Integer expiresIn) {
     this.expiresIn = expiresIn;
     return this;
   }
@@ -115,16 +121,17 @@ public class AuthResponse {
    * Token&#39;s expiration (in seconds)
    * @return expiresIn
    */
-    public Integer getExpiresIn() {
+  @javax.annotation.Nonnull
+  public Integer getExpiresIn() {
     return expiresIn;
   }
 
-  public void setExpiresIn(Integer expiresIn) {
+  public void setExpiresIn(@javax.annotation.Nonnull Integer expiresIn) {
     this.expiresIn = expiresIn;
   }
 
 
-  public AuthResponse tokenType(TokenType tokenType) {
+  public AuthResponse tokenType(@javax.annotation.Nonnull TokenType tokenType) {
     this.tokenType = tokenType;
     return this;
   }
@@ -133,11 +140,12 @@ public class AuthResponse {
    * Get tokenType
    * @return tokenType
    */
-    public TokenType getTokenType() {
+  @javax.annotation.Nonnull
+  public TokenType getTokenType() {
     return tokenType;
   }
 
-  public void setTokenType(TokenType tokenType) {
+  public void setTokenType(@javax.annotation.Nonnull TokenType tokenType) {
     this.tokenType = tokenType;
   }
 

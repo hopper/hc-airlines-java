@@ -57,35 +57,42 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A created Dg offer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateDgOfferItemResponse {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-    private String id;
+  @javax.annotation.Nonnull
+  private String id;
 
   public static final String SERIALIZED_NAME_PREMIUM = "premium";
   @SerializedName(SERIALIZED_NAME_PREMIUM)
-    private String premium;
+  @javax.annotation.Nonnull
+  private String premium;
 
   public static final String SERIALIZED_NAME_COVERAGE = "coverage";
   @SerializedName(SERIALIZED_NAME_COVERAGE)
-    private String coverage;
+  @javax.annotation.Nonnull
+  private String coverage;
 
   public static final String SERIALIZED_NAME_COVERAGE_PERCENTAGE = "coverage_percentage";
   @SerializedName(SERIALIZED_NAME_COVERAGE_PERCENTAGE)
-    private String coveragePercentage;
+  @javax.annotation.Nonnull
+  private String coveragePercentage;
 
   public static final String SERIALIZED_NAME_SERVICE_CAP = "service_cap";
   @SerializedName(SERIALIZED_NAME_SERVICE_CAP)
-    private String serviceCap;
+  @javax.annotation.Nonnull
+  private String serviceCap;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
-    private String currency;
+  @javax.annotation.Nonnull
+  private String currency;
 
   public static final String SERIALIZED_NAME_TAXES_TOTAL = "taxes_total";
   @SerializedName(SERIALIZED_NAME_TAXES_TOTAL)
-    private String taxesTotal;
+  @javax.annotation.Nonnull
+  private String taxesTotal;
 
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   @SerializedName(SERIALIZED_NAME_TAXES)
@@ -94,35 +101,43 @@ public class CreateDgOfferItemResponse {
 
   public static final String SERIALIZED_NAME_REQUEST_TYPE = "request_type";
   @SerializedName(SERIALIZED_NAME_REQUEST_TYPE)
-    private DgRequestType requestType;
+  @javax.annotation.Nonnull
+  private DgRequestType requestType;
 
   public static final String SERIALIZED_NAME_MAX_HOURS_BEFORE_DEPARTURE = "max_hours_before_departure";
   @SerializedName(SERIALIZED_NAME_MAX_HOURS_BEFORE_DEPARTURE)
-    private Integer maxHoursBeforeDeparture;
+  @javax.annotation.Nonnull
+  private Integer maxHoursBeforeDeparture;
 
   public static final String SERIALIZED_NAME_MIN_MINUTES_DELAY = "min_minutes_delay";
   @SerializedName(SERIALIZED_NAME_MIN_MINUTES_DELAY)
-    private Integer minMinutesDelay;
+  @javax.annotation.Nonnull
+  private Integer minMinutesDelay;
 
   public static final String SERIALIZED_NAME_CREATED_DATE_TIME = "created_date_time";
   @SerializedName(SERIALIZED_NAME_CREATED_DATE_TIME)
-    private OffsetDateTime createdDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime createdDateTime;
 
   public static final String SERIALIZED_NAME_CONTRACT_EXPIRY_DATE_TIME = "contract_expiry_date_time";
   @SerializedName(SERIALIZED_NAME_CONTRACT_EXPIRY_DATE_TIME)
-    private OffsetDateTime contractExpiryDateTime;
+  @javax.annotation.Nonnull
+  private OffsetDateTime contractExpiryDateTime;
 
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
-    private DgItinerary itinerary;
+  @javax.annotation.Nonnull
+  private DgItinerary itinerary;
 
   public static final String SERIALIZED_NAME_EXT_ATTRIBUTES = "ext_attributes";
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
-    private Map<String, String> extAttributes = new HashMap<>();
+  @javax.annotation.Nonnull
+  private Map<String, String> extAttributes = new HashMap<>();
 
   public static final String SERIALIZED_NAME_CONTENTS = "contents";
   @SerializedName(SERIALIZED_NAME_CONTENTS)
-    private Map<String, DgContents> contents = new HashMap<>();
+  @javax.annotation.Nonnull
+  private Map<String, DgContents> contents = new HashMap<>();
 
   public static final String SERIALIZED_NAME_MERCHANDISING_URL = "merchandising_url";
   @SerializedName(SERIALIZED_NAME_MERCHANDISING_URL)
@@ -132,7 +147,7 @@ public class CreateDgOfferItemResponse {
   public CreateDgOfferItemResponse() {
   }
 
-  public CreateDgOfferItemResponse id(String id) {
+  public CreateDgOfferItemResponse id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -141,16 +156,17 @@ public class CreateDgOfferItemResponse {
    * Unique identifier for an offer
    * @return id
    */
-    public String getId() {
+  @javax.annotation.Nonnull
+  public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public CreateDgOfferItemResponse premium(String premium) {
+  public CreateDgOfferItemResponse premium(@javax.annotation.Nonnull String premium) {
     this.premium = premium;
     return this;
   }
@@ -159,16 +175,17 @@ public class CreateDgOfferItemResponse {
    * Total amount to be paid for DG
    * @return premium
    */
-    public String getPremium() {
+  @javax.annotation.Nonnull
+  public String getPremium() {
     return premium;
   }
 
-  public void setPremium(String premium) {
+  public void setPremium(@javax.annotation.Nonnull String premium) {
     this.premium = premium;
   }
 
 
-  public CreateDgOfferItemResponse coverage(String coverage) {
+  public CreateDgOfferItemResponse coverage(@javax.annotation.Nonnull String coverage) {
     this.coverage = coverage;
     return this;
   }
@@ -177,16 +194,17 @@ public class CreateDgOfferItemResponse {
    * Total amount to be refunded upon DG exercise
    * @return coverage
    */
-    public String getCoverage() {
+  @javax.annotation.Nonnull
+  public String getCoverage() {
     return coverage;
   }
 
-  public void setCoverage(String coverage) {
+  public void setCoverage(@javax.annotation.Nonnull String coverage) {
     this.coverage = coverage;
   }
 
 
-  public CreateDgOfferItemResponse coveragePercentage(String coveragePercentage) {
+  public CreateDgOfferItemResponse coveragePercentage(@javax.annotation.Nonnull String coveragePercentage) {
     this.coveragePercentage = coveragePercentage;
     return this;
   }
@@ -195,16 +213,17 @@ public class CreateDgOfferItemResponse {
    * Percentage of the ticket’s value to be refunded upon DG exercise
    * @return coveragePercentage
    */
-    public String getCoveragePercentage() {
+  @javax.annotation.Nonnull
+  public String getCoveragePercentage() {
     return coveragePercentage;
   }
 
-  public void setCoveragePercentage(String coveragePercentage) {
+  public void setCoveragePercentage(@javax.annotation.Nonnull String coveragePercentage) {
     this.coveragePercentage = coveragePercentage;
   }
 
 
-  public CreateDgOfferItemResponse serviceCap(String serviceCap) {
+  public CreateDgOfferItemResponse serviceCap(@javax.annotation.Nonnull String serviceCap) {
     this.serviceCap = serviceCap;
     return this;
   }
@@ -213,16 +232,17 @@ public class CreateDgOfferItemResponse {
    * Get serviceCap
    * @return serviceCap
    */
-    public String getServiceCap() {
+  @javax.annotation.Nonnull
+  public String getServiceCap() {
     return serviceCap;
   }
 
-  public void setServiceCap(String serviceCap) {
+  public void setServiceCap(@javax.annotation.Nonnull String serviceCap) {
     this.serviceCap = serviceCap;
   }
 
 
-  public CreateDgOfferItemResponse currency(String currency) {
+  public CreateDgOfferItemResponse currency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
     return this;
   }
@@ -231,16 +251,17 @@ public class CreateDgOfferItemResponse {
    * Currency of offer
    * @return currency
    */
-    public String getCurrency() {
+  @javax.annotation.Nonnull
+  public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nonnull String currency) {
     this.currency = currency;
   }
 
 
-  public CreateDgOfferItemResponse taxesTotal(String taxesTotal) {
+  public CreateDgOfferItemResponse taxesTotal(@javax.annotation.Nonnull String taxesTotal) {
     this.taxesTotal = taxesTotal;
     return this;
   }
@@ -249,11 +270,12 @@ public class CreateDgOfferItemResponse {
    * Total of applicable taxes
    * @return taxesTotal
    */
-    public String getTaxesTotal() {
+  @javax.annotation.Nonnull
+  public String getTaxesTotal() {
     return taxesTotal;
   }
 
-  public void setTaxesTotal(String taxesTotal) {
+  public void setTaxesTotal(@javax.annotation.Nonnull String taxesTotal) {
     this.taxesTotal = taxesTotal;
   }
 
@@ -285,7 +307,7 @@ public class CreateDgOfferItemResponse {
   }
 
 
-  public CreateDgOfferItemResponse requestType(DgRequestType requestType) {
+  public CreateDgOfferItemResponse requestType(@javax.annotation.Nonnull DgRequestType requestType) {
     this.requestType = requestType;
     return this;
   }
@@ -294,16 +316,17 @@ public class CreateDgOfferItemResponse {
    * Get requestType
    * @return requestType
    */
-    public DgRequestType getRequestType() {
+  @javax.annotation.Nonnull
+  public DgRequestType getRequestType() {
     return requestType;
   }
 
-  public void setRequestType(DgRequestType requestType) {
+  public void setRequestType(@javax.annotation.Nonnull DgRequestType requestType) {
     this.requestType = requestType;
   }
 
 
-  public CreateDgOfferItemResponse maxHoursBeforeDeparture(Integer maxHoursBeforeDeparture) {
+  public CreateDgOfferItemResponse maxHoursBeforeDeparture(@javax.annotation.Nonnull Integer maxHoursBeforeDeparture) {
     this.maxHoursBeforeDeparture = maxHoursBeforeDeparture;
     return this;
   }
@@ -313,16 +336,17 @@ public class CreateDgOfferItemResponse {
    * minimum: 0
    * @return maxHoursBeforeDeparture
    */
-    public Integer getMaxHoursBeforeDeparture() {
+  @javax.annotation.Nonnull
+  public Integer getMaxHoursBeforeDeparture() {
     return maxHoursBeforeDeparture;
   }
 
-  public void setMaxHoursBeforeDeparture(Integer maxHoursBeforeDeparture) {
+  public void setMaxHoursBeforeDeparture(@javax.annotation.Nonnull Integer maxHoursBeforeDeparture) {
     this.maxHoursBeforeDeparture = maxHoursBeforeDeparture;
   }
 
 
-  public CreateDgOfferItemResponse minMinutesDelay(Integer minMinutesDelay) {
+  public CreateDgOfferItemResponse minMinutesDelay(@javax.annotation.Nonnull Integer minMinutesDelay) {
     this.minMinutesDelay = minMinutesDelay;
     return this;
   }
@@ -332,16 +356,17 @@ public class CreateDgOfferItemResponse {
    * minimum: 0
    * @return minMinutesDelay
    */
-    public Integer getMinMinutesDelay() {
+  @javax.annotation.Nonnull
+  public Integer getMinMinutesDelay() {
     return minMinutesDelay;
   }
 
-  public void setMinMinutesDelay(Integer minMinutesDelay) {
+  public void setMinMinutesDelay(@javax.annotation.Nonnull Integer minMinutesDelay) {
     this.minMinutesDelay = minMinutesDelay;
   }
 
 
-  public CreateDgOfferItemResponse createdDateTime(OffsetDateTime createdDateTime) {
+  public CreateDgOfferItemResponse createdDateTime(@javax.annotation.Nonnull OffsetDateTime createdDateTime) {
     this.createdDateTime = createdDateTime;
     return this;
   }
@@ -350,16 +375,17 @@ public class CreateDgOfferItemResponse {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which a DG offer was created
    * @return createdDateTime
    */
-    public OffsetDateTime getCreatedDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getCreatedDateTime() {
     return createdDateTime;
   }
 
-  public void setCreatedDateTime(OffsetDateTime createdDateTime) {
+  public void setCreatedDateTime(@javax.annotation.Nonnull OffsetDateTime createdDateTime) {
     this.createdDateTime = createdDateTime;
   }
 
 
-  public CreateDgOfferItemResponse contractExpiryDateTime(OffsetDateTime contractExpiryDateTime) {
+  public CreateDgOfferItemResponse contractExpiryDateTime(@javax.annotation.Nonnull OffsetDateTime contractExpiryDateTime) {
     this.contractExpiryDateTime = contractExpiryDateTime;
     return this;
   }
@@ -368,16 +394,17 @@ public class CreateDgOfferItemResponse {
    * A UTC [RFC3339](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) datetime; the date and time at which the DG contract will expire once purchased
    * @return contractExpiryDateTime
    */
-    public OffsetDateTime getContractExpiryDateTime() {
+  @javax.annotation.Nonnull
+  public OffsetDateTime getContractExpiryDateTime() {
     return contractExpiryDateTime;
   }
 
-  public void setContractExpiryDateTime(OffsetDateTime contractExpiryDateTime) {
+  public void setContractExpiryDateTime(@javax.annotation.Nonnull OffsetDateTime contractExpiryDateTime) {
     this.contractExpiryDateTime = contractExpiryDateTime;
   }
 
 
-  public CreateDgOfferItemResponse itinerary(DgItinerary itinerary) {
+  public CreateDgOfferItemResponse itinerary(@javax.annotation.Nonnull DgItinerary itinerary) {
     this.itinerary = itinerary;
     return this;
   }
@@ -386,16 +413,17 @@ public class CreateDgOfferItemResponse {
    * Get itinerary
    * @return itinerary
    */
-    public DgItinerary getItinerary() {
+  @javax.annotation.Nonnull
+  public DgItinerary getItinerary() {
     return itinerary;
   }
 
-  public void setItinerary(DgItinerary itinerary) {
+  public void setItinerary(@javax.annotation.Nonnull DgItinerary itinerary) {
     this.itinerary = itinerary;
   }
 
 
-  public CreateDgOfferItemResponse extAttributes(Map<String, String> extAttributes) {
+  public CreateDgOfferItemResponse extAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
     return this;
   }
@@ -412,16 +440,17 @@ public class CreateDgOfferItemResponse {
    * Get extAttributes
    * @return extAttributes
    */
-    public Map<String, String> getExtAttributes() {
+  @javax.annotation.Nonnull
+  public Map<String, String> getExtAttributes() {
     return extAttributes;
   }
 
-  public void setExtAttributes(Map<String, String> extAttributes) {
+  public void setExtAttributes(@javax.annotation.Nonnull Map<String, String> extAttributes) {
     this.extAttributes = extAttributes;
   }
 
 
-  public CreateDgOfferItemResponse contents(Map<String, DgContents> contents) {
+  public CreateDgOfferItemResponse contents(@javax.annotation.Nonnull Map<String, DgContents> contents) {
     this.contents = contents;
     return this;
   }
@@ -438,11 +467,12 @@ public class CreateDgOfferItemResponse {
    * Get contents
    * @return contents
    */
-    public Map<String, DgContents> getContents() {
+  @javax.annotation.Nonnull
+  public Map<String, DgContents> getContents() {
     return contents;
   }
 
-  public void setContents(Map<String, DgContents> contents) {
+  public void setContents(@javax.annotation.Nonnull Map<String, DgContents> contents) {
     this.contents = contents;
   }
 

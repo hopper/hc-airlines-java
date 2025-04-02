@@ -51,16 +51,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * BadRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class BadRequest {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-    private List<Error> errors = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<Error> errors = new ArrayList<>();
 
   public BadRequest() {
   }
 
-  public BadRequest errors(List<Error> errors) {
+  public BadRequest errors(@javax.annotation.Nonnull List<Error> errors) {
     this.errors = errors;
     return this;
   }
@@ -77,11 +78,12 @@ public class BadRequest {
    * Get errors
    * @return errors
    */
-    public List<Error> getErrors() {
+  @javax.annotation.Nonnull
+  public List<Error> getErrors() {
     return errors;
   }
 
-  public void setErrors(List<Error> errors) {
+  public void setErrors(@javax.annotation.Nonnull List<Error> errors) {
     this.errors = errors;
   }
 

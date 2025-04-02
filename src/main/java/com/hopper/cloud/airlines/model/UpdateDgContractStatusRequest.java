@@ -53,11 +53,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A update DG contract status request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UpdateDgContractStatusRequest {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-    private DgStatus status;
+  @javax.annotation.Nonnull
+  private DgStatus status;
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
@@ -132,7 +133,7 @@ public class UpdateDgContractStatusRequest {
   public UpdateDgContractStatusRequest() {
   }
 
-  public UpdateDgContractStatusRequest status(DgStatus status) {
+  public UpdateDgContractStatusRequest status(@javax.annotation.Nonnull DgStatus status) {
     this.status = status;
     return this;
   }
@@ -141,11 +142,12 @@ public class UpdateDgContractStatusRequest {
    * Get status
    * @return status
    */
-    public DgStatus getStatus() {
+  @javax.annotation.Nonnull
+  public DgStatus getStatus() {
     return status;
   }
 
-  public void setStatus(DgStatus status) {
+  public void setStatus(@javax.annotation.Nonnull DgStatus status) {
     this.status = status;
   }
 

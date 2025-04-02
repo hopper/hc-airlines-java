@@ -49,11 +49,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object detailing the fare used to create a DG offer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgAncillary {
   public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
   @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
-    private String totalPrice;
+  @javax.annotation.Nonnull
+  private String totalPrice;
 
   public static final String SERIALIZED_NAME_PASSENGER_REFERENCE = "passenger_reference";
   @SerializedName(SERIALIZED_NAME_PASSENGER_REFERENCE)
@@ -62,7 +63,8 @@ public class DgAncillary {
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-    private DgAncillaryType type;
+  @javax.annotation.Nonnull
+  private DgAncillaryType type;
 
   public static final String SERIALIZED_NAME_COVERED = "covered";
   @SerializedName(SERIALIZED_NAME_COVERED)
@@ -72,7 +74,7 @@ public class DgAncillary {
   public DgAncillary() {
   }
 
-  public DgAncillary totalPrice(String totalPrice) {
+  public DgAncillary totalPrice(@javax.annotation.Nonnull String totalPrice) {
     this.totalPrice = totalPrice;
     return this;
   }
@@ -81,11 +83,12 @@ public class DgAncillary {
    * Total price of ancillaries of this type
    * @return totalPrice
    */
-    public String getTotalPrice() {
+  @javax.annotation.Nonnull
+  public String getTotalPrice() {
     return totalPrice;
   }
 
-  public void setTotalPrice(String totalPrice) {
+  public void setTotalPrice(@javax.annotation.Nonnull String totalPrice) {
     this.totalPrice = totalPrice;
   }
 
@@ -109,7 +112,7 @@ public class DgAncillary {
   }
 
 
-  public DgAncillary type(DgAncillaryType type) {
+  public DgAncillary type(@javax.annotation.Nonnull DgAncillaryType type) {
     this.type = type;
     return this;
   }
@@ -118,11 +121,12 @@ public class DgAncillary {
    * Get type
    * @return type
    */
-    public DgAncillaryType getType() {
+  @javax.annotation.Nonnull
+  public DgAncillaryType getType() {
     return type;
   }
 
-  public void setType(DgAncillaryType type) {
+  public void setType(@javax.annotation.Nonnull DgAncillaryType type) {
     this.type = type;
   }
 

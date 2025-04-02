@@ -52,11 +52,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CfarCreateExercisePassengerPricing
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarCreateExercisePassengerPricing {
   public static final String SERIALIZED_NAME_PASSENGER_COUNT = "passenger_count";
   @SerializedName(SERIALIZED_NAME_PASSENGER_COUNT)
-    private PassengerCount passengerCount;
+  @javax.annotation.Nonnull
+  private PassengerCount passengerCount;
 
   public static final String SERIALIZED_NAME_INDIVIDUAL_PRICE = "individual_price";
   @SerializedName(SERIALIZED_NAME_INDIVIDUAL_PRICE)
@@ -71,7 +72,7 @@ public class CfarCreateExercisePassengerPricing {
   public CfarCreateExercisePassengerPricing() {
   }
 
-  public CfarCreateExercisePassengerPricing passengerCount(PassengerCount passengerCount) {
+  public CfarCreateExercisePassengerPricing passengerCount(@javax.annotation.Nonnull PassengerCount passengerCount) {
     this.passengerCount = passengerCount;
     return this;
   }
@@ -80,11 +81,12 @@ public class CfarCreateExercisePassengerPricing {
    * Get passengerCount
    * @return passengerCount
    */
-    public PassengerCount getPassengerCount() {
+  @javax.annotation.Nonnull
+  public PassengerCount getPassengerCount() {
     return passengerCount;
   }
 
-  public void setPassengerCount(PassengerCount passengerCount) {
+  public void setPassengerCount(@javax.annotation.Nonnull PassengerCount passengerCount) {
     this.passengerCount = passengerCount;
   }
 

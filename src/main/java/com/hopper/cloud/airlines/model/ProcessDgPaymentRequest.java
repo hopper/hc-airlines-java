@@ -48,11 +48,12 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A process DG payment request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class ProcessDgPaymentRequest {
   public static final String SERIALIZED_NAME_PAYMENT_TOKEN = "payment_token";
   @SerializedName(SERIALIZED_NAME_PAYMENT_TOKEN)
-    private String paymentToken;
+  @javax.annotation.Nonnull
+  private String paymentToken;
 
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
@@ -96,20 +97,23 @@ public class ProcessDgPaymentRequest {
 
   public static final String SERIALIZED_NAME_PNR_REFERENCE = "pnr_reference";
   @SerializedName(SERIALIZED_NAME_PNR_REFERENCE)
-    private String pnrReference;
+  @javax.annotation.Nonnull
+  private String pnrReference;
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
-    private String emailAddress;
+  @javax.annotation.Nonnull
+  private String emailAddress;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
-    private String phoneNumber;
+  @javax.annotation.Nonnull
+  private String phoneNumber;
 
   public ProcessDgPaymentRequest() {
   }
 
-  public ProcessDgPaymentRequest paymentToken(String paymentToken) {
+  public ProcessDgPaymentRequest paymentToken(@javax.annotation.Nonnull String paymentToken) {
     this.paymentToken = paymentToken;
     return this;
   }
@@ -118,11 +122,12 @@ public class ProcessDgPaymentRequest {
    * The Token of the Form of Payment used to pay for the DG fee. 
    * @return paymentToken
    */
-    public String getPaymentToken() {
+  @javax.annotation.Nonnull
+  public String getPaymentToken() {
     return paymentToken;
   }
 
-  public void setPaymentToken(String paymentToken) {
+  public void setPaymentToken(@javax.annotation.Nonnull String paymentToken) {
     this.paymentToken = paymentToken;
   }
 
@@ -279,7 +284,7 @@ public class ProcessDgPaymentRequest {
   }
 
 
-  public ProcessDgPaymentRequest pnrReference(String pnrReference) {
+  public ProcessDgPaymentRequest pnrReference(@javax.annotation.Nonnull String pnrReference) {
     this.pnrReference = pnrReference;
     return this;
   }
@@ -288,16 +293,17 @@ public class ProcessDgPaymentRequest {
    * Reference of the PNR in the airline system
    * @return pnrReference
    */
-    public String getPnrReference() {
+  @javax.annotation.Nonnull
+  public String getPnrReference() {
     return pnrReference;
   }
 
-  public void setPnrReference(String pnrReference) {
+  public void setPnrReference(@javax.annotation.Nonnull String pnrReference) {
     this.pnrReference = pnrReference;
   }
 
 
-  public ProcessDgPaymentRequest emailAddress(String emailAddress) {
+  public ProcessDgPaymentRequest emailAddress(@javax.annotation.Nonnull String emailAddress) {
     this.emailAddress = emailAddress;
     return this;
   }
@@ -306,16 +312,17 @@ public class ProcessDgPaymentRequest {
    * Email address of the user
    * @return emailAddress
    */
-    public String getEmailAddress() {
+  @javax.annotation.Nonnull
+  public String getEmailAddress() {
     return emailAddress;
   }
 
-  public void setEmailAddress(String emailAddress) {
+  public void setEmailAddress(@javax.annotation.Nonnull String emailAddress) {
     this.emailAddress = emailAddress;
   }
 
 
-  public ProcessDgPaymentRequest phoneNumber(String phoneNumber) {
+  public ProcessDgPaymentRequest phoneNumber(@javax.annotation.Nonnull String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -324,11 +331,12 @@ public class ProcessDgPaymentRequest {
    * Phone number of the customer
    * @return phoneNumber
    */
-    public String getPhoneNumber() {
+  @javax.annotation.Nonnull
+  public String getPhoneNumber() {
     return phoneNumber;
   }
 
-  public void setPhoneNumber(String phoneNumber) {
+  public void setPhoneNumber(@javax.annotation.Nonnull String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 

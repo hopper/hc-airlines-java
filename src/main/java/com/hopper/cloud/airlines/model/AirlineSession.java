@@ -48,16 +48,17 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A airline session resource
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T17:40:08.115903591Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class AirlineSession {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-    private String id;
+  @javax.annotation.Nonnull
+  private String id;
 
   public AirlineSession() {
   }
 
-  public AirlineSession id(String id) {
+  public AirlineSession id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -66,11 +67,12 @@ public class AirlineSession {
    * A unique identifier for a airline session
    * @return id
    */
-    public String getId() {
+  @javax.annotation.Nonnull
+  public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
