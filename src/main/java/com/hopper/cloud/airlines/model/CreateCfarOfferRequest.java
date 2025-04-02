@@ -15,41 +15,23 @@ package com.hopper.cloud.airlines.model;
 
 import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.CfarOfferItinerary;
-import com.hopper.cloud.airlines.model.CreateAirlineCfarSessionRequest;
-import com.hopper.cloud.airlines.model.RequestType;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -255,58 +237,6 @@ public class CreateCfarOfferRequest {
     openapiFields.add("booking_date_time");
     openapiFields.add("ext_attributes");
     openapiFields.add("session");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("itinerary");
-    openapiRequiredFields.add("request_type");
-    openapiRequiredFields.add("ext_attributes");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CreateCfarOfferRequest
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CreateCfarOfferRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateCfarOfferRequest is not found in the empty JSON string", CreateCfarOfferRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateCfarOfferRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCfarOfferRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateCfarOfferRequest.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("itinerary").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `itinerary` to be an array in the JSON string but got `%s`", jsonObj.get("itinerary").toString()));
-      }
-
-      JsonArray jsonArrayitinerary = jsonObj.getAsJsonArray("itinerary");
-      // validate the required field `itinerary` (array)
-      for (int i = 0; i < jsonArrayitinerary.size(); i++) {
-        CfarOfferItinerary.validateJsonElement(jsonArrayitinerary.get(i));
-      };
-      // validate the required field `request_type`
-      RequestType.validateJsonElement(jsonObj.get("request_type"));
-      // validate the optional field `session`
-      if (jsonObj.get("session") != null && !jsonObj.get("session").isJsonNull()) {
-        CreateAirlineCfarSessionRequest.validateJsonElement(jsonObj.get("session"));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -330,7 +260,6 @@ public class CreateCfarOfferRequest {
            @Override
            public CreateCfarOfferRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

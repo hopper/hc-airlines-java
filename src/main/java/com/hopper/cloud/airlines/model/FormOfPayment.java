@@ -124,8 +124,6 @@ public class FormOfPayment extends AbstractOpenApiSchema {
 
                     // deserialize Cash
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Cash.validateJsonElement(jsonElement);
                         actualAdapter = adapterCash;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Cash'");
@@ -136,8 +134,6 @@ public class FormOfPayment extends AbstractOpenApiSchema {
                     }
                     // deserialize NonCash
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        NonCash.validateJsonElement(jsonElement);
                         actualAdapter = adapterNonCash;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'NonCash'");
@@ -148,8 +144,6 @@ public class FormOfPayment extends AbstractOpenApiSchema {
                     }
                     // deserialize PaymentCard
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        PaymentCard.validateJsonElement(jsonElement);
                         actualAdapter = adapterPaymentCard;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'PaymentCard'");
@@ -160,8 +154,6 @@ public class FormOfPayment extends AbstractOpenApiSchema {
                     }
                     // deserialize Points
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Points.validateJsonElement(jsonElement);
                         actualAdapter = adapterPoints;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Points'");
@@ -293,53 +285,6 @@ public class FormOfPayment extends AbstractOpenApiSchema {
      */
     public Points getPoints() throws ClassCastException {
         return (Points)super.getActualInstance();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to FormOfPayment
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
-        ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with Cash
-        try {
-            Cash.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Cash failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with NonCash
-        try {
-            NonCash.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for NonCash failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with PaymentCard
-        try {
-            PaymentCard.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for PaymentCard failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Points
-        try {
-            Points.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Points failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for FormOfPayment with oneOf schemas: Cash, NonCash, PaymentCard, Points. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
     }
 
     /**

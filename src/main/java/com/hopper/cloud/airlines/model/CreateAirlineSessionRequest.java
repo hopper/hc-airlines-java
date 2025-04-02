@@ -262,62 +262,6 @@ public class CreateAirlineSessionRequest {
     openapiFields.add("point_of_sale");
     openapiFields.add("language");
     openapiFields.add("product");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("flow_type");
-    openapiRequiredFields.add("point_of_sale");
-    openapiRequiredFields.add("language");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CreateAirlineSessionRequest
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CreateAirlineSessionRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateAirlineSessionRequest is not found in the empty JSON string", CreateAirlineSessionRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateAirlineSessionRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateAirlineSessionRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateAirlineSessionRequest.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `flow_type`
-      FlowType.validateJsonElement(jsonObj.get("flow_type"));
-      // validate the optional field `user_info`
-      if (jsonObj.get("user_info") != null && !jsonObj.get("user_info").isJsonNull()) {
-        UserInfo.validateJsonElement(jsonObj.get("user_info"));
-      }
-      // validate the optional field `device`
-      if (jsonObj.get("device") != null && !jsonObj.get("device").isJsonNull()) {
-        Device.validateJsonElement(jsonObj.get("device"));
-      }
-      if (!jsonObj.get("point_of_sale").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `point_of_sale` to be a primitive type in the JSON string but got `%s`", jsonObj.get("point_of_sale").toString()));
-      }
-      if (!jsonObj.get("language").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `language` to be a primitive type in the JSON string but got `%s`", jsonObj.get("language").toString()));
-      }
-      // validate the optional field `product`
-      if (jsonObj.get("product") != null && !jsonObj.get("product").isJsonNull()) {
-        Product.validateJsonElement(jsonObj.get("product"));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -341,7 +285,6 @@ public class CreateAirlineSessionRequest {
            @Override
            public CreateAirlineSessionRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

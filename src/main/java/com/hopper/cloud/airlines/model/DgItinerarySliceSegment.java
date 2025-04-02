@@ -340,72 +340,6 @@ public class DgItinerarySliceSegment {
     openapiFields.add("validating_carrier_code");
     openapiFields.add("cabin");
     openapiFields.add("fare_brand");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("origin_airport");
-    openapiRequiredFields.add("destination_airport");
-    openapiRequiredFields.add("departure_date_time");
-    openapiRequiredFields.add("arrival_date_time");
-    openapiRequiredFields.add("flight_number");
-    openapiRequiredFields.add("validating_carrier_code");
-    openapiRequiredFields.add("cabin");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DgItinerarySliceSegment
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!DgItinerarySliceSegment.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DgItinerarySliceSegment is not found in the empty JSON string", DgItinerarySliceSegment.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DgItinerarySliceSegment.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DgItinerarySliceSegment` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : DgItinerarySliceSegment.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("segment_id") != null && !jsonObj.get("segment_id").isJsonNull()) && !jsonObj.get("segment_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `segment_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("segment_id").toString()));
-      }
-      if (!jsonObj.get("origin_airport").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `origin_airport` to be a primitive type in the JSON string but got `%s`", jsonObj.get("origin_airport").toString()));
-      }
-      if (!jsonObj.get("destination_airport").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `destination_airport` to be a primitive type in the JSON string but got `%s`", jsonObj.get("destination_airport").toString()));
-      }
-      if (!jsonObj.get("departure_date_time").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `departure_date_time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("departure_date_time").toString()));
-      }
-      if (!jsonObj.get("arrival_date_time").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `arrival_date_time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arrival_date_time").toString()));
-      }
-      if (!jsonObj.get("flight_number").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `flight_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flight_number").toString()));
-      }
-      if (!jsonObj.get("validating_carrier_code").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `validating_carrier_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("validating_carrier_code").toString()));
-      }
-      // validate the required field `cabin`
-      Cabin.validateJsonElement(jsonObj.get("cabin"));
-      if ((jsonObj.get("fare_brand") != null && !jsonObj.get("fare_brand").isJsonNull()) && !jsonObj.get("fare_brand").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fare_brand` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_brand").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -429,7 +363,6 @@ public class DgItinerarySliceSegment {
            @Override
            public DgItinerarySliceSegment read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

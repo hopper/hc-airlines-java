@@ -75,10 +75,5 @@ public enum CfarStatus {
       return CfarStatus.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    CfarStatus.fromValue(value);
-  }
 }
 

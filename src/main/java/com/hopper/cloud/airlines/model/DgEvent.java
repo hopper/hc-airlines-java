@@ -134,8 +134,6 @@ public class DgEvent extends AbstractOpenApiSchema {
 
                     // deserialize BookingConfirmed2
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        BookingConfirmed2.validateJsonElement(jsonElement);
                         actualAdapter = adapterBookingConfirmed2;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'BookingConfirmed2'");
@@ -146,8 +144,6 @@ public class DgEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize DgExerciseCallbackLaunched
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        DgExerciseCallbackLaunched.validateJsonElement(jsonElement);
                         actualAdapter = adapterDgExerciseCallbackLaunched;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'DgExerciseCallbackLaunched'");
@@ -158,8 +154,6 @@ public class DgEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize DgExerciseCustomerDataComplete
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        DgExerciseCustomerDataComplete.validateJsonElement(jsonElement);
                         actualAdapter = adapterDgExerciseCustomerDataComplete;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'DgExerciseCustomerDataComplete'");
@@ -170,8 +164,6 @@ public class DgEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize DgExercisePortalComplete
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        DgExercisePortalComplete.validateJsonElement(jsonElement);
                         actualAdapter = adapterDgExercisePortalComplete;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'DgExercisePortalComplete'");
@@ -182,8 +174,6 @@ public class DgEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize DgExerciseVerificationComplete
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        DgExerciseVerificationComplete.validateJsonElement(jsonElement);
                         actualAdapter = adapterDgExerciseVerificationComplete;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'DgExerciseVerificationComplete'");
@@ -332,61 +322,6 @@ public class DgEvent extends AbstractOpenApiSchema {
      */
     public DgExerciseVerificationComplete getDgExerciseVerificationComplete() throws ClassCastException {
         return (DgExerciseVerificationComplete)super.getActualInstance();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to DgEvent
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
-        ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with BookingConfirmed2
-        try {
-            BookingConfirmed2.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for BookingConfirmed2 failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with DgExerciseCallbackLaunched
-        try {
-            DgExerciseCallbackLaunched.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for DgExerciseCallbackLaunched failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with DgExerciseCustomerDataComplete
-        try {
-            DgExerciseCustomerDataComplete.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for DgExerciseCustomerDataComplete failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with DgExercisePortalComplete
-        try {
-            DgExercisePortalComplete.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for DgExercisePortalComplete failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with DgExerciseVerificationComplete
-        try {
-            DgExerciseVerificationComplete.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for DgExerciseVerificationComplete failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for DgEvent with oneOf schemas: BookingConfirmed2, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
     }
 
     /**

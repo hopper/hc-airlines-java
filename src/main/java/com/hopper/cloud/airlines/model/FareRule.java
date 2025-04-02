@@ -261,56 +261,6 @@ public class FareRule {
     openapiFields.add("fee");
     openapiFields.add("percentage");
     openapiFields.add("refund_method");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("modification_type");
-    openapiRequiredFields.add("modification_time");
-    openapiRequiredFields.add("allowed");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to FareRule
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!FareRule.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in FareRule is not found in the empty JSON string", FareRule.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FareRule.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FareRule` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FareRule.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `modification_type`
-      ModificationType.validateJsonElement(jsonObj.get("modification_type"));
-      // validate the required field `modification_time`
-      ModificationTime.validateJsonElement(jsonObj.get("modification_time"));
-      if ((jsonObj.get("fee") != null && !jsonObj.get("fee").isJsonNull()) && !jsonObj.get("fee").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fee").toString()));
-      }
-      if ((jsonObj.get("percentage") != null && !jsonObj.get("percentage").isJsonNull()) && !jsonObj.get("percentage").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `percentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("percentage").toString()));
-      }
-      // validate the optional field `refund_method`
-      if (jsonObj.get("refund_method") != null && !jsonObj.get("refund_method").isJsonNull()) {
-        AirlineRefundMethod.validateJsonElement(jsonObj.get("refund_method"));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -334,7 +284,6 @@ public class FareRule {
            @Override
            public FareRule read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

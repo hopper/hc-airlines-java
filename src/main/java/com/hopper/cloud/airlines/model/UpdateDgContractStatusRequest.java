@@ -522,106 +522,6 @@ public class UpdateDgContractStatusRequest {
     openapiFields.add("taxes_total");
     openapiFields.add("taxes");
     openapiFields.add("forms_of_payment");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("status");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to UpdateDgContractStatusRequest
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!UpdateDgContractStatusRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateDgContractStatusRequest is not found in the empty JSON string", UpdateDgContractStatusRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!UpdateDgContractStatusRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateDgContractStatusRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : UpdateDgContractStatusRequest.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `status`
-      DgStatus.validateJsonElement(jsonObj.get("status"));
-      if ((jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonNull()) && !jsonObj.get("pnr_reference").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
-      }
-      if ((jsonObj.get("email_address") != null && !jsonObj.get("email_address").isJsonNull()) && !jsonObj.get("email_address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `email_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email_address").toString()));
-      }
-      if ((jsonObj.get("phone_number") != null && !jsonObj.get("phone_number").isJsonNull()) && !jsonObj.get("phone_number").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `phone_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phone_number").toString()));
-      }
-      if ((jsonObj.get("first_name") != null && !jsonObj.get("first_name").isJsonNull()) && !jsonObj.get("first_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `first_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("first_name").toString()));
-      }
-      if ((jsonObj.get("last_name") != null && !jsonObj.get("last_name").isJsonNull()) && !jsonObj.get("last_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `last_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("last_name").toString()));
-      }
-      if ((jsonObj.get("address_line1") != null && !jsonObj.get("address_line1").isJsonNull()) && !jsonObj.get("address_line1").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `address_line1` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address_line1").toString()));
-      }
-      if ((jsonObj.get("address_line2") != null && !jsonObj.get("address_line2").isJsonNull()) && !jsonObj.get("address_line2").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `address_line2` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address_line2").toString()));
-      }
-      if ((jsonObj.get("city") != null && !jsonObj.get("city").isJsonNull()) && !jsonObj.get("city").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("city").toString()));
-      }
-      if ((jsonObj.get("state_or_province") != null && !jsonObj.get("state_or_province").isJsonNull()) && !jsonObj.get("state_or_province").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `state_or_province` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state_or_province").toString()));
-      }
-      if ((jsonObj.get("postal_code") != null && !jsonObj.get("postal_code").isJsonNull()) && !jsonObj.get("postal_code").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `postal_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postal_code").toString()));
-      }
-      if ((jsonObj.get("country") != null && !jsonObj.get("country").isJsonNull()) && !jsonObj.get("country").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("country").toString()));
-      }
-      if ((jsonObj.get("taxes_total") != null && !jsonObj.get("taxes_total").isJsonNull()) && !jsonObj.get("taxes_total").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `taxes_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taxes_total").toString()));
-      }
-      if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
-        JsonArray jsonArraytaxes = jsonObj.getAsJsonArray("taxes");
-        if (jsonArraytaxes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("taxes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
-          }
-
-          // validate the optional field `taxes` (array)
-          for (int i = 0; i < jsonArraytaxes.size(); i++) {
-            DgTax.validateJsonElement(jsonArraytaxes.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("forms_of_payment") != null && !jsonObj.get("forms_of_payment").isJsonNull()) {
-        JsonArray jsonArrayformsOfPayment = jsonObj.getAsJsonArray("forms_of_payment");
-        if (jsonArrayformsOfPayment != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("forms_of_payment").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `forms_of_payment` to be an array in the JSON string but got `%s`", jsonObj.get("forms_of_payment").toString()));
-          }
-
-          // validate the optional field `forms_of_payment` (array)
-          for (int i = 0; i < jsonArrayformsOfPayment.size(); i++) {
-            FormOfPayment.validateJsonElement(jsonArrayformsOfPayment.get(i));
-          };
-        }
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -645,7 +545,6 @@ public class UpdateDgContractStatusRequest {
            @Override
            public UpdateDgContractStatusRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

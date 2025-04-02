@@ -91,10 +91,5 @@ public enum DgAncillaryType {
       return DgAncillaryType.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    DgAncillaryType.fromValue(value);
-  }
 }
 

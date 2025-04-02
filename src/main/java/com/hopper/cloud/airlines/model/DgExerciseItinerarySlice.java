@@ -215,54 +215,6 @@ public class DgExerciseItinerarySlice {
     openapiFields.add("irop");
     openapiFields.add("invol");
     openapiFields.add("previous_slice");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("segments");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DgExerciseItinerarySlice
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!DgExerciseItinerarySlice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DgExerciseItinerarySlice is not found in the empty JSON string", DgExerciseItinerarySlice.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DgExerciseItinerarySlice.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DgExerciseItinerarySlice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : DgExerciseItinerarySlice.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("segments").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `segments` to be an array in the JSON string but got `%s`", jsonObj.get("segments").toString()));
-      }
-
-      JsonArray jsonArraysegments = jsonObj.getAsJsonArray("segments");
-      // validate the required field `segments` (array)
-      for (int i = 0; i < jsonArraysegments.size(); i++) {
-        DgExerciseItinerarySliceSegment.validateJsonElement(jsonArraysegments.get(i));
-      };
-      // validate the optional field `previous_slice`
-      if (jsonObj.get("previous_slice") != null && !jsonObj.get("previous_slice").isJsonNull()) {
-        DgExerciseItinerarySlice.validateJsonElement(jsonObj.get("previous_slice"));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -286,7 +238,6 @@ public class DgExerciseItinerarySlice {
            @Override
            public DgExerciseItinerarySlice read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

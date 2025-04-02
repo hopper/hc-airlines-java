@@ -117,8 +117,6 @@ public class Device extends AbstractOpenApiSchema {
 
                     // deserialize Desktop
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Desktop.validateJsonElement(jsonElement);
                         actualAdapter = adapterDesktop;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Desktop'");
@@ -129,8 +127,6 @@ public class Device extends AbstractOpenApiSchema {
                     }
                     // deserialize Mobile
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Mobile.validateJsonElement(jsonElement);
                         actualAdapter = adapterMobile;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Mobile'");
@@ -141,8 +137,6 @@ public class Device extends AbstractOpenApiSchema {
                     }
                     // deserialize Tablet
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Tablet.validateJsonElement(jsonElement);
                         actualAdapter = adapterTablet;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Tablet'");
@@ -257,45 +251,6 @@ public class Device extends AbstractOpenApiSchema {
      */
     public Tablet getTablet() throws ClassCastException {
         return (Tablet)super.getActualInstance();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Device
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
-        ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with Desktop
-        try {
-            Desktop.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Desktop failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Mobile
-        try {
-            Mobile.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Mobile failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Tablet
-        try {
-            Tablet.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Tablet failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for Device with oneOf schemas: Desktop, Mobile, Tablet. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
     }
 
     /**

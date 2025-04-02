@@ -206,51 +206,6 @@ public class CfarExerciseVerificationComplete {
     openapiFields.add("cfar_exercise_id");
     openapiFields.add("result");
     openapiFields.add("type");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("occurred_date_time");
-    openapiRequiredFields.add("cfar_exercise_id");
-    openapiRequiredFields.add("result");
-    openapiRequiredFields.add("type");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CfarExerciseVerificationComplete
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CfarExerciseVerificationComplete.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CfarExerciseVerificationComplete is not found in the empty JSON string", CfarExerciseVerificationComplete.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CfarExerciseVerificationComplete.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarExerciseVerificationComplete` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CfarExerciseVerificationComplete.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("cfar_exercise_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cfar_exercise_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cfar_exercise_id").toString()));
-      }
-      // validate the required field `result`
-      ExerciseStepResult.validateJsonElement(jsonObj.get("result"));
-      if (!jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -274,7 +229,6 @@ public class CfarExerciseVerificationComplete {
            @Override
            public CfarExerciseVerificationComplete read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

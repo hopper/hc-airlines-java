@@ -69,10 +69,5 @@ public enum FlowType {
       return FlowType.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    FlowType.fromValue(value);
-  }
 }
 

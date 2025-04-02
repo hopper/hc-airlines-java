@@ -71,10 +71,5 @@ public enum ModificationTime {
       return ModificationTime.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    ModificationTime.fromValue(value);
-  }
 }
 

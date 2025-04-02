@@ -148,8 +148,6 @@ public class Browser extends AbstractOpenApiSchema {
 
                     // deserialize Chrome
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Chrome.validateJsonElement(jsonElement);
                         actualAdapter = adapterChrome;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Chrome'");
@@ -160,8 +158,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Edge
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Edge.validateJsonElement(jsonElement);
                         actualAdapter = adapterEdge;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Edge'");
@@ -172,8 +168,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Firefox
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Firefox.validateJsonElement(jsonElement);
                         actualAdapter = adapterFirefox;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Firefox'");
@@ -184,8 +178,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize InternetExplorer
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        InternetExplorer.validateJsonElement(jsonElement);
                         actualAdapter = adapterInternetExplorer;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'InternetExplorer'");
@@ -196,8 +188,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Opera
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Opera.validateJsonElement(jsonElement);
                         actualAdapter = adapterOpera;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Opera'");
@@ -208,8 +198,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize OtherBrowser
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        OtherBrowser.validateJsonElement(jsonElement);
                         actualAdapter = adapterOtherBrowser;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'OtherBrowser'");
@@ -220,8 +208,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Safari
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Safari.validateJsonElement(jsonElement);
                         actualAdapter = adapterSafari;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Safari'");
@@ -404,77 +390,6 @@ public class Browser extends AbstractOpenApiSchema {
      */
     public Safari getSafari() throws ClassCastException {
         return (Safari)super.getActualInstance();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Browser
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
-        ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with Chrome
-        try {
-            Chrome.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Chrome failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Edge
-        try {
-            Edge.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Edge failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Firefox
-        try {
-            Firefox.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Firefox failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with InternetExplorer
-        try {
-            InternetExplorer.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for InternetExplorer failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Opera
-        try {
-            Opera.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Opera failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with OtherBrowser
-        try {
-            OtherBrowser.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for OtherBrowser failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Safari
-        try {
-            Safari.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Safari failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for Browser with oneOf schemas: Chrome, Edge, Firefox, InternetExplorer, Opera, OtherBrowser, Safari. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
     }
 
     /**

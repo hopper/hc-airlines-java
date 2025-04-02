@@ -210,8 +210,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
 
                     // deserialize BookingConfirmed1
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        BookingConfirmed1.validateJsonElement(jsonElement);
                         actualAdapter = adapterBookingConfirmed1;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'BookingConfirmed1'");
@@ -222,8 +220,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarDenyPurchase
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarDenyPurchase.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarDenyPurchase;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarDenyPurchase'");
@@ -234,8 +230,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarEventWithContract
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarEventWithContract.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarEventWithContract;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarEventWithContract'");
@@ -246,8 +240,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarExerciseCallbackLaunched
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarExerciseCallbackLaunched.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarExerciseCallbackLaunched;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarExerciseCallbackLaunched'");
@@ -258,8 +250,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarExerciseCustomerDataComplete
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarExerciseCustomerDataComplete.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarExerciseCustomerDataComplete;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarExerciseCustomerDataComplete'");
@@ -270,8 +260,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarExercisePortalComplete
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarExercisePortalComplete.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarExercisePortalComplete;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarExercisePortalComplete'");
@@ -282,8 +270,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarExercisePortalDisplay
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarExercisePortalDisplay.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarExercisePortalDisplay;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarExercisePortalDisplay'");
@@ -294,8 +280,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarExerciseVerificationComplete
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarExerciseVerificationComplete.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarExerciseVerificationComplete;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarExerciseVerificationComplete'");
@@ -306,8 +290,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarExerciseVerificationSent
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarExerciseVerificationSent.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarExerciseVerificationSent;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarExerciseVerificationSent'");
@@ -318,8 +300,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarForcedChoiceWarning
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarForcedChoiceWarning.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarForcedChoiceWarning;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarForcedChoiceWarning'");
@@ -330,8 +310,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarOffersBannerDisplay
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarOffersBannerDisplay.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarOffersBannerDisplay;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarOffersBannerDisplay'");
@@ -342,8 +320,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarOffersTakeoverDisplay
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarOffersTakeoverDisplay.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarOffersTakeoverDisplay;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarOffersTakeoverDisplay'");
@@ -354,8 +330,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize CfarViewInfo
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        CfarViewInfo.validateJsonElement(jsonElement);
                         actualAdapter = adapterCfarViewInfo;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'CfarViewInfo'");
@@ -366,8 +340,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
                     }
                     // deserialize OffersDisplayed1
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        OffersDisplayed1.validateJsonElement(jsonElement);
                         actualAdapter = adapterOffersDisplayed1;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'OffersDisplayed1'");
@@ -669,133 +641,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
      */
     public OffersDisplayed1 getOffersDisplayed1() throws ClassCastException {
         return (OffersDisplayed1)super.getActualInstance();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to CfarEvent
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
-        ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with BookingConfirmed1
-        try {
-            BookingConfirmed1.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for BookingConfirmed1 failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarDenyPurchase
-        try {
-            CfarDenyPurchase.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarDenyPurchase failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarEventWithContract
-        try {
-            CfarEventWithContract.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarEventWithContract failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarExerciseCallbackLaunched
-        try {
-            CfarExerciseCallbackLaunched.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarExerciseCallbackLaunched failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarExerciseCustomerDataComplete
-        try {
-            CfarExerciseCustomerDataComplete.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarExerciseCustomerDataComplete failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarExercisePortalComplete
-        try {
-            CfarExercisePortalComplete.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarExercisePortalComplete failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarExercisePortalDisplay
-        try {
-            CfarExercisePortalDisplay.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarExercisePortalDisplay failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarExerciseVerificationComplete
-        try {
-            CfarExerciseVerificationComplete.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarExerciseVerificationComplete failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarExerciseVerificationSent
-        try {
-            CfarExerciseVerificationSent.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarExerciseVerificationSent failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarForcedChoiceWarning
-        try {
-            CfarForcedChoiceWarning.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarForcedChoiceWarning failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarOffersBannerDisplay
-        try {
-            CfarOffersBannerDisplay.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarOffersBannerDisplay failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarOffersTakeoverDisplay
-        try {
-            CfarOffersTakeoverDisplay.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarOffersTakeoverDisplay failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with CfarViewInfo
-        try {
-            CfarViewInfo.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for CfarViewInfo failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with OffersDisplayed1
-        try {
-            OffersDisplayed1.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for OffersDisplayed1 failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for CfarEvent with oneOf schemas: BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOffersBannerDisplay, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
     }
 
     /**

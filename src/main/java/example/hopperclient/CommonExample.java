@@ -6,6 +6,7 @@ import com.hopper.cloud.airlines.model.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public class CommonExample {
 
     protected static HopperClient client = new HopperClient("https://airlines-api.staging.hopper.com/airline/v1.1", "HqymtSLr5IMcKWqKUq7FXzgXZy0pGIgU", "bgqNeZYn4MjE99Mw0w4scvWr_M0iNKtSNWrp_YN80_Dwxh4c5ZKxdgeWCN96RrIy", "", "", "", true);
-    protected static String flightDate = "2024-09-30";
+    protected static String flightDate = LocalDate.now().plusMonths(2).toString();
 
 
     private static CreateAirlineSessionRequest prepareCreateAirlineSessionRequest(FlowType flowType) {
@@ -84,10 +85,10 @@ public class CommonExample {
         cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
-        cfarItinerarySliceSegment.setFlightNumber("JB776");
+        cfarItinerarySliceSegment.setFlightNumber("776");
         cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
         cfarItinerarySliceSegment.setFareBrand("basic");
-        cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
+        cfarItinerarySliceSegment.setValidatingCarrierCode("JB");
         cfarItinerarySlice.setSegments(Collections.singletonList(cfarItinerarySliceSegment));
 
         itinerary1.setSlices(Collections.singletonList(cfarItinerarySlice));
@@ -137,10 +138,10 @@ public class CommonExample {
         cfarItinerarySliceSegment1.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment1.setOriginAirport("LGA");
         cfarItinerarySliceSegment1.setDestinationAirport("BOS");
-        cfarItinerarySliceSegment1.setFlightNumber("JB777");
+        cfarItinerarySliceSegment1.setFlightNumber("777");
         cfarItinerarySliceSegment1.setFareClass(FareClass.BUSINESS);
         cfarItinerarySliceSegment1.setFareBrand("flex");
-        cfarItinerarySliceSegment1.setValidatingCarrierCode("B6");
+        cfarItinerarySliceSegment1.setValidatingCarrierCode("JB");
         cfarItinerarySlice1.setSegments(Collections.singletonList(cfarItinerarySliceSegment1));
 
         itinerary2.setSlices(Collections.singletonList(cfarItinerarySlice1));
@@ -170,6 +171,7 @@ public class CommonExample {
     }
 
     protected static List<CfarOffer> createCfarOffers(HopperClient client, String sessionId) throws ApiException {
+        System.out.println(prepareCreateCfarOfferRequest().toJson());
         return client.createOffers(sessionId, prepareCreateCfarOfferRequest());
     }
 
@@ -194,20 +196,20 @@ public class CommonExample {
         cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
-        cfarItinerarySliceSegment.setFlightNumber("JB776");
+        cfarItinerarySliceSegment.setFlightNumber("776");
         cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
         cfarItinerarySliceSegment.setFareBrand("basic");
-        cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
+        cfarItinerarySliceSegment.setValidatingCarrierCode("JB");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
         cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
         cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
-        cfarItinerarySliceSegment2.setFlightNumber("JB777");
+        cfarItinerarySliceSegment2.setFlightNumber("777");
         cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
         cfarItinerarySliceSegment2.setFareBrand("flex");
-        cfarItinerarySliceSegment2.setValidatingCarrierCode("B6");
+        cfarItinerarySliceSegment2.setValidatingCarrierCode("JB");
 
         List<CfarItinerarySliceSegment> segments = new ArrayList<>();
         segments.add(cfarItinerarySliceSegment);
@@ -297,20 +299,20 @@ public class CommonExample {
         cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment.setOriginAirport("LGA");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
-        cfarItinerarySliceSegment.setFlightNumber("JB776");
+        cfarItinerarySliceSegment.setFlightNumber("776");
         cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
         cfarItinerarySliceSegment.setFareBrand("basic");
-        cfarItinerarySliceSegment.setValidatingCarrierCode("B6");
+        cfarItinerarySliceSegment.setValidatingCarrierCode("JB");
 
         CfarCreateExerciseSliceSegment cfarItinerarySliceSegment2 = new CfarCreateExerciseSliceSegment();
         cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
         cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
         cfarItinerarySliceSegment2.setOriginAirport("LGA");
         cfarItinerarySliceSegment2.setDestinationAirport("BOS");
-        cfarItinerarySliceSegment2.setFlightNumber("JB777");
+        cfarItinerarySliceSegment2.setFlightNumber("777");
         cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
         cfarItinerarySliceSegment2.setFareBrand("flex");
-        cfarItinerarySliceSegment2.setValidatingCarrierCode("B6");
+        cfarItinerarySliceSegment2.setValidatingCarrierCode("JB");
 
         cfarItinerarySlice.addSegmentsItem(cfarItinerarySliceSegment);
         cfarItinerarySlice.addSegmentsItem(cfarItinerarySliceSegment2);

@@ -75,10 +75,5 @@ public enum RequestType {
       return RequestType.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    RequestType.fromValue(value);
-  }
 }
 

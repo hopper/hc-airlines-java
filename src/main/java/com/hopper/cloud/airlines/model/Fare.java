@@ -215,55 +215,6 @@ public class Fare {
     openapiFields.add("fare_brand");
     openapiFields.add("fare_basis");
     openapiFields.add("fare_rules");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Fare
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Fare.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Fare is not found in the empty JSON string", Fare.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Fare.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Fare` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull()) && !jsonObj.get("price").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("price").toString()));
-      }
-      if ((jsonObj.get("fare_brand") != null && !jsonObj.get("fare_brand").isJsonNull()) && !jsonObj.get("fare_brand").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fare_brand` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_brand").toString()));
-      }
-      if ((jsonObj.get("fare_basis") != null && !jsonObj.get("fare_basis").isJsonNull()) && !jsonObj.get("fare_basis").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fare_basis` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_basis").toString()));
-      }
-      if (jsonObj.get("fare_rules") != null && !jsonObj.get("fare_rules").isJsonNull()) {
-        JsonArray jsonArrayfareRules = jsonObj.getAsJsonArray("fare_rules");
-        if (jsonArrayfareRules != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("fare_rules").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `fare_rules` to be an array in the JSON string but got `%s`", jsonObj.get("fare_rules").toString()));
-          }
-
-          // validate the optional field `fare_rules` (array)
-          for (int i = 0; i < jsonArrayfareRules.size(); i++) {
-            FareRule.validateJsonElement(jsonArrayfareRules.get(i));
-          };
-        }
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -287,7 +238,6 @@ public class Fare {
            @Override
            public Fare read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

@@ -323,101 +323,6 @@ public class CfarCreateExerciseItinerarySlice {
     openapiFields.add("fare_basis");
     openapiFields.add("fare_rules");
     openapiFields.add("other_fares");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("segments");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CfarCreateExerciseItinerarySlice
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CfarCreateExerciseItinerarySlice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CfarCreateExerciseItinerarySlice is not found in the empty JSON string", CfarCreateExerciseItinerarySlice.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CfarCreateExerciseItinerarySlice.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarCreateExerciseItinerarySlice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CfarCreateExerciseItinerarySlice.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("segments").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `segments` to be an array in the JSON string but got `%s`", jsonObj.get("segments").toString()));
-      }
-
-      JsonArray jsonArraysegments = jsonObj.getAsJsonArray("segments");
-      // validate the required field `segments` (array)
-      for (int i = 0; i < jsonArraysegments.size(); i++) {
-        CfarCreateExerciseSliceSegment.validateJsonElement(jsonArraysegments.get(i));
-      };
-      if (jsonObj.get("passenger_pricing") != null && !jsonObj.get("passenger_pricing").isJsonNull()) {
-        JsonArray jsonArraypassengerPricing = jsonObj.getAsJsonArray("passenger_pricing");
-        if (jsonArraypassengerPricing != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("passenger_pricing").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `passenger_pricing` to be an array in the JSON string but got `%s`", jsonObj.get("passenger_pricing").toString()));
-          }
-
-          // validate the optional field `passenger_pricing` (array)
-          for (int i = 0; i < jsonArraypassengerPricing.size(); i++) {
-            PassengerPricing.validateJsonElement(jsonArraypassengerPricing.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonNull()) && !jsonObj.get("total_price").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_price").toString()));
-      }
-      if ((jsonObj.get("fare_brand") != null && !jsonObj.get("fare_brand").isJsonNull()) && !jsonObj.get("fare_brand").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fare_brand` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_brand").toString()));
-      }
-      if ((jsonObj.get("fare_basis") != null && !jsonObj.get("fare_basis").isJsonNull()) && !jsonObj.get("fare_basis").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fare_basis` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_basis").toString()));
-      }
-      if (jsonObj.get("fare_rules") != null && !jsonObj.get("fare_rules").isJsonNull()) {
-        JsonArray jsonArrayfareRules = jsonObj.getAsJsonArray("fare_rules");
-        if (jsonArrayfareRules != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("fare_rules").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `fare_rules` to be an array in the JSON string but got `%s`", jsonObj.get("fare_rules").toString()));
-          }
-
-          // validate the optional field `fare_rules` (array)
-          for (int i = 0; i < jsonArrayfareRules.size(); i++) {
-            FareRule.validateJsonElement(jsonArrayfareRules.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("other_fares") != null && !jsonObj.get("other_fares").isJsonNull()) {
-        JsonArray jsonArrayotherFares = jsonObj.getAsJsonArray("other_fares");
-        if (jsonArrayotherFares != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("other_fares").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `other_fares` to be an array in the JSON string but got `%s`", jsonObj.get("other_fares").toString()));
-          }
-
-          // validate the optional field `other_fares` (array)
-          for (int i = 0; i < jsonArrayotherFares.size(); i++) {
-            Fare.validateJsonElement(jsonArrayotherFares.get(i));
-          };
-        }
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -441,7 +346,6 @@ public class CfarCreateExerciseItinerarySlice {
            @Override
            public CfarCreateExerciseItinerarySlice read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

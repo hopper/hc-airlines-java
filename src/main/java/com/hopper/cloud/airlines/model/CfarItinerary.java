@@ -368,124 +368,6 @@ public class CfarItinerary {
     openapiFields.add("passengers");
     openapiFields.add("fare_rules");
     openapiFields.add("taxes");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("passenger_pricing");
-    openapiRequiredFields.add("currency");
-    openapiRequiredFields.add("slices");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CfarItinerary
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CfarItinerary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CfarItinerary is not found in the empty JSON string", CfarItinerary.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CfarItinerary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarItinerary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CfarItinerary.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("passenger_pricing").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `passenger_pricing` to be an array in the JSON string but got `%s`", jsonObj.get("passenger_pricing").toString()));
-      }
-
-      JsonArray jsonArraypassengerPricing = jsonObj.getAsJsonArray("passenger_pricing");
-      // validate the required field `passenger_pricing` (array)
-      for (int i = 0; i < jsonArraypassengerPricing.size(); i++) {
-        PassengerPricing.validateJsonElement(jsonArraypassengerPricing.get(i));
-      };
-      if (!jsonObj.get("currency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-      // ensure the json data is an array
-      if (!jsonObj.get("slices").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `slices` to be an array in the JSON string but got `%s`", jsonObj.get("slices").toString()));
-      }
-
-      JsonArray jsonArrayslices = jsonObj.getAsJsonArray("slices");
-      // validate the required field `slices` (array)
-      for (int i = 0; i < jsonArrayslices.size(); i++) {
-        CfarItinerarySlice.validateJsonElement(jsonArrayslices.get(i));
-      };
-      if (jsonObj.get("ancillaries") != null && !jsonObj.get("ancillaries").isJsonNull()) {
-        JsonArray jsonArrayancillaries = jsonObj.getAsJsonArray("ancillaries");
-        if (jsonArrayancillaries != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("ancillaries").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `ancillaries` to be an array in the JSON string but got `%s`", jsonObj.get("ancillaries").toString()));
-          }
-
-          // validate the optional field `ancillaries` (array)
-          for (int i = 0; i < jsonArrayancillaries.size(); i++) {
-            Ancillary.validateJsonElement(jsonArrayancillaries.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonNull()) && !jsonObj.get("total_price").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_price").toString()));
-      }
-      if (jsonObj.get("passengers") != null && !jsonObj.get("passengers").isJsonNull()) {
-        JsonArray jsonArraypassengers = jsonObj.getAsJsonArray("passengers");
-        if (jsonArraypassengers != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("passengers").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `passengers` to be an array in the JSON string but got `%s`", jsonObj.get("passengers").toString()));
-          }
-
-          // validate the optional field `passengers` (array)
-          for (int i = 0; i < jsonArraypassengers.size(); i++) {
-            CfarPassenger.validateJsonElement(jsonArraypassengers.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("fare_rules") != null && !jsonObj.get("fare_rules").isJsonNull()) {
-        JsonArray jsonArrayfareRules = jsonObj.getAsJsonArray("fare_rules");
-        if (jsonArrayfareRules != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("fare_rules").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `fare_rules` to be an array in the JSON string but got `%s`", jsonObj.get("fare_rules").toString()));
-          }
-
-          // validate the optional field `fare_rules` (array)
-          for (int i = 0; i < jsonArrayfareRules.size(); i++) {
-            FareRule.validateJsonElement(jsonArrayfareRules.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
-        JsonArray jsonArraytaxes = jsonObj.getAsJsonArray("taxes");
-        if (jsonArraytaxes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("taxes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
-          }
-
-          // validate the optional field `taxes` (array)
-          for (int i = 0; i < jsonArraytaxes.size(); i++) {
-            CfarPassengerTax.validateJsonElement(jsonArraytaxes.get(i));
-          };
-        }
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -509,7 +391,6 @@ public class CfarItinerary {
            @Override
            public CfarItinerary read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

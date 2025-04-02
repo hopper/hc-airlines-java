@@ -69,10 +69,5 @@ public enum FlightStatus {
       return FlightStatus.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    FlightStatus.fromValue(value);
-  }
 }
 

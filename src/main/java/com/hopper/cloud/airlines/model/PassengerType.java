@@ -73,10 +73,5 @@ public enum PassengerType {
       return PassengerType.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    PassengerType.fromValue(value);
-  }
 }
 

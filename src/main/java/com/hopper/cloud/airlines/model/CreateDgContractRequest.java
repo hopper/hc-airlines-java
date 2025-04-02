@@ -225,53 +225,6 @@ public class CreateDgContractRequest {
     openapiFields.add("itinerary");
     openapiFields.add("ext_attributes");
     openapiFields.add("pnr_reference");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("offer_ids");
-    openapiRequiredFields.add("itinerary");
-    openapiRequiredFields.add("ext_attributes");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CreateDgContractRequest
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CreateDgContractRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateDgContractRequest is not found in the empty JSON string", CreateDgContractRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateDgContractRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateDgContractRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateDgContractRequest.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the required json array is present
-      if (jsonObj.get("offer_ids") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("offer_ids").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `offer_ids` to be an array in the JSON string but got `%s`", jsonObj.get("offer_ids").toString()));
-      }
-      // validate the required field `itinerary`
-      DgItinerary.validateJsonElement(jsonObj.get("itinerary"));
-      if ((jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonNull()) && !jsonObj.get("pnr_reference").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -295,7 +248,6 @@ public class CreateDgContractRequest {
            @Override
            public CreateDgContractRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

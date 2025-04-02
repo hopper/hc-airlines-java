@@ -13,9 +13,6 @@
 
 package com.hopper.cloud.airlines.model;
 
-import java.util.Objects;
-import com.google.gson.annotations.SerializedName;
-
 import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.JsonElement;
@@ -90,11 +87,6 @@ public enum AncillaryType {
       String value = jsonReader.nextString();
       return AncillaryType.fromValue(value);
     }
-  }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    AncillaryType.fromValue(value);
   }
 }
 

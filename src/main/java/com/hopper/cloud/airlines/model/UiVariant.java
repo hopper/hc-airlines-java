@@ -71,10 +71,5 @@ public enum UiVariant {
       return UiVariant.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    UiVariant.fromValue(value);
-  }
 }
 

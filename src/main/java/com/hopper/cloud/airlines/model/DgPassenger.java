@@ -15,36 +15,20 @@ package com.hopper.cloud.airlines.model;
 
 import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.DgPassengerType;
-import com.hopper.cloud.airlines.model.Gender;
+
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -396,65 +380,6 @@ public class DgPassenger {
     openapiFields.add("passport_issuance_date");
     openapiFields.add("passport_expiration_date");
     openapiFields.add("nationality");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("passenger_reference");
-    openapiRequiredFields.add("passenger_type");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DgPassenger
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!DgPassenger.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DgPassenger is not found in the empty JSON string", DgPassenger.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DgPassenger.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DgPassenger` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : DgPassenger.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("passenger_reference").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `passenger_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passenger_reference").toString()));
-      }
-      // validate the required field `passenger_type`
-      DgPassengerType.validateJsonElement(jsonObj.get("passenger_type"));
-      if ((jsonObj.get("first_name") != null && !jsonObj.get("first_name").isJsonNull()) && !jsonObj.get("first_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `first_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("first_name").toString()));
-      }
-      if ((jsonObj.get("last_name") != null && !jsonObj.get("last_name").isJsonNull()) && !jsonObj.get("last_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `last_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("last_name").toString()));
-      }
-      // validate the optional field `gender`
-      if (jsonObj.get("gender") != null && !jsonObj.get("gender").isJsonNull()) {
-        Gender.validateJsonElement(jsonObj.get("gender"));
-      }
-      if ((jsonObj.get("passport_number") != null && !jsonObj.get("passport_number").isJsonNull()) && !jsonObj.get("passport_number").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `passport_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passport_number").toString()));
-      }
-      if ((jsonObj.get("passport_country_issuance") != null && !jsonObj.get("passport_country_issuance").isJsonNull()) && !jsonObj.get("passport_country_issuance").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `passport_country_issuance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passport_country_issuance").toString()));
-      }
-      if ((jsonObj.get("nationality") != null && !jsonObj.get("nationality").isJsonNull()) && !jsonObj.get("nationality").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `nationality` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nationality").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -478,7 +403,6 @@ public class DgPassenger {
            @Override
            public DgPassenger read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

@@ -69,10 +69,5 @@ public enum ModificationType {
       return ModificationType.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    ModificationType.fromValue(value);
-  }
 }
 

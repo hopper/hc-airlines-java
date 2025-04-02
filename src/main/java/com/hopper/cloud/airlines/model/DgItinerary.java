@@ -296,96 +296,6 @@ public class DgItinerary {
     openapiFields.add("ancillaries");
     openapiFields.add("total_price");
     openapiFields.add("passengers");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("passenger_pricing");
-    openapiRequiredFields.add("currency");
-    openapiRequiredFields.add("slices");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DgItinerary
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!DgItinerary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DgItinerary is not found in the empty JSON string", DgItinerary.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DgItinerary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DgItinerary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : DgItinerary.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("passenger_pricing").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `passenger_pricing` to be an array in the JSON string but got `%s`", jsonObj.get("passenger_pricing").toString()));
-      }
-
-      JsonArray jsonArraypassengerPricing = jsonObj.getAsJsonArray("passenger_pricing");
-      // validate the required field `passenger_pricing` (array)
-      for (int i = 0; i < jsonArraypassengerPricing.size(); i++) {
-        DgPassengerPricing.validateJsonElement(jsonArraypassengerPricing.get(i));
-      };
-      if (!jsonObj.get("currency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-      // ensure the json data is an array
-      if (!jsonObj.get("slices").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `slices` to be an array in the JSON string but got `%s`", jsonObj.get("slices").toString()));
-      }
-
-      JsonArray jsonArrayslices = jsonObj.getAsJsonArray("slices");
-      // validate the required field `slices` (array)
-      for (int i = 0; i < jsonArrayslices.size(); i++) {
-        DgItinerarySlice.validateJsonElement(jsonArrayslices.get(i));
-      };
-      if (jsonObj.get("ancillaries") != null && !jsonObj.get("ancillaries").isJsonNull()) {
-        JsonArray jsonArrayancillaries = jsonObj.getAsJsonArray("ancillaries");
-        if (jsonArrayancillaries != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("ancillaries").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `ancillaries` to be an array in the JSON string but got `%s`", jsonObj.get("ancillaries").toString()));
-          }
-
-          // validate the optional field `ancillaries` (array)
-          for (int i = 0; i < jsonArrayancillaries.size(); i++) {
-            DgAncillary.validateJsonElement(jsonArrayancillaries.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("total_price") != null && !jsonObj.get("total_price").isJsonNull()) && !jsonObj.get("total_price").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_price").toString()));
-      }
-      if (jsonObj.get("passengers") != null && !jsonObj.get("passengers").isJsonNull()) {
-        JsonArray jsonArraypassengers = jsonObj.getAsJsonArray("passengers");
-        if (jsonArraypassengers != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("passengers").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `passengers` to be an array in the JSON string but got `%s`", jsonObj.get("passengers").toString()));
-          }
-
-          // validate the optional field `passengers` (array)
-          for (int i = 0; i < jsonArraypassengers.size(); i++) {
-            DgPassenger.validateJsonElement(jsonArraypassengers.get(i));
-          };
-        }
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -409,7 +319,6 @@ public class DgItinerary {
            @Override
            public DgItinerary read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

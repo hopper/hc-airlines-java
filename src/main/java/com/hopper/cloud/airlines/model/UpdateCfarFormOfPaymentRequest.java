@@ -134,50 +134,6 @@ public class UpdateCfarFormOfPaymentRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("forms_of_payment");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("forms_of_payment");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to UpdateCfarFormOfPaymentRequest
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!UpdateCfarFormOfPaymentRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateCfarFormOfPaymentRequest is not found in the empty JSON string", UpdateCfarFormOfPaymentRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!UpdateCfarFormOfPaymentRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateCfarFormOfPaymentRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : UpdateCfarFormOfPaymentRequest.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("forms_of_payment").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `forms_of_payment` to be an array in the JSON string but got `%s`", jsonObj.get("forms_of_payment").toString()));
-      }
-
-      JsonArray jsonArrayformsOfPayment = jsonObj.getAsJsonArray("forms_of_payment");
-      // validate the required field `forms_of_payment` (array)
-      for (int i = 0; i < jsonArrayformsOfPayment.size(); i++) {
-        FormOfPayment.validateJsonElement(jsonArrayformsOfPayment.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -201,7 +157,6 @@ public class UpdateCfarFormOfPaymentRequest {
            @Override
            public UpdateCfarFormOfPaymentRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

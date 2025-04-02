@@ -71,10 +71,5 @@ public enum ExerciseStepResult {
       return ExerciseStepResult.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    ExerciseStepResult.fromValue(value);
-  }
 }
 

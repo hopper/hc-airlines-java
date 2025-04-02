@@ -616,110 +616,6 @@ public class DgContract {
     openapiFields.add("language");
     openapiFields.add("pnr_reference");
     openapiFields.add("ext_attributes");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("id");
-    openapiRequiredFields.add("reference");
-    openapiRequiredFields.add("status");
-    openapiRequiredFields.add("offers");
-    openapiRequiredFields.add("coverage_percentage");
-    openapiRequiredFields.add("coverage");
-    openapiRequiredFields.add("premium");
-    openapiRequiredFields.add("service_cap");
-    openapiRequiredFields.add("currency");
-    openapiRequiredFields.add("taxes_total");
-    openapiRequiredFields.add("max_hours_before_departure");
-    openapiRequiredFields.add("min_minutes_delay");
-    openapiRequiredFields.add("created_date_time");
-    openapiRequiredFields.add("expiry_date_time");
-    openapiRequiredFields.add("ext_attributes");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DgContract
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!DgContract.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DgContract is not found in the empty JSON string", DgContract.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DgContract.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DgContract` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : DgContract.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if (!jsonObj.get("reference").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reference").toString()));
-      }
-      // validate the required field `status`
-      DgStatus.validateJsonElement(jsonObj.get("status"));
-      // ensure the json data is an array
-      if (!jsonObj.get("offers").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `offers` to be an array in the JSON string but got `%s`", jsonObj.get("offers").toString()));
-      }
-
-      JsonArray jsonArrayoffers = jsonObj.getAsJsonArray("offers");
-      // validate the required field `offers` (array)
-      for (int i = 0; i < jsonArrayoffers.size(); i++) {
-        DgOffer.validateJsonElement(jsonArrayoffers.get(i));
-      };
-      if (!jsonObj.get("coverage_percentage").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `coverage_percentage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage_percentage").toString()));
-      }
-      if (!jsonObj.get("coverage").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `coverage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coverage").toString()));
-      }
-      if (!jsonObj.get("premium").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `premium` to be a primitive type in the JSON string but got `%s`", jsonObj.get("premium").toString()));
-      }
-      if (!jsonObj.get("service_cap").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `service_cap` to be a primitive type in the JSON string but got `%s`", jsonObj.get("service_cap").toString()));
-      }
-      if (!jsonObj.get("currency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-      if (!jsonObj.get("taxes_total").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `taxes_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taxes_total").toString()));
-      }
-      if (jsonObj.get("taxes") != null && !jsonObj.get("taxes").isJsonNull()) {
-        JsonArray jsonArraytaxes = jsonObj.getAsJsonArray("taxes");
-        if (jsonArraytaxes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("taxes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `taxes` to be an array in the JSON string but got `%s`", jsonObj.get("taxes").toString()));
-          }
-
-          // validate the optional field `taxes` (array)
-          for (int i = 0; i < jsonArraytaxes.size(); i++) {
-            DgTax.validateJsonElement(jsonArraytaxes.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("language") != null && !jsonObj.get("language").isJsonNull()) && !jsonObj.get("language").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `language` to be a primitive type in the JSON string but got `%s`", jsonObj.get("language").toString()));
-      }
-      if ((jsonObj.get("pnr_reference") != null && !jsonObj.get("pnr_reference").isJsonNull()) && !jsonObj.get("pnr_reference").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -743,7 +639,6 @@ public class DgContract {
            @Override
            public DgContract read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

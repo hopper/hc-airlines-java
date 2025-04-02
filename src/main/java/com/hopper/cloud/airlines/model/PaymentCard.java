@@ -285,63 +285,6 @@ public class PaymentCard {
     openapiFields.add("expiration_month");
     openapiFields.add("expiration_year");
     openapiFields.add("type");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("amount");
-    openapiRequiredFields.add("currency");
-    openapiRequiredFields.add("type");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PaymentCard
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PaymentCard.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PaymentCard is not found in the empty JSON string", PaymentCard.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PaymentCard.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PaymentCard` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : PaymentCard.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("amount").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("amount").toString()));
-      }
-      if (!jsonObj.get("currency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-      if ((jsonObj.get("token") != null && !jsonObj.get("token").isJsonNull()) && !jsonObj.get("token").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token").toString()));
-      }
-      if ((jsonObj.get("last_four_digits") != null && !jsonObj.get("last_four_digits").isJsonNull()) && !jsonObj.get("last_four_digits").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `last_four_digits` to be a primitive type in the JSON string but got `%s`", jsonObj.get("last_four_digits").toString()));
-      }
-      if ((jsonObj.get("expiration_month") != null && !jsonObj.get("expiration_month").isJsonNull()) && !jsonObj.get("expiration_month").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `expiration_month` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expiration_month").toString()));
-      }
-      if ((jsonObj.get("expiration_year") != null && !jsonObj.get("expiration_year").isJsonNull()) && !jsonObj.get("expiration_year").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `expiration_year` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expiration_year").toString()));
-      }
-      if (!jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -365,7 +308,6 @@ public class PaymentCard {
            @Override
            public PaymentCard read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

@@ -79,10 +79,5 @@ public enum DgStatus {
       return DgStatus.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    DgStatus.fromValue(value);
-  }
 }
 

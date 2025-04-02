@@ -15,34 +15,18 @@ package com.hopper.cloud.airlines.model;
 
 import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.hopper.cloud.airlines.model.FareClass;
 import java.io.IOException;
-import java.util.Arrays;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
@@ -313,69 +297,6 @@ public class CfarCreateExerciseSliceSegment {
     openapiFields.add("validating_carrier_code");
     openapiFields.add("fare_class");
     openapiFields.add("fare_brand");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("origin_airport");
-    openapiRequiredFields.add("destination_airport");
-    openapiRequiredFields.add("departure_date_time");
-    openapiRequiredFields.add("arrival_date_time");
-    openapiRequiredFields.add("flight_number");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CfarCreateExerciseSliceSegment
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CfarCreateExerciseSliceSegment.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CfarCreateExerciseSliceSegment is not found in the empty JSON string", CfarCreateExerciseSliceSegment.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CfarCreateExerciseSliceSegment.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarCreateExerciseSliceSegment` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CfarCreateExerciseSliceSegment.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("origin_airport").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `origin_airport` to be a primitive type in the JSON string but got `%s`", jsonObj.get("origin_airport").toString()));
-      }
-      if (!jsonObj.get("destination_airport").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `destination_airport` to be a primitive type in the JSON string but got `%s`", jsonObj.get("destination_airport").toString()));
-      }
-      if (!jsonObj.get("departure_date_time").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `departure_date_time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("departure_date_time").toString()));
-      }
-      if (!jsonObj.get("arrival_date_time").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `arrival_date_time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arrival_date_time").toString()));
-      }
-      if (!jsonObj.get("flight_number").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `flight_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flight_number").toString()));
-      }
-      if ((jsonObj.get("validating_carrier_code") != null && !jsonObj.get("validating_carrier_code").isJsonNull()) && !jsonObj.get("validating_carrier_code").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `validating_carrier_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("validating_carrier_code").toString()));
-      }
-      // validate the optional field `fare_class`
-      if (jsonObj.get("fare_class") != null && !jsonObj.get("fare_class").isJsonNull()) {
-        FareClass.validateJsonElement(jsonObj.get("fare_class"));
-      }
-      if ((jsonObj.get("fare_brand") != null && !jsonObj.get("fare_brand").isJsonNull()) && !jsonObj.get("fare_brand").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fare_brand` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fare_brand").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -399,7 +320,6 @@ public class CfarCreateExerciseSliceSegment {
            @Override
            public CfarCreateExerciseSliceSegment read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

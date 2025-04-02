@@ -351,66 +351,6 @@ public class CfarContractExercise {
     openapiFields.add("currency");
     openapiFields.add("redirection_token");
     openapiFields.add("redirection_url");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("id");
-    openapiRequiredFields.add("contract_id");
-    openapiRequiredFields.add("exercise_initiated_date_time");
-    openapiRequiredFields.add("cash_refund_allowance");
-    openapiRequiredFields.add("ext_attributes");
-    openapiRequiredFields.add("redirection_token");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CfarContractExercise
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CfarContractExercise.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CfarContractExercise is not found in the empty JSON string", CfarContractExercise.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CfarContractExercise.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CfarContractExercise` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CfarContractExercise.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if (!jsonObj.get("contract_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `contract_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contract_id").toString()));
-      }
-      if (!jsonObj.get("cash_refund_allowance").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cash_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cash_refund_allowance").toString()));
-      }
-      if ((jsonObj.get("ftc_refund_allowance") != null && !jsonObj.get("ftc_refund_allowance").isJsonNull()) && !jsonObj.get("ftc_refund_allowance").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ftc_refund_allowance` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ftc_refund_allowance").toString()));
-      }
-      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-      if (!jsonObj.get("redirection_token").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `redirection_token` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirection_token").toString()));
-      }
-      if ((jsonObj.get("redirection_url") != null && !jsonObj.get("redirection_url").isJsonNull()) && !jsonObj.get("redirection_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `redirection_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirection_url").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -434,7 +374,6 @@ public class CfarContractExercise {
            @Override
            public CfarContractExercise read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

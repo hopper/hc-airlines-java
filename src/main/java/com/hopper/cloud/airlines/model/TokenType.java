@@ -67,10 +67,5 @@ public enum TokenType {
       return TokenType.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    TokenType.fromValue(value);
-  }
 }
 

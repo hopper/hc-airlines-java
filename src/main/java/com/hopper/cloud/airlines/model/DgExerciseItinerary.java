@@ -206,75 +206,6 @@ public class DgExerciseItinerary {
     openapiFields.add("passenger_count");
     openapiFields.add("slices");
     openapiFields.add("passengers");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("passenger_count");
-    openapiRequiredFields.add("slices");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DgExerciseItinerary
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!DgExerciseItinerary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DgExerciseItinerary is not found in the empty JSON string", DgExerciseItinerary.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DgExerciseItinerary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DgExerciseItinerary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : DgExerciseItinerary.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("passenger_count").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `passenger_count` to be an array in the JSON string but got `%s`", jsonObj.get("passenger_count").toString()));
-      }
-
-      JsonArray jsonArraypassengerCount = jsonObj.getAsJsonArray("passenger_count");
-      // validate the required field `passenger_count` (array)
-      for (int i = 0; i < jsonArraypassengerCount.size(); i++) {
-        DgPassengerCount.validateJsonElement(jsonArraypassengerCount.get(i));
-      };
-      // ensure the json data is an array
-      if (!jsonObj.get("slices").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `slices` to be an array in the JSON string but got `%s`", jsonObj.get("slices").toString()));
-      }
-
-      JsonArray jsonArrayslices = jsonObj.getAsJsonArray("slices");
-      // validate the required field `slices` (array)
-      for (int i = 0; i < jsonArrayslices.size(); i++) {
-        DgExerciseItinerarySlice.validateJsonElement(jsonArrayslices.get(i));
-      };
-      if (jsonObj.get("passengers") != null && !jsonObj.get("passengers").isJsonNull()) {
-        JsonArray jsonArraypassengers = jsonObj.getAsJsonArray("passengers");
-        if (jsonArraypassengers != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("passengers").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `passengers` to be an array in the JSON string but got `%s`", jsonObj.get("passengers").toString()));
-          }
-
-          // validate the optional field `passengers` (array)
-          for (int i = 0; i < jsonArraypassengers.size(); i++) {
-            DgPassenger.validateJsonElement(jsonArraypassengers.get(i));
-          };
-        }
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -298,7 +229,6 @@ public class DgExerciseItinerary {
            @Override
            public DgExerciseItinerary read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

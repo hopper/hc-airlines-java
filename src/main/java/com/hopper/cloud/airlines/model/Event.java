@@ -109,8 +109,6 @@ public class Event extends AbstractOpenApiSchema {
 
                     // deserialize BookingConfirmed
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        BookingConfirmed.validateJsonElement(jsonElement);
                         actualAdapter = adapterBookingConfirmed;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'BookingConfirmed'");
@@ -121,8 +119,6 @@ public class Event extends AbstractOpenApiSchema {
                     }
                     // deserialize OffersDisplayed
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        OffersDisplayed.validateJsonElement(jsonElement);
                         actualAdapter = adapterOffersDisplayed;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'OffersDisplayed'");
@@ -220,37 +216,6 @@ public class Event extends AbstractOpenApiSchema {
      */
     public OffersDisplayed getOffersDisplayed() throws ClassCastException {
         return (OffersDisplayed)super.getActualInstance();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Event
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
-        ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with BookingConfirmed
-        try {
-            BookingConfirmed.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for BookingConfirmed failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with OffersDisplayed
-        try {
-            OffersDisplayed.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for OffersDisplayed failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for Event with oneOf schemas: BookingConfirmed, OffersDisplayed. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
     }
 
     /**

@@ -73,10 +73,5 @@ public enum DgPassengerType {
       return DgPassengerType.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    DgPassengerType.fromValue(value);
-  }
 }
 

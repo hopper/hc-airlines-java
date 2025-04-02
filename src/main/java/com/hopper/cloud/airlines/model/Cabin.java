@@ -73,10 +73,5 @@ public enum Cabin {
       return Cabin.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    Cabin.fromValue(value);
-  }
 }
 

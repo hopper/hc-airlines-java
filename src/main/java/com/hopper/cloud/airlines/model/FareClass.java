@@ -75,10 +75,5 @@ public enum FareClass {
       return FareClass.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    FareClass.fromValue(value);
-  }
 }
 

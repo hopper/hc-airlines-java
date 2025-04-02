@@ -69,10 +69,5 @@ public enum AirlineRefundMethod {
       return AirlineRefundMethod.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    AirlineRefundMethod.fromValue(value);
-  }
 }
 

@@ -151,39 +151,6 @@ public class MarkCfarContractExerciseCompleteRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("refund_amount");
     openapiFields.add("refund_method");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to MarkCfarContractExerciseCompleteRequest
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!MarkCfarContractExerciseCompleteRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in MarkCfarContractExerciseCompleteRequest is not found in the empty JSON string", MarkCfarContractExerciseCompleteRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!MarkCfarContractExerciseCompleteRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MarkCfarContractExerciseCompleteRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("refund_amount") != null && !jsonObj.get("refund_amount").isJsonNull()) && !jsonObj.get("refund_amount").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `refund_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("refund_amount").toString()));
-      }
-      // validate the optional field `refund_method`
-      if (jsonObj.get("refund_method") != null && !jsonObj.get("refund_method").isJsonNull()) {
-        AirlineRefundMethod.validateJsonElement(jsonObj.get("refund_method"));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -207,7 +174,6 @@ public class MarkCfarContractExerciseCompleteRequest {
            @Override
            public MarkCfarContractExerciseCompleteRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 

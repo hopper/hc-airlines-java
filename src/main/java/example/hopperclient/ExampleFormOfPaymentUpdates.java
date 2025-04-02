@@ -80,21 +80,25 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         Cash cash = new Cash();
         cash.amount("46.00");
         cash.currency("CAD");
+        cash.type("cash");
         FormOfPayment paymentCash = new FormOfPayment(cash);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentCash);
 
         NonCash nonCash = new NonCash();
         nonCash.amount("8.00");
         nonCash.currency("CAD");
+        nonCash.type("non_cash");
         FormOfPayment paymentNonCash = new FormOfPayment(nonCash);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentNonCash);
 
         Points points = new Points();
         points.amount("74.00");
+        points.type("points");
         FormOfPayment paymentPoints = new FormOfPayment(points);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentPoints);
 
         PaymentCard paymentCardToken = new PaymentCard();
+        paymentCardToken.type("payment_card");
         paymentCardToken.amount("15.00");
         paymentCardToken.currency("CAD");
         paymentCardToken.setToken("RRREFFDFFDFDFF888");

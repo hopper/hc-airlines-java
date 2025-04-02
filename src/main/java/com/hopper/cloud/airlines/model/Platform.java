@@ -110,8 +110,6 @@ public class Platform extends AbstractOpenApiSchema {
 
                     // deserialize App
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        App.validateJsonElement(jsonElement);
                         actualAdapter = adapterApp;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'App'");
@@ -122,8 +120,6 @@ public class Platform extends AbstractOpenApiSchema {
                     }
                     // deserialize Web
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Web.validateJsonElement(jsonElement);
                         actualAdapter = adapterWeb;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Web'");
@@ -221,37 +217,6 @@ public class Platform extends AbstractOpenApiSchema {
      */
     public Web getWeb() throws ClassCastException {
         return (Web)super.getActualInstance();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Platform
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
-        ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with App
-        try {
-            App.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for App failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Web
-        try {
-            Web.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Web failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for Platform with oneOf schemas: App, Web. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
     }
 
     /**

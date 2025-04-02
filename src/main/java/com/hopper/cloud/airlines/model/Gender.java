@@ -73,10 +73,5 @@ public enum Gender {
       return Gender.fromValue(value);
     }
   }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    Gender.fromValue(value);
-  }
 }
 

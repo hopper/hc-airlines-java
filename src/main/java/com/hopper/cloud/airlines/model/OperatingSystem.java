@@ -148,8 +148,6 @@ public class OperatingSystem extends AbstractOpenApiSchema {
 
                     // deserialize Android
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Android.validateJsonElement(jsonElement);
                         actualAdapter = adapterAndroid;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Android'");
@@ -160,8 +158,6 @@ public class OperatingSystem extends AbstractOpenApiSchema {
                     }
                     // deserialize ChromeOs
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        ChromeOs.validateJsonElement(jsonElement);
                         actualAdapter = adapterChromeOs;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'ChromeOs'");
@@ -172,8 +168,6 @@ public class OperatingSystem extends AbstractOpenApiSchema {
                     }
                     // deserialize IOs
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        IOs.validateJsonElement(jsonElement);
                         actualAdapter = adapterIOs;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'IOs'");
@@ -184,8 +178,6 @@ public class OperatingSystem extends AbstractOpenApiSchema {
                     }
                     // deserialize Linux
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Linux.validateJsonElement(jsonElement);
                         actualAdapter = adapterLinux;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Linux'");
@@ -196,8 +188,6 @@ public class OperatingSystem extends AbstractOpenApiSchema {
                     }
                     // deserialize MacOs
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        MacOs.validateJsonElement(jsonElement);
                         actualAdapter = adapterMacOs;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'MacOs'");
@@ -208,8 +198,6 @@ public class OperatingSystem extends AbstractOpenApiSchema {
                     }
                     // deserialize OtherOs
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        OtherOs.validateJsonElement(jsonElement);
                         actualAdapter = adapterOtherOs;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'OtherOs'");
@@ -220,8 +208,6 @@ public class OperatingSystem extends AbstractOpenApiSchema {
                     }
                     // deserialize Windows
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Windows.validateJsonElement(jsonElement);
                         actualAdapter = adapterWindows;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Windows'");
@@ -404,77 +390,6 @@ public class OperatingSystem extends AbstractOpenApiSchema {
      */
     public Windows getWindows() throws ClassCastException {
         return (Windows)super.getActualInstance();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to OperatingSystem
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
-        ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with Android
-        try {
-            Android.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Android failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with ChromeOs
-        try {
-            ChromeOs.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for ChromeOs failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with IOs
-        try {
-            IOs.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for IOs failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Linux
-        try {
-            Linux.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Linux failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with MacOs
-        try {
-            MacOs.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for MacOs failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with OtherOs
-        try {
-            OtherOs.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for OtherOs failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        // validate the json string with Windows
-        try {
-            Windows.validateJsonElement(jsonElement);
-            validCount++;
-        } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for Windows failed with `%s`.", e.getMessage()));
-            // continue to the next one
-        }
-        if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for OperatingSystem with oneOf schemas: Android, ChromeOs, IOs, Linux, MacOs, OtherOs, Windows. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
     }
 
     /**

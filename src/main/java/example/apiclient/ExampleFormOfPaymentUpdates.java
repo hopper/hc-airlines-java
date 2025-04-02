@@ -85,17 +85,20 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         Cash cash = new Cash();
         cash.amount("46.00");
         cash.currency("CAD");
+        cash.setType("cash");
         FormOfPayment paymentCash = new FormOfPayment(cash);
         updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(paymentCash);
 
         NonCash nonCash = new NonCash();
         nonCash.amount("8.00");
         nonCash.currency("CAD");
+        nonCash.setType("non_cash");
         FormOfPayment paymentNonCash = new FormOfPayment(nonCash);
         updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(paymentNonCash);
 
         Points points = new Points();
         points.amount("74.00");
+        points.setType("points");
         FormOfPayment paymentPoints = new FormOfPayment(points);
         updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(paymentPoints);
 
@@ -103,9 +106,11 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         paymentCardToken.amount("15.00");
         paymentCardToken.currency("CAD");
         paymentCardToken.setToken("RRREFFDFFDFDFF888");
+        paymentCardToken.setType("payment_card");
         FormOfPayment formOfPaymentToken = new FormOfPayment(paymentCardToken);
         updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(formOfPaymentToken);
 
+        System.out.println(updateCfarContractFormsOfPaymentRequest.toJson());
         return client.putCfarContractsIdFormsOfPayment(contractReference, updateCfarContractFormsOfPaymentRequest, sessionId);
     }
 }

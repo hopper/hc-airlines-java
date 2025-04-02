@@ -287,63 +287,6 @@ public class CreateDgContractExerciseRequest {
     openapiFields.add("callback_url");
     openapiFields.add("redirectback_url");
     openapiFields.add("session");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("contract_id");
-    openapiRequiredFields.add("itinerary");
-    openapiRequiredFields.add("pnr_reference");
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CreateDgContractExerciseRequest
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CreateDgContractExerciseRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateDgContractExerciseRequest is not found in the empty JSON string", CreateDgContractExerciseRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateDgContractExerciseRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateDgContractExerciseRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateDgContractExerciseRequest.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("contract_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `contract_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contract_id").toString()));
-      }
-      // validate the required field `itinerary`
-      DgExerciseItinerary.validateJsonElement(jsonObj.get("itinerary"));
-      if (!jsonObj.get("pnr_reference").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pnr_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pnr_reference").toString()));
-      }
-      if ((jsonObj.get("email_address") != null && !jsonObj.get("email_address").isJsonNull()) && !jsonObj.get("email_address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `email_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email_address").toString()));
-      }
-      if ((jsonObj.get("callback_url") != null && !jsonObj.get("callback_url").isJsonNull()) && !jsonObj.get("callback_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `callback_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("callback_url").toString()));
-      }
-      if ((jsonObj.get("redirectback_url") != null && !jsonObj.get("redirectback_url").isJsonNull()) && !jsonObj.get("redirectback_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `redirectback_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("redirectback_url").toString()));
-      }
-      // validate the optional field `session`
-      if (jsonObj.get("session") != null && !jsonObj.get("session").isJsonNull()) {
-        CreateAirlineDgSessionRequest.validateJsonElement(jsonObj.get("session"));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -367,7 +310,6 @@ public class CreateDgContractExerciseRequest {
            @Override
            public CreateDgContractExerciseRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 
