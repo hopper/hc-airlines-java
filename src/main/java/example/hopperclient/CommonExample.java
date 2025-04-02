@@ -13,11 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CommonExample {
-
-    protected static HopperClient client = new HopperClient("https://airlines-api.staging.hopper.com/airline/v1.1", "HqymtSLr5IMcKWqKUq7FXzgXZy0pGIgU", "bgqNeZYn4MjE99Mw0w4scvWr_M0iNKtSNWrp_YN80_Dwxh4c5ZKxdgeWCN96RrIy", "", "", "", true);
     protected static String flightDate = LocalDate.now().plusMonths(2).toString();
-
-
     private static CreateAirlineSessionRequest prepareCreateAirlineSessionRequest(FlowType flowType) {
         CreateAirlineSessionRequest sessionRequest = new CreateAirlineSessionRequest();
         sessionRequest.setFlowType(flowType);
