@@ -7,7 +7,7 @@ import com.hopper.cloud.airlines.api.SessionsApi;
 import com.hopper.cloud.airlines.model.*;
 import java.util.*;
 
-public class ExampleFormOfPaymentUpdatesApiClient extends CommonExampleApiClient {
+public class ExampleFormOfPaymentUpdates extends CommonExample {
     public static void main(String[] args) {
         try {
             ApiClient apiClient = configureApiClient();
@@ -15,26 +15,26 @@ public class ExampleFormOfPaymentUpdatesApiClient extends CommonExampleApiClient
             SessionsApi sessionsApi = new SessionsApi(apiClient);
             CancelForAnyReasonCfarApi cfarApi = new CancelForAnyReasonCfarApi(apiClient);
 
-            AirlineSession session = getAirlineSession(sessionsApi, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE PURCHASE SESSION *****************");
             System.out.println("*********************************************************************");
+            AirlineSession session = getAirlineSession(sessionsApi, FlowType.PURCHASE);
             System.out.println(session);
 
-            String sessionId = session.getId();
-            List<CfarOffer> offers = createCfarOffers(cfarApi, sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE OFFERS ***************************");
             System.out.println("*********************************************************************");
+            String sessionId = session.getId();
+            List<CfarOffer> offers = createCfarOffers(cfarApi, sessionId);
             System.out.println(offers);
 
+            System.out.println("*********************************************************************");
+            System.out.println("*************************** CREATE CONTRACT *************************");
+            System.out.println("*********************************************************************");
             List<CfarOffer> selectedOffer = new ArrayList<>();
             selectedOffer.add(offers.get(0));
             selectedOffer.add(offers.get(1));
             CfarContract contract = createCfarContract(cfarApi, selectedOffer, sessionId);
-            System.out.println("*********************************************************************");
-            System.out.println("*************************** CREATE CONTRACT *************************");
-            System.out.println("*********************************************************************");
             System.out.println(contract);
 
 //            CfarContract updatedContract = updateCfarFormsOfPaymentWithSuppliedToken(client, contract.getReference(), sessionId);
@@ -42,11 +42,10 @@ public class ExampleFormOfPaymentUpdatesApiClient extends CommonExampleApiClient
 //            System.out.println("************ UPDATE FORMS OF PAYMENT WHEN TOKEN IS SUPPLIED *********");
 //            System.out.println("*********************************************************************");
 //            System.out.println(updatedContract);
-
-            CfarContract updatedContract = updateCfarFormsOfPaymentWithoutSuppliedToken(cfarApi, contract.getReference(), sessionId);
             System.out.println("*********************************************************************");
             System.out.println("************* UPDATE FORMS OF PAYMENT WHEN NO TOKEN IS SUPPLIED *****");
             System.out.println("*********************************************************************");
+            CfarContract updatedContract = updateCfarFormsOfPaymentWithoutSuppliedToken(cfarApi, contract.getReference(), sessionId);
             System.out.println(updatedContract);
         } catch (ApiException e) {
             e.printStackTrace();
@@ -82,16 +81,6 @@ public class ExampleFormOfPaymentUpdatesApiClient extends CommonExampleApiClient
 
     private static CfarContract updateCfarFormsOfPaymentWithoutSuppliedToken(CancelForAnyReasonCfarApi client, String contractReference, String sessionId) throws ApiException {
         UpdateCfarFormOfPaymentRequest updateCfarContractFormsOfPaymentRequest = new UpdateCfarFormOfPaymentRequest();
-
-        PaymentCardDetails paymentCardDetails = new PaymentCardDetails();
-        paymentCardDetails.setFirstName("John");
-        paymentCardDetails.setLastName("Smith");
-        paymentCardDetails.setExpirationMonth("09");
-        paymentCardDetails.setExpirationYear("2029");
-        paymentCardDetails.setNumber("4111111111111111");
-
-        FormOfPayment paymentCard = new FormOfPayment(paymentCardDetails);
-        updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(paymentCard);
 
         Cash cash = new Cash();
         cash.amount("46.00");

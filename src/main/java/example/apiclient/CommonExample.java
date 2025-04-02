@@ -55,7 +55,7 @@ import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CommonExampleApiClient {
+public class CommonExample {
     protected static String flightDate = LocalDate.now().plusMonths(2).toString();
 
     static ApiClient configureApiClient() {
@@ -108,7 +108,6 @@ public class CommonExampleApiClient {
 
     protected static AirlineSession getAirlineSession(SessionsApi client, FlowType flowType) throws ApiException {
         CreateAirlineSessionRequest sessionRequest = prepareCreateAirlineSessionRequest(flowType);
-        System.out.println(sessionRequest.toJson());
         return client.postSessions(sessionRequest);
     }
 
@@ -240,9 +239,6 @@ public class CommonExampleApiClient {
     protected static List<CfarOffer> createCfarOffers(CancelForAnyReasonCfarApi client, String sessionId)
             throws ApiException {
         CreateCfarOfferRequest cfarOfferReq = prepareCreateCfarOfferRequest();
-        System.out.println(
-                cfarOfferReq.toJson()
-        );
         return client.postCfarOffers(cfarOfferReq, sessionId);
     }
 
@@ -323,7 +319,6 @@ public class CommonExampleApiClient {
         itinerary.setPassengerPricing(Collections.singletonList(passengerPricing));
 
         contractRequest.setItinerary(itinerary);
-        System.out.println(contractRequest.toJson());
         return client.postCfarContracts(contractRequest);
     }
 

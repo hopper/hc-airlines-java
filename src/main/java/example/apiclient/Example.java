@@ -10,7 +10,7 @@ import com.hopper.cloud.airlines.model.*;
 import java.net.MalformedURLException;
 import java.util.*;
 
-public class ExampleApiClient extends CommonExampleApiClient {
+public class Example extends CommonExample {
     public static void main(String[] args) {
         try {
             ApiClient apiClient = configureApiClient();

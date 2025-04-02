@@ -45,8 +45,8 @@ public class HopperClient {
         params.put("audience", String.join("/", Arrays.asList(url.split("/")).subList(0, 3)));
         params.put("grant_type", "client_credentials");
 
-        ApiClient apiClient = Configuration.getDefaultApiClient();
-        apiClient.setBearerToken(clientSecret);
+        ApiClient apiClient = new ApiClient(clientId, clientSecret, params);
+        apiClient.setBasePath(url);
 
         cfarApi = new CancelForAnyReasonCfarApi(apiClient);
         cfarApi.getApiClient().setDebugging(debugging);

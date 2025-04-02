@@ -1,5 +1,13 @@
 {
-  "modelPackage": "hcap.model",
-  "apiPackage": "hcap.api",
-  "invokerPackage": "hcap"
+  "artifactVersion": "1.4.3",
+  "modelPackage": "com.hopper.cloud.airlines.model",
+  "apiPackage": "com.hopper.cloud.airlines.api",
+  "invokerPackage": "com.hopper.cloud.airlines",
+  "artifactId": "cloud-airlines-java",
+  "artifactUrl": "https://github.com/hopper/hc-airlines-java",
+  "groupId": "com.hopper.cloud",
+  "licenseName": "The Apache Software License, Version 2.0",
+  "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+  "performBeanValidation": false,
+  "useBeanValidation": false
 }
