@@ -1,12 +1,4 @@
-package example;
-
-import com.hopper.cloud.airlines.ApiClient;
-import com.hopper.cloud.airlines.ApiException;
-import com.hopper.cloud.airlines.Configuration;
-import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
-import com.hopper.cloud.airlines.model.*;
-
-import java.net.MalformedURLException;
+package example.apiclient;
 
 //public class ExampleMonoPurchaseOrchestration extends CommonExample {
 //    public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package example;
+package example.apiclient;
 
 import com.hopper.cloud.airlines.ApiClient;
 import com.hopper.cloud.airlines.ApiException;
@@ -47,7 +47,6 @@ import com.hopper.cloud.airlines.model.RequestType;
 import com.hopper.cloud.airlines.model.UpdateCfarContractRequest;
 import com.hopper.cloud.airlines.model.UserInfo;
 import com.hopper.cloud.airlines.model.Web;
-import org.jetbrains.annotations.NotNull;
 
 import java.net.MalformedURLException;
 import java.time.LocalDate;
@@ -56,7 +55,7 @@ import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CommonExample {
+public class CommonExampleApiClient {
     protected static String flightDate = LocalDate.now().plusMonths(2).toString();
 
     static ApiClient configureApiClient() {

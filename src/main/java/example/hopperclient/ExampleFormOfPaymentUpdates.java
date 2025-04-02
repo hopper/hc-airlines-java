@@ -1,28 +1,22 @@
-package example;
+package example.hopperclient;
 
 import com.hopper.cloud.airlines.ApiException;
-import com.hopper.cloud.airlines.ApiClient;
-import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
-import com.hopper.cloud.airlines.api.SessionsApi;
+import com.hopper.cloud.airlines.HopperClient;
 import com.hopper.cloud.airlines.model.*;
+
 import java.util.*;
 
 public class ExampleFormOfPaymentUpdates extends CommonExample {
     public static void main(String[] args) {
         try {
-            ApiClient apiClient = configureApiClient();
-
-            SessionsApi sessionsApi = new SessionsApi(apiClient);
-            CancelForAnyReasonCfarApi cfarApi = new CancelForAnyReasonCfarApi(apiClient);
-
-            AirlineSession session = getAirlineSession(sessionsApi, FlowType.PURCHASE);
+            AirlineSession session = getAirlineSession(client, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE PURCHASE SESSION *****************");
             System.out.println("*********************************************************************");
             System.out.println(session);
 
             String sessionId = session.getId();
-            List<CfarOffer> offers = createCfarOffers(cfarApi, sessionId);
+            List<CfarOffer> offers = createCfarOffers(client, sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE OFFERS ***************************");
             System.out.println("*********************************************************************");
@@ -31,7 +25,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
             List<CfarOffer> selectedOffer = new ArrayList<>();
             selectedOffer.add(offers.get(0));
             selectedOffer.add(offers.get(1));
-            CfarContract contract = createCfarContract(cfarApi, selectedOffer, sessionId);
+            CfarContract contract = createCfarContract(client, selectedOffer, sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE CONTRACT *************************");
             System.out.println("*********************************************************************");
@@ -43,7 +37,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
 //            System.out.println("*********************************************************************");
 //            System.out.println(updatedContract);
 
-            CfarContract updatedContract = updateCfarFormsOfPaymentWithoutSuppliedToken(cfarApi, contract.getReference(), sessionId);
+            CfarContract updatedContract = updateCfarFormsOfPaymentWithoutSuppliedToken(client, contract.getReference(), sessionId);
             System.out.println("*********************************************************************");
             System.out.println("************* UPDATE FORMS OF PAYMENT WHEN NO TOKEN IS SUPPLIED *****");
             System.out.println("*********************************************************************");
@@ -53,7 +47,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         }
     }
 
-    private static CfarContract updateCfarFormsOfPaymentWithSuppliedToken(CancelForAnyReasonCfarApi client, String contractReference, String sessionId) throws ApiException {
+    private static CfarContract updateCfarFormsOfPaymentWithSuppliedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
 //        Base64RsaKeyPair keyPair = null;
 //        try {
 //            keyPair = RsaHelper.buildBase64RsaKeys();
@@ -61,63 +55,52 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
 //            throw new ApiException("generateRsaKeyPair ko");
 //        }
 
-        UpdateCfarFormOfPaymentRequest updateCfarContractFormsOfPaymentRequest = new UpdateCfarFormOfPaymentRequest();
+        UpdateCfarContractFormsOfPaymentRequest updateCfarContractFormsOfPaymentRequest = new UpdateCfarContractFormsOfPaymentRequest();
 
         PaymentCard paymentCard = new PaymentCard();
         paymentCard.amount("80.00");
         paymentCard.currency("CAD");
         paymentCard.setToken("FDDFDFDFDFDFFcc00028");
 
-        FormOfPayment formOfPayment = new FormOfPayment();
-        formOfPayment.setActualInstance(paymentCard);
-        updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(formOfPayment);
+        FormOfPayment formOfPayment = new FormOfPayment(paymentCard);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(formOfPayment);
 
         Cash paymentCash = new Cash();
         paymentCash.amount("12.00");
         paymentCash.currency("CAD");
-        FormOfPayment formOfPayment1 = new FormOfPayment();
-        formOfPayment.setActualInstance(paymentCash);
-        updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(formOfPayment1);
+        FormOfPayment formOfPayment1 = new FormOfPayment(paymentCash);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(formOfPayment1);
 
-        return client.putCfarContractsIdFormsOfPayment(contractReference, updateCfarContractFormsOfPaymentRequest, sessionId);
+        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormsOfPaymentRequest);
     }
 
-    private static CfarContract updateCfarFormsOfPaymentWithoutSuppliedToken(CancelForAnyReasonCfarApi client, String contractReference, String sessionId) throws ApiException {
-        UpdateCfarFormOfPaymentRequest updateCfarContractFormsOfPaymentRequest = new UpdateCfarFormOfPaymentRequest();
-
-        PaymentCardDetails paymentCardDetails = new PaymentCardDetails();
-        paymentCardDetails.setFirstName("John");
-        paymentCardDetails.setLastName("Smith");
-        paymentCardDetails.setExpirationMonth("09");
-        paymentCardDetails.setExpirationYear("2029");
-        paymentCardDetails.setNumber("4111111111111111");
-        FormOfPayment paymentCard = new FormOfPayment(paymentCardDetails);
-        updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(paymentCard);
+    private static CfarContract updateCfarFormsOfPaymentWithoutSuppliedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
+        UpdateCfarContractFormsOfPaymentRequest updateCfarContractFormsOfPaymentRequest = new UpdateCfarContractFormsOfPaymentRequest();
 
         Cash cash = new Cash();
         cash.amount("46.00");
         cash.currency("CAD");
         FormOfPayment paymentCash = new FormOfPayment(cash);
-        updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(paymentCash);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentCash);
 
         NonCash nonCash = new NonCash();
         nonCash.amount("8.00");
         nonCash.currency("CAD");
         FormOfPayment paymentNonCash = new FormOfPayment(nonCash);
-        updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(paymentNonCash);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentNonCash);
 
         Points points = new Points();
         points.amount("74.00");
         FormOfPayment paymentPoints = new FormOfPayment(points);
-        updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(paymentPoints);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentPoints);
 
         PaymentCard paymentCardToken = new PaymentCard();
         paymentCardToken.amount("15.00");
         paymentCardToken.currency("CAD");
         paymentCardToken.setToken("RRREFFDFFDFDFF888");
         FormOfPayment formOfPaymentToken = new FormOfPayment(paymentCardToken);
-        updateCfarContractFormsOfPaymentRequest.addFormsOfPaymentItem(formOfPaymentToken);
+        updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(formOfPaymentToken);
 
-        return client.putCfarContractsIdFormsOfPayment(contractReference, updateCfarContractFormsOfPaymentRequest, sessionId);
+        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormsOfPaymentRequest);
     }
 }
