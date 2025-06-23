@@ -9,6 +9,8 @@ import java.util.*;
 public class ExampleFormOfPaymentUpdates extends CommonExample {
     public static void main(String[] args) {
         try {
+            HopperClient client = new HopperClient("", "", "", "", "", "", "", "", 3000, true);
+
             AirlineSession session = getAirlineSession(client, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE PURCHASE SESSION *****************");
@@ -61,6 +63,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         paymentCard.amount("80.00");
         paymentCard.currency("CAD");
         paymentCard.setToken("FDDFDFDFDFDFFcc00028");
+        paymentCard.type("payment_card");
 
         FormOfPayment formOfPayment = new FormOfPayment(paymentCard);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(formOfPayment);
@@ -68,14 +71,22 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         Cash paymentCash = new Cash();
         paymentCash.amount("12.00");
         paymentCash.currency("CAD");
+        paymentCash.type("cash");
         FormOfPayment formOfPayment1 = new FormOfPayment(paymentCash);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(formOfPayment1);
 
-        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormsOfPaymentRequest);
+        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormsOfPaymentRequest, null);
     }
 
     private static CfarContract updateCfarFormsOfPaymentWithoutSuppliedToken(HopperClient client, String contractReference, String sessionId) throws ApiException {
         UpdateCfarContractFormsOfPaymentRequest updateCfarContractFormsOfPaymentRequest = new UpdateCfarContractFormsOfPaymentRequest();
+
+        PaymentCardDetails paymentCardDetails = new PaymentCardDetails();
+        paymentCardDetails.setFirstName("John");
+        paymentCardDetails.setLastName("Smith");
+        paymentCardDetails.setExpirationMonth("09");
+        paymentCardDetails.setExpirationYear("2029");
+        paymentCardDetails.setNumber("4111111111111111");
 
         Cash cash = new Cash();
         cash.amount("46.00");
@@ -101,10 +112,9 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         paymentCardToken.type("payment_card");
         paymentCardToken.amount("15.00");
         paymentCardToken.currency("CAD");
-        paymentCardToken.setToken("RRREFFDFFDFDFF888");
         FormOfPayment formOfPaymentToken = new FormOfPayment(paymentCardToken);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(formOfPaymentToken);
 
-        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormsOfPaymentRequest);
+        return client.updateCfarContractFormsOfPayment(sessionId, contractReference, updateCfarContractFormsOfPaymentRequest, paymentCardDetails);
     }
 }

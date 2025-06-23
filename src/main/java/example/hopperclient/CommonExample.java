@@ -78,8 +78,8 @@ public class CommonExample {
         cfarItinerarySlice.setFareBrand("basic");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
         cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
-        cfarItinerarySliceSegment.setOriginAirport("LGA");
+        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T15:12:30");
+        cfarItinerarySliceSegment.setOriginAirport("FLL");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("776");
         cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
@@ -130,10 +130,10 @@ public class CommonExample {
         CfarItinerarySlice cfarItinerarySlice1 = new CfarItinerarySlice();
         cfarItinerarySlice1.setFareBrand("flex");
         CfarItinerarySliceSegment cfarItinerarySliceSegment1 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment1.setArrivalDateTime(flightDate + "T19:12:30");
-        cfarItinerarySliceSegment1.setDepartureDateTime(flightDate + "T18:12:30");
-        cfarItinerarySliceSegment1.setOriginAirport("LGA");
-        cfarItinerarySliceSegment1.setDestinationAirport("BOS");
+        cfarItinerarySliceSegment1.setArrivalDateTime(flightDate + "T23:12:30");
+        cfarItinerarySliceSegment1.setDepartureDateTime(flightDate + "T21:12:30");
+        cfarItinerarySliceSegment1.setOriginAirport("BOS");
+        cfarItinerarySliceSegment1.setDestinationAirport("JFK");
         cfarItinerarySliceSegment1.setFlightNumber("777");
         cfarItinerarySliceSegment1.setFareClass(FareClass.BUSINESS);
         cfarItinerarySliceSegment1.setFareBrand("flex");
@@ -155,6 +155,13 @@ public class CommonExample {
         passengerCount1.count(3);
         passengerCount1.setType(PassengerType.ADULT);
         passengerPricing1.setPassengerCount(passengerCount1);
+
+        List<CfarOfferPassenger> passengersIti2 = new ArrayList<>();
+        CfarOfferPassenger passengerIti2 = new CfarOfferPassenger();
+        passengerIti2.setPassengerType(PassengerType.ADULT);
+        passengerIti2.setPassengerReference("PAX1");
+        passengersIti2.add(passengerIti2);
+        itinerary2.setPassengers(passengersIti2);
 
         itinerary2.setPassengerPricing(Collections.singletonList(passengerPricing1));
 
@@ -182,15 +189,15 @@ public class CommonExample {
 
         CfarItinerary itinerary = new CfarItinerary();
         itinerary.setCurrency("USD");
-        itinerary.setTotalPrice("190.00");
+        itinerary.setTotalPrice("220.00");
 
         //-- Slices
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
         cfarItinerarySlice.setFareBrand("flex");
         CfarItinerarySliceSegment cfarItinerarySliceSegment = new CfarItinerarySliceSegment();
         cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
-        cfarItinerarySliceSegment.setOriginAirport("LGA");
+        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T15:12:30");
+        cfarItinerarySliceSegment.setOriginAirport("FLL");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("776");
         cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
@@ -198,10 +205,10 @@ public class CommonExample {
         cfarItinerarySliceSegment.setValidatingCarrierCode("JB");
 
         CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
-        cfarItinerarySliceSegment2.setOriginAirport("LGA");
-        cfarItinerarySliceSegment2.setDestinationAirport("BOS");
+        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T23:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T21:12:30");
+        cfarItinerarySliceSegment2.setOriginAirport("BOS");
+        cfarItinerarySliceSegment2.setDestinationAirport("JFK");
         cfarItinerarySliceSegment2.setFlightNumber("777");
         cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
         cfarItinerarySliceSegment2.setFareBrand("flex");
@@ -217,7 +224,7 @@ public class CommonExample {
         //-- Ancillaries
         Ancillary ancillary = new Ancillary();
         ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
-        ancillary.setTotalPrice("10.00");
+        ancillary.setTotalPrice("40.00");
 
         itinerary.setAncillaries(Collections.singletonList(ancillary));
 
@@ -292,8 +299,8 @@ public class CommonExample {
 
         CfarCreateExerciseSliceSegment cfarItinerarySliceSegment = new CfarCreateExerciseSliceSegment();
         cfarItinerarySliceSegment.setArrivalDateTime(flightDate + "T19:12:30");
-        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T18:12:30");
-        cfarItinerarySliceSegment.setOriginAirport("LGA");
+        cfarItinerarySliceSegment.setDepartureDateTime(flightDate + "T15:12:30");
+        cfarItinerarySliceSegment.setOriginAirport("FLL");
         cfarItinerarySliceSegment.setDestinationAirport("BOS");
         cfarItinerarySliceSegment.setFlightNumber("776");
         cfarItinerarySliceSegment.setFareClass(FareClass.ECONOMY);
@@ -301,10 +308,10 @@ public class CommonExample {
         cfarItinerarySliceSegment.setValidatingCarrierCode("JB");
 
         CfarCreateExerciseSliceSegment cfarItinerarySliceSegment2 = new CfarCreateExerciseSliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T19:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T18:12:30");
-        cfarItinerarySliceSegment2.setOriginAirport("LGA");
-        cfarItinerarySliceSegment2.setDestinationAirport("BOS");
+        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T23:12:30");
+        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T21:12:30");
+        cfarItinerarySliceSegment2.setOriginAirport("BOS");
+        cfarItinerarySliceSegment2.setDestinationAirport("JFK");
         cfarItinerarySliceSegment2.setFlightNumber("777");
         cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
         cfarItinerarySliceSegment2.setFareBrand("flex");

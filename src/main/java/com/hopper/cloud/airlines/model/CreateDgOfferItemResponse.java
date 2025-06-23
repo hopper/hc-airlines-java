@@ -139,6 +139,16 @@ public class CreateDgOfferItemResponse {
   @javax.annotation.Nonnull
   private Map<String, DgContents> contents;
 
+    public static final String SERIALIZED_NAME_TERMS_CONDITIONS_URL = "terms_conditions_url";
+    @SerializedName(SERIALIZED_NAME_TERMS_CONDITIONS_URL)
+    @javax.annotation.Nullable
+    private String termsConditionsUrl;
+
+    public static final String SERIALIZED_NAME_FAQ_URL = "faq_url";
+    @SerializedName(SERIALIZED_NAME_FAQ_URL)
+    @javax.annotation.Nullable
+    private String faqUrl;
+
   public static final String SERIALIZED_NAME_MERCHANDISING_URL = "merchandising_url";
   @SerializedName(SERIALIZED_NAME_MERCHANDISING_URL)
   @javax.annotation.Nullable
@@ -477,6 +487,46 @@ public class CreateDgOfferItemResponse {
   }
 
 
+    public CreateDgOfferItemResponse termsConditionsUrl(@javax.annotation.Nullable String termsConditionsUrl) {
+        this.termsConditionsUrl = termsConditionsUrl;
+        return this;
+    }
+
+    /**
+     * The terms and conditions for this offer
+     *
+     * @return termsConditionsUrl
+     */
+    @javax.annotation.Nullable
+    public String getTermsConditionsUrl() {
+        return termsConditionsUrl;
+    }
+
+    public void setTermsConditionsUrl(@javax.annotation.Nullable String termsConditionsUrl) {
+        this.termsConditionsUrl = termsConditionsUrl;
+    }
+
+
+    public CreateDgOfferItemResponse faqUrl(@javax.annotation.Nullable String faqUrl) {
+        this.faqUrl = faqUrl;
+        return this;
+    }
+
+    /**
+     * The faq url for this offer
+     *
+     * @return faqUrl
+     */
+    @javax.annotation.Nullable
+    public String getFaqUrl() {
+        return faqUrl;
+    }
+
+    public void setFaqUrl(@javax.annotation.Nullable String faqUrl) {
+        this.faqUrl = faqUrl;
+    }
+
+
   public CreateDgOfferItemResponse merchandisingUrl(@javax.annotation.Nullable String merchandisingUrl) {
     this.merchandisingUrl = merchandisingUrl;
     return this;
@@ -522,12 +572,14 @@ public class CreateDgOfferItemResponse {
         Objects.equals(this.itinerary, createDgOfferItemResponse.itinerary) &&
         Objects.equals(this.extAttributes, createDgOfferItemResponse.extAttributes) &&
         Objects.equals(this.contents, createDgOfferItemResponse.contents) &&
+            Objects.equals(this.termsConditionsUrl, createDgOfferItemResponse.termsConditionsUrl) &&
+            Objects.equals(this.faqUrl, createDgOfferItemResponse.faqUrl) &&
         Objects.equals(this.merchandisingUrl, createDgOfferItemResponse.merchandisingUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, serviceCap, currency, taxesTotal, taxes, requestType, maxHoursBeforeDeparture, minMinutesDelay, createdDateTime, contractExpiryDateTime, itinerary, extAttributes, contents, merchandisingUrl);
+      return Objects.hash(id, premium, coverage, coveragePercentage, serviceCap, currency, taxesTotal, taxes, requestType, maxHoursBeforeDeparture, minMinutesDelay, createdDateTime, contractExpiryDateTime, itinerary, extAttributes, contents, termsConditionsUrl, faqUrl, merchandisingUrl);
   }
 
   @Override
@@ -550,6 +602,8 @@ public class CreateDgOfferItemResponse {
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
     sb.append("    contents: ").append(toIndentedString(contents)).append("\n");
+      sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
+      sb.append("    faqUrl: ").append(toIndentedString(faqUrl)).append("\n");
     sb.append("    merchandisingUrl: ").append(toIndentedString(merchandisingUrl)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -568,7 +622,6 @@ public class CreateDgOfferItemResponse {
 
 
   public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
 
   static {
     // a set of all properties/fields (JSON key names)
@@ -589,6 +642,8 @@ public class CreateDgOfferItemResponse {
     openapiFields.add("itinerary");
     openapiFields.add("ext_attributes");
     openapiFields.add("contents");
+      openapiFields.add("terms_conditions_url");
+      openapiFields.add("faq_url");
     openapiFields.add("merchandising_url");
   }
 

@@ -29,7 +29,10 @@ import com.hopper.cloud.airlines.model.CfarExercisePortalDisplay;
 import com.hopper.cloud.airlines.model.CfarExerciseVerificationComplete;
 import com.hopper.cloud.airlines.model.CfarExerciseVerificationSent;
 import com.hopper.cloud.airlines.model.CfarForcedChoiceWarning;
+import com.hopper.cloud.airlines.model.CfarOfferSelected;
 import com.hopper.cloud.airlines.model.CfarOffersBannerDisplay;
+import com.hopper.cloud.airlines.model.CfarOffersBannerLoaded;
+import com.hopper.cloud.airlines.model.CfarOffersMoreInfoClicked;
 import com.hopper.cloud.airlines.model.CfarOffersTakeoverDisplay;
 import com.hopper.cloud.airlines.model.CfarViewInfo;
 import com.hopper.cloud.airlines.model.ExerciseStepResult;
@@ -77,7 +80,7 @@ import com.google.gson.JsonParseException;
 
 import com.hopper.cloud.airlines.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-19T17:27:15.383558719Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarEvent extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CfarEvent.class.getName());
 
@@ -99,7 +102,10 @@ public class CfarEvent extends AbstractOpenApiSchema {
             final TypeAdapter<CfarExerciseVerificationComplete> adapterCfarExerciseVerificationComplete = gson.getDelegateAdapter(this, TypeToken.get(CfarExerciseVerificationComplete.class));
             final TypeAdapter<CfarExerciseVerificationSent> adapterCfarExerciseVerificationSent = gson.getDelegateAdapter(this, TypeToken.get(CfarExerciseVerificationSent.class));
             final TypeAdapter<CfarForcedChoiceWarning> adapterCfarForcedChoiceWarning = gson.getDelegateAdapter(this, TypeToken.get(CfarForcedChoiceWarning.class));
+            final TypeAdapter<CfarOfferSelected> adapterCfarOfferSelected = gson.getDelegateAdapter(this, TypeToken.get(CfarOfferSelected.class));
             final TypeAdapter<CfarOffersBannerDisplay> adapterCfarOffersBannerDisplay = gson.getDelegateAdapter(this, TypeToken.get(CfarOffersBannerDisplay.class));
+            final TypeAdapter<CfarOffersBannerLoaded> adapterCfarOffersBannerLoaded = gson.getDelegateAdapter(this, TypeToken.get(CfarOffersBannerLoaded.class));
+            final TypeAdapter<CfarOffersMoreInfoClicked> adapterCfarOffersMoreInfoClicked = gson.getDelegateAdapter(this, TypeToken.get(CfarOffersMoreInfoClicked.class));
             final TypeAdapter<CfarOffersTakeoverDisplay> adapterCfarOffersTakeoverDisplay = gson.getDelegateAdapter(this, TypeToken.get(CfarOffersTakeoverDisplay.class));
             final TypeAdapter<CfarViewInfo> adapterCfarViewInfo = gson.getDelegateAdapter(this, TypeToken.get(CfarViewInfo.class));
             final TypeAdapter<OffersDisplayed1> adapterOffersDisplayed1 = gson.getDelegateAdapter(this, TypeToken.get(OffersDisplayed1.class));
@@ -172,9 +178,27 @@ public class CfarEvent extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
+                    // check if the actual instance is of the type `CfarOfferSelected`
+                    if (value.getActualInstance() instanceof CfarOfferSelected) {
+                        JsonElement element = adapterCfarOfferSelected.toJsonTree((CfarOfferSelected) value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
                     // check if the actual instance is of the type `CfarOffersBannerDisplay`
                     if (value.getActualInstance() instanceof CfarOffersBannerDisplay) {
                         JsonElement element = adapterCfarOffersBannerDisplay.toJsonTree((CfarOffersBannerDisplay)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    // check if the actual instance is of the type `CfarOffersBannerLoaded`
+                    if (value.getActualInstance() instanceof CfarOffersBannerLoaded) {
+                        JsonElement element = adapterCfarOffersBannerLoaded.toJsonTree((CfarOffersBannerLoaded) value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    // check if the actual instance is of the type `CfarOffersMoreInfoClicked`
+                    if (value.getActualInstance() instanceof CfarOffersMoreInfoClicked) {
+                        JsonElement element = adapterCfarOffersMoreInfoClicked.toJsonTree((CfarOffersMoreInfoClicked) value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
@@ -196,7 +220,7 @@ public class CfarEvent extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOffersBannerDisplay, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOfferSelected, CfarOffersBannerDisplay, CfarOffersBannerLoaded, CfarOffersMoreInfoClicked, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1");
                 }
 
                 @Override
@@ -308,6 +332,16 @@ public class CfarEvent extends AbstractOpenApiSchema {
                         errorMessages.add(String.format("Deserialization for CfarForcedChoiceWarning failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'CfarForcedChoiceWarning'", e);
                     }
+                    // deserialize CfarOfferSelected
+                    try {
+                        actualAdapter = adapterCfarOfferSelected;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'CfarOfferSelected'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for CfarOfferSelected failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'CfarOfferSelected'", e);
+                    }
                     // deserialize CfarOffersBannerDisplay
                     try {
                         actualAdapter = adapterCfarOffersBannerDisplay;
@@ -317,6 +351,26 @@ public class CfarEvent extends AbstractOpenApiSchema {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for CfarOffersBannerDisplay failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'CfarOffersBannerDisplay'", e);
+                    }
+                    // deserialize CfarOffersBannerLoaded
+                    try {
+                        actualAdapter = adapterCfarOffersBannerLoaded;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'CfarOffersBannerLoaded'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for CfarOffersBannerLoaded failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'CfarOffersBannerLoaded'", e);
+                    }
+                    // deserialize CfarOffersMoreInfoClicked
+                    try {
+                        actualAdapter = adapterCfarOffersMoreInfoClicked;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'CfarOffersMoreInfoClicked'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for CfarOffersMoreInfoClicked failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'CfarOffersMoreInfoClicked'", e);
                     }
                     // deserialize CfarOffersTakeoverDisplay
                     try {
@@ -384,7 +438,10 @@ public class CfarEvent extends AbstractOpenApiSchema {
         schemas.put("CfarExerciseVerificationComplete", CfarExerciseVerificationComplete.class);
         schemas.put("CfarExerciseVerificationSent", CfarExerciseVerificationSent.class);
         schemas.put("CfarForcedChoiceWarning", CfarForcedChoiceWarning.class);
+        schemas.put("CfarOfferSelected", CfarOfferSelected.class);
         schemas.put("CfarOffersBannerDisplay", CfarOffersBannerDisplay.class);
+        schemas.put("CfarOffersBannerLoaded", CfarOffersBannerLoaded.class);
+        schemas.put("CfarOffersMoreInfoClicked", CfarOffersMoreInfoClicked.class);
         schemas.put("CfarOffersTakeoverDisplay", CfarOffersTakeoverDisplay.class);
         schemas.put("CfarViewInfo", CfarViewInfo.class);
         schemas.put("OffersDisplayed1", OffersDisplayed1.class);
@@ -398,7 +455,7 @@ public class CfarEvent extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOffersBannerDisplay, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1
+     * BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOfferSelected, CfarOffersBannerDisplay, CfarOffersBannerLoaded, CfarOffersMoreInfoClicked, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -454,7 +511,22 @@ public class CfarEvent extends AbstractOpenApiSchema {
             return;
         }
 
+        if (instance instanceof CfarOfferSelected) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (instance instanceof CfarOffersBannerDisplay) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof CfarOffersBannerLoaded) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof CfarOffersMoreInfoClicked) {
             super.setActualInstance(instance);
             return;
         }
@@ -474,14 +546,14 @@ public class CfarEvent extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOffersBannerDisplay, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1");
+        throw new RuntimeException("Invalid instance type. Must be BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOfferSelected, CfarOffersBannerDisplay, CfarOffersBannerLoaded, CfarOffersMoreInfoClicked, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOffersBannerDisplay, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1
+     * BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOfferSelected, CfarOffersBannerDisplay, CfarOffersBannerLoaded, CfarOffersMoreInfoClicked, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1
      *
-     * @return The actual instance (BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOffersBannerDisplay, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1)
+     * @return The actual instance (BookingConfirmed1, CfarDenyPurchase, CfarEventWithContract, CfarExerciseCallbackLaunched, CfarExerciseCustomerDataComplete, CfarExercisePortalComplete, CfarExercisePortalDisplay, CfarExerciseVerificationComplete, CfarExerciseVerificationSent, CfarForcedChoiceWarning, CfarOfferSelected, CfarOffersBannerDisplay, CfarOffersBannerLoaded, CfarOffersMoreInfoClicked, CfarOffersTakeoverDisplay, CfarViewInfo, OffersDisplayed1)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -600,6 +672,17 @@ public class CfarEvent extends AbstractOpenApiSchema {
     }
 
     /**
+     * Get the actual instance of `CfarOfferSelected`. If the actual instance is not `CfarOfferSelected`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CfarOfferSelected`
+     * @throws ClassCastException if the instance is not `CfarOfferSelected`
+     */
+    public CfarOfferSelected getCfarOfferSelected() throws ClassCastException {
+        return (CfarOfferSelected) super.getActualInstance();
+    }
+
+    /**
      * Get the actual instance of `CfarOffersBannerDisplay`. If the actual instance is not `CfarOffersBannerDisplay`,
      * the ClassCastException will be thrown.
      *
@@ -608,6 +691,28 @@ public class CfarEvent extends AbstractOpenApiSchema {
      */
     public CfarOffersBannerDisplay getCfarOffersBannerDisplay() throws ClassCastException {
         return (CfarOffersBannerDisplay)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `CfarOffersBannerLoaded`. If the actual instance is not `CfarOffersBannerLoaded`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CfarOffersBannerLoaded`
+     * @throws ClassCastException if the instance is not `CfarOffersBannerLoaded`
+     */
+    public CfarOffersBannerLoaded getCfarOffersBannerLoaded() throws ClassCastException {
+        return (CfarOffersBannerLoaded) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `CfarOffersMoreInfoClicked`. If the actual instance is not `CfarOffersMoreInfoClicked`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CfarOffersMoreInfoClicked`
+     * @throws ClassCastException if the instance is not `CfarOffersMoreInfoClicked`
+     */
+    public CfarOffersMoreInfoClicked getCfarOffersMoreInfoClicked() throws ClassCastException {
+        return (CfarOffersMoreInfoClicked) super.getActualInstance();
     }
 
     /**
@@ -642,7 +747,6 @@ public class CfarEvent extends AbstractOpenApiSchema {
     public OffersDisplayed1 getOffersDisplayed1() throws ClassCastException {
         return (OffersDisplayed1)super.getActualInstance();
     }
-
     /**
      * Create an instance of CfarEvent given an JSON string
      *

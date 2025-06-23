@@ -10,6 +10,8 @@ import java.util.*;
 public class Example extends CommonExample {
     public static void main(String[] args) {
         try {
+            HopperClient client = new HopperClient("", "", "", true);
+
             AirlineSession session = getAirlineSession(client, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE PURCHASE SESSION *****************");

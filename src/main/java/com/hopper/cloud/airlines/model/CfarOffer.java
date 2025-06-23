@@ -15,30 +15,50 @@ package com.hopper.cloud.airlines.model;
 
 import java.util.Objects;
 import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.hopper.cloud.airlines.model.CfarContents;
+import com.hopper.cloud.airlines.model.CfarItinerary;
+import com.hopper.cloud.airlines.model.CfarTax;
+import com.hopper.cloud.airlines.model.RequestType;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
+import java.io.IOException;
+
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.hopper.cloud.airlines.JSON;
 
 /**
  * A successful CFAR offer response
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-19T17:27:15.383558719Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarOffer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -114,6 +134,11 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_TERMS_CONDITIONS_URL)
   @javax.annotation.Nullable
   private String termsConditionsUrl;
+
+  public static final String SERIALIZED_NAME_FAQ_URL = "faq_url";
+  @SerializedName(SERIALIZED_NAME_FAQ_URL)
+  @javax.annotation.Nullable
+  private String faqUrl;
 
   public static final String SERIALIZED_NAME_MERCHANDISING_URL = "merchandising_url";
   @SerializedName(SERIALIZED_NAME_MERCHANDISING_URL)
@@ -432,6 +457,26 @@ public class CfarOffer {
   }
 
 
+  public CfarOffer faqUrl(@javax.annotation.Nullable String faqUrl) {
+    this.faqUrl = faqUrl;
+    return this;
+  }
+
+  /**
+   * The faq url for this offer
+   *
+   * @return faqUrl
+   */
+  @javax.annotation.Nullable
+  public String getFaqUrl() {
+    return faqUrl;
+  }
+
+  public void setFaqUrl(@javax.annotation.Nullable String faqUrl) {
+    this.faqUrl = faqUrl;
+  }
+
+
   public CfarOffer merchandisingUrl(@javax.annotation.Nullable String merchandisingUrl) {
     this.merchandisingUrl = merchandisingUrl;
     return this;
@@ -476,12 +521,13 @@ public class CfarOffer {
         Objects.equals(this.contents, cfarOffer.contents) &&
         Objects.equals(this.extAttributes, cfarOffer.extAttributes) &&
         Objects.equals(this.termsConditionsUrl, cfarOffer.termsConditionsUrl) &&
+            Objects.equals(this.faqUrl, cfarOffer.faqUrl) &&
         Objects.equals(this.merchandisingUrl, cfarOffer.merchandisingUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, termsConditionsUrl, merchandisingUrl);
+    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, termsConditionsUrl, faqUrl, merchandisingUrl);
   }
 
   @Override
@@ -503,6 +549,7 @@ public class CfarOffer {
     sb.append("    contents: ").append(toIndentedString(contents)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
     sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
+    sb.append("    faqUrl: ").append(toIndentedString(faqUrl)).append("\n");
     sb.append("    merchandisingUrl: ").append(toIndentedString(merchandisingUrl)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -521,7 +568,6 @@ public class CfarOffer {
 
 
   public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
 
   static {
     // a set of all properties/fields (JSON key names)
@@ -541,6 +587,7 @@ public class CfarOffer {
     openapiFields.add("contents");
     openapiFields.add("ext_attributes");
     openapiFields.add("terms_conditions_url");
+    openapiFields.add("faq_url");
     openapiFields.add("merchandising_url");
   }
 

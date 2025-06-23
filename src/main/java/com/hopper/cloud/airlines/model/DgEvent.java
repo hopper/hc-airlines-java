@@ -20,14 +20,21 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.hopper.cloud.airlines.model.BookingConfirmed2;
+import com.hopper.cloud.airlines.model.DgDenyPurchase;
 import com.hopper.cloud.airlines.model.DgExerciseCallbackLaunched;
 import com.hopper.cloud.airlines.model.DgExerciseCustomerDataComplete;
 import com.hopper.cloud.airlines.model.DgExercisePortalComplete;
 import com.hopper.cloud.airlines.model.DgExerciseVerificationComplete;
+import com.hopper.cloud.airlines.model.DgOfferSelected;
+import com.hopper.cloud.airlines.model.DgOffersBannerDisplay;
+import com.hopper.cloud.airlines.model.DgOffersBannerLoaded;
+import com.hopper.cloud.airlines.model.DgOffersMoreInfoClicked;
 import com.hopper.cloud.airlines.model.ExerciseStepResult;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 
@@ -64,7 +71,7 @@ import com.google.gson.JsonParseException;
 
 import com.hopper.cloud.airlines.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-19T17:27:15.383558719Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgEvent extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(DgEvent.class.getName());
 
@@ -77,10 +84,15 @@ public class DgEvent extends AbstractOpenApiSchema {
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<BookingConfirmed2> adapterBookingConfirmed2 = gson.getDelegateAdapter(this, TypeToken.get(BookingConfirmed2.class));
+            final TypeAdapter<DgDenyPurchase> adapterDgDenyPurchase = gson.getDelegateAdapter(this, TypeToken.get(DgDenyPurchase.class));
             final TypeAdapter<DgExerciseCallbackLaunched> adapterDgExerciseCallbackLaunched = gson.getDelegateAdapter(this, TypeToken.get(DgExerciseCallbackLaunched.class));
             final TypeAdapter<DgExerciseCustomerDataComplete> adapterDgExerciseCustomerDataComplete = gson.getDelegateAdapter(this, TypeToken.get(DgExerciseCustomerDataComplete.class));
             final TypeAdapter<DgExercisePortalComplete> adapterDgExercisePortalComplete = gson.getDelegateAdapter(this, TypeToken.get(DgExercisePortalComplete.class));
             final TypeAdapter<DgExerciseVerificationComplete> adapterDgExerciseVerificationComplete = gson.getDelegateAdapter(this, TypeToken.get(DgExerciseVerificationComplete.class));
+            final TypeAdapter<DgOfferSelected> adapterDgOfferSelected = gson.getDelegateAdapter(this, TypeToken.get(DgOfferSelected.class));
+            final TypeAdapter<DgOffersBannerDisplay> adapterDgOffersBannerDisplay = gson.getDelegateAdapter(this, TypeToken.get(DgOffersBannerDisplay.class));
+            final TypeAdapter<DgOffersBannerLoaded> adapterDgOffersBannerLoaded = gson.getDelegateAdapter(this, TypeToken.get(DgOffersBannerLoaded.class));
+            final TypeAdapter<DgOffersMoreInfoClicked> adapterDgOffersMoreInfoClicked = gson.getDelegateAdapter(this, TypeToken.get(DgOffersMoreInfoClicked.class));
 
             return (TypeAdapter<T>) new TypeAdapter<DgEvent>() {
                 @Override
@@ -93,6 +105,12 @@ public class DgEvent extends AbstractOpenApiSchema {
                     // check if the actual instance is of the type `BookingConfirmed2`
                     if (value.getActualInstance() instanceof BookingConfirmed2) {
                         JsonElement element = adapterBookingConfirmed2.toJsonTree((BookingConfirmed2)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    // check if the actual instance is of the type `DgDenyPurchase`
+                    if (value.getActualInstance() instanceof DgDenyPurchase) {
+                        JsonElement element = adapterDgDenyPurchase.toJsonTree((DgDenyPurchase) value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
@@ -120,7 +138,31 @@ public class DgEvent extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: BookingConfirmed2, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete");
+                    // check if the actual instance is of the type `DgOfferSelected`
+                    if (value.getActualInstance() instanceof DgOfferSelected) {
+                        JsonElement element = adapterDgOfferSelected.toJsonTree((DgOfferSelected) value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    // check if the actual instance is of the type `DgOffersBannerDisplay`
+                    if (value.getActualInstance() instanceof DgOffersBannerDisplay) {
+                        JsonElement element = adapterDgOffersBannerDisplay.toJsonTree((DgOffersBannerDisplay) value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    // check if the actual instance is of the type `DgOffersBannerLoaded`
+                    if (value.getActualInstance() instanceof DgOffersBannerLoaded) {
+                        JsonElement element = adapterDgOffersBannerLoaded.toJsonTree((DgOffersBannerLoaded) value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    // check if the actual instance is of the type `DgOffersMoreInfoClicked`
+                    if (value.getActualInstance() instanceof DgOffersMoreInfoClicked) {
+                        JsonElement element = adapterDgOffersMoreInfoClicked.toJsonTree((DgOffersMoreInfoClicked) value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: BookingConfirmed2, DgDenyPurchase, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete, DgOfferSelected, DgOffersBannerDisplay, DgOffersBannerLoaded, DgOffersMoreInfoClicked");
                 }
 
                 @Override
@@ -141,6 +183,16 @@ public class DgEvent extends AbstractOpenApiSchema {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for BookingConfirmed2 failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'BookingConfirmed2'", e);
+                    }
+                    // deserialize DgDenyPurchase
+                    try {
+                        actualAdapter = adapterDgDenyPurchase;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'DgDenyPurchase'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for DgDenyPurchase failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'DgDenyPurchase'", e);
                     }
                     // deserialize DgExerciseCallbackLaunched
                     try {
@@ -182,6 +234,46 @@ public class DgEvent extends AbstractOpenApiSchema {
                         errorMessages.add(String.format("Deserialization for DgExerciseVerificationComplete failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'DgExerciseVerificationComplete'", e);
                     }
+                    // deserialize DgOfferSelected
+                    try {
+                        actualAdapter = adapterDgOfferSelected;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'DgOfferSelected'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for DgOfferSelected failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'DgOfferSelected'", e);
+                    }
+                    // deserialize DgOffersBannerDisplay
+                    try {
+                        actualAdapter = adapterDgOffersBannerDisplay;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'DgOffersBannerDisplay'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for DgOffersBannerDisplay failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'DgOffersBannerDisplay'", e);
+                    }
+                    // deserialize DgOffersBannerLoaded
+                    try {
+                        actualAdapter = adapterDgOffersBannerLoaded;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'DgOffersBannerLoaded'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for DgOffersBannerLoaded failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'DgOffersBannerLoaded'", e);
+                    }
+                    // deserialize DgOffersMoreInfoClicked
+                    try {
+                        actualAdapter = adapterDgOffersMoreInfoClicked;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'DgOffersMoreInfoClicked'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for DgOffersMoreInfoClicked failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'DgOffersMoreInfoClicked'", e);
+                    }
 
                     if (match == 1) {
                         DgEvent ret = new DgEvent();
@@ -209,10 +301,15 @@ public class DgEvent extends AbstractOpenApiSchema {
 
     static {
         schemas.put("BookingConfirmed2", BookingConfirmed2.class);
+        schemas.put("DgDenyPurchase", DgDenyPurchase.class);
         schemas.put("DgExerciseCallbackLaunched", DgExerciseCallbackLaunched.class);
         schemas.put("DgExerciseCustomerDataComplete", DgExerciseCustomerDataComplete.class);
         schemas.put("DgExercisePortalComplete", DgExercisePortalComplete.class);
         schemas.put("DgExerciseVerificationComplete", DgExerciseVerificationComplete.class);
+        schemas.put("DgOfferSelected", DgOfferSelected.class);
+        schemas.put("DgOffersBannerDisplay", DgOffersBannerDisplay.class);
+        schemas.put("DgOffersBannerLoaded", DgOffersBannerLoaded.class);
+        schemas.put("DgOffersMoreInfoClicked", DgOffersMoreInfoClicked.class);
     }
 
     @Override
@@ -223,13 +320,18 @@ public class DgEvent extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * BookingConfirmed2, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete
+     * BookingConfirmed2, DgDenyPurchase, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete, DgOfferSelected, DgOffersBannerDisplay, DgOffersBannerLoaded, DgOffersMoreInfoClicked
      *
      * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
         if (instance instanceof BookingConfirmed2) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof DgDenyPurchase) {
             super.setActualInstance(instance);
             return;
         }
@@ -254,14 +356,34 @@ public class DgEvent extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be BookingConfirmed2, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete");
+        if (instance instanceof DgOfferSelected) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof DgOffersBannerDisplay) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof DgOffersBannerLoaded) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof DgOffersMoreInfoClicked) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be BookingConfirmed2, DgDenyPurchase, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete, DgOfferSelected, DgOffersBannerDisplay, DgOffersBannerLoaded, DgOffersMoreInfoClicked");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * BookingConfirmed2, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete
+     * BookingConfirmed2, DgDenyPurchase, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete, DgOfferSelected, DgOffersBannerDisplay, DgOffersBannerLoaded, DgOffersMoreInfoClicked
      *
-     * @return The actual instance (BookingConfirmed2, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete)
+     * @return The actual instance (BookingConfirmed2, DgDenyPurchase, DgExerciseCallbackLaunched, DgExerciseCustomerDataComplete, DgExercisePortalComplete, DgExerciseVerificationComplete, DgOfferSelected, DgOffersBannerDisplay, DgOffersBannerLoaded, DgOffersMoreInfoClicked)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -278,6 +400,17 @@ public class DgEvent extends AbstractOpenApiSchema {
      */
     public BookingConfirmed2 getBookingConfirmed2() throws ClassCastException {
         return (BookingConfirmed2)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `DgDenyPurchase`. If the actual instance is not `DgDenyPurchase`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `DgDenyPurchase`
+     * @throws ClassCastException if the instance is not `DgDenyPurchase`
+     */
+    public DgDenyPurchase getDgDenyPurchase() throws ClassCastException {
+        return (DgDenyPurchase) super.getActualInstance();
     }
 
     /**
@@ -322,6 +455,50 @@ public class DgEvent extends AbstractOpenApiSchema {
      */
     public DgExerciseVerificationComplete getDgExerciseVerificationComplete() throws ClassCastException {
         return (DgExerciseVerificationComplete)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `DgOfferSelected`. If the actual instance is not `DgOfferSelected`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `DgOfferSelected`
+     * @throws ClassCastException if the instance is not `DgOfferSelected`
+     */
+    public DgOfferSelected getDgOfferSelected() throws ClassCastException {
+        return (DgOfferSelected) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `DgOffersBannerDisplay`. If the actual instance is not `DgOffersBannerDisplay`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `DgOffersBannerDisplay`
+     * @throws ClassCastException if the instance is not `DgOffersBannerDisplay`
+     */
+    public DgOffersBannerDisplay getDgOffersBannerDisplay() throws ClassCastException {
+        return (DgOffersBannerDisplay) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `DgOffersBannerLoaded`. If the actual instance is not `DgOffersBannerLoaded`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `DgOffersBannerLoaded`
+     * @throws ClassCastException if the instance is not `DgOffersBannerLoaded`
+     */
+    public DgOffersBannerLoaded getDgOffersBannerLoaded() throws ClassCastException {
+        return (DgOffersBannerLoaded) super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `DgOffersMoreInfoClicked`. If the actual instance is not `DgOffersMoreInfoClicked`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `DgOffersMoreInfoClicked`
+     * @throws ClassCastException if the instance is not `DgOffersMoreInfoClicked`
+     */
+    public DgOffersMoreInfoClicked getDgOffersMoreInfoClicked() throws ClassCastException {
+        return (DgOffersMoreInfoClicked) super.getActualInstance();
     }
 
     /**

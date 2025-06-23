@@ -1,6 +1,7 @@
 package example.hopperclient;
 
 import com.hopper.cloud.airlines.ApiException;
+import com.hopper.cloud.airlines.HopperClient;
 import com.hopper.cloud.airlines.model.*;
 
 import java.net.MalformedURLException;
@@ -8,6 +9,7 @@ import java.net.MalformedURLException;
 public class ExampleMonoPurchaseOrchestration extends CommonExample {
     public static void main(String[] args) {
         try {
+            HopperClient client = new HopperClient("", "", "", true);
             CreateSessionOffersContractsResponse initPurchaseResponse = createSessionOffersAndContracts(client);
             System.out.println("*********************************************************************");
             System.out.println("*************************** INIT PURCHASE ELEMENTS ******************");

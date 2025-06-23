@@ -62,6 +62,11 @@ public class CreateAirlineCfarSessionRequest {
   @javax.annotation.Nullable
   private Device device;
 
+    public static final String SERIALIZED_NAME_SESSION_ID = "session_id";
+    @SerializedName(SERIALIZED_NAME_SESSION_ID)
+    @javax.annotation.Nullable
+    private String sessionId;
+
   public static final String SERIALIZED_NAME_POINT_OF_SALE = "point_of_sale";
   @SerializedName(SERIALIZED_NAME_POINT_OF_SALE)
   @javax.annotation.Nonnull
@@ -111,6 +116,26 @@ public class CreateAirlineCfarSessionRequest {
   public void setDevice(@javax.annotation.Nullable Device device) {
     this.device = device;
   }
+
+
+    public CreateAirlineCfarSessionRequest sessionId(@javax.annotation.Nullable String sessionId) {
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    /**
+     * The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.
+     *
+     * @return sessionId
+     */
+    @javax.annotation.Nullable
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(@javax.annotation.Nullable String sessionId) {
+        this.sessionId = sessionId;
+    }
 
 
   public CreateAirlineCfarSessionRequest pointOfSale(@javax.annotation.Nonnull String pointOfSale) {
@@ -163,13 +188,14 @@ public class CreateAirlineCfarSessionRequest {
     CreateAirlineCfarSessionRequest createAirlineCfarSessionRequest = (CreateAirlineCfarSessionRequest) o;
     return Objects.equals(this.userInfo, createAirlineCfarSessionRequest.userInfo) &&
         Objects.equals(this.device, createAirlineCfarSessionRequest.device) &&
+            Objects.equals(this.sessionId, createAirlineCfarSessionRequest.sessionId) &&
         Objects.equals(this.pointOfSale, createAirlineCfarSessionRequest.pointOfSale) &&
         Objects.equals(this.language, createAirlineCfarSessionRequest.language);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userInfo, device, pointOfSale, language);
+      return Objects.hash(userInfo, device, sessionId, pointOfSale, language);
   }
 
   @Override
@@ -178,6 +204,7 @@ public class CreateAirlineCfarSessionRequest {
     sb.append("class CreateAirlineCfarSessionRequest {\n");
     sb.append("    userInfo: ").append(toIndentedString(userInfo)).append("\n");
     sb.append("    device: ").append(toIndentedString(device)).append("\n");
+      sb.append("    sessionId: ").append(toIndentedString(sessionId)).append("\n");
     sb.append("    pointOfSale: ").append(toIndentedString(pointOfSale)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("}");
@@ -195,15 +222,14 @@ public class CreateAirlineCfarSessionRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-
   public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
 
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("user_info");
     openapiFields.add("device");
+      openapiFields.add("session_id");
     openapiFields.add("point_of_sale");
     openapiFields.add("language");
   }

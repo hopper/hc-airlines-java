@@ -49,12 +49,22 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * BookingConfirmed
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-19T17:27:15.383558719Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class BookingConfirmed {
   public static final String SERIALIZED_NAME_OCCURRED_DATE_TIME = "occurred_date_time";
   @SerializedName(SERIALIZED_NAME_OCCURRED_DATE_TIME)
   @javax.annotation.Nonnull
   private OffsetDateTime occurredDateTime;
+
+  public static final String SERIALIZED_NAME_CFAR_CONTRACT_ID = "cfar_contract_id";
+  @SerializedName(SERIALIZED_NAME_CFAR_CONTRACT_ID)
+  @javax.annotation.Nullable
+  private String cfarContractId;
+
+  public static final String SERIALIZED_NAME_DG_CONTRACT_ID = "dg_contract_id";
+  @SerializedName(SERIALIZED_NAME_DG_CONTRACT_ID)
+  @javax.annotation.Nullable
+  private String dgContractId;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -80,6 +90,46 @@ public class BookingConfirmed {
 
   public void setOccurredDateTime(@javax.annotation.Nonnull OffsetDateTime occurredDateTime) {
     this.occurredDateTime = occurredDateTime;
+  }
+
+
+  public BookingConfirmed cfarContractId(@javax.annotation.Nullable String cfarContractId) {
+    this.cfarContractId = cfarContractId;
+    return this;
+  }
+
+  /**
+   * The purchased CFAR contract, if one is present
+   *
+   * @return cfarContractId
+   */
+  @javax.annotation.Nullable
+  public String getCfarContractId() {
+    return cfarContractId;
+  }
+
+  public void setCfarContractId(@javax.annotation.Nullable String cfarContractId) {
+    this.cfarContractId = cfarContractId;
+  }
+
+
+  public BookingConfirmed dgContractId(@javax.annotation.Nullable String dgContractId) {
+    this.dgContractId = dgContractId;
+    return this;
+  }
+
+  /**
+   * The purchased DG contract, if one is present
+   *
+   * @return dgContractId
+   */
+  @javax.annotation.Nullable
+  public String getDgContractId() {
+    return dgContractId;
+  }
+
+  public void setDgContractId(@javax.annotation.Nullable String dgContractId) {
+    this.dgContractId = dgContractId;
   }
 
 
@@ -113,12 +163,14 @@ public class BookingConfirmed {
     }
     BookingConfirmed bookingConfirmed = (BookingConfirmed) o;
     return Objects.equals(this.occurredDateTime, bookingConfirmed.occurredDateTime) &&
+            Objects.equals(this.cfarContractId, bookingConfirmed.cfarContractId) &&
+            Objects.equals(this.dgContractId, bookingConfirmed.dgContractId) &&
         Objects.equals(this.type, bookingConfirmed.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(occurredDateTime, type);
+    return Objects.hash(occurredDateTime, cfarContractId, dgContractId, type);
   }
 
   @Override
@@ -126,6 +178,8 @@ public class BookingConfirmed {
     StringBuilder sb = new StringBuilder();
     sb.append("class BookingConfirmed {\n");
     sb.append("    occurredDateTime: ").append(toIndentedString(occurredDateTime)).append("\n");
+    sb.append("    cfarContractId: ").append(toIndentedString(cfarContractId)).append("\n");
+    sb.append("    dgContractId: ").append(toIndentedString(dgContractId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -150,6 +204,8 @@ public class BookingConfirmed {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("occurred_date_time");
+    openapiFields.add("cfar_contract_id");
+    openapiFields.add("dg_contract_id");
     openapiFields.add("type");
   }
 

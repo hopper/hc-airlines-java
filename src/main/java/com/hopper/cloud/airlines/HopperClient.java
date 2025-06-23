@@ -2,6 +2,7 @@ package com.hopper.cloud.airlines;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
+import com.hopper.cloud.airlines.api.DisruptionGuaranteeDgApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
 import com.hopper.cloud.airlines.api.AnalyticsApi;
 import com.hopper.cloud.airlines.model.*;
@@ -11,6 +12,7 @@ import com.hopper.cloud.airlines.transformer.CfarItineraryTransformer;
 import kong.unirest.HttpResponse;
 import kong.unirest.ObjectMapper;
 import kong.unirest.Unirest;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +22,7 @@ import java.util.*;
 public class HopperClient {
     final Logger logger = LoggerFactory.getLogger(HopperClient.class);
     private CancelForAnyReasonCfarApi cfarApi;
+    private DisruptionGuaranteeDgApi dgApi;
     private SessionsApi sessionsApi;
     private AnalyticsApi analyticsApi;
     private HopperPaymentClient hopperPaymentClient;
@@ -54,6 +57,13 @@ public class HopperClient {
         cfarApi.getApiClient().setConnectTimeout(timeout);
         cfarApi.getApiClient().setReadTimeout(timeout);
         cfarApi.getApiClient().setWriteTimeout(timeout);
+
+        dgApi = new DisruptionGuaranteeDgApi(apiClient);
+        dgApi.getApiClient().setDebugging(debugging);
+        dgApi.getApiClient().setBasePath(url);
+        dgApi.getApiClient().setConnectTimeout(timeout);
+        dgApi.getApiClient().setReadTimeout(timeout);
+        dgApi.getApiClient().setWriteTimeout(timeout);
 
         sessionsApi = new SessionsApi(apiClient);
         sessionsApi.getApiClient().setDebugging(debugging);
@@ -115,6 +125,20 @@ public class HopperClient {
         return cfarApi.postCfarContracts(createCfarContractRequest);
     }
 
+    public List<CreateDgOfferItemResponse> createDgOffers(String sessionId, CreateDgOffersRequest createDgOffersRequest) throws ApiException {
+        return dgApi.postDgOffers(createDgOffersRequest, sessionId);
+    }
+
+    public Tuple2<String, List<CreateDgOfferItemResponse>> createDgOffers(CreateDgOffersRequest createDgOffersRequest) throws ApiException {
+        ApiResponse<List<CreateDgOfferItemResponse>> response = dgApi.postDgOffersWithHttpInfo(createDgOffersRequest, null);
+        return new Tuple2<>(response.getHeaders().get("hts-session-id").get(0), response.getData());
+    }
+
+    public DgContract createDgContract(CreateDgContractRequest createDgContractRequest) throws ApiException {
+        return dgApi.postDgContracts(createDgContractRequest);
+    }
+
+
     public CreateSessionOffersContractsResponse createSessionOffersAndContracts(CreateAirlineSessionRequest createAirlineSessionRequest, CreateCfarOfferRequest createCfarOfferRequest) throws ApiException {
         // Create Session
         AirlineSession airlineSession = createSession(createAirlineSessionRequest);
@@ -126,10 +150,10 @@ public class HopperClient {
         // Create a contract for each offer created
         List<CfarContract> cfarContracts = new ArrayList<>();
         if (cfarOffers != null && !cfarOffers.isEmpty()) {
-            for (CfarOffer offer : cfarOffers) {
+            for (int i = 0; i < cfarOffers.size(); i++) {
                 CreateCfarContractRequest createCfarContractRequest = new CreateCfarContractRequest();
-                createCfarContractRequest.setOfferIds(Collections.singletonList(offer.getId()));
-                createCfarContractRequest.setItinerary(CfarItineraryTransformer.toCfarItinerary(createCfarOfferRequest.getItinerary().get(0)));
+                createCfarContractRequest.setOfferIds(Collections.singletonList(cfarOffers.get(i).getId()));
+                createCfarContractRequest.setItinerary(CfarItineraryTransformer.toCfarItinerary(createCfarOfferRequest.getItinerary().get(i)));
                 CfarContract cfarContract = createCfarContract(sessionId, createCfarContractRequest);
                 cfarContracts.add(cfarContract);
             }
@@ -153,6 +177,30 @@ public class HopperClient {
      */
     public CfarContract updateCfarContractStatus(String sessionId, String contractReference, UpdateCfarContractRequest updateCfarContractRequest) throws ApiException {
         return cfarApi.putCfarContractsIdUpdateStatus(contractReference, updateCfarContractRequest, sessionId);
+    }
+
+    /**
+     * It has to be called after the payment details have been transferred, to confirm the contract.
+     *
+     * @param contractId                    The contract id
+     * @param updateDgContractStatusRequest The request with the update information
+     * @return The updated contract
+     * @throws ApiException
+     */
+    public DgContract updateDgContractStatus(String contractId, UpdateDgContractStatusRequest updateDgContractStatusRequest, PaymentCardDetails paymentCardDetails) throws ApiException {
+        if (!ListUtil.isEmpty(updateDgContractStatusRequest.getFormsOfPayment())) {
+            List<FormOfPayment> apiFormsOfPayment = new ArrayList<>();
+            for (FormOfPayment formOfPaymentRequest : updateDgContractStatusRequest.getFormsOfPayment()) {
+                if (formOfPaymentRequest.getActualInstance() instanceof PaymentCard && (paymentCardDetails == null && ((PaymentCard) formOfPaymentRequest.getActualInstance()).getToken() == null)) {
+                    throw new ApiException("Missing credentials for payment");
+                } else {
+                    FormOfPayment apiFormOfPayment = updateFormOfPayment(formOfPaymentRequest, paymentCardDetails);
+                    apiFormsOfPayment.add(apiFormOfPayment);
+                }
+            }
+            updateDgContractStatusRequest.setFormsOfPayment(apiFormsOfPayment);
+        }
+        return dgApi.putDgContractsIdUpdateStatus(contractId, updateDgContractStatusRequest);
     }
 
     /**
@@ -187,44 +235,56 @@ public class HopperClient {
      * @return The updated contract
      * @throws ApiException
      */
-    public CfarContract updateCfarContractFormsOfPayment(String sessionId, String contractReference, UpdateCfarContractFormsOfPaymentRequest updateCfarContractFormsOfPaymentRequest) throws ApiException {
+    public CfarContract updateCfarContractFormsOfPayment(String sessionId, String contractReference, UpdateCfarContractFormsOfPaymentRequest updateCfarContractFormsOfPaymentRequest, PaymentCardDetails paymentCardDetails) throws ApiException {
         try {
             if (ListUtil.isEmpty(updateCfarContractFormsOfPaymentRequest.getFormsOfPayment())) {
                 throw new ApiException("Missing forms of payment"); // must we return the contract instead?
             } else {
-                if (hopperPaymentClient == null) {
+                if (paymentCardDetails == null && hopperPaymentClient == null && updateCfarContractFormsOfPaymentRequest.getFormsOfPayment().stream().anyMatch(formOfPayment -> formOfPayment.getPaymentCard() != null && formOfPayment.getPaymentCard().getToken() == null)) {
                     throw new ApiException("Missing credentials for payment");
                 }
 
                 UpdateCfarFormOfPaymentRequest updateCfarContractFormsOfPaymentApiRequest = new UpdateCfarFormOfPaymentRequest();
                 List<FormOfPayment> apiFormsOfPayment = new ArrayList<>();
                 for (FormOfPayment formOfPaymentRequest : updateCfarContractFormsOfPaymentRequest.getFormsOfPayment()) {
-                    FormOfPayment apiFormOfPayment = new FormOfPayment();
-                    Object formOfPaymentRequestObject = formOfPaymentRequest.getActualInstance();
-                    if (formOfPaymentRequestObject instanceof PaymentCard) {
-                        PaymentCard fopRequest = (PaymentCard)formOfPaymentRequestObject;
-                        apiFormOfPayment = new FormOfPayment(fopRequest);
-                    } else if (formOfPaymentRequestObject instanceof Cash) {
-                        Cash fopRequest = (Cash)formOfPaymentRequestObject;
-                        apiFormOfPayment = new FormOfPayment(fopRequest);
-                    } else if (formOfPaymentRequestObject instanceof NonCash) {
-                        NonCash fopRequest = (NonCash)formOfPaymentRequestObject;
-                        apiFormOfPayment.setActualInstance(fopRequest);
-                    } else if (formOfPaymentRequestObject instanceof Points) {
-                        Points fopRequest = (Points)formOfPaymentRequestObject;
-                        apiFormOfPayment = new FormOfPayment(fopRequest);
-                    } else {
-                        throw new ApiException("Unknown form of payment");
-                    }
+                    FormOfPayment apiFormOfPayment = updateFormOfPayment(formOfPaymentRequest, paymentCardDetails);
                     apiFormsOfPayment.add(apiFormOfPayment);
                 }
-
                 updateCfarContractFormsOfPaymentApiRequest.setFormsOfPayment(apiFormsOfPayment);
                 return cfarApi.putCfarContractsIdFormsOfPayment(contractReference, updateCfarContractFormsOfPaymentApiRequest, sessionId);
             }
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    @NotNull
+    private FormOfPayment updateFormOfPayment(FormOfPayment formOfPaymentRequest, PaymentCardDetails paymentCardDetails) throws ApiException {
+        FormOfPayment apiFormOfPayment = new FormOfPayment();
+        Object formOfPaymentRequestObject = formOfPaymentRequest.getActualInstance();
+        if (formOfPaymentRequestObject instanceof PaymentCard) {
+            PaymentCard fopRequest = (PaymentCard) formOfPaymentRequestObject;
+            if (paymentCardDetails != null && fopRequest.getToken() == null) {
+                // Adjust the credit card number
+                paymentCardDetails.setNumber(prepareCreditCardNumberForSpreedly(paymentCardDetails.getNumber()));
+                // Retrieve the required token from Spreedly
+                String token = hopperPaymentClient.tokenizePaymentCreditCardWithEncryption(paymentCardDetails);
+                fopRequest.setToken(token);
+            }
+            apiFormOfPayment = new FormOfPayment(fopRequest);
+        } else if (formOfPaymentRequestObject instanceof Cash) {
+            Cash fopRequest = (Cash) formOfPaymentRequestObject;
+            apiFormOfPayment = new FormOfPayment(fopRequest);
+        } else if (formOfPaymentRequestObject instanceof NonCash) {
+            NonCash fopRequest = (NonCash) formOfPaymentRequestObject;
+            apiFormOfPayment.setActualInstance(fopRequest);
+        } else if (formOfPaymentRequestObject instanceof Points) {
+            Points fopRequest = (Points) formOfPaymentRequestObject;
+            apiFormOfPayment = new FormOfPayment(fopRequest);
+        } else {
+            throw new ApiException("Unknown form of payment");
+        }
+        return apiFormOfPayment;
     }
 
     public boolean processCfarPayment(String sessionId, String contractId, ProcessCfarPaymentRequest processCfarPaymentRequest) throws ApiException {
