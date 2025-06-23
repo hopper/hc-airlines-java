@@ -88,7 +88,7 @@ configurations.all {
 /*
 swaggerSources {
     hcap {
-        inputFile = file('hcap.yml')
+        inputFile = file('api/openapi.yaml')
         code {
             language = 'java'
             configFile = file('config.json')

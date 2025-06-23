@@ -56,8 +56,7 @@ public class IdentifyAirlineSessionRequest {
    * The airline&#39;s unique identifier for a user; can be an arbitrary string
    * @return airlineUserId
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2bcd6619-ac3e-403b-9982-3e12f2698a53", required = true, value = "The airline's unique identifier for a user; can be an arbitrary string")
+    @ApiModelProperty(example = "2bcd6619-ac3e-403b-9982-3e12f2698a53", required = true, value = "The airline's unique identifier for a user; can be an arbitrary string")
 
   public String getAirlineUserId() {
     return airlineUserId;
