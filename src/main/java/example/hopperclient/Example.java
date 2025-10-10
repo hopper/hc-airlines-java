@@ -6,6 +6,7 @@ import com.hopper.cloud.airlines.model.*;
 
 import java.net.MalformedURLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Example extends CommonExample {
     public static void main(String[] args) {
@@ -25,9 +26,10 @@ public class Example extends CommonExample {
             System.out.println("*********************************************************************");
             System.out.println(offers);
 
+            List<CfarOffer> offersWith100PercentCoverage = offers.stream().filter(offer -> offer.getCoveragePercentage().contains("100")).collect(Collectors.toList());;
             List<CfarOffer> selectedOffer = new ArrayList<>();
-            selectedOffer.add(offers.get(0));
-            selectedOffer.add(offers.get(1));
+            selectedOffer.add(offersWith100PercentCoverage.get(0));
+            selectedOffer.add(offersWith100PercentCoverage.get(1));
             CfarContract contract = createCfarContract(client, selectedOffer, sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE CONTRACT *************************");
