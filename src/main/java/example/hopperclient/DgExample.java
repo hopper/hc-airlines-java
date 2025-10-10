@@ -22,6 +22,7 @@ public class DgExample extends CommonExample {
 
             CreateDgOffersRequest offersRequest = new CreateDgOffersRequest();
             offersRequest.setRequestType(DgRequestType.ANCILLARY);
+            offersRequest.setEntryPoint("booking_page");
 
             // Itinerary
             DgItinerary itinerary = new DgItinerary();

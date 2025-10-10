@@ -62,6 +62,7 @@ public class CommonExample {
     private static CreateCfarOfferRequest prepareCreateCfarOfferRequest() {
         CreateCfarOfferRequest createCfarOfferRequest = new CreateCfarOfferRequest();
         createCfarOfferRequest.setRequestType(RequestType.FARE);
+        createCfarOfferRequest.entryPoint("booking_page");
 
         Map<String, String> params = new HashMap<>();
         params.put("property1", "test1");
