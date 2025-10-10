@@ -52,7 +52,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CreateAirlineSessionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateAirlineSessionRequest {
   public static final String SERIALIZED_NAME_FLOW_TYPE = "flow_type";
   @SerializedName(SERIALIZED_NAME_FLOW_TYPE)
@@ -64,10 +64,10 @@ public class CreateAirlineSessionRequest {
   @javax.annotation.Nullable
   private UserInfo userInfo;
 
-    public static final String SERIALIZED_NAME_SESSION_ID = "session_id";
-    @SerializedName(SERIALIZED_NAME_SESSION_ID)
-    @javax.annotation.Nullable
-    private String sessionId;
+  public static final String SERIALIZED_NAME_SESSION_ID = "session_id";
+  @SerializedName(SERIALIZED_NAME_SESSION_ID)
+  @javax.annotation.Nullable
+  private String sessionId;
 
   public static final String SERIALIZED_NAME_DEVICE = "device";
   @SerializedName(SERIALIZED_NAME_DEVICE)
@@ -130,24 +130,23 @@ public class CreateAirlineSessionRequest {
   }
 
 
-    public CreateAirlineSessionRequest sessionId(@javax.annotation.Nullable String sessionId) {
-        this.sessionId = sessionId;
-        return this;
-    }
+  public CreateAirlineSessionRequest sessionId(@javax.annotation.Nullable String sessionId) {
+    this.sessionId = sessionId;
+    return this;
+  }
 
-    /**
-     * The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.
-     *
-     * @return sessionId
-     */
-    @javax.annotation.Nullable
-    public String getSessionId() {
-        return sessionId;
-    }
+  /**
+   * The custom identifier for the customer&#39;s session. If omitted, a new session ID will be generated.
+   * @return sessionId
+   */
+  @javax.annotation.Nullable
+  public String getSessionId() {
+    return sessionId;
+  }
 
-    public void setSessionId(@javax.annotation.Nullable String sessionId) {
-        this.sessionId = sessionId;
-    }
+  public void setSessionId(@javax.annotation.Nullable String sessionId) {
+    this.sessionId = sessionId;
+  }
 
 
   public CreateAirlineSessionRequest device(@javax.annotation.Nullable Device device) {
@@ -238,7 +237,7 @@ public class CreateAirlineSessionRequest {
     CreateAirlineSessionRequest createAirlineSessionRequest = (CreateAirlineSessionRequest) o;
     return Objects.equals(this.flowType, createAirlineSessionRequest.flowType) &&
         Objects.equals(this.userInfo, createAirlineSessionRequest.userInfo) &&
-            Objects.equals(this.sessionId, createAirlineSessionRequest.sessionId) &&
+        Objects.equals(this.sessionId, createAirlineSessionRequest.sessionId) &&
         Objects.equals(this.device, createAirlineSessionRequest.device) &&
         Objects.equals(this.pointOfSale, createAirlineSessionRequest.pointOfSale) &&
         Objects.equals(this.language, createAirlineSessionRequest.language) &&
@@ -247,7 +246,7 @@ public class CreateAirlineSessionRequest {
 
   @Override
   public int hashCode() {
-      return Objects.hash(flowType, userInfo, sessionId, device, pointOfSale, language, product);
+    return Objects.hash(flowType, userInfo, sessionId, device, pointOfSale, language, product);
   }
 
   @Override
@@ -256,7 +255,7 @@ public class CreateAirlineSessionRequest {
     sb.append("class CreateAirlineSessionRequest {\n");
     sb.append("    flowType: ").append(toIndentedString(flowType)).append("\n");
     sb.append("    userInfo: ").append(toIndentedString(userInfo)).append("\n");
-      sb.append("    sessionId: ").append(toIndentedString(sessionId)).append("\n");
+    sb.append("    sessionId: ").append(toIndentedString(sessionId)).append("\n");
     sb.append("    device: ").append(toIndentedString(device)).append("\n");
     sb.append("    pointOfSale: ").append(toIndentedString(pointOfSale)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
@@ -283,7 +282,7 @@ public class CreateAirlineSessionRequest {
     openapiFields = new HashSet<String>();
     openapiFields.add("flow_type");
     openapiFields.add("user_info");
-      openapiFields.add("session_id");
+    openapiFields.add("session_id");
     openapiFields.add("device");
     openapiFields.add("point_of_sale");
     openapiFields.add("language");

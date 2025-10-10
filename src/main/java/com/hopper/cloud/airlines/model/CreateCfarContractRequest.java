@@ -37,7 +37,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Create a CFAR contract from selected CFAR offer(s).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateCfarContractRequest {
   public static final String SERIALIZED_NAME_OFFER_IDS = "offer_ids";
   @SerializedName(SERIALIZED_NAME_OFFER_IDS)

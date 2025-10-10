@@ -38,7 +38,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * CreateCfarOfferRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateCfarOfferRequest {
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
@@ -64,6 +64,11 @@ public class CreateCfarOfferRequest {
   @SerializedName(SERIALIZED_NAME_SESSION)
   @javax.annotation.Nullable
   private CreateAirlineCfarSessionRequest session;
+
+  public static final String SERIALIZED_NAME_ENTRY_POINT = "entry_point";
+  @SerializedName(SERIALIZED_NAME_ENTRY_POINT)
+  @javax.annotation.Nullable
+  private String entryPoint;
 
   public CreateCfarOfferRequest() {
   }
@@ -179,6 +184,25 @@ public class CreateCfarOfferRequest {
   }
 
 
+  public CreateCfarOfferRequest entryPoint(@javax.annotation.Nullable String entryPoint) {
+    this.entryPoint = entryPoint;
+    return this;
+  }
+
+  /**
+   * Information about product placement on partner&#39;s website
+   * @return entryPoint
+   */
+  @javax.annotation.Nullable
+  public String getEntryPoint() {
+    return entryPoint;
+  }
+
+  public void setEntryPoint(@javax.annotation.Nullable String entryPoint) {
+    this.entryPoint = entryPoint;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -193,12 +217,13 @@ public class CreateCfarOfferRequest {
         Objects.equals(this.requestType, createCfarOfferRequest.requestType) &&
         Objects.equals(this.bookingDateTime, createCfarOfferRequest.bookingDateTime) &&
         Objects.equals(this.extAttributes, createCfarOfferRequest.extAttributes) &&
-        Objects.equals(this.session, createCfarOfferRequest.session);
+        Objects.equals(this.session, createCfarOfferRequest.session) &&
+        Objects.equals(this.entryPoint, createCfarOfferRequest.entryPoint);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(itinerary, requestType, bookingDateTime, extAttributes, session);
+    return Objects.hash(itinerary, requestType, bookingDateTime, extAttributes, session, entryPoint);
   }
 
   @Override
@@ -210,6 +235,7 @@ public class CreateCfarOfferRequest {
     sb.append("    bookingDateTime: ").append(toIndentedString(bookingDateTime)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
     sb.append("    session: ").append(toIndentedString(session)).append("\n");
+    sb.append("    entryPoint: ").append(toIndentedString(entryPoint)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -237,6 +263,7 @@ public class CreateCfarOfferRequest {
     openapiFields.add("booking_date_time");
     openapiFields.add("ext_attributes");
     openapiFields.add("session");
+    openapiFields.add("entry_point");
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -13,6 +13,7 @@ A create DG offers request
 |**bookingDateTime** | **OffsetDateTime** | A UTC RFC3339 datetime; the date and time at which the booking was made. To be used only with the request type \&quot;post_booking\&quot; |  [optional] |
 |**session** | [**CreateAirlineDgSessionRequest**](CreateAirlineDgSessionRequest.md) |  |  [optional] |
 |**extAttributes** | **Map&lt;String, String&gt;** |  |  |
+|**entryPoint** | **String** | Information about product placement on partner&#39;s website |  [optional] |
 
 
 

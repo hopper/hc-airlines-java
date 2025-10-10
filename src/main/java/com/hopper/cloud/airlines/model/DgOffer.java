@@ -57,7 +57,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A Dg offer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgOffer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -104,6 +104,11 @@ public class DgOffer {
   @javax.annotation.Nonnull
   private DgRequestType requestType;
 
+  public static final String SERIALIZED_NAME_ENTRY_POINT = "entry_point";
+  @SerializedName(SERIALIZED_NAME_ENTRY_POINT)
+  @javax.annotation.Nullable
+  private String entryPoint;
+
   public static final String SERIALIZED_NAME_MAX_HOURS_BEFORE_DEPARTURE = "max_hours_before_departure";
   @SerializedName(SERIALIZED_NAME_MAX_HOURS_BEFORE_DEPARTURE)
   @javax.annotation.Nonnull
@@ -134,25 +139,30 @@ public class DgOffer {
   @javax.annotation.Nonnull
   private Map<String, String> extAttributes;
 
+  public static final String SERIALIZED_NAME_EXPERIMENTS = "experiments";
+  @SerializedName(SERIALIZED_NAME_EXPERIMENTS)
+  @javax.annotation.Nonnull
+  private Map<String, String> experiments;
+
   public static final String SERIALIZED_NAME_CONTENTS = "contents";
   @SerializedName(SERIALIZED_NAME_CONTENTS)
   @javax.annotation.Nonnull
   private Map<String, DgContents> contents;
 
-    public static final String SERIALIZED_NAME_TERMS_CONDITIONS_URL = "terms_conditions_url";
-    @SerializedName(SERIALIZED_NAME_TERMS_CONDITIONS_URL)
-    @javax.annotation.Nullable
-    private String termsConditionsUrl;
+  public static final String SERIALIZED_NAME_TERMS_CONDITIONS_URL = "terms_conditions_url";
+  @SerializedName(SERIALIZED_NAME_TERMS_CONDITIONS_URL)
+  @javax.annotation.Nullable
+  private String termsConditionsUrl;
 
-    public static final String SERIALIZED_NAME_FAQ_URL = "faq_url";
-    @SerializedName(SERIALIZED_NAME_FAQ_URL)
-    @javax.annotation.Nullable
-    private String faqUrl;
+  public static final String SERIALIZED_NAME_FAQ_URL = "faq_url";
+  @SerializedName(SERIALIZED_NAME_FAQ_URL)
+  @javax.annotation.Nullable
+  private String faqUrl;
 
-    public static final String SERIALIZED_NAME_MERCHANDISING_URL = "merchandising_url";
-    @SerializedName(SERIALIZED_NAME_MERCHANDISING_URL)
-    @javax.annotation.Nullable
-    private String merchandisingUrl;
+  public static final String SERIALIZED_NAME_MERCHANDISING_URL = "merchandising_url";
+  @SerializedName(SERIALIZED_NAME_MERCHANDISING_URL)
+  @javax.annotation.Nullable
+  private String merchandisingUrl;
 
   public DgOffer() {
   }
@@ -336,6 +346,25 @@ public class DgOffer {
   }
 
 
+  public DgOffer entryPoint(@javax.annotation.Nullable String entryPoint) {
+    this.entryPoint = entryPoint;
+    return this;
+  }
+
+  /**
+   * Information about product placement on partner&#39;s website
+   * @return entryPoint
+   */
+  @javax.annotation.Nullable
+  public String getEntryPoint() {
+    return entryPoint;
+  }
+
+  public void setEntryPoint(@javax.annotation.Nullable String entryPoint) {
+    this.entryPoint = entryPoint;
+  }
+
+
   public DgOffer maxHoursBeforeDeparture(@javax.annotation.Nonnull Integer maxHoursBeforeDeparture) {
     this.maxHoursBeforeDeparture = maxHoursBeforeDeparture;
     return this;
@@ -460,6 +489,33 @@ public class DgOffer {
   }
 
 
+  public DgOffer experiments(@javax.annotation.Nonnull Map<String, String> experiments) {
+    this.experiments = experiments;
+    return this;
+  }
+
+  public DgOffer putExperimentsItem(String key, String experimentsItem) {
+    if (this.experiments == null) {
+      this.experiments = new HashMap<>();
+    }
+    this.experiments.put(key, experimentsItem);
+    return this;
+  }
+
+  /**
+   * Get experiments
+   * @return experiments
+   */
+  @javax.annotation.Nonnull
+  public Map<String, String> getExperiments() {
+    return experiments;
+  }
+
+  public void setExperiments(@javax.annotation.Nonnull Map<String, String> experiments) {
+    this.experiments = experiments;
+  }
+
+
   public DgOffer contents(@javax.annotation.Nonnull Map<String, DgContents> contents) {
     this.contents = contents;
     return this;
@@ -487,64 +543,61 @@ public class DgOffer {
   }
 
 
-    public DgOffer termsConditionsUrl(@javax.annotation.Nullable String termsConditionsUrl) {
-        this.termsConditionsUrl = termsConditionsUrl;
-        return this;
-    }
+  public DgOffer termsConditionsUrl(@javax.annotation.Nullable String termsConditionsUrl) {
+    this.termsConditionsUrl = termsConditionsUrl;
+    return this;
+  }
 
-    /**
-     * The terms and conditions for this offer
-     *
-     * @return termsConditionsUrl
-     */
-    @javax.annotation.Nullable
-    public String getTermsConditionsUrl() {
-        return termsConditionsUrl;
-    }
+  /**
+   * The terms and conditions for this offer
+   * @return termsConditionsUrl
+   */
+  @javax.annotation.Nullable
+  public String getTermsConditionsUrl() {
+    return termsConditionsUrl;
+  }
 
-    public void setTermsConditionsUrl(@javax.annotation.Nullable String termsConditionsUrl) {
-        this.termsConditionsUrl = termsConditionsUrl;
-    }
-
-
-    public DgOffer faqUrl(@javax.annotation.Nullable String faqUrl) {
-        this.faqUrl = faqUrl;
-        return this;
-    }
-
-    /**
-     * The faq url for this offer
-     *
-     * @return faqUrl
-     */
-    @javax.annotation.Nullable
-    public String getFaqUrl() {
-        return faqUrl;
-    }
-
-    public void setFaqUrl(@javax.annotation.Nullable String faqUrl) {
-        this.faqUrl = faqUrl;
-    }
+  public void setTermsConditionsUrl(@javax.annotation.Nullable String termsConditionsUrl) {
+    this.termsConditionsUrl = termsConditionsUrl;
+  }
 
 
-    public DgOffer merchandisingUrl(@javax.annotation.Nullable String merchandisingUrl) {
-        this.merchandisingUrl = merchandisingUrl;
-        return this;
-    }
+  public DgOffer faqUrl(@javax.annotation.Nullable String faqUrl) {
+    this.faqUrl = faqUrl;
+    return this;
+  }
 
-    /**
-     * The url for rendering offer merchandising
-     *
-     * @return merchandisingUrl
-     */
-    @javax.annotation.Nullable
-    public String getMerchandisingUrl() {
-        return merchandisingUrl;
-    }
+  /**
+   * The faq url for this offer
+   * @return faqUrl
+   */
+  @javax.annotation.Nullable
+  public String getFaqUrl() {
+    return faqUrl;
+  }
 
-    public void setMerchandisingUrl(@javax.annotation.Nullable String merchandisingUrl) {
-        this.merchandisingUrl = merchandisingUrl;
-    }
+  public void setFaqUrl(@javax.annotation.Nullable String faqUrl) {
+    this.faqUrl = faqUrl;
+  }
+
+
+  public DgOffer merchandisingUrl(@javax.annotation.Nullable String merchandisingUrl) {
+    this.merchandisingUrl = merchandisingUrl;
+    return this;
+  }
+
+  /**
+   * The url for rendering offer merchandising
+   * @return merchandisingUrl
+   */
+  @javax.annotation.Nullable
+  public String getMerchandisingUrl() {
+    return merchandisingUrl;
+  }
+
+  public void setMerchandisingUrl(@javax.annotation.Nullable String merchandisingUrl) {
+    this.merchandisingUrl = merchandisingUrl;
+  }
 
 
 
@@ -566,21 +619,23 @@ public class DgOffer {
         Objects.equals(this.taxesTotal, dgOffer.taxesTotal) &&
         Objects.equals(this.taxes, dgOffer.taxes) &&
         Objects.equals(this.requestType, dgOffer.requestType) &&
+        Objects.equals(this.entryPoint, dgOffer.entryPoint) &&
         Objects.equals(this.maxHoursBeforeDeparture, dgOffer.maxHoursBeforeDeparture) &&
         Objects.equals(this.minMinutesDelay, dgOffer.minMinutesDelay) &&
         Objects.equals(this.contractExpiryDateTime, dgOffer.contractExpiryDateTime) &&
         Objects.equals(this.createdDateTime, dgOffer.createdDateTime) &&
         Objects.equals(this.itinerary, dgOffer.itinerary) &&
         Objects.equals(this.extAttributes, dgOffer.extAttributes) &&
-            Objects.equals(this.contents, dgOffer.contents) &&
-            Objects.equals(this.termsConditionsUrl, dgOffer.termsConditionsUrl) &&
-            Objects.equals(this.faqUrl, dgOffer.faqUrl) &&
-            Objects.equals(this.merchandisingUrl, dgOffer.merchandisingUrl);
+        Objects.equals(this.experiments, dgOffer.experiments) &&
+        Objects.equals(this.contents, dgOffer.contents) &&
+        Objects.equals(this.termsConditionsUrl, dgOffer.termsConditionsUrl) &&
+        Objects.equals(this.faqUrl, dgOffer.faqUrl) &&
+        Objects.equals(this.merchandisingUrl, dgOffer.merchandisingUrl);
   }
 
   @Override
   public int hashCode() {
-      return Objects.hash(id, premium, coverage, coveragePercentage, serviceCap, currency, taxesTotal, taxes, requestType, maxHoursBeforeDeparture, minMinutesDelay, contractExpiryDateTime, createdDateTime, itinerary, extAttributes, contents, termsConditionsUrl, faqUrl, merchandisingUrl);
+    return Objects.hash(id, premium, coverage, coveragePercentage, serviceCap, currency, taxesTotal, taxes, requestType, entryPoint, maxHoursBeforeDeparture, minMinutesDelay, contractExpiryDateTime, createdDateTime, itinerary, extAttributes, experiments, contents, termsConditionsUrl, faqUrl, merchandisingUrl);
   }
 
   @Override
@@ -596,16 +651,18 @@ public class DgOffer {
     sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    requestType: ").append(toIndentedString(requestType)).append("\n");
+    sb.append("    entryPoint: ").append(toIndentedString(entryPoint)).append("\n");
     sb.append("    maxHoursBeforeDeparture: ").append(toIndentedString(maxHoursBeforeDeparture)).append("\n");
     sb.append("    minMinutesDelay: ").append(toIndentedString(minMinutesDelay)).append("\n");
     sb.append("    contractExpiryDateTime: ").append(toIndentedString(contractExpiryDateTime)).append("\n");
     sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
+    sb.append("    experiments: ").append(toIndentedString(experiments)).append("\n");
     sb.append("    contents: ").append(toIndentedString(contents)).append("\n");
-      sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
-      sb.append("    faqUrl: ").append(toIndentedString(faqUrl)).append("\n");
-      sb.append("    merchandisingUrl: ").append(toIndentedString(merchandisingUrl)).append("\n");
+    sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
+    sb.append("    faqUrl: ").append(toIndentedString(faqUrl)).append("\n");
+    sb.append("    merchandisingUrl: ").append(toIndentedString(merchandisingUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -637,16 +694,18 @@ public class DgOffer {
     openapiFields.add("taxes_total");
     openapiFields.add("taxes");
     openapiFields.add("request_type");
+    openapiFields.add("entry_point");
     openapiFields.add("max_hours_before_departure");
     openapiFields.add("min_minutes_delay");
     openapiFields.add("contract_expiry_date_time");
     openapiFields.add("created_date_time");
     openapiFields.add("itinerary");
     openapiFields.add("ext_attributes");
+    openapiFields.add("experiments");
     openapiFields.add("contents");
-      openapiFields.add("terms_conditions_url");
-      openapiFields.add("faq_url");
-      openapiFields.add("merchandising_url");
+    openapiFields.add("terms_conditions_url");
+    openapiFields.add("faq_url");
+    openapiFields.add("merchandising_url");
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
