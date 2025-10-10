@@ -49,7 +49,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * BookingConfirmed
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-19T17:27:15.383558719Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class BookingConfirmed {
   public static final String SERIALIZED_NAME_OCCURRED_DATE_TIME = "occurred_date_time";
   @SerializedName(SERIALIZED_NAME_OCCURRED_DATE_TIME)
@@ -100,7 +100,6 @@ public class BookingConfirmed {
 
   /**
    * The purchased CFAR contract, if one is present
-   *
    * @return cfarContractId
    */
   @javax.annotation.Nullable
@@ -120,7 +119,6 @@ public class BookingConfirmed {
 
   /**
    * The purchased DG contract, if one is present
-   *
    * @return dgContractId
    */
   @javax.annotation.Nullable
@@ -163,8 +161,8 @@ public class BookingConfirmed {
     }
     BookingConfirmed bookingConfirmed = (BookingConfirmed) o;
     return Objects.equals(this.occurredDateTime, bookingConfirmed.occurredDateTime) &&
-            Objects.equals(this.cfarContractId, bookingConfirmed.cfarContractId) &&
-            Objects.equals(this.dgContractId, bookingConfirmed.dgContractId) &&
+        Objects.equals(this.cfarContractId, bookingConfirmed.cfarContractId) &&
+        Objects.equals(this.dgContractId, bookingConfirmed.dgContractId) &&
         Objects.equals(this.type, bookingConfirmed.type);
   }
 

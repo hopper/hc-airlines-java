@@ -64,7 +64,7 @@ import com.google.gson.JsonParseException;
 
 import com.hopper.cloud.airlines.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class Browser extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(Browser.class.getName());
 
@@ -148,6 +148,8 @@ public class Browser extends AbstractOpenApiSchema {
 
                     // deserialize Chrome
                     try {
+                        // validate the JSON object to see if any exception is thrown
+                        Chrome.validateJsonElement(jsonElement);
                         actualAdapter = adapterChrome;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Chrome'");
@@ -158,6 +160,8 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Edge
                     try {
+                        // validate the JSON object to see if any exception is thrown
+                        Edge.validateJsonElement(jsonElement);
                         actualAdapter = adapterEdge;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Edge'");
@@ -168,6 +172,8 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Firefox
                     try {
+                        // validate the JSON object to see if any exception is thrown
+                        Firefox.validateJsonElement(jsonElement);
                         actualAdapter = adapterFirefox;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Firefox'");
@@ -178,6 +184,8 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize InternetExplorer
                     try {
+                        // validate the JSON object to see if any exception is thrown
+                        InternetExplorer.validateJsonElement(jsonElement);
                         actualAdapter = adapterInternetExplorer;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'InternetExplorer'");
@@ -188,6 +196,8 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Opera
                     try {
+                        // validate the JSON object to see if any exception is thrown
+                        Opera.validateJsonElement(jsonElement);
                         actualAdapter = adapterOpera;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Opera'");
@@ -198,6 +208,8 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize OtherBrowser
                     try {
+                        // validate the JSON object to see if any exception is thrown
+                        OtherBrowser.validateJsonElement(jsonElement);
                         actualAdapter = adapterOtherBrowser;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'OtherBrowser'");
@@ -208,6 +220,8 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Safari
                     try {
+                        // validate the JSON object to see if any exception is thrown
+                        Safari.validateJsonElement(jsonElement);
                         actualAdapter = adapterSafari;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Safari'");

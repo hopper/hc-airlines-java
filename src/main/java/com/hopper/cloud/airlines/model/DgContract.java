@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.hopper.cloud.airlines.model.DgItinerary;
 import com.hopper.cloud.airlines.model.DgOffer;
 import com.hopper.cloud.airlines.model.DgStatus;
 import com.hopper.cloud.airlines.model.DgTax;
@@ -56,7 +57,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A DG contract
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgContract {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -77,6 +78,11 @@ public class DgContract {
   @SerializedName(SERIALIZED_NAME_OFFERS)
   @javax.annotation.Nonnull
   private List<DgOffer> offers;
+
+  public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
+  @SerializedName(SERIALIZED_NAME_ITINERARY)
+  @javax.annotation.Nonnull
+  private DgItinerary itinerary;
 
   public static final String SERIALIZED_NAME_COVERAGE_PERCENTAGE = "coverage_percentage";
   @SerializedName(SERIALIZED_NAME_COVERAGE_PERCENTAGE)
@@ -232,6 +238,25 @@ public class DgContract {
 
   public void setOffers(@javax.annotation.Nonnull List<DgOffer> offers) {
     this.offers = offers;
+  }
+
+
+  public DgContract itinerary(@javax.annotation.Nonnull DgItinerary itinerary) {
+    this.itinerary = itinerary;
+    return this;
+  }
+
+  /**
+   * Get itinerary
+   * @return itinerary
+   */
+  @javax.annotation.Nonnull
+  public DgItinerary getItinerary() {
+    return itinerary;
+  }
+
+  public void setItinerary(@javax.annotation.Nonnull DgItinerary itinerary) {
+    this.itinerary = itinerary;
   }
 
 
@@ -533,6 +558,7 @@ public class DgContract {
         Objects.equals(this.reference, dgContract.reference) &&
         Objects.equals(this.status, dgContract.status) &&
         Objects.equals(this.offers, dgContract.offers) &&
+        Objects.equals(this.itinerary, dgContract.itinerary) &&
         Objects.equals(this.coveragePercentage, dgContract.coveragePercentage) &&
         Objects.equals(this.coverage, dgContract.coverage) &&
         Objects.equals(this.premium, dgContract.premium) &&
@@ -551,7 +577,7 @@ public class DgContract {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, reference, status, offers, coveragePercentage, coverage, premium, serviceCap, currency, taxesTotal, taxes, maxHoursBeforeDeparture, minMinutesDelay, createdDateTime, expiryDateTime, language, pnrReference, extAttributes);
+    return Objects.hash(id, reference, status, offers, itinerary, coveragePercentage, coverage, premium, serviceCap, currency, taxesTotal, taxes, maxHoursBeforeDeparture, minMinutesDelay, createdDateTime, expiryDateTime, language, pnrReference, extAttributes);
   }
 
   @Override
@@ -562,6 +588,7 @@ public class DgContract {
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    offers: ").append(toIndentedString(offers)).append("\n");
+    sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
     sb.append("    coveragePercentage: ").append(toIndentedString(coveragePercentage)).append("\n");
     sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
     sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
@@ -602,6 +629,7 @@ public class DgContract {
     openapiFields.add("reference");
     openapiFields.add("status");
     openapiFields.add("offers");
+    openapiFields.add("itinerary");
     openapiFields.add("coverage_percentage");
     openapiFields.add("coverage");
     openapiFields.add("premium");

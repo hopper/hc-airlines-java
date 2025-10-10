@@ -56,7 +56,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A create DG offers request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-02T18:35:20.974206513Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateDgOffersRequest {
   public static final String SERIALIZED_NAME_ITINERARY = "itinerary";
   @SerializedName(SERIALIZED_NAME_ITINERARY)
@@ -82,6 +82,11 @@ public class CreateDgOffersRequest {
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   @javax.annotation.Nonnull
   private Map<String, String> extAttributes;
+
+  public static final String SERIALIZED_NAME_ENTRY_POINT = "entry_point";
+  @SerializedName(SERIALIZED_NAME_ENTRY_POINT)
+  @javax.annotation.Nullable
+  private String entryPoint;
 
   public CreateDgOffersRequest() {
   }
@@ -197,6 +202,25 @@ public class CreateDgOffersRequest {
   }
 
 
+  public CreateDgOffersRequest entryPoint(@javax.annotation.Nullable String entryPoint) {
+    this.entryPoint = entryPoint;
+    return this;
+  }
+
+  /**
+   * Information about product placement on partner&#39;s website
+   * @return entryPoint
+   */
+  @javax.annotation.Nullable
+  public String getEntryPoint() {
+    return entryPoint;
+  }
+
+  public void setEntryPoint(@javax.annotation.Nullable String entryPoint) {
+    this.entryPoint = entryPoint;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -211,12 +235,13 @@ public class CreateDgOffersRequest {
         Objects.equals(this.requestType, createDgOffersRequest.requestType) &&
         Objects.equals(this.bookingDateTime, createDgOffersRequest.bookingDateTime) &&
         Objects.equals(this.session, createDgOffersRequest.session) &&
-        Objects.equals(this.extAttributes, createDgOffersRequest.extAttributes);
+        Objects.equals(this.extAttributes, createDgOffersRequest.extAttributes) &&
+        Objects.equals(this.entryPoint, createDgOffersRequest.entryPoint);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(itinerary, requestType, bookingDateTime, session, extAttributes);
+    return Objects.hash(itinerary, requestType, bookingDateTime, session, extAttributes, entryPoint);
   }
 
   @Override
@@ -228,6 +253,7 @@ public class CreateDgOffersRequest {
     sb.append("    bookingDateTime: ").append(toIndentedString(bookingDateTime)).append("\n");
     sb.append("    session: ").append(toIndentedString(session)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
+    sb.append("    entryPoint: ").append(toIndentedString(entryPoint)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -255,6 +281,7 @@ public class CreateDgOffersRequest {
     openapiFields.add("booking_date_time");
     openapiFields.add("session");
     openapiFields.add("ext_attributes");
+    openapiFields.add("entry_point");
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -44,7 +44,6 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-
 import java.io.IOException;
 
 import java.util.HashMap;
@@ -58,7 +57,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A successful CFAR offer response
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-19T17:27:15.383558719Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CfarOffer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -105,6 +104,11 @@ public class CfarOffer {
   @javax.annotation.Nonnull
   private RequestType requestType;
 
+  public static final String SERIALIZED_NAME_ENTRY_POINT = "entry_point";
+  @SerializedName(SERIALIZED_NAME_ENTRY_POINT)
+  @javax.annotation.Nullable
+  private String entryPoint;
+
   public static final String SERIALIZED_NAME_CONTRACT_EXPIRY_DATE_TIME = "contract_expiry_date_time";
   @SerializedName(SERIALIZED_NAME_CONTRACT_EXPIRY_DATE_TIME)
   @javax.annotation.Nonnull
@@ -129,6 +133,11 @@ public class CfarOffer {
   @SerializedName(SERIALIZED_NAME_EXT_ATTRIBUTES)
   @javax.annotation.Nonnull
   private Map<String, String> extAttributes;
+
+  public static final String SERIALIZED_NAME_EXPERIMENTS = "experiments";
+  @SerializedName(SERIALIZED_NAME_EXPERIMENTS)
+  @javax.annotation.Nonnull
+  private Map<String, String> experiments;
 
   public static final String SERIALIZED_NAME_TERMS_CONDITIONS_URL = "terms_conditions_url";
   @SerializedName(SERIALIZED_NAME_TERMS_CONDITIONS_URL)
@@ -327,6 +336,25 @@ public class CfarOffer {
   }
 
 
+  public CfarOffer entryPoint(@javax.annotation.Nullable String entryPoint) {
+    this.entryPoint = entryPoint;
+    return this;
+  }
+
+  /**
+   * Information about product placement on partner&#39;s website
+   * @return entryPoint
+   */
+  @javax.annotation.Nullable
+  public String getEntryPoint() {
+    return entryPoint;
+  }
+
+  public void setEntryPoint(@javax.annotation.Nullable String entryPoint) {
+    this.entryPoint = entryPoint;
+  }
+
+
   public CfarOffer contractExpiryDateTime(@javax.annotation.Nonnull OffsetDateTime contractExpiryDateTime) {
     this.contractExpiryDateTime = contractExpiryDateTime;
     return this;
@@ -438,6 +466,33 @@ public class CfarOffer {
   }
 
 
+  public CfarOffer experiments(@javax.annotation.Nonnull Map<String, String> experiments) {
+    this.experiments = experiments;
+    return this;
+  }
+
+  public CfarOffer putExperimentsItem(String key, String experimentsItem) {
+    if (this.experiments == null) {
+      this.experiments = new HashMap<>();
+    }
+    this.experiments.put(key, experimentsItem);
+    return this;
+  }
+
+  /**
+   * Get experiments
+   * @return experiments
+   */
+  @javax.annotation.Nonnull
+  public Map<String, String> getExperiments() {
+    return experiments;
+  }
+
+  public void setExperiments(@javax.annotation.Nonnull Map<String, String> experiments) {
+    this.experiments = experiments;
+  }
+
+
   public CfarOffer termsConditionsUrl(@javax.annotation.Nullable String termsConditionsUrl) {
     this.termsConditionsUrl = termsConditionsUrl;
     return this;
@@ -464,7 +519,6 @@ public class CfarOffer {
 
   /**
    * The faq url for this offer
-   *
    * @return faqUrl
    */
   @javax.annotation.Nullable
@@ -515,19 +569,21 @@ public class CfarOffer {
         Objects.equals(this.taxesTotal, cfarOffer.taxesTotal) &&
         Objects.equals(this.taxes, cfarOffer.taxes) &&
         Objects.equals(this.requestType, cfarOffer.requestType) &&
+        Objects.equals(this.entryPoint, cfarOffer.entryPoint) &&
         Objects.equals(this.contractExpiryDateTime, cfarOffer.contractExpiryDateTime) &&
         Objects.equals(this.createdDateTime, cfarOffer.createdDateTime) &&
         Objects.equals(this.itinerary, cfarOffer.itinerary) &&
         Objects.equals(this.contents, cfarOffer.contents) &&
         Objects.equals(this.extAttributes, cfarOffer.extAttributes) &&
+        Objects.equals(this.experiments, cfarOffer.experiments) &&
         Objects.equals(this.termsConditionsUrl, cfarOffer.termsConditionsUrl) &&
-            Objects.equals(this.faqUrl, cfarOffer.faqUrl) &&
+        Objects.equals(this.faqUrl, cfarOffer.faqUrl) &&
         Objects.equals(this.merchandisingUrl, cfarOffer.merchandisingUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, termsConditionsUrl, faqUrl, merchandisingUrl);
+    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, entryPoint, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, experiments, termsConditionsUrl, faqUrl, merchandisingUrl);
   }
 
   @Override
@@ -543,11 +599,13 @@ public class CfarOffer {
     sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    requestType: ").append(toIndentedString(requestType)).append("\n");
+    sb.append("    entryPoint: ").append(toIndentedString(entryPoint)).append("\n");
     sb.append("    contractExpiryDateTime: ").append(toIndentedString(contractExpiryDateTime)).append("\n");
     sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
     sb.append("    itinerary: ").append(toIndentedString(itinerary)).append("\n");
     sb.append("    contents: ").append(toIndentedString(contents)).append("\n");
     sb.append("    extAttributes: ").append(toIndentedString(extAttributes)).append("\n");
+    sb.append("    experiments: ").append(toIndentedString(experiments)).append("\n");
     sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
     sb.append("    faqUrl: ").append(toIndentedString(faqUrl)).append("\n");
     sb.append("    merchandisingUrl: ").append(toIndentedString(merchandisingUrl)).append("\n");
@@ -581,11 +639,13 @@ public class CfarOffer {
     openapiFields.add("taxes_total");
     openapiFields.add("taxes");
     openapiFields.add("request_type");
+    openapiFields.add("entry_point");
     openapiFields.add("contract_expiry_date_time");
     openapiFields.add("created_date_time");
     openapiFields.add("itinerary");
     openapiFields.add("contents");
     openapiFields.add("ext_attributes");
+    openapiFields.add("experiments");
     openapiFields.add("terms_conditions_url");
     openapiFields.add("faq_url");
     openapiFields.add("merchandising_url");

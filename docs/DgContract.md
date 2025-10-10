@@ -12,6 +12,7 @@ A DG contract
 |**reference** | **String** | Unique reference for a contract |  |
 |**status** | **DgStatus** |  |  |
 |**offers** | [**List&lt;DgOffer&gt;**](DgOffer.md) | DG Offer(s) used to create the contract |  |
+|**itinerary** | [**DgItinerary**](DgItinerary.md) |  |  |
 |**coveragePercentage** | **String** | Percentage of the ticket’s value to be refunded upon DG exercise |  |
 |**coverage** | **String** | Total amount to be refunded upon DG exercise |  |
 |**premium** | **String** | Total amount to be paid for DG |  |
