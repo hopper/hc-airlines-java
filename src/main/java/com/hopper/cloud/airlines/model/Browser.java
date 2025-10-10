@@ -148,8 +148,6 @@ public class Browser extends AbstractOpenApiSchema {
 
                     // deserialize Chrome
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Chrome.validateJsonElement(jsonElement);
                         actualAdapter = adapterChrome;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Chrome'");
@@ -160,8 +158,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Edge
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Edge.validateJsonElement(jsonElement);
                         actualAdapter = adapterEdge;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Edge'");
@@ -172,8 +168,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Firefox
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Firefox.validateJsonElement(jsonElement);
                         actualAdapter = adapterFirefox;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Firefox'");
@@ -184,8 +178,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize InternetExplorer
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        InternetExplorer.validateJsonElement(jsonElement);
                         actualAdapter = adapterInternetExplorer;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'InternetExplorer'");
@@ -196,8 +188,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Opera
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Opera.validateJsonElement(jsonElement);
                         actualAdapter = adapterOpera;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Opera'");
@@ -208,8 +198,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize OtherBrowser
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        OtherBrowser.validateJsonElement(jsonElement);
                         actualAdapter = adapterOtherBrowser;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'OtherBrowser'");
@@ -220,8 +208,6 @@ public class Browser extends AbstractOpenApiSchema {
                     }
                     // deserialize Safari
                     try {
-                        // validate the JSON object to see if any exception is thrown
-                        Safari.validateJsonElement(jsonElement);
                         actualAdapter = adapterSafari;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'Safari'");
