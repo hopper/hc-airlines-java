@@ -5,4 +5,4 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v7.10.0 ge
     --config /local/config.json \
     --skip-validate-spec \
     --package-name com.hopper.cloud.airlines \
-    --global-property api,models,apiTests=false,modelTests=false \
+    --global-property apis,models,apiTests=false,modelTests=false \

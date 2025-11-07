@@ -30,6 +30,7 @@ import java.io.IOException;
 import com.hopper.cloud.airlines.model.BadRequest;
 import com.hopper.cloud.airlines.model.CfarContract;
 import com.hopper.cloud.airlines.model.CfarContractExercise;
+import com.hopper.cloud.airlines.model.CfarItinerarySlice;
 import com.hopper.cloud.airlines.model.CfarOffer;
 import com.hopper.cloud.airlines.model.CfarPayment;
 import com.hopper.cloud.airlines.model.CreateCfarContractExerciseRequest;
@@ -1134,7 +1135,18 @@ public class CancelForAnyReasonCfarApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call putCfarContractsIdFormsOfPaymentValidateBeforeCall(String id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling putCfarContractsIdFormsOfPayment(Async)");
+        }
+
+        // verify the required parameter 'updateCfarFormOfPaymentRequest' is set
+        if (updateCfarFormOfPaymentRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateCfarFormOfPaymentRequest' when calling putCfarContractsIdFormsOfPayment(Async)");
+        }
+
         return putCfarContractsIdFormsOfPaymentCall(id, updateCfarFormOfPaymentRequest, hcSessionID, _callback);
+
     }
 
     /**
@@ -1218,6 +1230,180 @@ public class CancelForAnyReasonCfarApi {
     public okhttp3.Call putCfarContractsIdFormsOfPaymentAsync(String id, UpdateCfarFormOfPaymentRequest updateCfarFormOfPaymentRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = putCfarContractsIdFormsOfPaymentValidateBeforeCall(id, updateCfarFormOfPaymentRequest, hcSessionID, _callback);
+        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for putCfarContractsIdItinerarySlices
+     * @param id A unique identifier for a contract (required)
+     * @param cfarItinerarySlice  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The CFAR Contract Itinerary Slices update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call putCfarContractsIdItinerarySlicesCall(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = cfarItinerarySlice;
+
+        // create path and map variables
+        String localVarPath = "/cfar_contracts/{id}/itinerary_slices"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        if (hcSessionID != null) {
+            localVarHeaderParams.put("HC-Session-ID", localVarApiClient.parameterToString(hcSessionID));
+        }
+
+
+        String[] localVarAuthNames = new String[] { "PartnerAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putCfarContractsIdItinerarySlicesValidateBeforeCall(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling putCfarContractsIdItinerarySlices(Async)");
+        }
+
+        // verify the required parameter 'cfarItinerarySlice' is set
+        if (cfarItinerarySlice == null) {
+            throw new ApiException("Missing the required parameter 'cfarItinerarySlice' when calling putCfarContractsIdItinerarySlices(Async)");
+        }
+
+        return putCfarContractsIdItinerarySlicesCall(id, cfarItinerarySlice, hcSessionID, _callback);
+
+    }
+
+    /**
+     * Update CFAR Contract Itinerary Slices
+     * Update itinerary slices of a CFAR contract.
+     * @param id A unique identifier for a contract (required)
+     * @param cfarItinerarySlice  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @return CfarContract
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The CFAR Contract Itinerary Slices update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public CfarContract putCfarContractsIdItinerarySlices(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID) throws ApiException {
+        ApiResponse<CfarContract> localVarResp = putCfarContractsIdItinerarySlicesWithHttpInfo(id, cfarItinerarySlice, hcSessionID);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update CFAR Contract Itinerary Slices
+     * Update itinerary slices of a CFAR contract.
+     * @param id A unique identifier for a contract (required)
+     * @param cfarItinerarySlice  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @return ApiResponse&lt;CfarContract&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The CFAR Contract Itinerary Slices update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<CfarContract> putCfarContractsIdItinerarySlicesWithHttpInfo(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = putCfarContractsIdItinerarySlicesValidateBeforeCall(id, cfarItinerarySlice, hcSessionID, null);
+        Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update CFAR Contract Itinerary Slices (asynchronously)
+     * Update itinerary slices of a CFAR contract.
+     * @param id A unique identifier for a contract (required)
+     * @param cfarItinerarySlice  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The updated CFAR contract </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 204 </td><td> The CFAR Contract Itinerary Slices update request was successfully validated but not performed </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call putCfarContractsIdItinerarySlicesAsync(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putCfarContractsIdItinerarySlicesValidateBeforeCall(id, cfarItinerarySlice, hcSessionID, _callback);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

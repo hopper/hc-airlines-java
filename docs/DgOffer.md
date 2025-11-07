@@ -29,6 +29,7 @@ A Dg offer
 |**termsConditionsUrl** | **String** | The terms and conditions for this offer |  [optional] |
 |**faqUrl** | **String** | The faq url for this offer |  [optional] |
 |**merchandisingUrl** | **String** | The url for rendering offer merchandising |  [optional] |
+|**merchandisingUrlWebComponent** | **String** | The url for the web component SDK for rendering offer merchandising |  [optional] |
 
 
 

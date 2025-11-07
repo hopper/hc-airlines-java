@@ -714,6 +714,88 @@ paths:
       security:
       - PartnerAuth: []
         apiKeyAuth: []
+  /cfar_contracts/{id}/itinerary_slices:
+    put:
+      tags:
+      - Cancel For Any Reason (CFAR)
+      summary: Update CFAR Contract Itinerary Slices
+      description: Update itinerary slices of a CFAR contract.
+      operationId: putCfar_contractsIdItinerary_slices
+      parameters:
+      - name: id
+        in: path
+        description: A unique identifier for a contract
+        required: true
+        schema:
+          type: string
+      - name: HC-Session-ID
+        in: header
+        description: The ID of the current airline session, see [Sessions](#tag/Sessions)
+        required: false
+        schema:
+          type: string
+        example: 9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/cfar_itinerary_slice'
+        required: true
+      responses:
+        '200':
+          description: The updated CFAR contract
+          headers:
+            Expires:
+              required: true
+              schema:
+                type: string
+            Cache-Control:
+              required: true
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cfar_contract'
+        '204':
+          description: The CFAR Contract Itinerary Slices update request was successfully
+            validated but not performed
+          headers:
+            Expires:
+              required: true
+              schema:
+                type: string
+            Cache-Control:
+              required: true
+              schema:
+                type: string
+        '400':
+          description: Syntactic errors were encountered while handling the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bad_request'
+        '401':
+          description: The client could not be authenticated
+        '403':
+          description: The authenticated client does not have permission to call this
+            endpoint
+        '404':
+          description: The requested resource could not be found
+        '422':
+          description: Semantic errors were encountered while handling the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unprocessable_entity'
+        '500':
+          description: The server encountered an internal error
+      security:
+      - PartnerAuth: []
+        apiKeyAuth: []
   /cfar_contract_exercises:
     post:
       tags:
@@ -2741,6 +2823,9 @@ components:
         merchandising_url:
           description: The url for rendering offer merchandising
           type: string
+        merchandising_url_web_component:
+          description: The url for the web component SDK for rendering offer merchandising
+          type: string
     create_dg_offers_request:
       title: create_dg_offers_request
       description: A create DG offers request
@@ -3336,6 +3421,9 @@ components:
         merchandising_url:
           description: The url for rendering offer merchandising
           type: string
+        merchandising_url_web_component:
+          description: The url for the web component SDK for rendering offer merchandising
+          type: string
     dg_passenger:
       title: dg_passenger
       description: An object detailing the Passenger Information
@@ -3374,7 +3462,10 @@ components:
           example: J12393496
           type: string
         passport_country_issuance:
-          description: The country of issuance of the passenger's passport
+          description: The country of issuance of the passenger's passport. Must be
+            a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., 'US',
+            'JP', 'TH')
+          example: US
           type: string
         passport_issuance_date:
           description: The date of issuance of the passenger's passport
@@ -3387,7 +3478,9 @@ components:
           type: string
           format: date
         nationality:
-          description: The nationality of the passenger (country code)
+          description: The nationality of the passenger. Must be a valid ISO 3166-1
+            alpha-2 country code (e.g., 'US', 'JP', 'TH')
+          example: US
           type: string
     dg_passenger_count:
       title: dg_passenger_count

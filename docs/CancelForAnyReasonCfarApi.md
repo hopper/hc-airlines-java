@@ -11,6 +11,7 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | [**postCfarOffers**](CancelForAnyReasonCfarApi.md#postCfarOffers) | **POST** /cfar_offers | Create CFAR Offers |
 | [**putCfarContractExercisesIdMarkCompleted**](CancelForAnyReasonCfarApi.md#putCfarContractExercisesIdMarkCompleted) | **PUT** /cfar_contract_exercises/{id}/mark_completed | Complete CFAR Exercise |
 | [**putCfarContractsIdFormsOfPayment**](CancelForAnyReasonCfarApi.md#putCfarContractsIdFormsOfPayment) | **PUT** /cfar_contracts/{id}/forms_of_payment | Update forms of payment of a CFAR Contract |
+| [**putCfarContractsIdItinerarySlices**](CancelForAnyReasonCfarApi.md#putCfarContractsIdItinerarySlices) | **PUT** /cfar_contracts/{id}/itinerary_slices | Update CFAR Contract Itinerary Slices |
 | [**putCfarContractsIdUpdateStatus**](CancelForAnyReasonCfarApi.md#putCfarContractsIdUpdateStatus) | **PUT** /cfar_contracts/{id}/update_status | Update CFAR Contract Status |
 
 
@@ -538,6 +539,84 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The updated CFAR contract |  * Expires -  <br>  * Cache-Control -  <br>  |
 | **204** | Forms of payment update request was successfully validated but not performed |  * Expires -  <br>  * Cache-Control -  <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **403** | The authenticated client does not have permission to call this endpoint |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+<a id="putCfarContractsIdItinerarySlices"></a>
+# **putCfarContractsIdItinerarySlices**
+> CfarContract putCfarContractsIdItinerarySlices(id, cfarItinerarySlice, hcSessionID)
+
+Update CFAR Contract Itinerary Slices
+
+Update itinerary slices of a CFAR contract.
+
+### Example
+```java
+// Import classes:
+import com.hopper.cloud.airlines.ApiClient;
+import com.hopper.cloud.airlines.ApiException;
+import com.hopper.cloud.airlines.Configuration;
+import com.hopper.cloud.airlines.auth.*;
+import com.hopper.cloud.airlines.models.*;
+import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://airlines-api.hopper.com/airline/v1.1");
+    
+    // Configure HTTP bearer authorization: PartnerAuth
+    HttpBearerAuth PartnerAuth = (HttpBearerAuth) defaultClient.getAuthentication("PartnerAuth");
+    PartnerAuth.setBearerToken("BEARER TOKEN");
+
+    CancelForAnyReasonCfarApi apiInstance = new CancelForAnyReasonCfarApi(defaultClient);
+    String id = "id_example"; // String | A unique identifier for a contract
+    List<CfarItinerarySlice> cfarItinerarySlice = Arrays.asList(); // List<CfarItinerarySlice> | 
+    String hcSessionID = "9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f"; // String | The ID of the current airline session, see [Sessions](#tag/Sessions)
+    try {
+      CfarContract result = apiInstance.putCfarContractsIdItinerarySlices(id, cfarItinerarySlice, hcSessionID);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CancelForAnyReasonCfarApi#putCfarContractsIdItinerarySlices");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| A unique identifier for a contract | |
+| **cfarItinerarySlice** | [**List&lt;CfarItinerarySlice&gt;**](CfarItinerarySlice.md)|  | |
+| **hcSessionID** | **String**| The ID of the current airline session, see [Sessions](#tag/Sessions) | [optional] |
+
+### Return type
+
+[**CfarContract**](CfarContract.md)
+
+### Authorization
+
+[PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated CFAR contract |  * Expires -  <br>  * Cache-Control -  <br>  |
+| **204** | The CFAR Contract Itinerary Slices update request was successfully validated but not performed |  * Expires -  <br>  * Cache-Control -  <br>  |
 | **400** | Syntactic errors were encountered while handling the request |  -  |
 | **401** | The client could not be authenticated |  -  |
 | **403** | The authenticated client does not have permission to call this endpoint |  -  |

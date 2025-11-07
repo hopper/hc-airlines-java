@@ -57,7 +57,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A Dg offer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-05T22:08:59.403500795Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgOffer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -163,6 +163,11 @@ public class DgOffer {
   @SerializedName(SERIALIZED_NAME_MERCHANDISING_URL)
   @javax.annotation.Nullable
   private String merchandisingUrl;
+
+  public static final String SERIALIZED_NAME_MERCHANDISING_URL_WEB_COMPONENT = "merchandising_url_web_component";
+  @SerializedName(SERIALIZED_NAME_MERCHANDISING_URL_WEB_COMPONENT)
+  @javax.annotation.Nullable
+  private String merchandisingUrlWebComponent;
 
   public DgOffer() {
   }
@@ -600,6 +605,25 @@ public class DgOffer {
   }
 
 
+  public DgOffer merchandisingUrlWebComponent(@javax.annotation.Nullable String merchandisingUrlWebComponent) {
+    this.merchandisingUrlWebComponent = merchandisingUrlWebComponent;
+    return this;
+  }
+
+  /**
+   * The url for the web component SDK for rendering offer merchandising
+   * @return merchandisingUrlWebComponent
+   */
+  @javax.annotation.Nullable
+  public String getMerchandisingUrlWebComponent() {
+    return merchandisingUrlWebComponent;
+  }
+
+  public void setMerchandisingUrlWebComponent(@javax.annotation.Nullable String merchandisingUrlWebComponent) {
+    this.merchandisingUrlWebComponent = merchandisingUrlWebComponent;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -630,12 +654,13 @@ public class DgOffer {
         Objects.equals(this.contents, dgOffer.contents) &&
         Objects.equals(this.termsConditionsUrl, dgOffer.termsConditionsUrl) &&
         Objects.equals(this.faqUrl, dgOffer.faqUrl) &&
-        Objects.equals(this.merchandisingUrl, dgOffer.merchandisingUrl);
+        Objects.equals(this.merchandisingUrl, dgOffer.merchandisingUrl) &&
+        Objects.equals(this.merchandisingUrlWebComponent, dgOffer.merchandisingUrlWebComponent);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, serviceCap, currency, taxesTotal, taxes, requestType, entryPoint, maxHoursBeforeDeparture, minMinutesDelay, contractExpiryDateTime, createdDateTime, itinerary, extAttributes, experiments, contents, termsConditionsUrl, faqUrl, merchandisingUrl);
+    return Objects.hash(id, premium, coverage, coveragePercentage, serviceCap, currency, taxesTotal, taxes, requestType, entryPoint, maxHoursBeforeDeparture, minMinutesDelay, contractExpiryDateTime, createdDateTime, itinerary, extAttributes, experiments, contents, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
   }
 
   @Override
@@ -663,6 +688,7 @@ public class DgOffer {
     sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
     sb.append("    faqUrl: ").append(toIndentedString(faqUrl)).append("\n");
     sb.append("    merchandisingUrl: ").append(toIndentedString(merchandisingUrl)).append("\n");
+    sb.append("    merchandisingUrlWebComponent: ").append(toIndentedString(merchandisingUrlWebComponent)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -706,6 +732,7 @@ public class DgOffer {
     openapiFields.add("terms_conditions_url");
     openapiFields.add("faq_url");
     openapiFields.add("merchandising_url");
+    openapiFields.add("merchandising_url_web_component");
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
