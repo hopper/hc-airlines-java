@@ -51,7 +51,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object detailing the Passenger Information
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-05T22:08:59.403500795Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgPassenger {
   public static final String SERIALIZED_NAME_PASSENGER_REFERENCE = "passenger_reference";
   @SerializedName(SERIALIZED_NAME_PASSENGER_REFERENCE)
@@ -250,7 +250,7 @@ public class DgPassenger {
   }
 
   /**
-   * The country of issuance of the passenger&#39;s passport
+   * The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)
    * @return passportCountryIssuance
    */
   @javax.annotation.Nullable
@@ -307,7 +307,7 @@ public class DgPassenger {
   }
 
   /**
-   * The nationality of the passenger (country code)
+   * The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)
    * @return nationality
    */
   @javax.annotation.Nullable

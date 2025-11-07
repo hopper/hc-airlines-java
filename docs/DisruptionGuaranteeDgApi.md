@@ -5,7 +5,6 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getDgContractsId**](DisruptionGuaranteeDgApi.md#getDgContractsId) | **GET** /dg_contracts/{id} | Get a DG contract |
-| [**postCustomerDgEvents**](DisruptionGuaranteeDgApi.md#postCustomerDgEvents) | **POST** /customer/dg/events | Create an Event |
 | [**postDgContractExercises**](DisruptionGuaranteeDgApi.md#postDgContractExercises) | **POST** /dg_contract_exercises | Create DG Exercise |
 | [**postDgContracts**](DisruptionGuaranteeDgApi.md#postDgContracts) | **POST** /dg_contracts | Create a DG Contract |
 | [**postDgContractsIdPayment**](DisruptionGuaranteeDgApi.md#postDgContractsIdPayment) | **POST** /dg_contracts/{id}/payment | Process DG payment |
@@ -37,12 +36,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://airlines-api.hopper.com/airline/v1.1");
     
-    // Configure API key authorization: SessionAuth
-    ApiKeyAuth SessionAuth = (ApiKeyAuth) defaultClient.getAuthentication("SessionAuth");
-    SessionAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SessionAuth.setApiKeyPrefix("Token");
-
     // Configure HTTP bearer authorization: PartnerAuth
     HttpBearerAuth PartnerAuth = (HttpBearerAuth) defaultClient.getAuthentication("PartnerAuth");
     PartnerAuth.setBearerToken("BEARER TOKEN");
@@ -75,7 +68,7 @@ public class Example {
 
 ### Authorization
 
-[SessionAuth](../README.md#SessionAuth), [PartnerAuth](../README.md#PartnerAuth)
+[PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 
@@ -90,79 +83,6 @@ public class Example {
 | **401** | The client could not be authenticated |  -  |
 | **403** | The authenticated client does not have permission to call this endpoint |  -  |
 | **404** | The requested resource could not be found |  -  |
-| **422** | Semantic errors were encountered while handling the request |  -  |
-| **500** | The server encountered an internal error |  -  |
-
-<a id="postCustomerDgEvents"></a>
-# **postCustomerDgEvents**
-> postCustomerDgEvents(dgEvent)
-
-Create an Event
-
-Create a new event for analytics
-
-### Example
-```java
-// Import classes:
-import com.hopper.cloud.airlines.ApiClient;
-import com.hopper.cloud.airlines.ApiException;
-import com.hopper.cloud.airlines.Configuration;
-import com.hopper.cloud.airlines.auth.*;
-import com.hopper.cloud.airlines.models.*;
-import com.hopper.cloud.airlines.api.DisruptionGuaranteeDgApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://airlines-api.hopper.com/airline/v1.1");
-    
-    // Configure API key authorization: SessionAuth
-    ApiKeyAuth SessionAuth = (ApiKeyAuth) defaultClient.getAuthentication("SessionAuth");
-    SessionAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SessionAuth.setApiKeyPrefix("Token");
-
-    DisruptionGuaranteeDgApi apiInstance = new DisruptionGuaranteeDgApi(defaultClient);
-    DgEvent dgEvent = new DgEvent(); // DgEvent | 
-    try {
-      apiInstance.postCustomerDgEvents(dgEvent);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DisruptionGuaranteeDgApi#postCustomerDgEvents");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **dgEvent** | [**DgEvent**](DgEvent.md)|  | |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[SessionAuth](../README.md#SessionAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | The event has been successfully created |  * Expires -  <br>  * Cache-Control -  <br>  |
-| **400** | Syntactic errors were encountered while handling the request |  -  |
-| **401** | The client could not be authenticated |  -  |
-| **403** | The authenticated client does not have permission to call this endpoint |  -  |
 | **422** | Semantic errors were encountered while handling the request |  -  |
 | **500** | The server encountered an internal error |  -  |
 
@@ -338,12 +258,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://airlines-api.hopper.com/airline/v1.1");
     
-    // Configure API key authorization: SessionAuth
-    ApiKeyAuth SessionAuth = (ApiKeyAuth) defaultClient.getAuthentication("SessionAuth");
-    SessionAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SessionAuth.setApiKeyPrefix("Token");
-
     // Configure HTTP bearer authorization: PartnerAuth
     HttpBearerAuth PartnerAuth = (HttpBearerAuth) defaultClient.getAuthentication("PartnerAuth");
     PartnerAuth.setBearerToken("BEARER TOKEN");
@@ -378,7 +292,7 @@ public class Example {
 
 ### Authorization
 
-[SessionAuth](../README.md#SessionAuth), [PartnerAuth](../README.md#PartnerAuth)
+[PartnerAuth](../README.md#PartnerAuth)
 
 ### HTTP request headers
 

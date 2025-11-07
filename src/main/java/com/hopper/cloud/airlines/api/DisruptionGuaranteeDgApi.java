@@ -34,7 +34,6 @@ import com.hopper.cloud.airlines.model.CreateDgContractRequest;
 import com.hopper.cloud.airlines.model.CreateDgOfferItemResponse;
 import com.hopper.cloud.airlines.model.CreateDgOffersRequest;
 import com.hopper.cloud.airlines.model.DgContract;
-import com.hopper.cloud.airlines.model.DgEvent;
 import com.hopper.cloud.airlines.model.DgItinerarySlice;
 import com.hopper.cloud.airlines.model.DgPayment;
 import com.hopper.cloud.airlines.model.ProcessDgPaymentRequest;
@@ -144,7 +143,7 @@ public class DisruptionGuaranteeDgApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "SessionAuth", "PartnerAuth" };
+        String[] localVarAuthNames = new String[] { "PartnerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -233,149 +232,6 @@ public class DisruptionGuaranteeDgApi {
         okhttp3.Call localVarCall = getDgContractsIdValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<DgContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for postCustomerDgEvents
-     * @param dgEvent  (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The event has been successfully created </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call postCustomerDgEventsCall(DgEvent dgEvent, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = dgEvent;
-
-        // create path and map variables
-        String localVarPath = "/customer/dg/events";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "SessionAuth" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call postCustomerDgEventsValidateBeforeCall(DgEvent dgEvent, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'dgEvent' is set
-        if (dgEvent == null) {
-            throw new ApiException("Missing the required parameter 'dgEvent' when calling postCustomerDgEvents(Async)");
-        }
-
-        return postCustomerDgEventsCall(dgEvent, _callback);
-
-    }
-
-    /**
-     * Create an Event
-     * Create a new event for analytics
-     * @param dgEvent  (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The event has been successfully created </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
-     </table>
-     */
-    public void postCustomerDgEvents(DgEvent dgEvent) throws ApiException {
-        postCustomerDgEventsWithHttpInfo(dgEvent);
-    }
-
-    /**
-     * Create an Event
-     * Create a new event for analytics
-     * @param dgEvent  (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The event has been successfully created </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> postCustomerDgEventsWithHttpInfo(DgEvent dgEvent) throws ApiException {
-        okhttp3.Call localVarCall = postCustomerDgEventsValidateBeforeCall(dgEvent, null);
-        return localVarApiClient.execute(localVarCall);
-    }
-
-    /**
-     * Create an Event (asynchronously)
-     * Create a new event for analytics
-     * @param dgEvent  (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> The event has been successfully created </td><td>  * Expires -  <br>  * Cache-Control -  <br>  </td></tr>
-        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call postCustomerDgEventsAsync(DgEvent dgEvent, final ApiCallback<Void> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = postCustomerDgEventsValidateBeforeCall(dgEvent, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
     /**
@@ -755,7 +611,7 @@ public class DisruptionGuaranteeDgApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "SessionAuth", "PartnerAuth" };
+        String[] localVarAuthNames = new String[] { "PartnerAuth" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
