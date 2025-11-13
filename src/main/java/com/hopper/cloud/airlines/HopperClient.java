@@ -227,6 +227,19 @@ public class HopperClient {
     }
 
     /**
+     * Called to update itinerary slices of a CFAR contract.
+     *
+     * @param sessionId         The current session ID
+     * @param contractId        The contract ID
+     * @param itinerarySlices   The list of itinerary slices to update
+     * @return The updated contract
+     * @throws ApiException
+     */
+    public CfarContract updateCfarContractItinerarySlices(String sessionId, String contractId, List<CfarItinerarySlice> itinerarySlices) throws ApiException {
+        return cfarApi.putCfarContractsIdItinerarySlices(contractId, itinerarySlices, sessionId);
+    }
+
+    /**
      * Called to update forms of payment that are linked with a contract.
      *
      * @param sessionId                         The current session IO
