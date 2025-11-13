@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.hopper.cloud</groupId>
   <artifactId>cloud-airlines-java</artifactId>
-  <version>1.12.0</version>
+  <version>1.13.0</version>
   <scope>compile</scope>
 </dependency>
 ```
