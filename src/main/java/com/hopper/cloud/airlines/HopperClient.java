@@ -231,12 +231,12 @@ public class HopperClient {
      *
      * @param sessionId         The current session ID
      * @param contractId        The contract ID
-     * @param itinerarySlices   The list of itinerary slices to update
+     * @param request           The request containing itinerary slices to update
      * @return The updated contract
      * @throws ApiException
      */
-    public CfarContract updateCfarContractItinerarySlices(String sessionId, String contractId, List<CfarItinerarySlice> itinerarySlices) throws ApiException {
-        return cfarApi.putCfarContractsIdItinerarySlices(contractId, itinerarySlices, sessionId);
+    public CfarContract updateCfarContractItinerarySlices(String sessionId, String contractId, UpdateCfarContractItinerarySlicesRequest request) throws ApiException {
+        return cfarApi.putCfarContractsIdItinerarySlices(contractId, request, sessionId);
     }
 
     /**

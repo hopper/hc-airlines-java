@@ -548,7 +548,7 @@ public class Example {
 
 <a id="putCfarContractsIdItinerarySlices"></a>
 # **putCfarContractsIdItinerarySlices**
-> CfarContract putCfarContractsIdItinerarySlices(id, cfarItinerarySlice, hcSessionID)
+> CfarContract putCfarContractsIdItinerarySlices(id, updateCfarContractItinerarySlicesRequest, hcSessionID)
 
 Update CFAR Contract Itinerary Slices
 
@@ -575,10 +575,10 @@ public class Example {
 
     CancelForAnyReasonCfarApi apiInstance = new CancelForAnyReasonCfarApi(defaultClient);
     String id = "id_example"; // String | A unique identifier for a contract
-    List<CfarItinerarySlice> cfarItinerarySlice = Arrays.asList(); // List<CfarItinerarySlice> | 
+    UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest = new UpdateCfarContractItinerarySlicesRequest(); // UpdateCfarContractItinerarySlicesRequest | 
     String hcSessionID = "9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f"; // String | The ID of the current airline session, see [Sessions](#tag/Sessions)
     try {
-      CfarContract result = apiInstance.putCfarContractsIdItinerarySlices(id, cfarItinerarySlice, hcSessionID);
+      CfarContract result = apiInstance.putCfarContractsIdItinerarySlices(id, updateCfarContractItinerarySlicesRequest, hcSessionID);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CancelForAnyReasonCfarApi#putCfarContractsIdItinerarySlices");
@@ -596,7 +596,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| A unique identifier for a contract | |
-| **cfarItinerarySlice** | [**List&lt;CfarItinerarySlice&gt;**](CfarItinerarySlice.md)|  | |
+| **updateCfarContractItinerarySlicesRequest** | [**UpdateCfarContractItinerarySlicesRequest**](UpdateCfarContractItinerarySlicesRequest.md)|  | |
 | **hcSessionID** | **String**| The ID of the current airline session, see [Sessions](#tag/Sessions) | [optional] |
 
 ### Return type
