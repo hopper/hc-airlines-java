@@ -30,7 +30,6 @@ import java.io.IOException;
 import com.hopper.cloud.airlines.model.BadRequest;
 import com.hopper.cloud.airlines.model.CfarContract;
 import com.hopper.cloud.airlines.model.CfarContractExercise;
-import com.hopper.cloud.airlines.model.CfarItinerarySlice;
 import com.hopper.cloud.airlines.model.CfarOffer;
 import com.hopper.cloud.airlines.model.CfarPayment;
 import com.hopper.cloud.airlines.model.CreateCfarContractExerciseRequest;
@@ -39,6 +38,7 @@ import com.hopper.cloud.airlines.model.CreateCfarOfferRequest;
 import com.hopper.cloud.airlines.model.MarkCfarContractExerciseCompleteRequest;
 import com.hopper.cloud.airlines.model.ProcessCfarPaymentRequest;
 import com.hopper.cloud.airlines.model.UnprocessableEntity;
+import com.hopper.cloud.airlines.model.UpdateCfarContractItinerarySlicesRequest;
 import com.hopper.cloud.airlines.model.UpdateCfarContractRequest;
 import com.hopper.cloud.airlines.model.UpdateCfarFormOfPaymentRequest;
 
@@ -890,6 +890,7 @@ public class CancelForAnyReasonCfarApi {
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
     /**
      * Build call for putCfarContractExercisesIdMarkCompleted
      * @param id A unique identifier for a exercise (required)
@@ -1237,7 +1238,7 @@ public class CancelForAnyReasonCfarApi {
     /**
      * Build call for putCfarContractsIdItinerarySlices
      * @param id A unique identifier for a contract (required)
-     * @param cfarItinerarySlice  (required)
+     * @param updateCfarContractItinerarySlicesRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1256,7 +1257,7 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putCfarContractsIdItinerarySlicesCall(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call putCfarContractsIdItinerarySlicesCall(String id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1270,7 +1271,7 @@ public class CancelForAnyReasonCfarApi {
             basePath = null;
         }
 
-        Object localVarPostBody = cfarItinerarySlice;
+        Object localVarPostBody = updateCfarContractItinerarySlicesRequest;
 
         // create path and map variables
         String localVarPath = "/cfar_contracts/{id}/itinerary_slices"
@@ -1308,18 +1309,18 @@ public class CancelForAnyReasonCfarApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putCfarContractsIdItinerarySlicesValidateBeforeCall(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putCfarContractsIdItinerarySlicesValidateBeforeCall(String id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, String hcSessionID, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling putCfarContractsIdItinerarySlices(Async)");
         }
 
-        // verify the required parameter 'cfarItinerarySlice' is set
-        if (cfarItinerarySlice == null) {
-            throw new ApiException("Missing the required parameter 'cfarItinerarySlice' when calling putCfarContractsIdItinerarySlices(Async)");
+        // verify the required parameter 'updateCfarContractItinerarySlicesRequest' is set
+        if (updateCfarContractItinerarySlicesRequest == null) {
+            throw new ApiException("Missing the required parameter 'updateCfarContractItinerarySlicesRequest' when calling putCfarContractsIdItinerarySlices(Async)");
         }
 
-        return putCfarContractsIdItinerarySlicesCall(id, cfarItinerarySlice, hcSessionID, _callback);
+        return putCfarContractsIdItinerarySlicesCall(id, updateCfarContractItinerarySlicesRequest, hcSessionID, _callback);
 
     }
 
@@ -1327,7 +1328,7 @@ public class CancelForAnyReasonCfarApi {
      * Update CFAR Contract Itinerary Slices
      * Update itinerary slices of a CFAR contract.
      * @param id A unique identifier for a contract (required)
-     * @param cfarItinerarySlice  (required)
+     * @param updateCfarContractItinerarySlicesRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @return CfarContract
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1345,8 +1346,8 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public CfarContract putCfarContractsIdItinerarySlices(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID) throws ApiException {
-        ApiResponse<CfarContract> localVarResp = putCfarContractsIdItinerarySlicesWithHttpInfo(id, cfarItinerarySlice, hcSessionID);
+    public CfarContract putCfarContractsIdItinerarySlices(String id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, String hcSessionID) throws ApiException {
+        ApiResponse<CfarContract> localVarResp = putCfarContractsIdItinerarySlicesWithHttpInfo(id, updateCfarContractItinerarySlicesRequest, hcSessionID);
         return localVarResp.getData();
     }
 
@@ -1354,7 +1355,7 @@ public class CancelForAnyReasonCfarApi {
      * Update CFAR Contract Itinerary Slices
      * Update itinerary slices of a CFAR contract.
      * @param id A unique identifier for a contract (required)
-     * @param cfarItinerarySlice  (required)
+     * @param updateCfarContractItinerarySlicesRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @return ApiResponse&lt;CfarContract&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1372,8 +1373,8 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CfarContract> putCfarContractsIdItinerarySlicesWithHttpInfo(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID) throws ApiException {
-        okhttp3.Call localVarCall = putCfarContractsIdItinerarySlicesValidateBeforeCall(id, cfarItinerarySlice, hcSessionID, null);
+    public ApiResponse<CfarContract> putCfarContractsIdItinerarySlicesWithHttpInfo(String id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = putCfarContractsIdItinerarySlicesValidateBeforeCall(id, updateCfarContractItinerarySlicesRequest, hcSessionID, null);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1382,7 +1383,7 @@ public class CancelForAnyReasonCfarApi {
      * Update CFAR Contract Itinerary Slices (asynchronously)
      * Update itinerary slices of a CFAR contract.
      * @param id A unique identifier for a contract (required)
-     * @param cfarItinerarySlice  (required)
+     * @param updateCfarContractItinerarySlicesRequest  (required)
      * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1401,13 +1402,14 @@ public class CancelForAnyReasonCfarApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putCfarContractsIdItinerarySlicesAsync(String id, List<CfarItinerarySlice> cfarItinerarySlice, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
+    public okhttp3.Call putCfarContractsIdItinerarySlicesAsync(String id, UpdateCfarContractItinerarySlicesRequest updateCfarContractItinerarySlicesRequest, String hcSessionID, final ApiCallback<CfarContract> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putCfarContractsIdItinerarySlicesValidateBeforeCall(id, cfarItinerarySlice, hcSessionID, _callback);
+        okhttp3.Call localVarCall = putCfarContractsIdItinerarySlicesValidateBeforeCall(id, updateCfarContractItinerarySlicesRequest, hcSessionID, _callback);
         Type localVarReturnType = new TypeToken<CfarContract>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
     /**
      * Build call for putCfarContractsIdUpdateStatus
      * @param id A unique identifier for a contract (required)

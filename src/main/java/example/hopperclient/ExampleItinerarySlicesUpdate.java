@@ -48,10 +48,9 @@ public class ExampleItinerarySlicesUpdate extends CommonExample {
 
     private static CfarContract updateCfarContractItinerarySlices(HopperClient client, String contractId, String sessionId) throws ApiException {
         // Create updated itinerary slices
-        List<CfarItinerarySlice> itinerarySlices = new ArrayList<>();
+        List<UpdateCfarContractItinerarySliceRequest> slices = new ArrayList<>();
 
-        CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
-        cfarItinerarySlice.setFareBrand("premium");
+        UpdateCfarContractItinerarySliceRequest slice = new UpdateCfarContractItinerarySliceRequest();
 
         // First segment - updated flight
         CfarItinerarySliceSegment segment1 = new CfarItinerarySliceSegment();
@@ -79,10 +78,13 @@ public class ExampleItinerarySlicesUpdate extends CommonExample {
         List<CfarItinerarySliceSegment> segments = new ArrayList<>();
         segments.add(segment1);
         segments.add(segment2);
-        cfarItinerarySlice.setSegments(segments);
+        slice.setSegments(segments);
 
-        itinerarySlices.add(cfarItinerarySlice);
+        slices.add(slice);
 
-        return client.updateCfarContractItinerarySlices(sessionId, contractId, itinerarySlices);
+        UpdateCfarContractItinerarySlicesRequest request = new UpdateCfarContractItinerarySlicesRequest();
+        request.setSlices(slices);
+
+        return client.updateCfarContractItinerarySlices(sessionId, contractId, request);
     }
 }
