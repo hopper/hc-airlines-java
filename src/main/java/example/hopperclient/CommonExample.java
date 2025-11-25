@@ -7,7 +7,7 @@ import com.hopper.cloud.airlines.model.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -51,11 +51,11 @@ public class CommonExample {
     }
 
     protected static void createBookingConfirmedEvent(HopperClient client, String sessionId) throws ApiException {
-        BookingConfirmed bookingConfirmed = new BookingConfirmed();
-        bookingConfirmed.setType("booking_confirmed");
-        bookingConfirmed.setOccurredDateTime(LocalDateTime.now().atOffset(ZoneOffset.UTC));
-        Event event = new Event();
-        event.setActualInstance(bookingConfirmed);
+        Event event = new Event(
+            new BookingConfirmed()
+                .type("booking_confirmed")
+                .occurredDateTime(OffsetDateTime.now(ZoneOffset.UTC))
+        );
         client.createEvent(sessionId, event);
     }
 
