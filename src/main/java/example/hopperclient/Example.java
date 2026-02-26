@@ -83,6 +83,6 @@ public class Example extends CommonExample {
         processCfarPaymentRequest.setCountry("CA");
         processCfarPaymentRequest.setEmailAddress("john@doe.com");
         processCfarPaymentRequest.setPnrReference("ABC123");
-        return client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest);
+        return client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest, "4111111111111111","12", "2030", "123");
     }
 }
