@@ -300,7 +300,7 @@ public class HopperClient {
         return apiFormOfPayment;
     }
 
-    public boolean processCfarPayment(String sessionId, String contractId, ProcessCfarPaymentRequest processCfarPaymentRequest) throws ApiException {
+    public boolean processCfarPayment(String sessionId, String contractId, ProcessCfarPaymentRequest processCfarPaymentRequest, String number, String month, String year, String verificationValue) throws ApiException {
         try {
             if (hopperPaymentClient == null) {
                 throw new ApiException("Missing credentials for payment");
@@ -308,6 +308,10 @@ public class HopperClient {
             TokenizationRequest tokenizationRequest = new TokenizationRequest();
             PaymentMethod paymentMethod = new PaymentMethod();
             CreditCard creditCard = new CreditCard();
+            creditCard.setNumber(number);
+            creditCard.setMonth(month);
+            creditCard.setYear(year);
+            creditCard.setVerificationValue(verificationValue);
             creditCard.setFirstName(processCfarPaymentRequest.getFirstName());
             creditCard.setLastName(processCfarPaymentRequest.getLastName());
             creditCard.setAddress1(processCfarPaymentRequest.getAddressLine1());
