@@ -154,6 +154,11 @@ public class CfarOffer {
   @javax.annotation.Nullable
   private String merchandisingUrl;
 
+  public static final String SERIALIZED_NAME_MERCHANDISING_URL_WEB_COMPONENT = "merchandising_url_web_component";
+  @SerializedName(SERIALIZED_NAME_MERCHANDISING_URL_WEB_COMPONENT)
+  @javax.annotation.Nullable
+  private String merchandisingUrlWebComponent;
+
   public CfarOffer() {
   }
 
@@ -550,6 +555,24 @@ public class CfarOffer {
   }
 
 
+  public CfarOffer merchandisingUrlWebComponent(@javax.annotation.Nullable String merchandisingUrlWebComponent) {
+    this.merchandisingUrlWebComponent = merchandisingUrlWebComponent;
+    return this;
+  }
+
+  /**
+   * The url for the web component SDK for rendering offer merchandising
+   * @return merchandisingUrlWebComponent
+   */
+  @javax.annotation.Nullable
+  public String getMerchandisingUrlWebComponent() {
+    return merchandisingUrlWebComponent;
+  }
+
+  public void setMerchandisingUrlWebComponent(@javax.annotation.Nullable String merchandisingUrlWebComponent) {
+    this.merchandisingUrlWebComponent = merchandisingUrlWebComponent;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -578,12 +601,13 @@ public class CfarOffer {
         Objects.equals(this.experiments, cfarOffer.experiments) &&
         Objects.equals(this.termsConditionsUrl, cfarOffer.termsConditionsUrl) &&
         Objects.equals(this.faqUrl, cfarOffer.faqUrl) &&
-        Objects.equals(this.merchandisingUrl, cfarOffer.merchandisingUrl);
+        Objects.equals(this.merchandisingUrl, cfarOffer.merchandisingUrl) &&
+        Objects.equals(this.merchandisingUrlWebComponent, cfarOffer.merchandisingUrlWebComponent);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, entryPoint, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, experiments, termsConditionsUrl, faqUrl, merchandisingUrl);
+    return Objects.hash(id, premium, coverage, coveragePercentage, coverageExtension, currency, taxesTotal, taxes, requestType, entryPoint, contractExpiryDateTime, createdDateTime, itinerary, contents, extAttributes, experiments, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
   }
 
   @Override
@@ -609,6 +633,7 @@ public class CfarOffer {
     sb.append("    termsConditionsUrl: ").append(toIndentedString(termsConditionsUrl)).append("\n");
     sb.append("    faqUrl: ").append(toIndentedString(faqUrl)).append("\n");
     sb.append("    merchandisingUrl: ").append(toIndentedString(merchandisingUrl)).append("\n");
+    sb.append("    merchandisingUrlWebComponent: ").append(toIndentedString(merchandisingUrlWebComponent)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -649,6 +674,7 @@ public class CfarOffer {
     openapiFields.add("terms_conditions_url");
     openapiFields.add("faq_url");
     openapiFields.add("merchandising_url");
+    openapiFields.add("merchandising_url_web_component");
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
