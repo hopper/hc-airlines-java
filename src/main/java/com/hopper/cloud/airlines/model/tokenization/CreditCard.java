@@ -9,6 +9,8 @@ public class CreditCard {
     private String firstName;
     @JsonProperty("last_name")
     private String lastName;
+    @JsonProperty("full_name")
+    private String fullName;
     private String number;
     @JsonProperty("verification_value")
     private String verificationValue;
@@ -39,6 +41,10 @@ public class CreditCard {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getFullName() { return fullName; }
+
+    public void setFullName(String fullName) { this.fullName = fullName; }
 
     public String getNumber() {
         return number;

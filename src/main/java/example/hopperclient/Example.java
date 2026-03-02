@@ -2,6 +2,7 @@ package example.hopperclient;
 
 import com.hopper.cloud.airlines.ApiException;
 import com.hopper.cloud.airlines.HopperClient;
+import com.hopper.cloud.airlines.api.model.ProcessPaymentRequest;
 import com.hopper.cloud.airlines.model.*;
 
 import java.net.MalformedURLException;
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 public class Example extends CommonExample {
     public static void main(String[] args) {
         try {
-            HopperClient client = new HopperClient("", "", "", true);
+            HopperClient client = new HopperClient("", "", "", "", "", "", true);
 
             AirlineSession session = getAirlineSession(client, FlowType.PURCHASE);
             System.out.println("*********************************************************************");
@@ -29,7 +30,6 @@ public class Example extends CommonExample {
             List<CfarOffer> offersWith100PercentCoverage = offers.stream().filter(offer -> offer.getCoveragePercentage().contains("100")).collect(Collectors.toList());;
             List<CfarOffer> selectedOffer = new ArrayList<>();
             selectedOffer.add(offersWith100PercentCoverage.get(0));
-            selectedOffer.add(offersWith100PercentCoverage.get(1));
             CfarContract contract = createCfarContract(client, selectedOffer, sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** CREATE CONTRACT *************************");
@@ -43,9 +43,17 @@ public class Example extends CommonExample {
             System.out.println("*********************************************************************");
             System.out.println(getContract);
 
+            /**
             CfarContract isSucceeded = updateCfarContract(client, getContract.getReference(), sessionId);
             System.out.println("*********************************************************************");
             System.out.println("*************************** UPDATE CFAR CONTRACT*********************");
+            System.out.println("*********************************************************************");
+            System.out.println(isSucceeded);
+             */
+
+            boolean isSucceeded = processCfarPayment(client, getContract.getId(), sessionId);
+            System.out.println("*********************************************************************");
+            System.out.println("*************************** PROCESS CFAR PAYMENT*********************");
             System.out.println("*********************************************************************");
             System.out.println(isSucceeded);
 
@@ -72,17 +80,20 @@ public class Example extends CommonExample {
     }
 
     private static boolean processCfarPayment(HopperClient client, String contractId, String sessionId) throws ApiException {
-        ProcessCfarPaymentRequest processCfarPaymentRequest = new ProcessCfarPaymentRequest();
-        processCfarPaymentRequest.setFirstName("John");
-        processCfarPaymentRequest.setLastName("Smith");
-        processCfarPaymentRequest.setAddressLine1("123 12th St");
-        processCfarPaymentRequest.setAddressLine2("Building B");
-        processCfarPaymentRequest.setCity("Quebec City");
-        processCfarPaymentRequest.setPostalCode("G1R 4S9");
-        processCfarPaymentRequest.setStateOrProvince("QC");
-        processCfarPaymentRequest.setCountry("CA");
-        processCfarPaymentRequest.setEmailAddress("john@doe.com");
-        processCfarPaymentRequest.setPnrReference("ABC123");
-        return client.processCfarPayment(sessionId, contractId, processCfarPaymentRequest, "4111111111111111","12", "2030", "123");
+        ProcessPaymentRequest processPaymentRequest = new ProcessPaymentRequest();
+        processPaymentRequest.setFullName("John");
+        processPaymentRequest.setAddressLine1("123 12th St");
+        processPaymentRequest.setAddressLine2("Building B");
+        processPaymentRequest.setCity("Quebec City");
+        processPaymentRequest.setPostalCode("G1R 4S9");
+        processPaymentRequest.setStateOrProvince("QC");
+        processPaymentRequest.setCountry("CA");
+        processPaymentRequest.setNumber("4111111111111111");
+        processPaymentRequest.setMonth("12");
+        processPaymentRequest.setYear("2030");
+        processPaymentRequest.setVerificationValue("123");
+        processPaymentRequest.setEmailAddress("john@doe.com");
+        processPaymentRequest.setPnrReference("ABC123");
+        return client.processCfarPayment(sessionId, contractId, processPaymentRequest);
     }
 }
