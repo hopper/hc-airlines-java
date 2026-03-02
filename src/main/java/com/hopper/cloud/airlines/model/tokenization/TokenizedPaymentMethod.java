@@ -1,12 +1,17 @@
 package com.hopper.cloud.airlines.model.tokenization;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TokenizedPaymentMethod {
     private String token;
+    @JsonProperty("first_name")
+    private String firstName;
+    @JsonProperty("last_name")
+    private String lastName;
 
     public TokenizedPaymentMethod() {
     }
@@ -18,6 +23,14 @@ public class TokenizedPaymentMethod {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public String getFirstName() { return firstName; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     @Override
     public boolean equals(Object o) {

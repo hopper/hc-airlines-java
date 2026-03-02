@@ -61,7 +61,7 @@ public class CommonExample {
 
     private static CreateCfarOfferRequest prepareCreateCfarOfferRequest() {
         CreateCfarOfferRequest createCfarOfferRequest = new CreateCfarOfferRequest();
-        createCfarOfferRequest.setRequestType(RequestType.FARE);
+        createCfarOfferRequest.setRequestType(RequestType.ANCILLARY);
         createCfarOfferRequest.entryPoint("booking_page");
 
         Map<String, String> params = new HashMap<>();
@@ -71,7 +71,7 @@ public class CommonExample {
 
         // First itinerary
         CfarOfferItinerary itinerary1 = new CfarOfferItinerary();
-        itinerary1.setCurrency("USD");
+        itinerary1.setCurrency("CAD");
         itinerary1.setTotalPrice("100.00");
 
         //-- Slices
@@ -108,7 +108,7 @@ public class CommonExample {
         CfarPassengerTax cfarPassengerTax = new CfarPassengerTax();
         cfarPassengerTax.amount("15.50");
         cfarPassengerTax.code("CF");
-        cfarPassengerTax.currency("USD");
+        cfarPassengerTax.currency("CAD");
 
         passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
 
@@ -124,7 +124,7 @@ public class CommonExample {
 
         // Second itinerary
         CfarOfferItinerary itinerary2 = new CfarOfferItinerary();
-        itinerary2.setCurrency("USD");
+        itinerary2.setCurrency("CAD");
         itinerary2.setTotalPrice("120.00");
 
         //-- Slices
@@ -189,8 +189,8 @@ public class CommonExample {
         contractRequest.setExtAttributes(params);
 
         CfarItinerary itinerary = new CfarItinerary();
-        itinerary.setCurrency("USD");
-        itinerary.setTotalPrice("220.00");
+        itinerary.setCurrency("CAD");
+        itinerary.setTotalPrice("100.00");
 
         //-- Slices
         CfarItinerarySlice cfarItinerarySlice = new CfarItinerarySlice();
@@ -205,19 +205,8 @@ public class CommonExample {
         cfarItinerarySliceSegment.setFareBrand("basic");
         cfarItinerarySliceSegment.setValidatingCarrierCode("JB");
 
-        CfarItinerarySliceSegment cfarItinerarySliceSegment2 = new CfarItinerarySliceSegment();
-        cfarItinerarySliceSegment2.setArrivalDateTime(flightDate + "T23:12:30");
-        cfarItinerarySliceSegment2.setDepartureDateTime(flightDate + "T21:12:30");
-        cfarItinerarySliceSegment2.setOriginAirport("BOS");
-        cfarItinerarySliceSegment2.setDestinationAirport("JFK");
-        cfarItinerarySliceSegment2.setFlightNumber("777");
-        cfarItinerarySliceSegment2.setFareClass(FareClass.BUSINESS);
-        cfarItinerarySliceSegment2.setFareBrand("flex");
-        cfarItinerarySliceSegment2.setValidatingCarrierCode("JB");
-
         List<CfarItinerarySliceSegment> segments = new ArrayList<>();
         segments.add(cfarItinerarySliceSegment);
-        segments.add(cfarItinerarySliceSegment2);
         cfarItinerarySlice.setSegments(segments);
 
         itinerary.setSlices(Collections.singletonList(cfarItinerarySlice));
@@ -225,13 +214,13 @@ public class CommonExample {
         //-- Ancillaries
         Ancillary ancillary = new Ancillary();
         ancillary.setType(AncillaryType.TRAVEL_INSURANCE);
-        ancillary.setTotalPrice("40.00");
+        ancillary.setTotalPrice("10.00");
 
         itinerary.setAncillaries(Collections.singletonList(ancillary));
 
         //-- Passenger Pricings
         PassengerPricing passengerPricing = new PassengerPricing();
-        passengerPricing.setIndividualPrice("60.00");
+        passengerPricing.setIndividualPrice("30.00");
         PassengerCount passengerCount = new PassengerCount();
         passengerCount.count(3);
         passengerCount.setType(PassengerType.ADULT);
@@ -241,7 +230,7 @@ public class CommonExample {
         CfarPassengerTax cfarPassengerTax = new CfarPassengerTax();
         cfarPassengerTax.amount("15.50");
         cfarPassengerTax.code("CF");
-        cfarPassengerTax.currency("USD");
+        cfarPassengerTax.currency("CAD");
 
         passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
 
@@ -278,7 +267,7 @@ public class CommonExample {
         createCfarContractExerciseRequest.setContractId(contractId);
         createCfarContractExerciseRequest.setCallbackUrl("https://www.volaris.com/callback?id=1234456790&session=1A530637289A03B07199A44E8D531427");
         createCfarContractExerciseRequest.setRedirectbackUrl("https://www.volaris.com/mmb?pnr=ABC123&session=1A530637289A03B07199A44E8D5");
-        createCfarContractExerciseRequest.setCurrency("USD");
+        createCfarContractExerciseRequest.setCurrency("CAD");
         createCfarContractExerciseRequest.setPnrReference("ABC123");
         Map<String, String> params = new HashMap<>();
         params.put("property1", "test1");
@@ -288,7 +277,7 @@ public class CommonExample {
         createCfarContractExerciseRequest.setAirlineRefundMethod(AirlineRefundMethod.CASH);
 
         CfarCreateExerciseItinerary itinerary = new CfarCreateExerciseItinerary ();
-        itinerary.setCurrency("USD");
+        itinerary.setCurrency("CAD");
         itinerary.setTotalPrice("190.00");
 
         Ancillary ancillary = new Ancillary();
@@ -331,7 +320,7 @@ public class CommonExample {
         CfarPassengerTax cfarPassengerTax = new CfarPassengerTax();
         cfarPassengerTax.amount("15.50");
         cfarPassengerTax.code("CF");
-        cfarPassengerTax.currency("USD");
+        cfarPassengerTax.currency("CAD");
 
         passengerPricing.setTaxes(Collections.singletonList(cfarPassengerTax));
 
