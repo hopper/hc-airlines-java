@@ -8,10 +8,15 @@ import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
 import com.hopper.cloud.airlines.model.tokenization.TokenizationRequest;
 import com.hopper.cloud.airlines.model.tokenization.TokenizationResponse;
 import kong.unirest.HttpResponse;
+import kong.unirest.Interceptor;
 import kong.unirest.ObjectMapper;
-import kong.unirest.Unirest;
+import kong.unirest.RequestBodyEntity;
+import kong.unirest.UnirestInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HopperPaymentClient {
     final Logger logger = LoggerFactory.getLogger(HopperPaymentClient.class);
@@ -20,6 +25,8 @@ public class HopperPaymentClient {
     private String paymentPassword;
     private String encryptionKeyId;
     private String encryptionPublicKey;
+    private final Map<String, String> customHeaders = new HashMap<>();
+    private final UnirestInstance unirest = new UnirestInstance(new kong.unirest.Config());
 
     public HopperPaymentClient(String paymentUrl, String paymentUsername, String paymentPassword) {
         this(paymentUrl, paymentUsername, paymentPassword, null, null);
@@ -37,7 +44,7 @@ public class HopperPaymentClient {
         this.encryptionKeyId = encryptionKeyId;
         this.encryptionPublicKey = encryptionPublicKey;
 
-        Unirest.config().setObjectMapper(new ObjectMapper() {
+        unirest.config().setObjectMapper(new ObjectMapper() {
             final com.fasterxml.jackson.databind.ObjectMapper mapper
                     = new com.fasterxml.jackson.databind.ObjectMapper();
 
@@ -65,11 +72,12 @@ public class HopperPaymentClient {
         if (StringUtil.isEmpty(paymentUrl) || StringUtil.isEmpty(paymentUsername) || StringUtil.isEmpty(paymentPassword)) {
             throw new ApiException("Missing credentials for payment");
         }
-        return Unirest.post(paymentUrl)
+        RequestBodyEntity request = unirest.post(paymentUrl)
                 .basicAuth(paymentUsername, paymentPassword)
                 .header("Content-Type", "application/json")
-                .body(tokenizationRequest)
-                .asObject(TokenizationResponse.class);
+                .headers(customHeaders)
+                .body(tokenizationRequest);
+        return request.asObject(TokenizationResponse.class);
     }
 
     public String tokenizePaymentCard(PaymentCardDetail paymentCardDetail) throws ApiException {
@@ -104,6 +112,19 @@ public class HopperPaymentClient {
             }
         }
         return token;
+    }
+
+    public void addCustomHeader(String key, String value) {
+        customHeaders.put(key, value);
+    }
+
+    /**
+     * Set an interceptor on the Unirest client used for payment requests.
+     *
+     * @param interceptor a {@link kong.unirest.Interceptor} to intercept payment requests
+     */
+    public void setInterceptor(Interceptor interceptor) {
+        unirest.config().interceptor(interceptor);
     }
 
     private TokenizationRequest buildTokenizationRequestWithEncryption(PaymentCardDetails paymentCardDetail, String encryptionKeyId, String encryptionPublicKey) throws Exception {

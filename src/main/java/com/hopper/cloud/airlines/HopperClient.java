@@ -1,6 +1,5 @@
 package com.hopper.cloud.airlines;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
 import com.hopper.cloud.airlines.api.DisruptionGuaranteeDgApi;
 import com.hopper.cloud.airlines.api.SessionsApi;
@@ -10,8 +9,6 @@ import com.hopper.cloud.airlines.model.tokenization.*;
 import com.hopper.cloud.airlines.model.tokenization.PaymentMethod;
 import com.hopper.cloud.airlines.transformer.CfarItineraryTransformer;
 import kong.unirest.HttpResponse;
-import kong.unirest.ObjectMapper;
-import kong.unirest.Unirest;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +18,7 @@ import java.util.*;
 
 public class HopperClient {
     final Logger logger = LoggerFactory.getLogger(HopperClient.class);
+    private ApiClient apiClient;
     private CancelForAnyReasonCfarApi cfarApi;
     private DisruptionGuaranteeDgApi dgApi;
     private SessionsApi sessionsApi;
@@ -48,7 +46,7 @@ public class HopperClient {
         params.put("audience", String.join("/", Arrays.asList(url.split("/")).subList(0, 3)));
         params.put("grant_type", "client_credentials");
 
-        ApiClient apiClient = new ApiClient(clientId, clientSecret, params);
+        this.apiClient = new ApiClient(clientId, clientSecret, params);
         apiClient.setBasePath(url);
 
         cfarApi = new CancelForAnyReasonCfarApi(apiClient);
@@ -78,27 +76,6 @@ public class HopperClient {
         analyticsApi.getApiClient().setConnectTimeout(timeout);
         analyticsApi.getApiClient().setReadTimeout(timeout);
         analyticsApi.getApiClient().setWriteTimeout(timeout);
-
-        Unirest.config().setObjectMapper(new ObjectMapper() {
-            com.fasterxml.jackson.databind.ObjectMapper mapper
-                    = new com.fasterxml.jackson.databind.ObjectMapper();
-
-            public String writeValue(Object value) {
-                try {
-                    return mapper.writeValueAsString(value);
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-            public <T> T readValue(String value, Class<T> valueType) {
-                try {
-                    return mapper.readValue(value, valueType);
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }).connectTimeout(60000);
 
     }
 
@@ -370,5 +347,37 @@ public class HopperClient {
 
     public CfarContractExercise completeCfarContractExercise(String sessionId, MarkCfarContractExerciseCompleteRequest markCfarContractExerciseCompleteRequest, String exerciseId) throws ApiException {
         return cfarApi.putCfarContractExercisesIdMarkCompleted(exerciseId, markCfarContractExerciseCompleteRequest, sessionId);
+    }
+
+    /**
+     * Add a custom header that will be sent with every request made by the SDK,
+     * including both Hopper API calls and payment tokenization calls.
+     *
+     * @param key   Header name
+     * @param value Header value
+     */
+    public void addCustomHeader(String key, String value) {
+        apiClient.addDefaultHeader(key, value);
+        if (hopperPaymentClient != null) {
+            hopperPaymentClient.addCustomHeader(key, value);
+        }
+    }
+
+    /**
+     * Get the underlying ApiClient for advanced configuration (e.g., accessing the OkHttpClient).
+     *
+     * @return the ApiClient instance used by this HopperClient
+     */
+    public ApiClient getApiClient() {
+        return apiClient;
+    }
+
+    /**
+     * Get the underlying HopperPaymentClient for advanced configuration (e.g., adding a Unirest interceptor).
+     *
+     * @return the HopperPaymentClient instance, or null if payment was not configured
+     */
+    public HopperPaymentClient getHopperPaymentClient() {
+        return hopperPaymentClient;
     }
 }
