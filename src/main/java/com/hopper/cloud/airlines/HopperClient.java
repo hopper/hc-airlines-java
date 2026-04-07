@@ -28,11 +28,20 @@ public class HopperClient {
     private int timeout = 60000;
 
     public HopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
-        this.initHopperClient(url, clientId, clientSecret, debugging);
+        this.initHopperClient(url, clientId, clientSecret, null, null, debugging);
+    }
+
+    public HopperClient(String url, String clientId, String clientSecret, String authUrl, String audience, Boolean debugging) {
+        this.initHopperClient(url, clientId, clientSecret, authUrl, audience, debugging);
     }
 
     public HopperClient(String url, String clientId, String clientSecret, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
         this(url, clientId, clientSecret, debugging);
+        hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword);
+    }
+
+    public HopperClient(String url, String clientId, String clientSecret, String authUrl, String audience, String paymentUrl, String paymentUsername, String paymentPassword, Boolean debugging) {
+        this(url, clientId, clientSecret, authUrl, audience, debugging);
         hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword);
     }
 
@@ -42,12 +51,18 @@ public class HopperClient {
         hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword, encryptionKeyId, encryptionPublicKey);
     }
 
-    private void initHopperClient(String url, String clientId, String clientSecret, Boolean debugging) {
+    public HopperClient(String url, String clientId, String clientSecret, String authUrl, String audience, String paymentUrl, String paymentUsername, String paymentPassword, String encryptionKeyId, String encryptionPublicKey, int timeout, Boolean debugging) {
+        this(url, clientId, clientSecret, authUrl, audience, debugging);
+        this.timeout = timeout;
+        hopperPaymentClient = new HopperPaymentClient(paymentUrl, paymentUsername, paymentPassword, encryptionKeyId, encryptionPublicKey);
+    }
+
+    private void initHopperClient(String url, String clientId, String clientSecret, String authUrl, String audience, Boolean debugging) {
         Map<String, String> params = new HashMap<>();
-        params.put("audience", String.join("/", Arrays.asList(url.split("/")).subList(0, 3)));
+        params.put("audience", audience != null ? audience : String.join("/", Arrays.asList(url.split("/")).subList(0, 3)));
         params.put("grant_type", "client_credentials");
 
-        this.apiClient = new ApiClient(clientId, clientSecret, params);
+        this.apiClient = new ApiClient(clientId, clientSecret, params, authUrl);
         apiClient.setBasePath(url);
 
         cfarApi = new CancelForAnyReasonCfarApi(apiClient);
