@@ -146,6 +146,18 @@ public class ApiClient {
     }
 
     /**
+     * Constructor for ApiClient to support access token retry on 401/403 configured with client ID, secret, additional parameters, and a custom auth URL
+     *
+     * @param clientId client ID
+     * @param clientSecret client secret
+     * @param parameters a {@link Map} of parameters
+     * @param authUrl custom authentication URL (if null, defaults to https://hopper-api.auth0.com/oauth/token)
+     */
+    public ApiClient(String clientId, String clientSecret, Map<String, String> parameters, String authUrl) {
+        this(null, clientId, clientSecret, parameters, authUrl);
+    }
+
+    /**
      * Constructor for ApiClient to support access token retry on 401/403 configured with base path, client ID, secret, and additional parameters
      *
      * @param basePath base path
@@ -154,12 +166,25 @@ public class ApiClient {
      * @param parameters a {@link Map} of parameters
      */
     public ApiClient(String basePath, String clientId, String clientSecret, Map<String, String> parameters) {
+        this(basePath, clientId, clientSecret, parameters, null);
+    }
+
+    /**
+     * Constructor for ApiClient to support access token retry on 401/403 configured with base path, client ID, secret, additional parameters, and a custom auth URL
+     *
+     * @param basePath base path
+     * @param clientId client ID
+     * @param clientSecret client secret
+     * @param parameters a {@link Map} of parameters
+     * @param authUrl custom authentication URL (if null, defaults to https://hopper-api.auth0.com/oauth/token)
+     */
+    public ApiClient(String basePath, String clientId, String clientSecret, Map<String, String> parameters, String authUrl) {
         init();
         if (basePath != null) {
             this.basePath = basePath;
         }
 
-        String tokenUrl = "https://hopper-api.auth0.com/oauth/token";
+        String tokenUrl = authUrl != null ? authUrl : "https://hopper-api.auth0.com/oauth/token";
         if (!"".equals(tokenUrl) && !URI.create(tokenUrl).isAbsolute()) {
             URI uri = URI.create(getBasePath());
             tokenUrl = uri.getScheme() + ":" +
