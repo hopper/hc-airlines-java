@@ -378,6 +378,7 @@ public class HopperClient {
      */
     public void addCustomHeader(String key, String value) {
         apiClient.addDefaultHeader(key, value);
+        apiClient.addCustomOAuthHeader(key, value);
         if (hopperPaymentClient != null) {
             hopperPaymentClient.addCustomHeader(key, value);
         }

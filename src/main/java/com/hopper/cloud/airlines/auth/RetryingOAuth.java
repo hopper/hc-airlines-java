@@ -20,6 +20,7 @@ import org.apache.oltu.oauth2.common.message.types.GrantType;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class RetryingOAuth extends OAuth implements Interceptor {
     private OAuthClient oAuthClient;
 
     private TokenRequestBuilder tokenRequestBuilder;
+
+    private final Map<String, String> customHeaders = new HashMap<>();
 
     /**
      * @param client An OkHttp client
@@ -69,6 +72,36 @@ public class RetryingOAuth extends OAuth implements Interceptor {
                 tokenRequestBuilder.setParameter(paramName, parameters.get(paramName));
             }
         }
+    }
+
+    /**
+     * Add a custom header that will be sent with every OAuth token request.
+     *
+     * @param key   Header name
+     * @param value Header value
+     */
+    public void addCustomHeader(String key, String value) {
+        customHeaders.put(key, value);
+        rebuildOAuthClient();
+    }
+
+    private void rebuildOAuthClient() {
+        OkHttpClient client;
+        if (customHeaders.isEmpty()) {
+            client = new OkHttpClient();
+        } else {
+            Map<String, String> headers = new HashMap<>(customHeaders);
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(chain -> {
+                        Request.Builder requestBuilder = chain.request().newBuilder();
+                        for (Map.Entry<String, String> header : headers.entrySet()) {
+                            requestBuilder.addHeader(header.getKey(), header.getValue());
+                        }
+                        return chain.proceed(requestBuilder.build());
+                    })
+                    .build();
+        }
+        this.oAuthClient = new OAuthClient(new OAuthOkHttpClient(client));
     }
 
     /**
