@@ -698,6 +698,20 @@ public class ApiClient {
     }
 
     /**
+     * Add a custom header to OAuth token requests (e.g. subscription keys for APIM).
+     *
+     * @param key   Header name
+     * @param value Header value
+     */
+    public void addCustomOAuthHeader(String key, String value) {
+        for (Authentication apiAuth : authentications.values()) {
+            if (apiAuth instanceof RetryingOAuth) {
+                ((RetryingOAuth) apiAuth).addCustomHeader(key, value);
+            }
+        }
+    }
+
+    /**
      * Format the given parameter object into string.
      *
      * @param param Parameter
