@@ -8,7 +8,15 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**operatingSystem** | [**OperatingSystem**](OperatingSystem.md) |  |  [optional] |
-|**type** | **String** |  |  |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| APP | &quot;app&quot; |
 
 
 

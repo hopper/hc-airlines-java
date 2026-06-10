@@ -166,7 +166,7 @@ public class DgExample extends CommonExample {
             child1.setPassengerType(DgPassengerType.CHILD);
             child1.setFirstName("Junior");
             child1.setLastName("Doe");
-            child1.setDateOfBirth(LocalDate.of(2015, 6, 6));
+            child1.setDateOfBirth("2015-06-06");
 
             itinerary1.setPassengers(Arrays.asList(adult1, child1));
 
@@ -206,13 +206,13 @@ public class DgExample extends CommonExample {
             PaymentCard paymentCardFop = new PaymentCard();
             paymentCardFop.setAmount("157.60");
             paymentCardFop.setCurrency("CAD");
-            paymentCardFop.setType("payment_card");
+            paymentCardFop.setType(PaymentCard.TypeEnum.PAYMENT_CARD);
             FormOfPayment formOfPayment1 = new FormOfPayment(paymentCardFop);
 
             Cash cashFop = new Cash();
             cashFop.setAmount("60.60");
             cashFop.setCurrency("CAD");
-            cashFop.setType("cash");
+            cashFop.setType(Cash.TypeEnum.CASH);
             FormOfPayment formOfPayment2 = new FormOfPayment(cashFop);
 
             updateContractRequest.addFormsOfPaymentItem(formOfPayment1);
@@ -226,7 +226,7 @@ public class DgExample extends CommonExample {
             System.out.println(contractUpdated);
 
             BookingConfirmed bookingConfirmed = new BookingConfirmed();
-            bookingConfirmed.setType("booking_confirmed");
+            bookingConfirmed.setType(BookingConfirmed.TypeEnum.BOOKING_CONFIRMED);
             bookingConfirmed.setOccurredDateTime(LocalDateTime.now().atOffset(ZoneOffset.UTC));
             Event event = new Event();
             event.setActualInstance(bookingConfirmed);

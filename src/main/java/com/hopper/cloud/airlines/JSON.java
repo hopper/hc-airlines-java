@@ -137,6 +137,20 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "type"));
                     }
           })
+                .registerTypeSelector(com.hopper.cloud.airlines.model.Channel.class, new TypeSelector<com.hopper.cloud.airlines.model.Channel>() {
+                    @Override
+                    public Class<? extends com.hopper.cloud.airlines.model.Channel> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("agent_reseller", com.hopper.cloud.airlines.model.AgentReseller.class);
+                        classByDiscriminatorValue.put("api", com.hopper.cloud.airlines.model.Api.class);
+                        classByDiscriminatorValue.put("direct", com.hopper.cloud.airlines.model.Direct.class);
+                        classByDiscriminatorValue.put("online_booking_tool", com.hopper.cloud.airlines.model.OnlineBookingTool.class);
+                        classByDiscriminatorValue.put("white_label", com.hopper.cloud.airlines.model.WhiteLabel.class);
+                        classByDiscriminatorValue.put("channel", com.hopper.cloud.airlines.model.Channel.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "type"));
+                    }
+          })
                 .registerTypeSelector(com.hopper.cloud.airlines.model.FormOfPayment.class, new TypeSelector<com.hopper.cloud.airlines.model.FormOfPayment>() {
                     @Override
                     public Class<? extends com.hopper.cloud.airlines.model.FormOfPayment> getClassForElement(JsonElement readElement) {
@@ -212,6 +226,12 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
+        gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.AgentReseller.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.Api.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.Channel.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.Direct.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.OnlineBookingTool.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.WhiteLabel.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.AirlineSession.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.Ancillary.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.hopper.cloud.airlines.model.Android.CustomTypeAdapterFactory());

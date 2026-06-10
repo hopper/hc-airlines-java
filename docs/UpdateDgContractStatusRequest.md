@@ -23,6 +23,8 @@ A update DG contract status request
 |**taxesTotal** | **String** | Total of taxes |  [optional] |
 |**taxes** | [**List&lt;DgTax&gt;**](DgTax.md) | List of taxes that is associated with a contract |  [optional] |
 |**formsOfPayment** | [**List&lt;FormOfPayment&gt;**](FormOfPayment.md) | List of the forms of payment used to purchase the booking |  [optional] |
+|**totalPrice** | **String** | Updated total price of the itinerary in case it can change at payment time |  [optional] |
+|**currency** | **String** | Currency of the total_price (ISO 4217). Defaults to contract currency if absent. |  [optional] |
 
 
 

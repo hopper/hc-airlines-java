@@ -2,7 +2,6 @@
 
 # PassengerCount
 
-Type and number of passengers
 
 ## Properties
 

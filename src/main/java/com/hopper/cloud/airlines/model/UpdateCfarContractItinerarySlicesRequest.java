@@ -52,7 +52,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Request to update CFAR contract itinerary slices
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T19:54:23.812536923Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UpdateCfarContractItinerarySlicesRequest {
   public static final String SERIALIZED_NAME_SLICES = "slices";
   @SerializedName(SERIALIZED_NAME_SLICES)
@@ -189,6 +189,7 @@ public class UpdateCfarContractItinerarySlicesRequest {
 
 
   public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
   static {
     // a set of all properties/fields (JSON key names)
@@ -196,10 +197,7 @@ public class UpdateCfarContractItinerarySlicesRequest {
     openapiFields.add("slices");
     openapiFields.add("passenger_counts");
     openapiFields.add("pnr_reference");
-
   }
-
-
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")

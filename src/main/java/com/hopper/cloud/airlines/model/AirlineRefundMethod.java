@@ -31,7 +31,9 @@ public enum AirlineRefundMethod {
   
   FTC("ftc"),
   
-  CASH("cash");
+  CASH("cash"),
+  
+  MANUAL_CASH("manual_cash");
 
   private String value;
 

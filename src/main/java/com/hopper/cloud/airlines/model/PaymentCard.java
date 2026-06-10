@@ -48,7 +48,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * PaymentCard
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class PaymentCard {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -80,10 +80,60 @@ public class PaymentCard {
   @javax.annotation.Nullable
   private String expirationYear;
 
+  public static final String SERIALIZED_NAME_CARD_BRAND = "card_brand";
+  @SerializedName(SERIALIZED_NAME_CARD_BRAND)
+  @javax.annotation.Nullable
+  private String cardBrand;
+
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    PAYMENT_CARD("payment_card");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TypeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nonnull
-  private String type;
+  private TypeEnum type;
 
   public PaymentCard() {
   }
@@ -202,7 +252,26 @@ public class PaymentCard {
   }
 
 
-  public PaymentCard type(@javax.annotation.Nonnull String type) {
+  public PaymentCard cardBrand(@javax.annotation.Nullable String cardBrand) {
+    this.cardBrand = cardBrand;
+    return this;
+  }
+
+  /**
+   * Card brand (e.g. visa, master, amex) as returned by the payment provider
+   * @return cardBrand
+   */
+  @javax.annotation.Nullable
+  public String getCardBrand() {
+    return cardBrand;
+  }
+
+  public void setCardBrand(@javax.annotation.Nullable String cardBrand) {
+    this.cardBrand = cardBrand;
+  }
+
+
+  public PaymentCard type(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -212,11 +281,11 @@ public class PaymentCard {
    * @return type
    */
   @javax.annotation.Nonnull
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(@javax.annotation.Nonnull String type) {
+  public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
   }
 
@@ -237,12 +306,13 @@ public class PaymentCard {
         Objects.equals(this.lastFourDigits, paymentCard.lastFourDigits) &&
         Objects.equals(this.expirationMonth, paymentCard.expirationMonth) &&
         Objects.equals(this.expirationYear, paymentCard.expirationYear) &&
+        Objects.equals(this.cardBrand, paymentCard.cardBrand) &&
         Objects.equals(this.type, paymentCard.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, token, lastFourDigits, expirationMonth, expirationYear, type);
+    return Objects.hash(amount, currency, token, lastFourDigits, expirationMonth, expirationYear, cardBrand, type);
   }
 
   @Override
@@ -255,6 +325,7 @@ public class PaymentCard {
     sb.append("    lastFourDigits: ").append(toIndentedString(lastFourDigits)).append("\n");
     sb.append("    expirationMonth: ").append(toIndentedString(expirationMonth)).append("\n");
     sb.append("    expirationYear: ").append(toIndentedString(expirationYear)).append("\n");
+    sb.append("    cardBrand: ").append(toIndentedString(cardBrand)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -284,6 +355,7 @@ public class PaymentCard {
     openapiFields.add("last_four_digits");
     openapiFields.add("expiration_month");
     openapiFields.add("expiration_year");
+    openapiFields.add("card_brand");
     openapiFields.add("type");
   }
 

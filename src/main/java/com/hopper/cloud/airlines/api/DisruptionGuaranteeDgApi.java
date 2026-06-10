@@ -36,6 +36,8 @@ import com.hopper.cloud.airlines.model.CreateDgOffersRequest;
 import com.hopper.cloud.airlines.model.DgContract;
 import com.hopper.cloud.airlines.model.DgItinerarySlice;
 import com.hopper.cloud.airlines.model.DgPayment;
+import java.io.File;
+import com.hopper.cloud.airlines.model.GetDgExerciseSessionResponse;
 import com.hopper.cloud.airlines.model.ProcessDgPaymentRequest;
 import com.hopper.cloud.airlines.model.UnprocessableEntity;
 import com.hopper.cloud.airlines.model.UpdateDgContractStatusRequest;
@@ -83,6 +85,300 @@ public class DisruptionGuaranteeDgApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
+    /**
+     * Build call for getCustomerDgExercisesIdSession
+     * @param id A unique identifier for a exercise (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The session ID for the DG exercise </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getCustomerDgExercisesIdSessionCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/customer/dg_exercises/{id}/session"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getCustomerDgExercisesIdSessionValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling getCustomerDgExercisesIdSession(Async)");
+        }
+
+        return getCustomerDgExercisesIdSessionCall(id, _callback);
+
+    }
+
+    /**
+     * Get session ID by DG exercise ID
+     * Retrieve the session ID for a given DG exercise ID
+     * @param id A unique identifier for a exercise (required)
+     * @return GetDgExerciseSessionResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The session ID for the DG exercise </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public GetDgExerciseSessionResponse getCustomerDgExercisesIdSession(String id) throws ApiException {
+        ApiResponse<GetDgExerciseSessionResponse> localVarResp = getCustomerDgExercisesIdSessionWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get session ID by DG exercise ID
+     * Retrieve the session ID for a given DG exercise ID
+     * @param id A unique identifier for a exercise (required)
+     * @return ApiResponse&lt;GetDgExerciseSessionResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The session ID for the DG exercise </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GetDgExerciseSessionResponse> getCustomerDgExercisesIdSessionWithHttpInfo(String id) throws ApiException {
+        okhttp3.Call localVarCall = getCustomerDgExercisesIdSessionValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<GetDgExerciseSessionResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get session ID by DG exercise ID (asynchronously)
+     * Retrieve the session ID for a given DG exercise ID
+     * @param id A unique identifier for a exercise (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The session ID for the DG exercise </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getCustomerDgExercisesIdSessionAsync(String id, final ApiCallback<GetDgExerciseSessionResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getCustomerDgExercisesIdSessionValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<GetDgExerciseSessionResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getCustomerDgPayoutReceipt
+     * @param verificationCode  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PDF receipt file </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * Content-Type -  <br>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getCustomerDgPayoutReceiptCall(String verificationCode, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/customer/dg/payout/receipt";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/pdf",
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        if (verificationCode != null) {
+            localVarHeaderParams.put("verification-code", localVarApiClient.parameterToString(verificationCode));
+        }
+
+
+        String[] localVarAuthNames = new String[] { "SessionAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getCustomerDgPayoutReceiptValidateBeforeCall(String verificationCode, final ApiCallback _callback) throws ApiException {
+        return getCustomerDgPayoutReceiptCall(verificationCode, _callback);
+
+    }
+
+    /**
+     * Get payout receipt PDF
+     * Download payout receipt as PDF
+     * @param verificationCode  (optional)
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PDF receipt file </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * Content-Type -  <br>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public File getCustomerDgPayoutReceipt(String verificationCode) throws ApiException {
+        ApiResponse<File> localVarResp = getCustomerDgPayoutReceiptWithHttpInfo(verificationCode);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get payout receipt PDF
+     * Download payout receipt as PDF
+     * @param verificationCode  (optional)
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PDF receipt file </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * Content-Type -  <br>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<File> getCustomerDgPayoutReceiptWithHttpInfo(String verificationCode) throws ApiException {
+        okhttp3.Call localVarCall = getCustomerDgPayoutReceiptValidateBeforeCall(verificationCode, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get payout receipt PDF (asynchronously)
+     * Download payout receipt as PDF
+     * @param verificationCode  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PDF receipt file </td><td>  * Expires -  <br>  * Cache-Control -  <br>  * Content-Type -  <br>  * Content-Disposition -  <br>  </td></tr>
+        <tr><td> 400 </td><td> Syntactic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> The client could not be authenticated </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> The authenticated client does not have permission to call this endpoint </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> The requested resource could not be found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Semantic errors were encountered while handling the request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getCustomerDgPayoutReceiptAsync(String verificationCode, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getCustomerDgPayoutReceiptValidateBeforeCall(verificationCode, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for getDgContractsId
      * @param id A unique identifier for a contract (required)

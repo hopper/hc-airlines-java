@@ -9,11 +9,11 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
 <a id="postEvents"></a>
 # **postEvents**
-> postEvents(hcSessionID, event)
+> postEvents(event, hcSessionID)
 
 Send a Backend Event
 
-Events can be send directly from partner backend using the same authentication as the other endpoints
+Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
 
 ### Example
 ```java
@@ -35,10 +35,10 @@ public class Example {
     PartnerAuth.setBearerToken("BEARER TOKEN");
 
     AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-    String hcSessionID = "9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f"; // String | The ID of the current airline session, see [Sessions](#tag/Sessions)
     Event event = new Event(); // Event | 
+    String hcSessionID = "9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f"; // String | The ID of the current airline session, see [Sessions](#tag/Sessions)
     try {
-      apiInstance.postEvents(hcSessionID, event);
+      apiInstance.postEvents(event, hcSessionID);
     } catch (ApiException e) {
       System.err.println("Exception when calling AnalyticsApi#postEvents");
       System.err.println("Status code: " + e.getCode());
@@ -54,8 +54,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **hcSessionID** | **String**| The ID of the current airline session, see [Sessions](#tag/Sessions) | |
 | **event** | [**Event**](Event.md)|  | |
+| **hcSessionID** | **String**| The ID of the current airline session, see [Sessions](#tag/Sessions) | [optional] |
 
 ### Return type
 

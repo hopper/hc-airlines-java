@@ -49,7 +49,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * Desktop
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class Desktop {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -61,10 +61,65 @@ public class Desktop {
   @javax.annotation.Nullable
   private Platform platform;
 
+  public static final String SERIALIZED_NAME_UI_THEME = "ui_theme";
+  @SerializedName(SERIALIZED_NAME_UI_THEME)
+  @javax.annotation.Nullable
+  private String uiTheme;
+
+  public static final String SERIALIZED_NAME_RELEASE_BUILD = "release_build";
+  @SerializedName(SERIALIZED_NAME_RELEASE_BUILD)
+  @javax.annotation.Nullable
+  private String releaseBuild;
+
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    DESKTOP("desktop");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TypeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nonnull
-  private String type;
+  private TypeEnum type;
 
   public Desktop() {
   }
@@ -107,7 +162,45 @@ public class Desktop {
   }
 
 
-  public Desktop type(@javax.annotation.Nonnull String type) {
+  public Desktop uiTheme(@javax.annotation.Nullable String uiTheme) {
+    this.uiTheme = uiTheme;
+    return this;
+  }
+
+  /**
+   * Get uiTheme
+   * @return uiTheme
+   */
+  @javax.annotation.Nullable
+  public String getUiTheme() {
+    return uiTheme;
+  }
+
+  public void setUiTheme(@javax.annotation.Nullable String uiTheme) {
+    this.uiTheme = uiTheme;
+  }
+
+
+  public Desktop releaseBuild(@javax.annotation.Nullable String releaseBuild) {
+    this.releaseBuild = releaseBuild;
+    return this;
+  }
+
+  /**
+   * Get releaseBuild
+   * @return releaseBuild
+   */
+  @javax.annotation.Nullable
+  public String getReleaseBuild() {
+    return releaseBuild;
+  }
+
+  public void setReleaseBuild(@javax.annotation.Nullable String releaseBuild) {
+    this.releaseBuild = releaseBuild;
+  }
+
+
+  public Desktop type(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -117,11 +210,11 @@ public class Desktop {
    * @return type
    */
   @javax.annotation.Nonnull
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(@javax.annotation.Nonnull String type) {
+  public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
   }
 
@@ -138,12 +231,14 @@ public class Desktop {
     Desktop desktop = (Desktop) o;
     return Objects.equals(this.id, desktop.id) &&
         Objects.equals(this.platform, desktop.platform) &&
+        Objects.equals(this.uiTheme, desktop.uiTheme) &&
+        Objects.equals(this.releaseBuild, desktop.releaseBuild) &&
         Objects.equals(this.type, desktop.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, type);
+    return Objects.hash(id, platform, uiTheme, releaseBuild, type);
   }
 
   @Override
@@ -152,6 +247,8 @@ public class Desktop {
     sb.append("class Desktop {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    uiTheme: ").append(toIndentedString(uiTheme)).append("\n");
+    sb.append("    releaseBuild: ").append(toIndentedString(releaseBuild)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -177,9 +274,10 @@ public class Desktop {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("platform");
+    openapiFields.add("ui_theme");
+    openapiFields.add("release_build");
     openapiFields.add("type");
   }
-
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")

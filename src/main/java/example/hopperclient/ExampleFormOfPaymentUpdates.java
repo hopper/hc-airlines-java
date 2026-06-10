@@ -63,7 +63,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         paymentCard.amount("80.00");
         paymentCard.currency("CAD");
         paymentCard.setToken("FDDFDFDFDFDFFcc00028");
-        paymentCard.type("payment_card");
+        paymentCard.type(PaymentCard.TypeEnum.PAYMENT_CARD);
 
         FormOfPayment formOfPayment = new FormOfPayment(paymentCard);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(formOfPayment);
@@ -71,7 +71,7 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         Cash paymentCash = new Cash();
         paymentCash.amount("12.00");
         paymentCash.currency("CAD");
-        paymentCash.type("cash");
+        paymentCash.type(Cash.TypeEnum.CASH);
         FormOfPayment formOfPayment1 = new FormOfPayment(paymentCash);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(formOfPayment1);
 
@@ -91,25 +91,25 @@ public class ExampleFormOfPaymentUpdates extends CommonExample {
         Cash cash = new Cash();
         cash.amount("46.00");
         cash.currency("CAD");
-        cash.type("cash");
+        cash.type(Cash.TypeEnum.CASH);
         FormOfPayment paymentCash = new FormOfPayment(cash);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentCash);
 
         NonCash nonCash = new NonCash();
         nonCash.amount("8.00");
         nonCash.currency("CAD");
-        nonCash.type("non_cash");
+        nonCash.type(NonCash.TypeEnum.NON_CASH);
         FormOfPayment paymentNonCash = new FormOfPayment(nonCash);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentNonCash);
 
         Points points = new Points();
         points.amount("74.00");
-        points.type("points");
+        points.type(Points.TypeEnum.POINTS);
         FormOfPayment paymentPoints = new FormOfPayment(points);
         updateCfarContractFormsOfPaymentRequest.addFormOfPaymentItem(paymentPoints);
 
         PaymentCard paymentCardToken = new PaymentCard();
-        paymentCardToken.type("payment_card");
+        paymentCardToken.type(PaymentCard.TypeEnum.PAYMENT_CARD);
         paymentCardToken.amount("15.00");
         paymentCardToken.currency("CAD");
         FormOfPayment formOfPaymentToken = new FormOfPayment(paymentCardToken);

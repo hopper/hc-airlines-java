@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.hopper.cloud</groupId>
   <artifactId>cloud-airlines-java</artifactId>
-  <version>1.18.1</version>
+  <version>2.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.hopper.cloud:cloud-airlines-java:1.4.3"
+     implementation "com.hopper.cloud:cloud-airlines-java:2.0.0"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/cloud-airlines-java-1.4.3.jar`
+* `target/cloud-airlines-java-2.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -120,19 +120,22 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AnalyticsApi* | [**postCustomerEvents**](docs/AnalyticsApi.md#postCustomerEvents) | **POST** /customer/events | Send a Frontend Event
 *AnalyticsApi* | [**postEvents**](docs/AnalyticsApi.md#postEvents) | **POST** /events | Send a Backend Event
 *AuthenticationApi* | [**postAuth**](docs/AuthenticationApi.md#postAuth) | **POST** /auth | Create an authentication token
 *CancelForAnyReasonCfarApi* | [**getCfarContractsId**](docs/CancelForAnyReasonCfarApi.md#getCfarContractsId) | **GET** /cfar_contracts/{id} | Get a CFAR Contract
+*CancelForAnyReasonCfarApi* | [**getCustomerCfarPayoutReceipt**](docs/CancelForAnyReasonCfarApi.md#getCustomerCfarPayoutReceipt) | **GET** /customer/cfar/payout/receipt | Get payout receipt PDF
 *CancelForAnyReasonCfarApi* | [**postCfarContractExercises**](docs/CancelForAnyReasonCfarApi.md#postCfarContractExercises) | **POST** /cfar_contract_exercises | Create CFAR Exercise
 *CancelForAnyReasonCfarApi* | [**postCfarContracts**](docs/CancelForAnyReasonCfarApi.md#postCfarContracts) | **POST** /cfar_contracts | Create a CFAR Contract
 *CancelForAnyReasonCfarApi* | [**postCfarContractsIdPayment**](docs/CancelForAnyReasonCfarApi.md#postCfarContractsIdPayment) | **POST** /cfar_contracts/{id}/payment | Process CFAR Payment
 *CancelForAnyReasonCfarApi* | [**postCfarOffers**](docs/CancelForAnyReasonCfarApi.md#postCfarOffers) | **POST** /cfar_offers | Create CFAR Offers
+*CancelForAnyReasonCfarApi* | [**postCfarOffersExternal**](docs/CancelForAnyReasonCfarApi.md#postCfarOffersExternal) | **POST** /cfar_offers/external | Create External CFAR Offer
 *CancelForAnyReasonCfarApi* | [**putCfarContractExercisesIdMarkCompleted**](docs/CancelForAnyReasonCfarApi.md#putCfarContractExercisesIdMarkCompleted) | **PUT** /cfar_contract_exercises/{id}/mark_completed | Complete CFAR Exercise
 *CancelForAnyReasonCfarApi* | [**putCfarContractsIdFormsOfPayment**](docs/CancelForAnyReasonCfarApi.md#putCfarContractsIdFormsOfPayment) | **PUT** /cfar_contracts/{id}/forms_of_payment | Update forms of payment of a CFAR Contract
+*CancelForAnyReasonCfarApi* | [**putCfarContractsIdItinerarySlices**](docs/CancelForAnyReasonCfarApi.md#putCfarContractsIdItinerarySlices) | **PUT** /cfar_contracts/{id}/itinerary_slices | Update CFAR Contract Itinerary Slices
 *CancelForAnyReasonCfarApi* | [**putCfarContractsIdUpdateStatus**](docs/CancelForAnyReasonCfarApi.md#putCfarContractsIdUpdateStatus) | **PUT** /cfar_contracts/{id}/update_status | Update CFAR Contract Status
+*DisruptionGuaranteeDgApi* | [**getCustomerDgExercisesIdSession**](docs/DisruptionGuaranteeDgApi.md#getCustomerDgExercisesIdSession) | **GET** /customer/dg_exercises/{id}/session | Get session ID by DG exercise ID
+*DisruptionGuaranteeDgApi* | [**getCustomerDgPayoutReceipt**](docs/DisruptionGuaranteeDgApi.md#getCustomerDgPayoutReceipt) | **GET** /customer/dg/payout/receipt | Get payout receipt PDF
 *DisruptionGuaranteeDgApi* | [**getDgContractsId**](docs/DisruptionGuaranteeDgApi.md#getDgContractsId) | **GET** /dg_contracts/{id} | Get a DG contract
-*DisruptionGuaranteeDgApi* | [**postCustomerDgEvents**](docs/DisruptionGuaranteeDgApi.md#postCustomerDgEvents) | **POST** /customer/dg/events | Create an Event
 *DisruptionGuaranteeDgApi* | [**postDgContractExercises**](docs/DisruptionGuaranteeDgApi.md#postDgContractExercises) | **POST** /dg_contract_exercises | Create DG Exercise
 *DisruptionGuaranteeDgApi* | [**postDgContracts**](docs/DisruptionGuaranteeDgApi.md#postDgContracts) | **POST** /dg_contracts | Create a DG Contract
 *DisruptionGuaranteeDgApi* | [**postDgContractsIdPayment**](docs/DisruptionGuaranteeDgApi.md#postDgContractsIdPayment) | **POST** /dg_contracts/{id}/payment | Process DG payment
@@ -144,11 +147,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AgentReseller](docs/AgentReseller.md)
  - [AirlineRefundMethod](docs/AirlineRefundMethod.md)
  - [AirlineSession](docs/AirlineSession.md)
  - [Ancillary](docs/Ancillary.md)
  - [AncillaryType](docs/AncillaryType.md)
  - [Android](docs/Android.md)
+ - [Api](docs/Api.md)
  - [App](docs/App.md)
  - [AuthRequest](docs/AuthRequest.md)
  - [AuthResponse](docs/AuthResponse.md)
@@ -190,6 +195,7 @@ Class | Method | HTTP request | Description
  - [CfarStatus](docs/CfarStatus.md)
  - [CfarTax](docs/CfarTax.md)
  - [CfarViewInfo](docs/CfarViewInfo.md)
+ - [Channel](docs/Channel.md)
  - [Chrome](docs/Chrome.md)
  - [ChromeOs](docs/ChromeOs.md)
  - [CreateAirlineCfarSessionRequest](docs/CreateAirlineCfarSessionRequest.md)
@@ -203,6 +209,7 @@ Class | Method | HTTP request | Description
  - [CreateDgContractRequest](docs/CreateDgContractRequest.md)
  - [CreateDgOfferItemResponse](docs/CreateDgOfferItemResponse.md)
  - [CreateDgOffersRequest](docs/CreateDgOffersRequest.md)
+ - [CreateExternalCfarOfferRequest](docs/CreateExternalCfarOfferRequest.md)
  - [Desktop](docs/Desktop.md)
  - [Device](docs/Device.md)
  - [DgAncillary](docs/DgAncillary.md)
@@ -230,6 +237,7 @@ Class | Method | HTTP request | Description
  - [DgRequestType](docs/DgRequestType.md)
  - [DgStatus](docs/DgStatus.md)
  - [DgTax](docs/DgTax.md)
+ - [Direct](docs/Direct.md)
  - [Edge](docs/Edge.md)
  - [Error](docs/Error.md)
  - [Event](docs/Event.md)
@@ -242,6 +250,7 @@ Class | Method | HTTP request | Description
  - [FlowType](docs/FlowType.md)
  - [FormOfPayment](docs/FormOfPayment.md)
  - [Gender](docs/Gender.md)
+ - [GetDgExerciseSessionResponse](docs/GetDgExerciseSessionResponse.md)
  - [IOs](docs/IOs.md)
  - [InternetExplorer](docs/InternetExplorer.md)
  - [Linux](docs/Linux.md)
@@ -253,6 +262,7 @@ Class | Method | HTTP request | Description
  - [NonCash](docs/NonCash.md)
  - [OffersDisplayed](docs/OffersDisplayed.md)
  - [OffersDisplayed1](docs/OffersDisplayed1.md)
+ - [OnlineBookingTool](docs/OnlineBookingTool.md)
  - [Opera](docs/Opera.md)
  - [OperatingSystem](docs/OperatingSystem.md)
  - [OtherBrowser](docs/OtherBrowser.md)
@@ -278,6 +288,7 @@ Class | Method | HTTP request | Description
  - [UpdateDgContractStatusRequest](docs/UpdateDgContractStatusRequest.md)
  - [UserInfo](docs/UserInfo.md)
  - [Web](docs/Web.md)
+ - [WhiteLabel](docs/WhiteLabel.md)
  - [Windows](docs/Windows.md)
 
 

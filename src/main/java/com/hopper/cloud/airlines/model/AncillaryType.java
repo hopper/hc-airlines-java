@@ -13,6 +13,9 @@
 
 package com.hopper.cloud.airlines.model;
 
+import java.util.Objects;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.JsonElement;

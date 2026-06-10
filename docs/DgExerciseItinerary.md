@@ -2,7 +2,7 @@
 
 # DgExerciseItinerary
 
-Itinerary of the user when the contract exercise was initiated (only active segments should be provided)
+Itinerary of the user when the contract exercise was initiated (only active segments should be provided). Optional for partners using DisruptionDetectionService-source disruption detection — when omitted, the exercise's existing itinerary is used.
 
 ## Properties
 

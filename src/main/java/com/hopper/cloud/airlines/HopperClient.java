@@ -203,7 +203,9 @@ public class HopperClient {
      * @throws ApiException
      */
     public void createEvent(String sessionId, Event event) throws ApiException {
-        analyticsApi.postEvents(sessionId, event);
+        // postEvents takes the event first; HC-Session-ID is an optional trailing arg
+        // (it is now optional for booking_confirmed events). May be null.
+        analyticsApi.postEvents(event, sessionId);
     }
 
     /**

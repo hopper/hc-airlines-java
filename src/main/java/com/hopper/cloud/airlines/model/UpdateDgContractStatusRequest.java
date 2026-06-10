@@ -53,7 +53,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A update DG contract status request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UpdateDgContractStatusRequest {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -129,6 +129,16 @@ public class UpdateDgContractStatusRequest {
   @SerializedName(SERIALIZED_NAME_FORMS_OF_PAYMENT)
   @javax.annotation.Nullable
   private List<FormOfPayment> formsOfPayment;
+
+  public static final String SERIALIZED_NAME_TOTAL_PRICE = "total_price";
+  @SerializedName(SERIALIZED_NAME_TOTAL_PRICE)
+  @javax.annotation.Nullable
+  private String totalPrice;
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
+  private String currency;
 
   public UpdateDgContractStatusRequest() {
   }
@@ -434,6 +444,44 @@ public class UpdateDgContractStatusRequest {
   }
 
 
+  public UpdateDgContractStatusRequest totalPrice(@javax.annotation.Nullable String totalPrice) {
+    this.totalPrice = totalPrice;
+    return this;
+  }
+
+  /**
+   * Updated total price of the itinerary in case it can change at payment time
+   * @return totalPrice
+   */
+  @javax.annotation.Nullable
+  public String getTotalPrice() {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(@javax.annotation.Nullable String totalPrice) {
+    this.totalPrice = totalPrice;
+  }
+
+
+  public UpdateDgContractStatusRequest currency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+  /**
+   * Currency of the total_price (ISO 4217). Defaults to contract currency if absent.
+   * @return currency
+   */
+  @javax.annotation.Nullable
+  public String getCurrency() {
+    return currency;
+  }
+
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -458,12 +506,14 @@ public class UpdateDgContractStatusRequest {
         Objects.equals(this.country, updateDgContractStatusRequest.country) &&
         Objects.equals(this.taxesTotal, updateDgContractStatusRequest.taxesTotal) &&
         Objects.equals(this.taxes, updateDgContractStatusRequest.taxes) &&
-        Objects.equals(this.formsOfPayment, updateDgContractStatusRequest.formsOfPayment);
+        Objects.equals(this.formsOfPayment, updateDgContractStatusRequest.formsOfPayment) &&
+        Objects.equals(this.totalPrice, updateDgContractStatusRequest.totalPrice) &&
+        Objects.equals(this.currency, updateDgContractStatusRequest.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes, formsOfPayment);
+    return Objects.hash(status, pnrReference, emailAddress, phoneNumber, firstName, lastName, addressLine1, addressLine2, city, stateOrProvince, postalCode, country, taxesTotal, taxes, formsOfPayment, totalPrice, currency);
   }
 
   @Override
@@ -485,6 +535,8 @@ public class UpdateDgContractStatusRequest {
     sb.append("    taxesTotal: ").append(toIndentedString(taxesTotal)).append("\n");
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    formsOfPayment: ").append(toIndentedString(formsOfPayment)).append("\n");
+    sb.append("    totalPrice: ").append(toIndentedString(totalPrice)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -522,6 +574,8 @@ public class UpdateDgContractStatusRequest {
     openapiFields.add("taxes_total");
     openapiFields.add("taxes");
     openapiFields.add("forms_of_payment");
+    openapiFields.add("total_price");
+    openapiFields.add("currency");
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

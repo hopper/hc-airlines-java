@@ -51,7 +51,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An itinerary slice containing only flight segments
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T19:54:23.812536923Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UpdateCfarContractItinerarySliceRequest {
   public static final String SERIALIZED_NAME_SEGMENTS = "segments";
   @SerializedName(SERIALIZED_NAME_SEGMENTS)
@@ -128,15 +128,13 @@ public class UpdateCfarContractItinerarySliceRequest {
 
 
   public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("segments");
-
   }
-
-
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")

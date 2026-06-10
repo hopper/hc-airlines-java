@@ -53,8 +53,11 @@ public class CommonExample {
     protected static void createBookingConfirmedEvent(HopperClient client, String sessionId) throws ApiException {
         Event event = new Event(
             new BookingConfirmed()
-                .type("booking_confirmed")
+                .type(BookingConfirmed.TypeEnum.BOOKING_CONFIRMED)
                 .occurredDateTime(OffsetDateTime.now(ZoneOffset.UTC))
+                // Optional: link the event back to the session via offer IDs when no
+                // HC-Session-ID header is sent (CFAR and/or DG offers shown to the customer).
+                .cfarOfferIds(java.util.Arrays.asList("cfar-offer-id-1"))
         );
         client.createEvent(sessionId, event);
     }
