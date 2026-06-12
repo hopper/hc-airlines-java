@@ -9,7 +9,15 @@
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** |  |  |
 |**version** | **String** |  |  [optional] |
-|**type** | **String** |  |  |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| OTHER_OS | &quot;other_os&quot; |
 
 
 

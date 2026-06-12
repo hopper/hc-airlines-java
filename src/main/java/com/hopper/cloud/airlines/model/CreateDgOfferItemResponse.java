@@ -57,7 +57,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A created Dg offer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-05T22:08:59.403500795Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateDgOfferItemResponse {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -68,6 +68,11 @@ public class CreateDgOfferItemResponse {
   @SerializedName(SERIALIZED_NAME_PREMIUM)
   @javax.annotation.Nonnull
   private String premium;
+
+  public static final String SERIALIZED_NAME_PREMIUM_PER_PASSENGER = "premium_per_passenger";
+  @SerializedName(SERIALIZED_NAME_PREMIUM_PER_PASSENGER)
+  @javax.annotation.Nonnull
+  private String premiumPerPassenger;
 
   public static final String SERIALIZED_NAME_COVERAGE = "coverage";
   @SerializedName(SERIALIZED_NAME_COVERAGE)
@@ -207,6 +212,25 @@ public class CreateDgOfferItemResponse {
 
   public void setPremium(@javax.annotation.Nonnull String premium) {
     this.premium = premium;
+  }
+
+
+  public CreateDgOfferItemResponse premiumPerPassenger(@javax.annotation.Nonnull String premiumPerPassenger) {
+    this.premiumPerPassenger = premiumPerPassenger;
+    return this;
+  }
+
+  /**
+   * Premium amount per paying passenger
+   * @return premiumPerPassenger
+   */
+  @javax.annotation.Nonnull
+  public String getPremiumPerPassenger() {
+    return premiumPerPassenger;
+  }
+
+  public void setPremiumPerPassenger(@javax.annotation.Nonnull String premiumPerPassenger) {
+    this.premiumPerPassenger = premiumPerPassenger;
   }
 
 
@@ -636,6 +660,7 @@ public class CreateDgOfferItemResponse {
     CreateDgOfferItemResponse createDgOfferItemResponse = (CreateDgOfferItemResponse) o;
     return Objects.equals(this.id, createDgOfferItemResponse.id) &&
         Objects.equals(this.premium, createDgOfferItemResponse.premium) &&
+        Objects.equals(this.premiumPerPassenger, createDgOfferItemResponse.premiumPerPassenger) &&
         Objects.equals(this.coverage, createDgOfferItemResponse.coverage) &&
         Objects.equals(this.coveragePercentage, createDgOfferItemResponse.coveragePercentage) &&
         Objects.equals(this.serviceCap, createDgOfferItemResponse.serviceCap) &&
@@ -660,7 +685,7 @@ public class CreateDgOfferItemResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, premium, coverage, coveragePercentage, serviceCap, currency, taxesTotal, taxes, requestType, entryPoint, maxHoursBeforeDeparture, minMinutesDelay, createdDateTime, contractExpiryDateTime, itinerary, extAttributes, experiments, contents, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
+    return Objects.hash(id, premium, premiumPerPassenger, coverage, coveragePercentage, serviceCap, currency, taxesTotal, taxes, requestType, entryPoint, maxHoursBeforeDeparture, minMinutesDelay, createdDateTime, contractExpiryDateTime, itinerary, extAttributes, experiments, contents, termsConditionsUrl, faqUrl, merchandisingUrl, merchandisingUrlWebComponent);
   }
 
   @Override
@@ -669,6 +694,7 @@ public class CreateDgOfferItemResponse {
     sb.append("class CreateDgOfferItemResponse {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    premium: ").append(toIndentedString(premium)).append("\n");
+    sb.append("    premiumPerPassenger: ").append(toIndentedString(premiumPerPassenger)).append("\n");
     sb.append("    coverage: ").append(toIndentedString(coverage)).append("\n");
     sb.append("    coveragePercentage: ").append(toIndentedString(coveragePercentage)).append("\n");
     sb.append("    serviceCap: ").append(toIndentedString(serviceCap)).append("\n");
@@ -713,6 +739,7 @@ public class CreateDgOfferItemResponse {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("premium");
+    openapiFields.add("premium_per_passenger");
     openapiFields.add("coverage");
     openapiFields.add("coverage_percentage");
     openapiFields.add("service_cap");

@@ -23,7 +23,11 @@ import com.hopper.cloud.airlines.model.BookingConfirmed;
 import com.hopper.cloud.airlines.model.OffersDisplayed;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -60,7 +64,7 @@ import com.google.gson.JsonParseException;
 
 import com.hopper.cloud.airlines.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class Event extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(Event.class.getName());
 

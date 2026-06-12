@@ -9,5 +9,7 @@
 
 * `CASH` (value: `"cash"`)
 
+* `MANUAL_CASH` (value: `"manual_cash"`)
+
 
 

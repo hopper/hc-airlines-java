@@ -76,8 +76,8 @@ public class AnalyticsApi {
 
     /**
      * Build call for postEvents
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (required)
      * @param event  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -94,7 +94,7 @@ public class AnalyticsApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postEventsCall(String hcSessionID, Event event, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call postEventsCall(Event event, String hcSessionID, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -145,26 +145,21 @@ public class AnalyticsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call postEventsValidateBeforeCall(String hcSessionID, Event event, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'hcSessionID' is set
-        if (hcSessionID == null) {
-            throw new ApiException("Missing the required parameter 'hcSessionID' when calling postEvents(Async)");
-        }
-
+    private okhttp3.Call postEventsValidateBeforeCall(Event event, String hcSessionID, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'event' is set
         if (event == null) {
             throw new ApiException("Missing the required parameter 'event' when calling postEvents(Async)");
         }
 
-        return postEventsCall(hcSessionID, event, _callback);
+        return postEventsCall(event, hcSessionID, _callback);
 
     }
 
     /**
      * Send a Backend Event
-     * Events can be send directly from partner backend using the same authentication as the other endpoints
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (required)
+     * Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
      * @param event  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -179,15 +174,15 @@ public class AnalyticsApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public void postEvents(String hcSessionID, Event event) throws ApiException {
-        postEventsWithHttpInfo(hcSessionID, event);
+    public void postEvents(Event event, String hcSessionID) throws ApiException {
+        postEventsWithHttpInfo(event, hcSessionID);
     }
 
     /**
      * Send a Backend Event
-     * Events can be send directly from partner backend using the same authentication as the other endpoints
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (required)
+     * Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
      * @param event  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -203,16 +198,16 @@ public class AnalyticsApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> postEventsWithHttpInfo(String hcSessionID, Event event) throws ApiException {
-        okhttp3.Call localVarCall = postEventsValidateBeforeCall(hcSessionID, event, null);
+    public ApiResponse<Void> postEventsWithHttpInfo(Event event, String hcSessionID) throws ApiException {
+        okhttp3.Call localVarCall = postEventsValidateBeforeCall(event, hcSessionID, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * Send a Backend Event (asynchronously)
-     * Events can be send directly from partner backend using the same authentication as the other endpoints
-     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (required)
+     * Events can be send directly from partner backend using the same authentication as the other endpoints. The HC-Session-ID header is optional for booking_confirmed events, which may instead link back to the session via offer IDs in the body; it remains required for other event types.
      * @param event  (required)
+     * @param hcSessionID The ID of the current airline session, see [Sessions](#tag/Sessions) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -229,9 +224,9 @@ public class AnalyticsApi {
         <tr><td> 500 </td><td> The server encountered an internal error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call postEventsAsync(String hcSessionID, Event event, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call postEventsAsync(Event event, String hcSessionID, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = postEventsValidateBeforeCall(hcSessionID, event, _callback);
+        okhttp3.Call localVarCall = postEventsValidateBeforeCall(event, hcSessionID, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }

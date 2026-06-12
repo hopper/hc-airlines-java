@@ -4,6 +4,8 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getCustomerDgExercisesIdSession**](DisruptionGuaranteeDgApi.md#getCustomerDgExercisesIdSession) | **GET** /customer/dg_exercises/{id}/session | Get session ID by DG exercise ID |
+| [**getCustomerDgPayoutReceipt**](DisruptionGuaranteeDgApi.md#getCustomerDgPayoutReceipt) | **GET** /customer/dg/payout/receipt | Get payout receipt PDF |
 | [**getDgContractsId**](DisruptionGuaranteeDgApi.md#getDgContractsId) | **GET** /dg_contracts/{id} | Get a DG contract |
 | [**postDgContractExercises**](DisruptionGuaranteeDgApi.md#postDgContractExercises) | **POST** /dg_contract_exercises | Create DG Exercise |
 | [**postDgContracts**](DisruptionGuaranteeDgApi.md#postDgContracts) | **POST** /dg_contracts | Create a DG Contract |
@@ -12,6 +14,147 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | [**putDgContractsIdItinerarySlices**](DisruptionGuaranteeDgApi.md#putDgContractsIdItinerarySlices) | **PUT** /dg_contracts/{id}/itinerary_slices | Update DG Contract Itinerary Slices |
 | [**putDgContractsIdUpdateStatus**](DisruptionGuaranteeDgApi.md#putDgContractsIdUpdateStatus) | **PUT** /dg_contracts/{id}/update_status | Update DG Contract Status |
 
+
+<a id="getCustomerDgExercisesIdSession"></a>
+# **getCustomerDgExercisesIdSession**
+> GetDgExerciseSessionResponse getCustomerDgExercisesIdSession(id)
+
+Get session ID by DG exercise ID
+
+Retrieve the session ID for a given DG exercise ID
+
+### Example
+```java
+// Import classes:
+import com.hopper.cloud.airlines.ApiClient;
+import com.hopper.cloud.airlines.ApiException;
+import com.hopper.cloud.airlines.Configuration;
+import com.hopper.cloud.airlines.models.*;
+import com.hopper.cloud.airlines.api.DisruptionGuaranteeDgApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://airlines-api.hopper.com/airline/v1.1");
+
+    DisruptionGuaranteeDgApi apiInstance = new DisruptionGuaranteeDgApi(defaultClient);
+    String id = "id_example"; // String | A unique identifier for a exercise
+    try {
+      GetDgExerciseSessionResponse result = apiInstance.getCustomerDgExercisesIdSession(id);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DisruptionGuaranteeDgApi#getCustomerDgExercisesIdSession");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| A unique identifier for a exercise | |
+
+### Return type
+
+[**GetDgExerciseSessionResponse**](GetDgExerciseSessionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The session ID for the DG exercise |  -  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+<a id="getCustomerDgPayoutReceipt"></a>
+# **getCustomerDgPayoutReceipt**
+> File getCustomerDgPayoutReceipt(verificationCode)
+
+Get payout receipt PDF
+
+Download payout receipt as PDF
+
+### Example
+```java
+// Import classes:
+import com.hopper.cloud.airlines.ApiClient;
+import com.hopper.cloud.airlines.ApiException;
+import com.hopper.cloud.airlines.Configuration;
+import com.hopper.cloud.airlines.auth.*;
+import com.hopper.cloud.airlines.models.*;
+import com.hopper.cloud.airlines.api.DisruptionGuaranteeDgApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://airlines-api.hopper.com/airline/v1.1");
+    
+    // Configure API key authorization: SessionAuth
+    ApiKeyAuth SessionAuth = (ApiKeyAuth) defaultClient.getAuthentication("SessionAuth");
+    SessionAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //SessionAuth.setApiKeyPrefix("Token");
+
+    DisruptionGuaranteeDgApi apiInstance = new DisruptionGuaranteeDgApi(defaultClient);
+    String verificationCode = "verificationCode_example"; // String | 
+    try {
+      File result = apiInstance.getCustomerDgPayoutReceipt(verificationCode);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DisruptionGuaranteeDgApi#getCustomerDgPayoutReceipt");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **verificationCode** | **String**|  | [optional] |
+
+### Return type
+
+[**File**](File.md)
+
+### Authorization
+
+[SessionAuth](../README.md#SessionAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/pdf, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | PDF receipt file |  * Expires -  <br>  * Cache-Control -  <br>  * Content-Type -  <br>  * Content-Disposition -  <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **403** | The authenticated client does not have permission to call this endpoint |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
 
 <a id="getDgContractsId"></a>
 # **getDgContractsId**

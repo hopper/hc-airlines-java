@@ -51,7 +51,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * FareRule
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class FareRule {
   public static final String SERIALIZED_NAME_MODIFICATION_TYPE = "modification_type";
   @SerializedName(SERIALIZED_NAME_MODIFICATION_TYPE)
@@ -82,6 +82,11 @@ public class FareRule {
   @SerializedName(SERIALIZED_NAME_REFUND_METHOD)
   @javax.annotation.Nullable
   private AirlineRefundMethod refundMethod;
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
+  private String currency;
 
   public FareRule() {
   }
@@ -200,6 +205,25 @@ public class FareRule {
   }
 
 
+  public FareRule currency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+  /**
+   * Currency of fee field. This will default to the contract currency if not specified.
+   * @return currency
+   */
+  @javax.annotation.Nullable
+  public String getCurrency() {
+    return currency;
+  }
+
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -215,12 +239,13 @@ public class FareRule {
         Objects.equals(this.allowed, fareRule.allowed) &&
         Objects.equals(this.fee, fareRule.fee) &&
         Objects.equals(this.percentage, fareRule.percentage) &&
-        Objects.equals(this.refundMethod, fareRule.refundMethod);
+        Objects.equals(this.refundMethod, fareRule.refundMethod) &&
+        Objects.equals(this.currency, fareRule.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(modificationType, modificationTime, allowed, fee, percentage, refundMethod);
+    return Objects.hash(modificationType, modificationTime, allowed, fee, percentage, refundMethod, currency);
   }
 
   @Override
@@ -233,6 +258,7 @@ public class FareRule {
     sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
     sb.append("    percentage: ").append(toIndentedString(percentage)).append("\n");
     sb.append("    refundMethod: ").append(toIndentedString(refundMethod)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -261,6 +287,7 @@ public class FareRule {
     openapiFields.add("fee");
     openapiFields.add("percentage");
     openapiFields.add("refund_method");
+    openapiFields.add("currency");
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

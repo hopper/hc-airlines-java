@@ -10,6 +10,7 @@ A created Dg offer
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Unique identifier for an offer |  |
 |**premium** | **String** | Total amount to be paid for DG |  |
+|**premiumPerPassenger** | **String** | Premium amount per paying passenger |  |
 |**coverage** | **String** | Total amount to be refunded upon DG exercise |  |
 |**coveragePercentage** | **String** | Percentage of the ticket’s value to be refunded upon DG exercise |  |
 |**serviceCap** | **String** |  |  |

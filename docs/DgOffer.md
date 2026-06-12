@@ -8,7 +8,7 @@ A Dg offer
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Unique identifier for a DG offer |  |
+|**id** | **String** |  |  |
 |**premium** | **String** | Total amount to be paid for DG |  |
 |**coverage** | **String** | Total amount to be refunded upon DG exercise |  |
 |**coveragePercentage** | **String** | Percentage of the amount to be refunded to customer compared to flight tickets price |  |

@@ -22,7 +22,6 @@ import com.google.gson.stream.JsonWriter;
 import com.hopper.cloud.airlines.model.DgPassengerType;
 import com.hopper.cloud.airlines.model.Gender;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -51,7 +50,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object detailing the Passenger Information
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-05T22:08:59.403500795Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgPassenger {
   public static final String SERIALIZED_NAME_PASSENGER_REFERENCE = "passenger_reference";
   @SerializedName(SERIALIZED_NAME_PASSENGER_REFERENCE)
@@ -76,7 +75,7 @@ public class DgPassenger {
   public static final String SERIALIZED_NAME_DATE_OF_BIRTH = "date_of_birth";
   @SerializedName(SERIALIZED_NAME_DATE_OF_BIRTH)
   @javax.annotation.Nullable
-  private LocalDate dateOfBirth;
+  private String dateOfBirth;
 
   public static final String SERIALIZED_NAME_GENDER = "gender";
   @SerializedName(SERIALIZED_NAME_GENDER)
@@ -96,12 +95,12 @@ public class DgPassenger {
   public static final String SERIALIZED_NAME_PASSPORT_ISSUANCE_DATE = "passport_issuance_date";
   @SerializedName(SERIALIZED_NAME_PASSPORT_ISSUANCE_DATE)
   @javax.annotation.Nullable
-  private LocalDate passportIssuanceDate;
+  private String passportIssuanceDate;
 
   public static final String SERIALIZED_NAME_PASSPORT_EXPIRATION_DATE = "passport_expiration_date";
   @SerializedName(SERIALIZED_NAME_PASSPORT_EXPIRATION_DATE)
   @javax.annotation.Nullable
-  private LocalDate passportExpirationDate;
+  private String passportExpirationDate;
 
   public static final String SERIALIZED_NAME_NATIONALITY = "nationality";
   @SerializedName(SERIALIZED_NAME_NATIONALITY)
@@ -187,21 +186,21 @@ public class DgPassenger {
   }
 
 
-  public DgPassenger dateOfBirth(@javax.annotation.Nullable LocalDate dateOfBirth) {
+  public DgPassenger dateOfBirth(@javax.annotation.Nullable String dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
     return this;
   }
 
   /**
-   * The birth date in ISO Local Date format
+   * The birth date in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.
    * @return dateOfBirth
    */
   @javax.annotation.Nullable
-  public LocalDate getDateOfBirth() {
+  public String getDateOfBirth() {
     return dateOfBirth;
   }
 
-  public void setDateOfBirth(@javax.annotation.Nullable LocalDate dateOfBirth) {
+  public void setDateOfBirth(@javax.annotation.Nullable String dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
   }
 
@@ -231,7 +230,7 @@ public class DgPassenger {
   }
 
   /**
-   * The passport number of the passenger
+   * The passport number of the passenger. For encrypted partners, this contains the encrypted Base64 string.
    * @return passportNumber
    */
   @javax.annotation.Nullable
@@ -250,7 +249,7 @@ public class DgPassenger {
   }
 
   /**
-   * The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)
+   * The country of issuance of the passenger&#39;s passport. Must be a valid ISO 3166-1 alpha-2 country code (2 uppercase letters, e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;). For encrypted partners, this contains the encrypted Base64 string.
    * @return passportCountryIssuance
    */
   @javax.annotation.Nullable
@@ -263,40 +262,40 @@ public class DgPassenger {
   }
 
 
-  public DgPassenger passportIssuanceDate(@javax.annotation.Nullable LocalDate passportIssuanceDate) {
+  public DgPassenger passportIssuanceDate(@javax.annotation.Nullable String passportIssuanceDate) {
     this.passportIssuanceDate = passportIssuanceDate;
     return this;
   }
 
   /**
-   * The date of issuance of the passenger&#39;s passport
+   * The date of issuance of the passenger&#39;s passport in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.
    * @return passportIssuanceDate
    */
   @javax.annotation.Nullable
-  public LocalDate getPassportIssuanceDate() {
+  public String getPassportIssuanceDate() {
     return passportIssuanceDate;
   }
 
-  public void setPassportIssuanceDate(@javax.annotation.Nullable LocalDate passportIssuanceDate) {
+  public void setPassportIssuanceDate(@javax.annotation.Nullable String passportIssuanceDate) {
     this.passportIssuanceDate = passportIssuanceDate;
   }
 
 
-  public DgPassenger passportExpirationDate(@javax.annotation.Nullable LocalDate passportExpirationDate) {
+  public DgPassenger passportExpirationDate(@javax.annotation.Nullable String passportExpirationDate) {
     this.passportExpirationDate = passportExpirationDate;
     return this;
   }
 
   /**
-   * The passport expiration date of the passenger
+   * The passport expiration date of the passenger in ISO Local Date format (yyyy-MM-dd). For encrypted partners, this contains the encrypted Base64 string.
    * @return passportExpirationDate
    */
   @javax.annotation.Nullable
-  public LocalDate getPassportExpirationDate() {
+  public String getPassportExpirationDate() {
     return passportExpirationDate;
   }
 
-  public void setPassportExpirationDate(@javax.annotation.Nullable LocalDate passportExpirationDate) {
+  public void setPassportExpirationDate(@javax.annotation.Nullable String passportExpirationDate) {
     this.passportExpirationDate = passportExpirationDate;
   }
 
@@ -307,7 +306,7 @@ public class DgPassenger {
   }
 
   /**
-   * The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;)
+   * The nationality of the passenger. Must be a valid ISO 3166-1 alpha-2 country code (e.g., &#39;US&#39;, &#39;JP&#39;, &#39;TH&#39;). For encrypted partners, this contains the encrypted Base64 string.
    * @return nationality
    */
   @javax.annotation.Nullable

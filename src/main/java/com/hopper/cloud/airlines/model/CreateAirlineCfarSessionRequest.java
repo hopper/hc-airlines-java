@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.hopper.cloud.airlines.model.Channel;
 import com.hopper.cloud.airlines.model.Device;
 import com.hopper.cloud.airlines.model.UserInfo;
 import java.io.IOException;
@@ -50,7 +51,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * An object containing information related to the user&#39;s session
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class CreateAirlineCfarSessionRequest {
   public static final String SERIALIZED_NAME_USER_INFO = "user_info";
   @SerializedName(SERIALIZED_NAME_USER_INFO)
@@ -76,6 +77,11 @@ public class CreateAirlineCfarSessionRequest {
   @SerializedName(SERIALIZED_NAME_LANGUAGE)
   @javax.annotation.Nonnull
   private String language;
+
+  public static final String SERIALIZED_NAME_CHANNEL = "channel";
+  @SerializedName(SERIALIZED_NAME_CHANNEL)
+  @javax.annotation.Nullable
+  private Channel channel;
 
   public CreateAirlineCfarSessionRequest() {
   }
@@ -175,6 +181,25 @@ public class CreateAirlineCfarSessionRequest {
   }
 
 
+  public CreateAirlineCfarSessionRequest channel(@javax.annotation.Nullable Channel channel) {
+    this.channel = channel;
+    return this;
+  }
+
+  /**
+   * Get channel
+   * @return channel
+   */
+  @javax.annotation.Nullable
+  public Channel getChannel() {
+    return channel;
+  }
+
+  public void setChannel(@javax.annotation.Nullable Channel channel) {
+    this.channel = channel;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -189,12 +214,13 @@ public class CreateAirlineCfarSessionRequest {
         Objects.equals(this.device, createAirlineCfarSessionRequest.device) &&
         Objects.equals(this.sessionId, createAirlineCfarSessionRequest.sessionId) &&
         Objects.equals(this.pointOfSale, createAirlineCfarSessionRequest.pointOfSale) &&
-        Objects.equals(this.language, createAirlineCfarSessionRequest.language);
+        Objects.equals(this.language, createAirlineCfarSessionRequest.language) &&
+        Objects.equals(this.channel, createAirlineCfarSessionRequest.channel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userInfo, device, sessionId, pointOfSale, language);
+    return Objects.hash(userInfo, device, sessionId, pointOfSale, language, channel);
   }
 
   @Override
@@ -206,6 +232,7 @@ public class CreateAirlineCfarSessionRequest {
     sb.append("    sessionId: ").append(toIndentedString(sessionId)).append("\n");
     sb.append("    pointOfSale: ").append(toIndentedString(pointOfSale)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,7 +248,9 @@ public class CreateAirlineCfarSessionRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
+
   public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
   static {
     // a set of all properties/fields (JSON key names)
@@ -231,6 +260,7 @@ public class CreateAirlineCfarSessionRequest {
     openapiFields.add("session_id");
     openapiFields.add("point_of_sale");
     openapiFields.add("language");
+    openapiFields.add("channel");
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

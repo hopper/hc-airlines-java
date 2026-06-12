@@ -9,7 +9,15 @@
 |------------ | ------------- | ------------- | -------------|
 |**operatingSystem** | [**OperatingSystem**](OperatingSystem.md) |  |  [optional] |
 |**browser** | [**Browser**](Browser.md) |  |  [optional] |
-|**type** | **String** |  |  |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| WEB | &quot;web&quot; |
 
 
 

@@ -13,7 +13,16 @@
 |**lastFourDigits** | **String** | Last four digits of the payment card |  [optional] |
 |**expirationMonth** | **String** | the expiry month of the payment card |  [optional] |
 |**expirationYear** | **String** | the expiry year of the payment card |  [optional] |
-|**type** | **String** |  |  |
+|**cardBrand** | **String** | Card brand (e.g. visa, master, amex) as returned by the payment provider |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| PAYMENT_CARD | &quot;payment_card&quot; |
 
 
 

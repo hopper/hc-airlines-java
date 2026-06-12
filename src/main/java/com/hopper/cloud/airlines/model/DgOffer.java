@@ -57,7 +57,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * A Dg offer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-05T22:08:59.403500795Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class DgOffer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -178,7 +178,7 @@ public class DgOffer {
   }
 
   /**
-   * Unique identifier for a DG offer
+   * Get id
    * @return id
    */
   @javax.annotation.Nonnull

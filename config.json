@@ -1,5 +1,5 @@
 {
-  "artifactVersion": "1.4.3",
+  "artifactVersion": "2.0.0",
   "modelPackage": "com.hopper.cloud.airlines.model",
   "apiPackage": "com.hopper.cloud.airlines.api",
   "invokerPackage": "com.hopper.cloud.airlines",

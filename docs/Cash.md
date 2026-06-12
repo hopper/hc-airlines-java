@@ -9,7 +9,15 @@
 |------------ | ------------- | ------------- | -------------|
 |**amount** | **String** | Amount charged on the form of payment |  |
 |**currency** | **String** | Currency of the form of payment |  |
-|**type** | **String** |  |  |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| CASH | &quot;cash&quot; |
 
 
 

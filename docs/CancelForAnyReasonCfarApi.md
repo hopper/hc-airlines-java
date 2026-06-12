@@ -5,10 +5,12 @@ All URIs are relative to *https://airlines-api.hopper.com/airline/v1.1*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getCfarContractsId**](CancelForAnyReasonCfarApi.md#getCfarContractsId) | **GET** /cfar_contracts/{id} | Get a CFAR Contract |
+| [**getCustomerCfarPayoutReceipt**](CancelForAnyReasonCfarApi.md#getCustomerCfarPayoutReceipt) | **GET** /customer/cfar/payout/receipt | Get payout receipt PDF |
 | [**postCfarContractExercises**](CancelForAnyReasonCfarApi.md#postCfarContractExercises) | **POST** /cfar_contract_exercises | Create CFAR Exercise |
 | [**postCfarContracts**](CancelForAnyReasonCfarApi.md#postCfarContracts) | **POST** /cfar_contracts | Create a CFAR Contract |
 | [**postCfarContractsIdPayment**](CancelForAnyReasonCfarApi.md#postCfarContractsIdPayment) | **POST** /cfar_contracts/{id}/payment | Process CFAR Payment |
 | [**postCfarOffers**](CancelForAnyReasonCfarApi.md#postCfarOffers) | **POST** /cfar_offers | Create CFAR Offers |
+| [**postCfarOffersExternal**](CancelForAnyReasonCfarApi.md#postCfarOffersExternal) | **POST** /cfar_offers/external | Create External CFAR Offer |
 | [**putCfarContractExercisesIdMarkCompleted**](CancelForAnyReasonCfarApi.md#putCfarContractExercisesIdMarkCompleted) | **PUT** /cfar_contract_exercises/{id}/mark_completed | Complete CFAR Exercise |
 | [**putCfarContractsIdFormsOfPayment**](CancelForAnyReasonCfarApi.md#putCfarContractsIdFormsOfPayment) | **PUT** /cfar_contracts/{id}/forms_of_payment | Update forms of payment of a CFAR Contract |
 | [**putCfarContractsIdItinerarySlices**](CancelForAnyReasonCfarApi.md#putCfarContractsIdItinerarySlices) | **PUT** /cfar_contracts/{id}/itinerary_slices | Update CFAR Contract Itinerary Slices |
@@ -83,6 +85,81 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The requested CFAR contract |  * Expires -  <br>  * Cache-Control -  <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **403** | The authenticated client does not have permission to call this endpoint |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+<a id="getCustomerCfarPayoutReceipt"></a>
+# **getCustomerCfarPayoutReceipt**
+> File getCustomerCfarPayoutReceipt(verificationCode)
+
+Get payout receipt PDF
+
+Download payout receipt as PDF
+
+### Example
+```java
+// Import classes:
+import com.hopper.cloud.airlines.ApiClient;
+import com.hopper.cloud.airlines.ApiException;
+import com.hopper.cloud.airlines.Configuration;
+import com.hopper.cloud.airlines.auth.*;
+import com.hopper.cloud.airlines.models.*;
+import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://airlines-api.hopper.com/airline/v1.1");
+    
+    // Configure API key authorization: SessionAuth
+    ApiKeyAuth SessionAuth = (ApiKeyAuth) defaultClient.getAuthentication("SessionAuth");
+    SessionAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //SessionAuth.setApiKeyPrefix("Token");
+
+    CancelForAnyReasonCfarApi apiInstance = new CancelForAnyReasonCfarApi(defaultClient);
+    String verificationCode = "verificationCode_example"; // String | 
+    try {
+      File result = apiInstance.getCustomerCfarPayoutReceipt(verificationCode);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CancelForAnyReasonCfarApi#getCustomerCfarPayoutReceipt");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **verificationCode** | **String**|  | [optional] |
+
+### Return type
+
+[**File**](File.md)
+
+### Authorization
+
+[SessionAuth](../README.md#SessionAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/pdf, application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | PDF receipt file |  * Expires -  <br>  * Cache-Control -  <br>  * Content-Type -  <br>  * Content-Disposition -  <br>  |
 | **400** | Syntactic errors were encountered while handling the request |  -  |
 | **401** | The client could not be authenticated |  -  |
 | **403** | The authenticated client does not have permission to call this endpoint |  -  |
@@ -384,6 +461,81 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | The created CFAR offers |  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  |
+| **400** | Syntactic errors were encountered while handling the request |  -  |
+| **401** | The client could not be authenticated |  -  |
+| **403** | The authenticated client does not have permission to call this endpoint |  -  |
+| **404** | The requested resource could not be found |  -  |
+| **422** | Semantic errors were encountered while handling the request |  -  |
+| **500** | The server encountered an internal error |  -  |
+
+<a id="postCfarOffersExternal"></a>
+# **postCfarOffersExternal**
+> CfarOffer postCfarOffersExternal(createExternalCfarOfferRequest, hcSessionID)
+
+Create External CFAR Offer
+
+Create a CFAR offer with externally provided pricing and coverage details (temporal API for data migration)
+
+### Example
+```java
+// Import classes:
+import com.hopper.cloud.airlines.ApiClient;
+import com.hopper.cloud.airlines.ApiException;
+import com.hopper.cloud.airlines.Configuration;
+import com.hopper.cloud.airlines.auth.*;
+import com.hopper.cloud.airlines.models.*;
+import com.hopper.cloud.airlines.api.CancelForAnyReasonCfarApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://airlines-api.hopper.com/airline/v1.1");
+    
+    // Configure HTTP bearer authorization: PartnerAuth
+    HttpBearerAuth PartnerAuth = (HttpBearerAuth) defaultClient.getAuthentication("PartnerAuth");
+    PartnerAuth.setBearerToken("BEARER TOKEN");
+
+    CancelForAnyReasonCfarApi apiInstance = new CancelForAnyReasonCfarApi(defaultClient);
+    CreateExternalCfarOfferRequest createExternalCfarOfferRequest = new CreateExternalCfarOfferRequest(); // CreateExternalCfarOfferRequest | 
+    String hcSessionID = "9fd3f2f9-e5aa-4128-ace9-3c4ee37b685f"; // String | The ID of the current airline session, see [Sessions](#tag/Sessions)
+    try {
+      CfarOffer result = apiInstance.postCfarOffersExternal(createExternalCfarOfferRequest, hcSessionID);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CancelForAnyReasonCfarApi#postCfarOffersExternal");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createExternalCfarOfferRequest** | [**CreateExternalCfarOfferRequest**](CreateExternalCfarOfferRequest.md)|  | |
+| **hcSessionID** | **String**| The ID of the current airline session, see [Sessions](#tag/Sessions) | [optional] |
+
+### Return type
+
+[**CfarOffer**](CfarOffer.md)
+
+### Authorization
+
+[PartnerAuth](../README.md#PartnerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The created CFAR offer |  * Expires -  <br>  * Cache-Control -  <br>  * HTS-Session-ID - The ID of the current session, see [Sessions](#tag/Sessions) <br>  |
 | **400** | Syntactic errors were encountered while handling the request |  -  |
 | **401** | The client could not be authenticated |  -  |
 | **403** | The authenticated client does not have permission to call this endpoint |  -  |

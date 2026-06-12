@@ -8,7 +8,15 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**version** | **String** |  |  [optional] |
-|**type** | **String** |  |  |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| MAC_OS | &quot;mac_os&quot; |
 
 
 

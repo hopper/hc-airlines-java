@@ -21,7 +21,11 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,7 +53,7 @@ import com.hopper.cloud.airlines.JSON;
 /**
  * BookingConfirmed
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-09T15:59:32.149271921Z[Etc/UTC]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T20:04:46.237393626Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class BookingConfirmed {
   public static final String SERIALIZED_NAME_OCCURRED_DATE_TIME = "occurred_date_time";
   @SerializedName(SERIALIZED_NAME_OCCURRED_DATE_TIME)
@@ -66,10 +70,70 @@ public class BookingConfirmed {
   @javax.annotation.Nullable
   private String dgContractId;
 
+  public static final String SERIALIZED_NAME_CFAR_OFFER_IDS = "cfar_offer_ids";
+  @SerializedName(SERIALIZED_NAME_CFAR_OFFER_IDS)
+  @javax.annotation.Nullable
+  private List<String> cfarOfferIds;
+
+  public static final String SERIALIZED_NAME_DG_OFFER_IDS = "dg_offer_ids";
+  @SerializedName(SERIALIZED_NAME_DG_OFFER_IDS)
+  @javax.annotation.Nullable
+  private List<String> dgOfferIds;
+
+  public static final String SERIALIZED_NAME_BOOKING_REFERENCES = "booking_references";
+  @SerializedName(SERIALIZED_NAME_BOOKING_REFERENCES)
+  @javax.annotation.Nullable
+  private Map<String, String> bookingReferences;
+
+  /**
+   * Gets or Sets type
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    BOOKING_CONFIRMED("booking_confirmed");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TypeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nonnull
-  private String type;
+  private TypeEnum type;
 
   public BookingConfirmed() {
   }
@@ -131,7 +195,88 @@ public class BookingConfirmed {
   }
 
 
-  public BookingConfirmed type(@javax.annotation.Nonnull String type) {
+  public BookingConfirmed cfarOfferIds(@javax.annotation.Nullable List<String> cfarOfferIds) {
+    this.cfarOfferIds = cfarOfferIds;
+    return this;
+  }
+
+  public BookingConfirmed addCfarOfferIdsItem(String cfarOfferIdsItem) {
+    if (this.cfarOfferIds == null) {
+      this.cfarOfferIds = new ArrayList<>();
+    }
+    this.cfarOfferIds.add(cfarOfferIdsItem);
+    return this;
+  }
+
+  /**
+   * CFAR offer IDs shown to the customer during the session. Used to recover the session (and enrich the event) when no HC-Session-ID header is sent.
+   * @return cfarOfferIds
+   */
+  @javax.annotation.Nullable
+  public List<String> getCfarOfferIds() {
+    return cfarOfferIds;
+  }
+
+  public void setCfarOfferIds(@javax.annotation.Nullable List<String> cfarOfferIds) {
+    this.cfarOfferIds = cfarOfferIds;
+  }
+
+
+  public BookingConfirmed dgOfferIds(@javax.annotation.Nullable List<String> dgOfferIds) {
+    this.dgOfferIds = dgOfferIds;
+    return this;
+  }
+
+  public BookingConfirmed addDgOfferIdsItem(String dgOfferIdsItem) {
+    if (this.dgOfferIds == null) {
+      this.dgOfferIds = new ArrayList<>();
+    }
+    this.dgOfferIds.add(dgOfferIdsItem);
+    return this;
+  }
+
+  /**
+   * DG offer IDs shown to the customer during the session. Used to recover the session (and enrich the event) when no HC-Session-ID header is sent.
+   * @return dgOfferIds
+   */
+  @javax.annotation.Nullable
+  public List<String> getDgOfferIds() {
+    return dgOfferIds;
+  }
+
+  public void setDgOfferIds(@javax.annotation.Nullable List<String> dgOfferIds) {
+    this.dgOfferIds = dgOfferIds;
+  }
+
+
+  public BookingConfirmed bookingReferences(@javax.annotation.Nullable Map<String, String> bookingReferences) {
+    this.bookingReferences = bookingReferences;
+    return this;
+  }
+
+  public BookingConfirmed putBookingReferencesItem(String key, String bookingReferencesItem) {
+    if (this.bookingReferences == null) {
+      this.bookingReferences = new HashMap<>();
+    }
+    this.bookingReferences.put(key, bookingReferencesItem);
+    return this;
+  }
+
+  /**
+   * Get bookingReferences
+   * @return bookingReferences
+   */
+  @javax.annotation.Nullable
+  public Map<String, String> getBookingReferences() {
+    return bookingReferences;
+  }
+
+  public void setBookingReferences(@javax.annotation.Nullable Map<String, String> bookingReferences) {
+    this.bookingReferences = bookingReferences;
+  }
+
+
+  public BookingConfirmed type(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -141,11 +286,11 @@ public class BookingConfirmed {
    * @return type
    */
   @javax.annotation.Nonnull
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(@javax.annotation.Nonnull String type) {
+  public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
   }
 
@@ -163,12 +308,15 @@ public class BookingConfirmed {
     return Objects.equals(this.occurredDateTime, bookingConfirmed.occurredDateTime) &&
         Objects.equals(this.cfarContractId, bookingConfirmed.cfarContractId) &&
         Objects.equals(this.dgContractId, bookingConfirmed.dgContractId) &&
+        Objects.equals(this.cfarOfferIds, bookingConfirmed.cfarOfferIds) &&
+        Objects.equals(this.dgOfferIds, bookingConfirmed.dgOfferIds) &&
+        Objects.equals(this.bookingReferences, bookingConfirmed.bookingReferences) &&
         Objects.equals(this.type, bookingConfirmed.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(occurredDateTime, cfarContractId, dgContractId, type);
+    return Objects.hash(occurredDateTime, cfarContractId, dgContractId, cfarOfferIds, dgOfferIds, bookingReferences, type);
   }
 
   @Override
@@ -178,6 +326,9 @@ public class BookingConfirmed {
     sb.append("    occurredDateTime: ").append(toIndentedString(occurredDateTime)).append("\n");
     sb.append("    cfarContractId: ").append(toIndentedString(cfarContractId)).append("\n");
     sb.append("    dgContractId: ").append(toIndentedString(dgContractId)).append("\n");
+    sb.append("    cfarOfferIds: ").append(toIndentedString(cfarOfferIds)).append("\n");
+    sb.append("    dgOfferIds: ").append(toIndentedString(dgOfferIds)).append("\n");
+    sb.append("    bookingReferences: ").append(toIndentedString(bookingReferences)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -204,6 +355,9 @@ public class BookingConfirmed {
     openapiFields.add("occurred_date_time");
     openapiFields.add("cfar_contract_id");
     openapiFields.add("dg_contract_id");
+    openapiFields.add("cfar_offer_ids");
+    openapiFields.add("dg_offer_ids");
+    openapiFields.add("booking_references");
     openapiFields.add("type");
   }
 
